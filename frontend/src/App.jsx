@@ -1,21 +1,13 @@
-import { useState, useEffect } from "react";
-import { getPatients } from "./api";
+import Navbar from "./components/Navigation";
 
 function App() {
-  const [patients, setPatients] = useState([]);
-
-  useEffect(() => {
-    getPatients().then((data) => setPatients(data));
-  }, []);
-
   return (
     <div>
-      <h1>Website Dra.Paula</h1>
-      <ul>
-        {patients.map((patient) => (
-          <li key={patient.id}>{patient.name} - {patient.email}</li>
-        ))}
-      </ul>
+      <Navbar />
+      <main style={{ paddingTop: "80px" }}>
+        <h1>Welcome to MedSnap</h1>
+        <p>This is a test page for the responsive navbar.</p>
+      </main>
     </div>
   );
 }
