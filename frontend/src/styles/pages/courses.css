@@ -1,0 +1,81 @@
+.courses {
+    text-align: center;
+    padding: 50px 20px;
+    
+  }
+  
+  .courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+  }
+  
+  .course-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex; /* Makes all cards the same height */
+    flex-direction: column; /* Aligns content properly */
+    justify-content: space-between; /* Ensures button stays at the bottom */
+    height: 100%; /* Ensures consistency */
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .course-image {
+    width: 100%;
+    height: 180px; /* Ensures all images are the same size */
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .course-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+  
+  .course-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .add-to-cart {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: auto; /* Ensures the button stays aligned at the bottom */
+  }
+  
+  .add-to-cart:hover {
+    background: #0056b3;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .courses-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  

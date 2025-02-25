@@ -1,0 +1,43 @@
+.banner {
+  position: relative;
+  width: 100vw;  /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden; /* Prevents any scrolling issue */
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the entire area */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Sends the image behind the content */
+}
+
+.banner-content {
+  color: white;
+  z-index: 1;
+  max-width: 80%;
+  padding: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Improves text readability */
+}
+
+.cta-button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.cta-button:hover {
+  background-color: #e63946;
+}
