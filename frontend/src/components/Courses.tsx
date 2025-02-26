@@ -1,8 +1,10 @@
 import "../styles/pages/courses.css";
+
+
 import { ShoppingBag } from "lucide-react";
-import img1 from "../assets/courses/image1.jpg";
-import img2 from "../assets/courses/image2.jpg";
-import img3 from "../assets/courses/image3.jpg";
+import img1 from "../assets/courses/image1.png";
+import img2 from "../assets/courses/image2.png";
+import img3 from "../assets/courses/image3.png";
 import img4 from "../assets/courses/image4.jpg";
 
 
@@ -17,7 +19,8 @@ const courses = [
 const Courses = () => {
   return (
     <section className="courses">
-      <h2>Cursos</h2>
+      <h2>Cursos</h2><br />
+
       <p>Os favoritos de Terapeutas e Educadores para transformar o desenvolvimento infantil na prática</p>
       <div className="courses-container">
         {courses.map((course, index) => (

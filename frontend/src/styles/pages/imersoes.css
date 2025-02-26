@@ -1,0 +1,85 @@
+/* 🔹 Section takes full width */
+.imersoes {
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-image 1s ease-in-out; /* ✅ Smooth transition effect */
+  }
+  
+  /* 🔹 Dark overlay to improve readability */
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark effect */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+  }
+  
+  /* 🔹 Text Content */
+  .imersoes-content {
+    max-width: 500px;
+    color: white;
+  }
+  
+  .imersoes-tag {
+    background: #b3e0ff;
+    color: #0056b3;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .imersoes h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .imersoes p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  /* 🔹 Button */
+  .imersoes-button {
+    background: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .imersoes-button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* 🔹 Remove Arrows */
+  .prev, .next {
+    display: none;
+  }
+  
+  /* 🔹 Responsive Design */
+  @media (max-width: 768px) {
+    .overlay {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+  

@@ -1,0 +1,142 @@
+.mentorship {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.mentorship-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    width: 100%;
+    gap: 50px; /* Increased gap for better spacing */
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+/* Image Styling */
+.mentorship-image {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.mentorship-image img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-left: -9rem;
+}
+
+/* Content Styling */
+.mentorship-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* Button Styling */
+.mentorship-button {
+    background: #007bff;
+    color: white;
+    padding: 12px 24px; /* Slightly larger button */
+    border: none;
+    border-radius: 30px; /* Rounded button */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 10px rgba(0, 123, 255, 0.3);
+}
+
+.mentorship-button:hover {
+    background: #0056b3;
+    transform: scale(1.05); /* Slight pop effect on hover */
+}
+
+.mentorship-tag {
+    background: #b3e0ff;
+    color: #0056b3;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 15px; /* Adds space below the tag */
+}
+
+.mentorship h2 {
+    font-size: 22px;
+    margin: 15px 0; /* Increased spacing above and below */
+}
+
+.mentorship p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.8; /* Improves readability */
+    margin-bottom: 20px; /* Creates space between paragraphs */
+}
+
+.mentorship h3 {
+    margin-top: 25px; /* More space above headings */
+    font-size: 18px;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) { /* iPads & Tablets */
+    .mentorship-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 90%;
+    }
+
+    .mentorship-image {
+        max-width: 280px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mentorship-image img {
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto; /* Ensures full centering */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+    .mentorship-container {
+        flex-direction: column;
+        align-items: center; /* Ensures everything is centered */
+        text-align: center;
+        max-width: 90%;
+    }
+
+    .mentorship-image {
+        max-width: 250px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mentorship-image img {
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto; /* Centers the image */
+    }
+
+    .mentorship-content {
+        max-width: 90%;
+    }
+
+    .mentorship-button {
+        width: 80%;
+        max-width: 250px; /* Prevents button from being too wide */
+    }
+}

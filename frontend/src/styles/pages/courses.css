@@ -1,12 +1,12 @@
 .courses {
     text-align: center;
     padding: 50px 20px;
-    
+    margin-top: 20px;
   }
   
   .courses-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns on desktop */
     gap: 20px;
     justify-content: center;
     max-width: 1200px;
@@ -20,10 +20,10 @@
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: flex; /* Makes all cards the same height */
-    flex-direction: column; /* Aligns content properly */
-    justify-content: space-between; /* Ensures button stays at the bottom */
-    height: 100%; /* Ensures consistency */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     transition: transform 0.2s ease-in-out;
   }
   
@@ -33,15 +33,18 @@
   
   .course-image {
     width: 100%;
-    height: 180px; /* Ensures all images are the same size */
-    object-fit: cover;
+    height: 180px; /* Keep consistent height */
+    object-fit: contain; /* Ensures the full image is visible */
     border-radius: 10px;
+    background-color: #f8f8f8; /* Adds a background if the image has empty space */
   }
+  
   
   .course-title {
     font-size: 18px;
     font-weight: 600;
     margin: 10px 0;
+    
   }
   
   .course-price {
@@ -65,17 +68,24 @@
     width: 100%;
     font-size: 14px;
     font-weight: bold;
-    margin-top: auto; /* Ensures the button stays aligned at the bottom */
+    margin-top: auto;
   }
   
   .add-to-cart:hover {
     background: #0056b3;
   }
   
-  /* Responsive Adjustments */
+  /* Tablets (2 Columns) */
+  @media (max-width: 1024px) {
+    .courses-container {
+      grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    }
+  }
+  
+  /* Mobile (1 Column) */
   @media (max-width: 768px) {
     .courses-container {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr; /* Always 1 column */
     }
   }
   

@@ -1,0 +1,111 @@
+.books {
+    text-align: center;
+    padding: 60px 20px; /* Increased padding for better spacing */
+    background: #ffffff;
+  }
+  
+  .books h2 {
+    font-size: 28px; /* Slightly larger headline */
+    margin-bottom: 20px; /* More space between headline and text */
+  }
+  
+  .books p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 40px; /* More space before the images */
+  }
+  
+  .books-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns on desktop */
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Ensures that buttons and cards stay aligned */
+  .book-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .book-image {
+    width: 100%;
+    height: 220px; /* Keeps all images uniform */
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .book-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+  
+  .book-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .add-to-cart {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: auto;
+  }
+  
+  .add-to-cart:hover {
+    background: #0056b3;
+  }
+  
+  /* 🔹 RESPONSIVENESS FIXES */
+  @media (max-width: 1024px) {
+    .books-container {
+      grid-template-columns: repeat(2, 1fr); /* Always 2 per row on tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .books-container {
+      grid-template-columns: 1fr; /* 1 per row on mobile */
+    }
+  }
+  
+  /* 🔹 Ensures that there's NEVER a single book left alone */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .books-container {
+      grid-template-columns: repeat(2, 1fr); /* Always keep pairs on tablets */
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1300px) {
+    .books-container {
+      grid-template-columns: repeat(4, 1fr); /* Ensures 4 books per row */
+    }
+  }
+  
