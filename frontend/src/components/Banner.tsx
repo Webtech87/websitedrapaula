@@ -6,9 +6,9 @@ const Banner: React.FC = () => {
   return (
     <section className="banner">
       <div className="banner-content">
-      <h1>Welcome to Our Website</h1>
-        <p>Discover our amazing courses and mentorship programs.</p>
-        <button className="cta-button">Get Started</button>
+      <h1>Intervenção terapêutica na prática</h1>
+        <p>Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.</p>
+        <button className="cta-button">Saber mais</button>
       </div>
       <img src={bannerImage} alt="" className="banner-image" />
     </section>

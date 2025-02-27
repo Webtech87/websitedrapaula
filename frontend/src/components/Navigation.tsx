@@ -19,7 +19,7 @@ const Navigation = () => {
   const navigationLinks = [
     { label: "Home", href: "#" },
     {
-      label: "Sobre mim",
+      label: "Sobre a Fundadora",
       href: "#",
       subItems: [
         { label: "PSE", href: "#" },
@@ -35,6 +35,12 @@ const Navigation = () => {
         { label: "Imersoes", href: "#" },
       ],
     },
+
+    {
+      label: "Mentorias",
+      href: "#",
+    },
+
     {
       label: "Recursos",
       href: "#",
@@ -43,6 +49,8 @@ const Navigation = () => {
         { label: "Artigos e teses", href: "#" },
       ],
     },
+
+
     { label: "Contacto", href: "#" },
   ];
 
