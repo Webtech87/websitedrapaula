@@ -1,0 +1,126 @@
+/* 🔹 Footer Base Styling */
+.footer {
+    background: #ffffff;
+    padding: 40px 20px;
+}
+
+/* 🔹 Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 40px; /* Adjust space between sections */
+    text-align: left;
+}
+
+/* 🔹 Logo & Social Icons */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+}
+
+.footer-logo img {
+    width: 100%;
+    max-width: 150px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+/* 🔹 Footer Columns */
+.footer-column {
+    flex: 1;
+    min-width: 280px;
+    text-align: left;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #007bff;
+    transform: translateX(5px);
+}
+
+/* 🔹 Footer Bottom */
+.footer-bottom {
+    background: #007bff;
+    text-align: center;
+    padding: 12px;
+    margin-top: 30px;
+    color: white;
+    font-size: 14px;
+}
+
+/* 🔹 Responsive Fix for Tablets (Perfect Alignment) */
+@media (max-width: 1024px) {
+    .footer-container {
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .footer-column {
+        flex-basis: 45%;
+        text-align: center;
+    }
+
+    .footer-logo {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ✅ Mobile Layout (Stacked & Aligned) */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-column {
+        width: 100%;
+        text-align: center;
+    }
+}

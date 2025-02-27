@@ -1,0 +1,116 @@
+/* 🔹 Testimonials Section */
+.testemunhos {
+    padding: 60px 20px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    
+  }
+  
+  /* 🔹 Title & Subtitle */
+  .testemunhos h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .testemunhos p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* 🔹 Carousel Wrapper */
+  .carousel {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  
+  /* 🔹 Testimonials Container (Infinite Loop) */
+  .testemunhos-container {
+    display: flex;
+    gap: 15px;
+    width: max-content;
+    animation: infiniteScroll 15s linear infinite;
+  }
+  
+  /* 🔹 Individual Testimonial Card */
+  .testemunho-card {
+    flex: 0 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+  
+  /* 🔹 Icon */
+  .testemunho-icon {
+    font-size: 24px;
+    color: #007bff;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* 🔹 Star Rating */
+  .stars {
+    font-size: 18px;
+    color: gold;
+    margin: 5px 0;
+  }
+  
+  /* 🔹 Testimonial Name */
+  .testemunho-name {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  /* 🔹 Infinite Scrolling Keyframe Animation */
+  @keyframes infiniteScroll {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); } /* Loops smoothly */
+  }
+  
+  /* 🔹 Responsive Design */
+  @media (max-width: 1024px) {
+    .testemunhos-container {
+      animation: infiniteScroll 20s linear infinite;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .testemunhos-container {
+      gap: 10px;
+      animation: infiniteScroll 25s linear infinite;
+    }
+  
+    .testemunho-card {
+      max-width: 220px;
+      margin: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel {
+      overflow: hidden;
+    }
+  
+    .testemunhos-container {
+      gap: 10px;
+      animation: infiniteScroll 18s linear infinite;
+    }
+  
+    .testemunho-card {
+      flex: 0 0 85%;
+      max-width: 260px;
+      margin: 5px 0;
+    }
+  }
+  
