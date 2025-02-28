@@ -156,10 +156,22 @@ const Navigation = () => {
             <div className="user-dropdown-container" ref={userDropdownRef}>
               <User className="icon" onClick={toggleUserDropdown} />
               {dropdowns.userDropdown && (
-                <div className="user-dropdown-menu">
-                  <button className="user-dropdown-button">Iniciar sessão</button>
-                  <button className="user-dropdown-button">Criar uma conta</button>
-                </div>
+
+<div className="user-dropdown-container" ref={userDropdownRef}>
+<User className="icon" onClick={toggleUserDropdown} />
+{dropdowns.userDropdown && (
+  <div className="user-dropdown-menu">
+    <button className="user-dropdown-button" onClick={() => window.location.href = "/login"}>
+      Iniciar sessão
+    </button>
+    <button className="user-dropdown-button" onClick={() => window.location.href = "/register"}>
+      Criar uma conta
+    </button>
+  </div>
+)}
+</div>
+
+
               )}
             </div>
             <Heart className="icon" />

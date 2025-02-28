@@ -1,4 +1,5 @@
-import Navbar from "./components/Navigation";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
 import Banner from "./components/Banner";
 import Courses from "./components/Courses";
 import Mentorship from "./components/pages/Mentorship";
@@ -7,15 +8,14 @@ import About from "./components/pages/About";
 import Imersoes from "./components/pages/Imersoes";
 import Lancamentos from "./components/pages/Lancamentos";
 import Testemunhos from "./components/pages/Testemunhos";
-import ContactForm from "./components/pages/ContactForm";  // ✅ Import the Contact Form
-import Footer from "./components/pages/Footer"; // ✅ Add this
-
+import ContactForm from "./components/pages/ContactForm";
+import Login from "./components/pages/Login";       // ✅ Import Login page
+import Register from "./components/pages/Register"; // ✅ Import Register page
 import "./styles/global.css";
 
-function App() {
+function Home() {
   return (
-    <div>
-      <Navbar />
+    <>
       <Banner />
       <Courses />
       <Mentorship />
@@ -24,9 +24,21 @@ function App() {
       <Imersoes />
       <Lancamentos />
       <Testemunhos />
-      <ContactForm /> {/* ✅ Add the Contact Form below Testimonials */}
-      <Footer />
-    </div>
+      <ContactForm />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />         {/* ✅ Home now contains all sections */}
+        <Route path="/login" element={<Login />} />   {/* ✅ Standalone pages */}
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 

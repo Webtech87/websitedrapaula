@@ -1,0 +1,180 @@
+/* 🔹 General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* 🔹 Register Page Section */
+  .register-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 140px 20px 20px; /* Pushes the form down to avoid navbar overlap */
+  }
+  
+  /* 🔹 Register Form Container */
+  .register-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: -30px; /* Ensures space between navbar and form */
+  }
+  
+  /* 🔹 Title */
+  .register-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* 🔹 Form Styling */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* 🔹 Labels */
+  .register-form label {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    display: block;
+    color: #444;
+  }
+  
+  /* 🔹 Input Fields */
+  .register-form input,
+  .register-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  /* 🔹 Input Focus Effect */
+  .register-form input:focus,
+  .register-form select:focus {
+    border-color: #007bff;
+  }
+  
+  /* 🔹 Register Button */
+  .register-form button {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+  
+  .register-form button:hover {
+    background: #1d4ed8;
+  }
+  
+  /* 🔹 Terms & Conditions Checkbox */
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    text-align: left;
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    flex-wrap: nowrap; /* Ensures the elements stay on a single line */
+  }
+  
+  .terms-checkbox input {
+    width: auto;
+  }
+  
+  .terms-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    flex-wrap: nowrap;
+    font-size: 14px;
+  }
+  
+  .terms-checkbox a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .terms-checkbox a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* 🔹 Login Link */
+  .login-link {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .login-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 🔹 Responsive Fixes */
+  @media (max-width: 1024px) {
+    .register-section {
+      padding-top: 100px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .register-section {
+      padding-top: 120px;
+    }
+  
+    .register-container {
+      width: 90%;
+      padding: 25px;
+    }
+  
+    .register-form input,
+    .register-form select {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .register-form button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .terms-checkbox {
+      font-size: 12px;
+    }
+  
+    .login-link {
+      font-size: 12px;
+    }
+  }
+  
