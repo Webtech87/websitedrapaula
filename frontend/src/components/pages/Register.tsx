@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
 import "../../styles/pages/register.css";
 
 const Register = () => {
@@ -13,21 +12,18 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    acceptTerms: false, // Checkbox for terms
+    acceptTerms: false, // State for checkbox
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({ 
-      ...formData, 
-      [name]: type === "checkbox" ? checked : value 
-    });
+    const { name, value, type, checked } = e.target as HTMLInputElement;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.acceptTerms) {
-      alert("Você precisa aceitar os Termos e Condições para continuar.");
+      alert("Você deve aceitar os Termos e Condições e as Políticas de Privacidade.");
       return;
     }
     alert("Registro concluído com sucesso!");
@@ -70,19 +66,33 @@ const Register = () => {
           <label>Confirmar Senha:</label>
           <input type="password" name="confirmPassword" required onChange={handleChange} />
 
-          {/* Checkbox for Terms & Conditions */}
+          {/* Checkbox for Terms and Privacy Policy */}
           <div className="terms-checkbox">
-            <input type="checkbox" name="acceptTerms" id="terms" onChange={handleChange} />
-            <label htmlFor="terms">
-              Li e Aceito os <Link to="/termos-e-condicoes">Termos e Condições </Link>
-            </label>
-          </div>
+  <input
+    type="checkbox"
+    id="acceptTerms"
+    name="acceptTerms"
+    checked={formData.acceptTerms}
+    onChange={handleChange}
+  />
+  <label htmlFor="acceptTerms">
+    Eu li e aceito os{" "}
+    <a href="/termos" target="_blank" rel="noopener noreferrer">
+      Termos e Condições
+    </a>{" "}
+    e as{" "}
+    <a href="/privacidade" target="_blank" rel="noopener noreferrer">
+      Políticas de Privacidade
+    </a>.
+  </label>
+</div>
+
 
           <button type="submit">Criar Conta</button>
 
           {/* Link to Login Page */}
           <p className="login-link">
-            Já tem uma conta? <Link to="/login">Iniciar Sessão</Link>
+            Já tem uma conta? <a href="/login">Iniciar Sessão</a>
           </p>
         </form>
       </div>

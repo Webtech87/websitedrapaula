@@ -1,59 +1,194 @@
+/* 🔹 Wrapper for Authentication Pages */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 20px; /* Prevents form from sticking to edges */
+}
+
+/* 🔹 Background Image */
+.auth-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.auth-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7); /* Slight darkening for contrast */
+}
+
+/* 🔹 Auth Container - Wider Form */
 .auth-container {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* ✅ Increased width for better proportions */
+    width: 90%; /* ✅ Ensures responsiveness */
+    padding: 50px; /* ✅ More padding for a professional look */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* ✅ Deeper shadow for elegance */
     text-align: center;
-    margin-top: 100px;
-  }
-  
-  .auth-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .auth-container form {
+    position: relative;
+    z-index: 10;
+}
+
+/* 🔹 Form */
+.auth-container form {
     display: flex;
     flex-direction: column;
-  }
-  
-  .auth-container label {
+    gap: 18px; /* ✅ Slightly increased spacing */
+}
+
+/* 🔹 Labels */
+.auth-container label {
     text-align: left;
-    margin-top: 10px;
-    font-weight: 500;
-  }
-  
-  .auth-container input {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    font-weight: 600;
+    font-size: 15px; /* ✅ Slightly larger font */
+    color: #444;
+}
+
+/* 🔹 Input Fields */
+.auth-container input {
+    width: 100%;
+    padding: 14px; /* ✅ More padding for a premium feel */
+    border: 1px solid #ccc;
+    border-radius: 6px;
     font-size: 16px;
-  }
-  
-  .auth-container button {
-    margin-top: 20px;
-    padding: 12px;
+    transition: border 0.3s ease;
+}
+
+.auth-container input:focus {
+    border-color: #007bff;
+}
+
+/* 🔹 Password Input with Eye Icon */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 45px; /* ✅ More space for the icon */
+}
+
+/* 🔹 Eye Icon */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 5px;
+}
+
+.toggle-password svg {
+    width: 24px; /* ✅ Larger icon */
+    height: 24px;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover svg {
+    color: #000;
+}
+
+/* 🔹 Forgot Password Link */
+.forgot-password {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.forgot-password a {
+    color: #2563eb;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* 🔹 Login Button */
+.auth-container button {
     background: #2563eb;
     color: white;
-    font-size: 16px;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 17px;
     cursor: pointer;
-  }
-  
-  .auth-container button:hover {
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
     background: #1d4ed8;
-  }
-  
-  .auth-container p {
+}
+
+/* 🔹 Register Link */
+.auth-container p {
+    font-size: 14px;
     margin-top: 15px;
-  }
-  
-  .auth-container a {
+}
+
+.auth-container a {
     color: #2563eb;
+    font-weight: bold;
     text-decoration: none;
-  }
-  
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* 🔹 Responsive Adjustments */
+@media (max-width: 1024px) {
+    .auth-container {
+        max-width: 450px; /* ✅ Slightly smaller width for tablets */
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        width: 95%; /* ✅ Takes more width on smaller screens */
+        padding: 30px;
+    }
+
+    .password-container input {
+        padding-right: 40px;
+    }
+
+    .toggle-password svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-container {
+        max-width: 100%;
+        padding: 25px;
+    }
+
+    .password-container input {
+        padding-right: 35px;
+    }
+
+    .toggle-password svg {
+        width: 18px;
+        height: 18px;
+    }
+}
