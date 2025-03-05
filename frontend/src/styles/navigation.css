@@ -52,10 +52,12 @@
     text-decoration: none;
     transition: color 0.2s ease;
     font-size: 1rem !important;
-    padding: .5rem 1rem  !important;
+    padding: .5rem 0.4rem  !important;
     line-height: 1.5 !important;
     display: inline-flex !important;
     align-items: center !important;
+    
+    
   }
   
   .navbar-links.desktop a:hover {
@@ -71,7 +73,7 @@
   .navbar-links.desktop .dropdown-trigger {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: -1rem;
     background: none;
     border: none;
     color: #374151;
@@ -129,7 +131,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.3rem;
   }
   
   .icon {

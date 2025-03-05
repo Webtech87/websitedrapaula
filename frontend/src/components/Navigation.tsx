@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Heart, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useMobile } from "../hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import "../styles/navigation.css";
 
@@ -12,12 +13,13 @@ const Navigation = () => {
   });
   const [language, setLanguage] = useState<"PT" | "EN">("PT");
   const isMobile = useMobile();
+  const navigate = useNavigate();
 
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const userDropdownRef = useRef<HTMLDivElement>(null);
 
   const navigationLinks = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "/" },
     {
       label: "Sobre a Fundadora",
       href: "#",
@@ -35,12 +37,10 @@ const Navigation = () => {
         { label: "Imersoes", href: "#" },
       ],
     },
-
     {
       label: "Mentorias",
       href: "#",
     },
-
     {
       label: "Recursos",
       href: "#",
@@ -49,9 +49,7 @@ const Navigation = () => {
         { label: "Artigos e teses", href: "#" },
       ],
     },
-
-
-    { label: "Contacto", href: "#" },
+    { label: "Contacto", href: "/contact" }, // Updated href to "/contact"
   ];
 
   const toggleDropdown = (label: string) => {
@@ -66,6 +64,15 @@ const Navigation = () => {
       ...prev,
       userDropdown: !prev.userDropdown,
     }));
+  };
+
+  const handleWishlistClick = () => {
+    navigate("/wishlist");
+  };
+
+  const handleLinkClick = (href: string) => {
+    navigate(href);
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
@@ -106,7 +113,7 @@ const Navigation = () => {
         <div className="navbar-main">
           {/* Logo */}
           <div className="navbar-logo">
-            <a href="/">
+            <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
               <img src={logo} alt="Logo" className="logo-img" />
             </a>
           </div>
@@ -136,7 +143,11 @@ const Navigation = () => {
                           <a
                             key={subItem.label}
                             href={subItem.href}
-                            onClick={() => setDropdowns({ ...dropdowns, navDropdown: null })}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleLinkClick(subItem.href);
+                              setDropdowns({ ...dropdowns, navDropdown: null });
+                            }}
                           >
                             {subItem.label}
                           </a>
@@ -145,7 +156,15 @@ const Navigation = () => {
                     )}
                   </>
                 ) : (
-                  <a href={link.href}>{link.label}</a>
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
+                  >
+                    {link.label}
+                  </a>
                 )}
               </div>
             ))}
@@ -156,25 +175,23 @@ const Navigation = () => {
             <div className="user-dropdown-container" ref={userDropdownRef}>
               <User className="icon" onClick={toggleUserDropdown} />
               {dropdowns.userDropdown && (
-
-<div className="user-dropdown-container" ref={userDropdownRef}>
-<User className="icon" onClick={toggleUserDropdown} />
-{dropdowns.userDropdown && (
-  <div className="user-dropdown-menu">
-    <button className="user-dropdown-button" onClick={() => window.location.href = "/login"}>
-      Iniciar sessão
-    </button>
-    <button className="user-dropdown-button" onClick={() => window.location.href = "/register"}>
-      Criar uma conta
-    </button>
-  </div>
-)}
-</div>
-
-
+                <div className="user-dropdown-menu">
+                  <button
+                    className="user-dropdown-button"
+                    onClick={() => navigate("/login")}
+                  >
+                    Iniciar sessão
+                  </button>
+                  <button
+                    className="user-dropdown-button"
+                    onClick={() => navigate("/register")}
+                  >
+                    Criar uma conta
+                  </button>
+                </div>
               )}
             </div>
-            <Heart className="icon" />
+            <Heart className="icon" onClick={handleWishlistClick} />
             <ShoppingBag className="icon" />
             <div className="language-selector desktop">
               {["PT", "EN"].map((lang) => (
@@ -222,8 +239,9 @@ const Navigation = () => {
                           <a
                             key={subItem.label}
                             href={subItem.href}
-                            onClick={() => {
-                              setIsMenuOpen(false);
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleLinkClick(subItem.href);
                               setDropdowns({ ...dropdowns, navDropdown: null });
                             }}
                           >
@@ -234,7 +252,13 @@ const Navigation = () => {
                     )}
                   </>
                 ) : (
-                  <a href={link.href} onClick={() => setIsMenuOpen(false)}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
+                  >
                     {link.label}
                   </a>
                 )}
