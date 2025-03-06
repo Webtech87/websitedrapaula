@@ -6,16 +6,21 @@
     font-family: "Arial", sans-serif;
   }
   
+ 
   /* 🔹 Register Page Section */
-  .register-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f9f9f9;
-    padding: 140px 20px 20px; /* Pushes the form down to avoid navbar overlap */
-  }
+.register-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('src/assets/imersoes/register1.jpg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire section */
+  background-position: center; /* Center the image */
+  padding: 140px 20px 20px; /* Pushes the form down to avoid navbar overlap */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
   
   /* 🔹 Register Form Container */
   .register-container {

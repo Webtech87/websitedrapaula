@@ -15,6 +15,7 @@ import Register from "./components/pages/Register"; // ✅ Import Register page
 import RecuperarSenha from "./components/pages/RecuperarSenha";
 import Wishlist from "./components/pages/Wishlist";
 import Contact from "./components/Contact";
+import Cart from './components/pages/Cart';
 import "./styles/global.css";
 
 function Home() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );

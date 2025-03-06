@@ -172,45 +172,49 @@ const Navigation = () => {
 
           {/* Icons */}
           <div className="navbar-icons">
-            <div className="user-dropdown-container" ref={userDropdownRef}>
-              <User className="icon" onClick={toggleUserDropdown} />
-              {dropdowns.userDropdown && (
-                <div className="user-dropdown-menu">
-                  <button
-                    className="user-dropdown-button"
-                    onClick={() => navigate("/login")}
-                  >
-                    Iniciar sessão
-                  </button>
-                  <button
-                    className="user-dropdown-button"
-                    onClick={() => navigate("/register")}
-                  >
-                    Criar uma conta
-                  </button>
-                </div>
-              )}
-            </div>
-            <Heart className="icon" onClick={handleWishlistClick} />
-            <ShoppingBag className="icon" />
-            <div className="language-selector desktop">
-              {["PT", "EN"].map((lang) => (
-                <button
-                  key={lang}
-                  className={language === lang ? "active" : ""}
-                  onClick={() => setLanguage(lang as "PT" | "EN")}
-                >
-                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
-                </button>
-              ))}
-            </div>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="mobile-menu-button"
-            >
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+  <div className="user-dropdown-container" ref={userDropdownRef}>
+    <User className="icon" onClick={toggleUserDropdown} />
+    {dropdowns.userDropdown && (
+      <div className="user-dropdown-menu">
+        <button
+          className="user-dropdown-button"
+          onClick={() => navigate("/login")}
+        >
+          Iniciar sessão
+        </button>
+        <button
+          className="user-dropdown-button"
+          onClick={() => navigate("/register")}
+        >
+          Criar uma conta
+        </button>
+      </div>
+    )}
+  </div>
+  <Heart className="icon" onClick={handleWishlistClick} />
+  <ShoppingBag className="icon" onClick={() => navigate("/cart")} /> {/* Add this line */}
+
+  <div className="language-selector desktop">
+    {["PT", "EN"].map((lang) => (
+      <button
+        key={lang}
+        className={language === lang ? "active" : ""}
+        onClick={() => setLanguage(lang as "PT" | "EN")}
+      >
+        {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+      </button>
+    ))}
+  </div>
+  <button
+    onClick={() => setIsMenuOpen(!isMenuOpen)}
+    className="mobile-menu-button"
+  >
+    {isMenuOpen ? <X /> : <Menu />}
+  </button>
+</div>
+
+
+
         </div>
 
         {/* Mobile Navigation */}
@@ -275,6 +279,8 @@ const Navigation = () => {
                 </button>
               ))}
             </div>
+
+
           </div>
         )}
       </div>
