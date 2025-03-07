@@ -1,91 +1,175 @@
 .courses {
-    text-align: center;
-    padding: 50px 20px;
-    margin-top: 20px;
-  }
-  
+  text-align: center;
+  padding: 50px 20px;
+  margin-top: 20px;
+}
+
+.courses h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.courses p {
+  font-size: 1.1rem;
+  color: #666666;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+  gap: 30px; /* Increased gap for better spacing */
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.course-link {
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color */
+  display: block; /* Ensure the link covers the card */
+  width: 100%;
+  height: 100%;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensure content starts from the top */
+  height: 100%;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+  overflow: hidden; /* Ensure image doesn’t overflow */
+  position: relative; /* For potential overlay effects */
+}
+
+.course-card:hover {
+  transform: translateY(-5px) scale(1.02); /* Slight scale effect on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: #fafafa; /* Subtle background lightening */
+  border: 1px solid #e0e0e0; /* Subtle border on hover */
+}
+
+.course-image {
+  width: 100%;
+  height: 250px; /* Increased height to cover most of the container */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 12px 12px 0 0; /* Rounded corners only at the top */
+  transition: filter 0.3s ease-in-out, opacity 0.5s ease-in-out; /* For hover and loading effects */
+  opacity: 1; /* Default to visible */
+}
+
+.course-image.loaded {
+  opacity: 1; /* Ensure opacity remains 1 when loaded (for consistency) */
+}
+
+.course-card:hover .course-image {
+  filter: brightness(90%); /* Slight dimming on hover for contrast */
+}
+
+.course-title {
+  font-size: 1.25rem; /* Slightly larger for better readability */
+  font-weight: 600;
+  color: #333333;
+  margin: 15px 15px 20px; /* Adjusted margins for spacing */
+  text-align: left; /* Align text to the left for a professional look */
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.course-card:hover .course-title {
+  color: #2c3e50; /* Darker color on hover for emphasis */
+}
+
+/* Tablets (2 Columns) */
+@media (max-width: 1024px) {
   .courses-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns on desktop */
-    gap: 20px;
-    justify-content: center;
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 50px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 25px; /* Slightly reduced gap */
   }
-  
-  .course-card {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    transition: transform 0.2s ease-in-out;
+
+  .courses h2 {
+    font-size: 2.2rem;
   }
-  
-  .course-card:hover {
-    transform: translateY(-5px);
+
+  .courses p {
+    font-size: 1rem;
   }
-  
+
   .course-image {
-    width: 100%;
-    height: 180px; /* Keep consistent height */
-    object-fit: contain; /* Ensures the full image is visible */
-    border-radius: 10px;
-    background-color: #f8f8f8; /* Adds a background if the image has empty space */
+    height: 220px; /* Adjusted height for tablets */
   }
-  
-  
+
   .course-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 10px 0;
-    
+    font-size: 1.15rem;
+    margin: 12px 12px 15px;
   }
-  
-  .course-price {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+}
+
+/* Mobile (1 Column) */
+@media (max-width: 768px) {
+  .courses-container {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 20px; /* Further reduced gap for mobile */
   }
-  
-  .add-to-cart {
-    background: #007bff;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: auto;
+
+  .courses {
+    padding: 40px 15px;
   }
-  
-  .add-to-cart:hover {
-    background: #0056b3;
+
+  .courses h2 {
+    font-size: 1.8rem;
   }
-  
-  /* Tablets (2 Columns) */
-  @media (max-width: 1024px) {
-    .courses-container {
-      grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
-    }
+
+  .courses p {
+    font-size: 0.95rem;
   }
-  
-  /* Mobile (1 Column) */
-  @media (max-width: 768px) {
-    .courses-container {
-      grid-template-columns: 1fr; /* Always 1 column */
-    }
+
+  .course-image {
+    height: 200px; /* Adjusted height for mobile */
   }
-  
+
+  .course-title {
+    font-size: 1.1rem;
+    margin: 10px 10px 15px;
+  }
+}
+
+/* Very Small Devices (e.g., 480px and below) */
+@media (max-width: 480px) {
+  .courses {
+    padding: 30px 10px;
+  }
+
+  .courses-container {
+    gap: 15px;
+  }
+
+  .courses h2 {
+    font-size: 1.6rem;
+  }
+
+  .courses p {
+    font-size: 0.9rem;
+  }
+
+  .course-image {
+    height: 180px; /* Further adjusted for very small screens */
+  }
+
+  .course-title {
+    font-size: 1rem;
+    margin: 8px 8px 12px;
+  }
+}
+
+/* Accessibility */
+.course-link:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
