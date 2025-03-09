@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/pages/courses.css";
 
@@ -16,29 +16,40 @@ const courses = [
 
 const Courses = () => {
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
+  const [isTextVisible, setIsTextVisible] = useState(false);
 
   const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => [...prev, index]);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsTextVisible(true), 200); // Delay for fade-in
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="courses">
-      <h2>Cursos</h2>
+      <h2 className={isTextVisible ? "fade-in" : ""}>Cursos</h2>
       <br />
-      <p>Os favoritos de Terapeutas e Educadores para transformar o desenvolvimento infantil na prática</p>
+      <p className={isTextVisible ? "fade-in" : ""}>
+        Os favoritos de Terapeutas e Educadores para transformar o desenvolvimento infantil na prática
+      </p>
       <div className="courses-container">
         {courses.map((course, index) => (
-          <Link to={`/course/${index}`} key={index} className="course-link">
-            <div className="course-card">
-              <img
-                src={course.image}
-                alt={course.title}
-                className={`course-image ${loadedImages.includes(index) ? "loaded" : ""}`}
-                onLoad={() => handleImageLoad(index)}
-              />
-              <h3 className="course-title">{course.title}</h3>
-            </div>
-          </Link>
+          <div key={index} className="course-wrapper">
+            <Link to={`/course/${index}`} className="course-link">
+              <div className="course-card">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className={`course-image ${loadedImages.includes(index) ? "loaded" : ""}`}
+                  onLoad={() => handleImageLoad(index)}
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              </div>
+            </Link>
+            <h3 className="course-title">{course.title}</h3>
+          </div>
         ))}
       </div>
     </section>

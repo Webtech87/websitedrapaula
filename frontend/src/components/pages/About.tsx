@@ -1,5 +1,5 @@
 import "../../styles/pages/about.css";
-import aboutImage from "../../assets/about/about-image.png"; // Make sure the correct image path is used.
+import aboutImage from "../../assets/about/about-image.png";
 
 const About = () => {
   return (
@@ -18,7 +18,9 @@ const About = () => {
             Occupational Science and Therapy e Western Psychological Services. É também certificada no 
             tratamento do neuro desenvolvimento (Bobath) pela European Bobath Tutors’ Association.
           </p>
-          <button className="about-button">Saiba mais</button>
+          <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
+            Saiba mais
+          </button>
         </div>
 
         {/* Right Side: Image */}

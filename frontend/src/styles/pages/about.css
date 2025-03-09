@@ -1,126 +1,123 @@
 .about {
-    padding: 60px 20px; /* Adjusted padding for better spacing */
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-  }
-  
+  padding: 60px 20px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  gap: 50px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+/* Left Side (Text) */
+.about-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+.about-tag {
+  background: #b3e0ff;
+  color: #0056b3;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.about h2 {
+  font-size: 32px; /* Slightly larger for hierarchy */
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.about p {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 20px; /* Increased for readability */
+}
+
+.about-button {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 3px 3px 10px rgba(0, 123, 255, 0.3);
+}
+
+.about-button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.about-button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* Right Side (Image) */
+.about-image {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1; /* Ensures square shape for circular image */
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
   .about-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1200px;
-    width: 100%;
-    gap: 50px; /* Space between image and text */
-    flex-wrap: wrap;
-    text-align: left;
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 35px;
   }
-  
-  /* Left Side (Text) */
-  .about-content {
-    flex: 1;
-    max-width: 550px;
-  }
-  
-  .about-tag {
-    background: #b3e0ff;
-    color: #0056b3;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: inline-block;
-    margin-bottom: 12px;
-  }
-  
-  .about h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
-  
-  .about p {
-    font-size: 17px;
-    color: #333;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-  
-  .about-button {
-    background: #007bff;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 3px 3px 10px rgba(0, 123, 255, 0.3);
-  }
-  
-  .about-button:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-  }
-  
-  /* Right Side (Image) */
   .about-image {
-    flex: 1;
-    max-width: 500px; /* Increased width */
-    height: 500px; /* Increased height */
-    display: flex;
-    justify-content: center;
+    max-width: 400px;
   }
-  
-  .about-image img {
-    width: 100%;
-    height: 100%; /* Ensure image fills container */
-    max-width: 450px;
-    max-height: 450px; /* Maintain aspect ratio */
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  .about-content {
+    max-width: 90%;
   }
-  
-  /* 🔹 Responsive Adjustments */
-  @media (max-width: 1024px) { /* Tablets */
-    .about-container {
-      flex-direction: column-reverse; /* ✅ Image appears above text */
-      text-align: center;
-      max-width: 95%;
-      gap: 35px; /* Adjusted gap */
-    }
-  
-    .about-content {
-      max-width: 90%;
-    }
-  
-    .about-image {
-      max-width: 380px;
-      height: 380px; /* Increased height */
-    }
+  .about-button {
+    display: block;
+    width: 80%;
+    max-width: 250px;
+    margin: 20px auto 0; /* Centers button */
   }
-  
-  @media (max-width: 768px) { /* Mobile */
-    .about {
-      padding: 40px 20px; /* Reduced padding on mobile */
-    }
-  
-    .about-container {
-      flex-direction: column-reverse; /* ✅ Image appears above text */
-      text-align: center;
-      gap: 25px; /* Reduced spacing between elements */
-    }
-  
-    .about-image {
-      max-width: 320px;
-      height: 320px; /* Bigger image on mobile */
-      margin-top: -3rem;
-    }
-  
-    .about-button {
-      width: 80%;
-      max-width: 250px;
-    }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 40px 20px;
   }
-  
+  .about-image {
+    max-width: 300px;
+  }
+  .about-button {
+    width: 80%;
+    max-width: 250px;
+    margin: 20px auto 0;
+  }
+}
