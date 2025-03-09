@@ -1,116 +1,136 @@
-/* 🔹 Testimonials Section */
+/* Testimonials Section */
 .testemunhos {
-    padding: 60px 20px;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    
-  }
-  
-  /* 🔹 Title & Subtitle */
+  padding: 60px 20px;
+  text-align: center;
+  background-color: white; /* Light background for contrast */
+  font-family: 'Roboto', sans-serif; /* Professional font */
+}
+
+/* Title & Subtitle */
+.testemunhos h2 {
+  font-size: 32px; /* Larger for impact */
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.testemunhos p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Individual Testimonial Card */
+.testemunho-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 10px; /* Spacing between cards */
+}
+
+.testemunho-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  cursor: pointer; /* Indicate clickability */
+}
+
+/* Icon */
+.testemunho-icon {
+  font-size: 30px;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Comment */
+.testemunho-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Star Rating */
+.stars {
+  font-size: 24px;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+/* Testimonial Name */
+.testemunho-name {
+  font-weight: bold;
+  color: #555;
+  font-size: 16px;
+}
+
+/* Slick Carousel Custom Styles */
+.slick-slide {
+  padding: 0 10px; /* Space between slides */
+}
+
+.slick-dots {
+  margin-top: 20px; /* Space above dots */
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #007bff; /* Dot color */
+}
+
+.slick-dots li.slick-active button:before {
+  color: #0056b3; /* Active dot color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
   .testemunhos h2 {
     font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
   }
-  
   .testemunhos p {
     font-size: 16px;
-    color: #555;
-    margin-bottom: 30px;
   }
-  
-  /* 🔹 Carousel Wrapper */
-  .carousel {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    position: relative;
-  }
-  
-  /* 🔹 Testimonials Container (Infinite Loop) */
-  .testemunhos-container {
-    display: flex;
-    gap: 15px;
-    width: max-content;
-    animation: infiniteScroll 15s linear infinite;
-  }
-  
-  /* 🔹 Individual Testimonial Card */
   .testemunho-card {
-    flex: 0 0 auto;
-    background: #ffffff;
-    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 280px;
-    text-align: left;
-    transition: transform 0.3s ease;
   }
-  
-  /* 🔹 Icon */
-  .testemunho-icon {
+}
+
+@media (max-width: 768px) {
+  .testemunhos {
+    padding: 40px 10px;
+  }
+  .testemunho-card {
+    margin: 0 5px;
+  }
+  .testemunho-card h3 {
+    font-size: 18px;
+  }
+  .stars {
+    font-size: 20px;
+  }
+  .testemunho-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testemunhos h2 {
     font-size: 24px;
-    color: #007bff;
-    display: block;
-    margin-bottom: 10px;
   }
-  
-  /* 🔹 Star Rating */
+  .testemunhos p {
+    font-size: 14px;
+  }
+  .testemunho-card {
+    padding: 15px;
+  }
+  .testemunho-card h3 {
+    font-size: 16px;
+  }
   .stars {
     font-size: 18px;
-    color: gold;
-    margin: 5px 0;
   }
-  
-  /* 🔹 Testimonial Name */
   .testemunho-name {
-    font-weight: bold;
-    color: #333;
-    margin-top: 10px;
+    font-size: 12px;
   }
-  
-  /* 🔹 Infinite Scrolling Keyframe Animation */
-  @keyframes infiniteScroll {
-    from { transform: translateX(0%); }
-    to { transform: translateX(-50%); } /* Loops smoothly */
-  }
-  
-  /* 🔹 Responsive Design */
-  @media (max-width: 1024px) {
-    .testemunhos-container {
-      animation: infiniteScroll 20s linear infinite;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .testemunhos-container {
-      gap: 10px;
-      animation: infiniteScroll 25s linear infinite;
-    }
-  
-    .testemunho-card {
-      max-width: 220px;
-      margin: 8px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .carousel {
-      overflow: hidden;
-    }
-  
-    .testemunhos-container {
-      gap: 10px;
-      animation: infiniteScroll 18s linear infinite;
-    }
-  
-    .testemunho-card {
-      flex: 0 0 85%;
-      max-width: 260px;
-      margin: 5px 0;
-    }
-  }
-  
+}

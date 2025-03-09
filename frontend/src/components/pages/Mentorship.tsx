@@ -1,11 +1,20 @@
 import "../../styles/pages/Mentorship.css";
-import mentorshipImage from "../../assets/courses/image1.png";
+import mentorshipImage from "../../assets/courses/PaulaSerrano-102.jpg";
 
 const Mentorship = () => {
   return (
     <section className="mentorship">
       <div className="mentorship-container">
-        {/* Left Side: Image */}
+        {/* Intro and Tag */}
+        <div className="mentorship-intro-tag">
+          
+          <span className="mentorship-tag">Mentoria</span>
+          <p className="mentorship-intro">
+            Descubra como a mentoria pode transformar sua carreira.
+          </p>
+        </div>
+
+        {/* Image */}
         <div className="mentorship-image">
           <img
             src={mentorshipImage}
@@ -16,12 +25,8 @@ const Mentorship = () => {
           />
         </div>
 
-        {/* Right Side: Text Content */}
-        <div className="mentorship-content">
-          <p className="mentorship-intro">
-            Descubra como a mentoria pode transformar sua carreira.
-          </p>
-          <span className="mentorship-tag">Mentoria</span>
+        {/* Remaining Content */}
+        <div className="mentorship-main-content">
           <h2>Mentoria Profissional: O Que é e Quais São as Suas Vantagens?</h2>
           <p>
             A mentoria profissional é um processo no qual um profissional mais

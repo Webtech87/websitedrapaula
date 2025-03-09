@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/pages/imersoes.css"; // Import CSS
+import "../../styles/pages/imersoes.css"; // Import updated CSS
 import imersao1 from "../../assets/imersoes/imersao1.jpg";
 import imersao2 from "../../assets/imersoes/imersao2.jpg";
 import imersao3 from "../../assets/imersoes/imersao3.jpg";
 
-const images = [imersao1, imersao2, imersao3]; // Array of images
+const images = [imersao1, imersao2, imersao3]; // Array of background images
 
 const Imersoes = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to automatically slide every 5 seconds
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, 5000);
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return (
     <section
       className="imersoes"
-      style={{ backgroundImage: `url(${images[currentIndex]})` }} // ✅ Make image the background
+      style={{ backgroundImage: `url(${images[currentIndex]})` }}
     >
       <div className="overlay">
         <div className="imersoes-content">
@@ -31,7 +30,9 @@ const Imersoes = () => {
             Agende a sua imersão individual ou em grupo e aprimore as suas
             habilidades com experiência clínica.
           </p>
-          <button className="imersoes-button">Comprar agora</button>
+          <button className="imersoes-button" onClick={() => alert("Clicked!")}>
+            Saber Mais
+          </button>
         </div>
       </div>
     </section>

@@ -1,4 +1,7 @@
 import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../../styles/pages/testemunhos.css";
 
 // Sample Testimonials Data
@@ -24,23 +27,48 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 // Testimonials Component
 const Testemunhos = () => {
+  const settings = {
+    dots: true,              // Show navigation dots
+    infinite: true,          // Loop the carousel
+    speed: 500,              // Transition speed (ms)
+    slidesToShow: 3,         // Cards visible on desktop
+    slidesToScroll: 1,       // Cards scrolled per click
+    autoplay: true,          // Auto-scroll
+    autoplaySpeed: 3000,     // 3-second interval
+    pauseOnHover: true,      // Pause on hover
+    responsive: [            // Adjust for different screen sizes
+      {
+        breakpoint: 1024,    // Tablets and smaller
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,     // Mobile devices
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <section className="testemunhos">
       <h2>O que dizem sobre nós</h2>
       <p>Veja as opiniões de nossos clientes sobre os cursos e mentorias.</p>
 
-      <div className="carousel">
-        <div className="testemunhos-container">
-          {[...testemunhos, ...testemunhos].map((testemunho, index) => ( // 🔹 Duplicate for seamless loop
-            <div className="testemunho-card" key={index}>
-              <span className="testemunho-icon">💬</span>
-              <h3>{testemunho.comment}</h3>
-              <StarRating rating={testemunho.rating} />
-              <p className="testemunho-name">{testemunho.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Slider {...settings}>
+        {testemunhos.map((testemunho) => (
+          <div key={testemunho.id} className="testemunho-card">
+            <span className="testemunho-icon">💬</span>
+            <h3>{testemunho.comment}</h3>
+            <StarRating rating={testemunho.rating} />
+            <p className="testemunho-name">{testemunho.name}</p>
+          </div>
+        ))}
+      </Slider>
     </section>
   );
 };

@@ -16,6 +16,12 @@
   text-align: left;
 }
 
+/* Header Section (Tag and Heading) */
+.about-header {
+  flex: 1;
+  max-width: 550px;
+}
+
 /* Left Side (Text) */
 .about-content {
   flex: 1;
@@ -33,7 +39,7 @@
 }
 
 .about h2 {
-  font-size: 32px; /* Slightly larger for hierarchy */
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 12px;
 }
@@ -42,7 +48,7 @@
   font-size: 17px;
   color: #333;
   line-height: 1.7;
-  margin-bottom: 20px; /* Increased for readability */
+  margin-bottom: 20px;
 }
 
 .about-button {
@@ -73,7 +79,6 @@
   flex: 0 0 auto;
   width: 100%;
   max-width: 500px;
-  aspect-ratio: 1 / 1; /* Ensures square shape for circular image */
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -81,30 +86,43 @@
 
 .about-image img {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  height: auto;
+  border-radius: 10px;
   object-fit: cover;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Adjustments */
+/* Desktop-Specific Adjustment */
+@media (min-width: 1025px) {
+  .about {
+    margin-bottom: 80px;
+  }
+}
+
+/* Responsive Adjustments for Tablets and Mobiles */
 @media (max-width: 1024px) {
   .about-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
     gap: 35px;
   }
+  .about-header {
+    order: 1; /* Tag and heading first */
+    max-width: 90%;
+  }
   .about-image {
+    order: 2; /* Image second */
     max-width: 400px;
   }
   .about-content {
+    order: 3; /* Paragraphs and button last */
     max-width: 90%;
   }
   .about-button {
     display: block;
     width: 80%;
     max-width: 250px;
-    margin: 20px auto 0; /* Centers button */
+    margin: 20px auto 0;
   }
 }
 

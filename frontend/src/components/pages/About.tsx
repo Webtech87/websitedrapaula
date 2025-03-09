@@ -1,14 +1,23 @@
 import "../../styles/pages/about.css";
-import aboutImage from "../../assets/about/about-image.png";
+import aboutImage from "../../assets/about/PaulaSerrano-6 (2).jpg";
 
 const About = () => {
   return (
     <section className="about">
       <div className="about-container">
-        {/* Left Side: Text Content */}
-        <div className="about-content">
+        {/* Header Section: Tag and Heading */}
+        <div className="about-header">
           <span className="about-tag">Conheça a Dra. Paula</span>
           <h2>Dra. Paula Serrano</h2>
+        </div>
+
+        {/* Right Side: Image */}
+        <div className="about-image">
+          <img src={aboutImage} alt="Dra. Paula Serrano" />
+        </div>
+
+        {/* Left Side: Remaining Text Content */}
+        <div className="about-content">
           <p>
             Terapeuta Ocupacional desde 1993. Com um mestrado em Terapia Ocupacional – Área de especialização 
             Integração Sensorial, pela Escola Superior de Saúde do Alcoitão.
@@ -21,11 +30,6 @@ const About = () => {
           <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
             Saiba mais
           </button>
-        </div>
-
-        {/* Right Side: Image */}
-        <div className="about-image">
-          <img src={aboutImage} alt="Dra. Paula Serrano" />
         </div>
       </div>
     </section>
