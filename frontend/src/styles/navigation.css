@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 80px;
   }
   
   .navbar-logo a {
@@ -36,8 +36,20 @@
     font-weight: bold;
     color: #2563eb;
     text-decoration: none;
+    display: flex;
+    align-items: center;
   
+  }
+
+  .logo-img {
+    max-width: 120px; /* Bigger logo for desktop */
+    height: 80px;
+    transition: transform 0.3s ease;
+
+  }
   
+  .logo-img:hover {
+    transform: scale(1.05);
   }
   
   .navbar-links {
@@ -58,6 +70,7 @@
     line-height: 1.5 !important;
     display: inline-flex !important;
     align-items: center !important;
+    
     
     
   }

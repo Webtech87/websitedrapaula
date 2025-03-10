@@ -25,7 +25,7 @@ const Navigation = () => {
       href: "#",
       subItems: [
         { label: "PSE", href: "#" },
-        { label: "Miudos & etc", href: "#" },
+        
       ],
     },
     {

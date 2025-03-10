@@ -16,6 +16,7 @@ import RecuperarSenha from "./components/pages/RecuperarSenha";
 import Wishlist from "./components/pages/Wishlist";
 import Contact from "./components/Contact";
 import Cart from './components/pages/Cart';
+import CourseDetails from "./components/CourseDetails";
 import "./styles/global.css";
 
 function Home() {
@@ -47,6 +48,8 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/" element={<Courses />} />
+        <Route path="/course/:id" element={<CourseDetails />} />
       </Routes>
     </Router>
   );

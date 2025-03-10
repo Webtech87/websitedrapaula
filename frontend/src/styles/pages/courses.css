@@ -18,7 +18,7 @@
 }
 
 .courses h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem); /* Responsive font size */
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -26,6 +26,7 @@
   position: relative;
   transition: color var(--transition-speed);
   display: inline-block;
+  
 }
 
 .courses h2::after {
@@ -105,7 +106,8 @@
   width: 100%;
   transition: transform var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
   position: relative;
-  aspect-ratio: 1 / 1; /* Square on desktop */
+  aspect-ratio: 1 / 1;
+  border: 1px solid transparent;
 }
 
 .course-card:hover {
@@ -116,6 +118,9 @@
 }
 
 .course-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -166,16 +171,16 @@
 
   .courses-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px; /* Reduced gap for tablets */
+    gap: 30px;
     margin-bottom: 3.5rem;
   }
 
   .course-card {
-    aspect-ratio: 16 / 9; /* Wider, less tall for tablets */
+    aspect-ratio: 16 / 9;
   }
 
   .course-title {
-    font-size: 1.1rem; /* Smaller title */
+    font-size: 1.1rem;
     margin-top: 0.8rem;
   }
 
@@ -201,16 +206,16 @@
 
   .courses-container {
     grid-template-columns: 1fr;
-    gap: 25px; /* Further reduced gap for mobile */
+    gap: 25px;
     margin-bottom: 3rem;
   }
 
   .course-card {
-    aspect-ratio: 4 / 3; /* Compact for mobile */
+    aspect-ratio: 4 / 3;
   }
 
   .course-title {
-    font-size: 1rem; /* Smaller title */
+    font-size: 1rem;
     margin-top: 0.8rem;
   }
 
@@ -219,7 +224,7 @@
   }
 }
 
-/* Very Small Devices (e.g., 480px and below) */
+/* Very Small Devices */
 @media (max-width: 480px) {
   .courses {
     padding: 30px 5px;
@@ -235,16 +240,16 @@
   }
 
   .courses-container {
-    gap: 20px; /* Smallest gap for very small screens */
+    gap: 20px;
     margin-bottom: 2.5rem;
   }
 
   .course-card {
-    aspect-ratio: 3 / 2; /* Slightly wider for tiny screens */
+    aspect-ratio: 3 / 2;
   }
 
   .course-title {
-    font-size: 0.9rem; /* Smallest title */
+    font-size: 0.9rem;
     margin-top: 0.5rem;
     padding: 0 5px;
   }
@@ -259,3 +264,4 @@
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
+

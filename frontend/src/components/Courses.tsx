@@ -1,29 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/pages/courses.css";
-
-import img1 from "../assets/courses/image1.png";
-import img2 from "../assets/courses/image2.png";
-import img3 from "../assets/courses/image3.png";
-import img4 from "../assets/courses/image4.jpg";
-
-const courses = [
-  { image: img1, title: "A criança e a Motricidade Fina" },
-  { image: img2, title: "Brincar e Integração Sensorial nos Primeiros Anos" },
-  { image: img3, title: "A Integração Sensorial" },
-  { image: img4, title: "O Desenvolvimento da Autonomia dos 0 aos 3 anos" },
-];
+import { courses } from "../courseData";
 
 const Courses = () => {
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
   const [isTextVisible, setIsTextVisible] = useState(false);
 
-  const handleImageLoad = (index: number) => {
-    setLoadedImages((prev) => [...prev, index]);
+  const handleImageLoad = (id: number) => {
+    setLoadedImages((prev) => [...prev, id]);
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsTextVisible(true), 200); // Delay for fade-in
+    const timer = setTimeout(() => setIsTextVisible(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -35,15 +24,15 @@ const Courses = () => {
         Os favoritos de Terapeutas e Educadores para transformar o desenvolvimento infantil na prática
       </p>
       <div className="courses-container">
-        {courses.map((course, index) => (
-          <div key={index} className="course-wrapper">
-            <Link to={`/course/${index}`} className="course-link">
-              <div className="course-card">
+        {courses.map((course) => (
+          <div key={course.id} className="course-wrapper">
+            <Link to={`/course/${course.id}`} className="course-link">
+              <div className={`course-card ${course.id === 3 ? "special-course" : ""}`}>
                 <img
                   src={course.image}
                   alt={course.title}
-                  className={`course-image ${loadedImages.includes(index) ? "loaded" : ""}`}
-                  onLoad={() => handleImageLoad(index)}
+                  className={`course-image ${loadedImages.includes(course.id) ? "loaded" : ""}`}
+                  onLoad={() => handleImageLoad(course.id)}
                   onError={(e) => (e.currentTarget.style.display = "none")}
                 />
               </div>
