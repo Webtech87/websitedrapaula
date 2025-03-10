@@ -1,133 +1,247 @@
-/* Import Google Fonts for 'Roboto' */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* contactform.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* Contact Section Styling */
-.contact-section {
+/* ContactForm Component Styles */
+.cf-contact-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  background: #f5f7fa; /* Light background */
-  font-family: 'Roboto', sans-serif; /* Consistent font */
-}
-
-/* Contact Container */
-.contact-container {
-  display: flex;
-  flex-direction: row; /* Text on left, form on right */
-  align-items: flex-start; /* Align tops of text and form */
-  justify-content: center; /* Center the content */
-  max-width: 1200px; /* Limit container width */
-  width: 100%; /* Full width up to max-width */
-  gap: 40px; /* Space between text and form */
-}
-
-/* Text Styling */
-.contact-text {
-  flex: 1; /* Take equal space with form */
-  max-width: 500px; /* Optional: limit width */
-  color: #333; /* Dark text for readability */
-  text-align: center; /* Centralize text */
-}
-
-.contact-text h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.contact-text p {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Form Styling */
-.contact-form {
-  flex: 1; /* Take equal space with text */
-  max-width: 500px;
+  padding: 80px 20px;
   background: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+}
+
+.cf-contact-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 60px;
+  margin: 0 auto;
+}
+
+/* Left Text Section */
+.cf-contact-text {
+  flex: 1;
+  max-width: 500px;
+  color: #333;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centralize form elements */
+  justify-content: center;
+  padding: 20px 0;
 }
 
-.contact-form h2 {
+.cf-contact-text h2 {
+  font-size: 32px;
+  font-weight: 700;
   margin-bottom: 20px;
-  font-size: 24px;
-  text-align: center; /* Centralize form heading */
+  color: #007bff;
+  text-align: center;
 }
 
-.contact-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  width: 100%; /* Ensure labels take full width */
-  text-align: center; /* Centralize form labels */
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.cf-contact-text p {
   font-size: 16px;
-  text-align: center; /* Centralize text within inputs */
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
 }
 
-.contact-form textarea {
-  height: 120px;
-  resize: vertical;
+.cf-contact-text strong {
+  color: #007bff;
+  font-weight: 500;
 }
 
-.contact-form button {
+.cf-contact-benefits {
+  margin: 15px 0 25px;
+  padding-left: 20px;
+}
+
+.cf-contact-benefits li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #444;
+  position: relative;
+  font-size: 15px;
+}
+
+.cf-contact-benefits li::before {
+  content: "•";
+  color: #007bff;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.cf-contact-benefits {
+    list-style: none; /* Removes default bullet points */
+    padding-left: 0; /* Removes default padding */
+    margin: 15px 0 25px;
+  }
+
+/* Right Form Section */
+.cf-contact-form {
+  flex: 1;
+  max-width: 500px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.cf-contact-form h2 {
+  margin: 0 0 25px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.cf-contact-form form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cf-form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.cf-contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.cf-contact-form input,
+.cf-contact-form select,
+.cf-contact-form textarea {
   width: 100%;
   padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.cf-contact-form input:focus,
+.cf-contact-form select:focus,
+.cf-contact-form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.cf-contact-form textarea {
+  height: 150px;
+  resize: vertical;
+  flex-grow: 1;
+}
+
+.cf-contact-form button {
+  width: 100%;
+  padding: 14px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
 }
 
-.contact-form button:hover {
-  background-color: #0069d9;
+.cf-contact-form button:hover {
+  background-color: #0056b3;
 }
 
-.contact-form .error {
-  color: red;
+/* Error Handling */
+.cf-error {
+  color: #ff4d4d;
   font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
   display: block;
-  text-align: center; /* Centralize error messages */
+  font-weight: 500;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .contact-container {
-    flex-direction: column; /* Stack text above form */
-    align-items: center;
-    gap: 30px;
+  .cf-contact-section {
+    padding: 60px 15px;
   }
 
-  .contact-text,
-  .contact-form {
-    max-width: 100%; /* Full width on smaller screens */
-    text-align: center; /* Ensure text remains centered */
+  .cf-contact-container {
+    flex-direction: column;
+    gap: 40px;
   }
 
-  .contact-text h2 {
+  .cf-contact-text {
+    padding: 0;
+    text-align: center;
+  }
+
+  .cf-contact-text h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .cf-contact-benefits {
+    padding-left: 15px;
+    text-align: center;
+  }
+
+  .cf-contact-form {
+    padding: 30px;
+    width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .cf-contact-form h2 {
     font-size: 24px;
   }
 
-  .contact-text p {
-    font-size: 14px;
+  .cf-contact-form form {
+    display: block;
+  }
+
+  .cf-contact-form textarea {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cf-contact-section {
+    padding: 40px 10px;
+  }
+
+  .cf-contact-text p {
+    font-size: 15px;
+  }
+
+  .cf-contact-form {
+    padding: 20px;
+  }
+
+  .cf-contact-form button {
+    padding: 12px;
   }
 }

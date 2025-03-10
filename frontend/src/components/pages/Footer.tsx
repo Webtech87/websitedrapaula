@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Left - Logo & Social Icons */}
         <div className="footer-logo">
-          <img src={logo} alt="Logo Paula Serrano" />
+          <img src={logo} alt="Logo Paula Serrano" className="logo" />
           <div className="social-icons">
             <a href="#" aria-label="Facebook">
               <i className="fab fa-facebook-f"></i>
