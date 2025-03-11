@@ -1,5 +1,5 @@
 import "../../styles/pages/Mentorship.css";
-import mentorshipImage from "../../assets/courses/PaulaSerrano-102.jpg";
+import mentorshipImage from "../../assets/courses/PaulaSerrano-102 1.png";
 
 const Mentorship = () => {
   return (

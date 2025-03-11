@@ -6,14 +6,20 @@ import { courses } from "../courseData";
 const Courses = () => {
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
   const [isTextVisible, setIsTextVisible] = useState(false);
+  const [isCoursesVisible, setIsCoursesVisible] = useState(false);
 
   const handleImageLoad = (id: number) => {
     setLoadedImages((prev) => [...prev, id]);
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsTextVisible(true), 200);
-    return () => clearTimeout(timer);
+    const textTimer = setTimeout(() => setIsTextVisible(true), 200);
+    const coursesTimer = setTimeout(() => setIsCoursesVisible(true), 400);
+    
+    return () => {
+      clearTimeout(textTimer);
+      clearTimeout(coursesTimer);
+    };
   }, []);
 
   return (
@@ -23,9 +29,9 @@ const Courses = () => {
       <p className={isTextVisible ? "fade-in" : ""}>
         Os favoritos de Terapeutas e Educadores para transformar o desenvolvimento infantil na prática
       </p>
-      <div className="courses-container">
+      <div className={`courses-container ${isCoursesVisible ? "fade-in" : ""}`}>
         {courses.map((course) => (
-          <div key={course.id} className="course-wrapper">
+          <div key={course.id} className="course-wrapper fade-in">
             <Link to={`/course/${course.id}`} className="course-link">
               <div className={`course-card ${course.id === 3 ? "special-course" : ""}`}>
                 <img

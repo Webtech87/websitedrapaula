@@ -1,5 +1,5 @@
 import "../../styles/pages/about.css";
-import aboutImage from "../../assets/about/PaulaSerrano-6 (2).jpg";
+import aboutImage from "../../assets/about/Design sem nome 1.png";
 
 const About = () => {
   return (

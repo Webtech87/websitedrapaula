@@ -9,6 +9,36 @@
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.fade-in {
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplica fade-in aos cursos individuais */
+.course-wrapper {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+/* Para um efeito sequencial nos cursos */
+.course-wrapper:nth-child(1) { animation-delay: 0.2s; }
+.course-wrapper:nth-child(2) { animation-delay: 0.3s; }
+.course-wrapper:nth-child(3) { animation-delay: 0.4s; }
+.course-wrapper:nth-child(4) { animation-delay: 0.5s; }
+
+
 .courses {
   text-align: center;
   padding: 60px 20px;

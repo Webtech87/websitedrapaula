@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, Heart, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useMobile } from "../hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.svg";
+import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
 const Navigation = () => {
@@ -23,10 +23,7 @@ const Navigation = () => {
     {
       label: "Sobre a Fundadora",
       href: "#",
-      subItems: [
-        { label: "PSE", href: "#" },
-        
-      ],
+      subItems: [{ label: "PSE", href: "#" }],
     },
     {
       label: "Formações",
@@ -37,10 +34,7 @@ const Navigation = () => {
         { label: "Imersoes", href: "#" },
       ],
     },
-    {
-      label: "Mentorias",
-      href: "#",
-    },
+    { label: "Mentorias", href: "#" },
     {
       label: "Recursos",
       href: "#",
@@ -49,7 +43,7 @@ const Navigation = () => {
         { label: "Artigos e teses", href: "#" },
       ],
     },
-    { label: "Contacto", href: "/contact" }, // Updated href to "/contact"
+    { label: "Contacto", href: "/contact" },
   ];
 
   const toggleDropdown = (label: string) => {
@@ -111,9 +105,15 @@ const Navigation = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-main">
-          {/* Logo */}
+          {/* Logo - Clicking refreshes and redirects */}
           <div className="navbar-logo">
-            <a href="/" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/"; // Forces a full page refresh
+              }}
+            >
               <img src={logo} alt="Logo" className="logo-img" />
             </a>
           </div>
@@ -121,13 +121,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="navbar-links desktop">
             {navigationLinks.map((link) => (
-              <div
-                key={link.label}
-                className="dropdown-container"
-                ref={(el) => {
-                  if (link.subItems) dropdownRefs.current[link.label] = el;
-                }}
-              >
+              <div key={link.label} className="dropdown-container">
                 {link.subItems ? (
                   <>
                     <button
@@ -160,7 +154,11 @@ const Navigation = () => {
                     href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleLinkClick(link.href);
+                      if (link.label === "Home") {
+                        window.location.href = "/"; // Full refresh for Home link
+                      } else {
+                        handleLinkClick(link.href);
+                      }
                     }}
                   >
                     {link.label}
@@ -172,68 +170,47 @@ const Navigation = () => {
 
           {/* Icons */}
           <div className="navbar-icons">
-  <div className="user-dropdown-container" ref={userDropdownRef}>
-    <User className="icon" onClick={toggleUserDropdown} />
-    {dropdowns.userDropdown && (
-      <div className="user-dropdown-menu">
-        <button
-          className="user-dropdown-button"
-          onClick={() => navigate("/login")}
-        >
-          Iniciar sessão
-        </button>
-        <button
-          className="user-dropdown-button"
-          onClick={() => navigate("/register")}
-        >
-          Criar uma conta
-        </button>
-      </div>
-    )}
-  </div>
-  <Heart className="icon" onClick={handleWishlistClick} />
-  <ShoppingBag className="icon" onClick={() => navigate("/cart")} /> {/* Add this line */}
+            <div className="user-dropdown-container" ref={userDropdownRef}>
+              <User className="icon" onClick={toggleUserDropdown} />
+              {dropdowns.userDropdown && (
+                <div className="user-dropdown-menu">
+                  <button className="user-dropdown-button" onClick={() => navigate("/login")}>
+                    Iniciar sessão
+                  </button>
+                  <button className="user-dropdown-button" onClick={() => navigate("/register")}>
+                    Criar uma conta
+                  </button>
+                </div>
+              )}
+            </div>
+            <Heart className="icon" onClick={handleWishlistClick} />
+            <ShoppingBag className="icon" onClick={() => navigate("/cart")} />
 
-  <div className="language-selector desktop">
-    {["PT", "EN"].map((lang) => (
-      <button
-        key={lang}
-        className={language === lang ? "active" : ""}
-        onClick={() => setLanguage(lang as "PT" | "EN")}
-      >
-        {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
-      </button>
-    ))}
-  </div>
-  <button
-    onClick={() => setIsMenuOpen(!isMenuOpen)}
-    className="mobile-menu-button"
-  >
-    {isMenuOpen ? <X /> : <Menu />}
-  </button>
-</div>
-
-
-
+            <div className="language-selector desktop">
+              {["PT", "EN"].map((lang) => (
+                <button
+                  key={lang}
+                  className={language === lang ? "active" : ""}
+                  onClick={() => setLanguage(lang as "PT" | "EN")}
+                >
+                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+                </button>
+              ))}
+            </div>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="mobile-menu-button">
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && isMobile && (
           <div className="mobile-menu">
             {navigationLinks.map((link) => (
-              <div
-                key={link.label}
-                className="mobile-dropdown-container"
-                ref={(el) => {
-                  if (link.subItems) dropdownRefs.current[link.label] = el;
-                }}
-              >
+              <div key={link.label} className="mobile-dropdown-container">
                 {link.subItems ? (
                   <>
-                    <button
-                      onClick={() => toggleDropdown(link.label)}
-                      className="mobile-dropdown-trigger"
-                    >
+                    <button onClick={() => toggleDropdown(link.label)} className="mobile-dropdown-trigger">
                       {link.label}
                       <ChevronDown className="dropdown-icon" />
                     </button>
@@ -268,19 +245,6 @@ const Navigation = () => {
                 )}
               </div>
             ))}
-            <div className="mobile-language-selector">
-              {["PT", "EN"].map((lang) => (
-                <button
-                  key={lang}
-                  className={language === lang ? "active" : ""}
-                  onClick={() => setLanguage(lang as "PT" | "EN")}
-                >
-                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
-                </button>
-              ))}
-            </div>
-
-
           </div>
         )}
       </div>
