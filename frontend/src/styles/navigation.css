@@ -17,6 +17,34 @@
     border-bottom: 1px solid #eaeaea;
     z-index: 50;
   }
+
+  .user-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hover-message {
+    display: none; /* Hidden by default */
+    position: absolute;
+    bottom: -30px; /* Adjust this value based on your layout */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  .user-icon-wrapper:hover .hover-message {
+    display: block; /* Show on hover */
+  }
+  
+  /* Optional: Style the user icon when logged in */
+  .icon.logged-in {
+    color: #28a745; /* Green to indicate logged-in status */
+  }
   
   .navbar-container {
     max-width: 1400px;

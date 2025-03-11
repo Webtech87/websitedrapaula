@@ -22,14 +22,12 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8000/api/token/", {
-        username: formData.email, // Mapping email to username for Django
+        username: formData.email,
         password: formData.password,
       });
-      // Store tokens in localStorage
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
-      alert("Login bem-sucedido!");
-      navigate("/dashboard"); // Redirect to a protected page
+      navigate("/");
     } catch (error) {
       alert("Credenciais inválidas. Por favor, tente novamente.");
       console.error(error);

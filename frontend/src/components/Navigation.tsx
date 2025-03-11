@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Heart, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useMobile } from "../hooks/use-mobile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
@@ -13,8 +14,10 @@ const Navigation = () => {
   });
   const [language, setLanguage] = useState<"PT" | "EN">("PT");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [userName, setUserName] = useState(""); // Store the user's name
   const isMobile = useMobile();
   const navigate = useNavigate();
+  const location = useLocation(); // Track route changes
 
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const userDropdownRef = useRef<HTMLDivElement>(null);
@@ -47,11 +50,35 @@ const Navigation = () => {
     { label: "Contacto", href: "/contact" },
   ];
 
-  // Check login status on mount
+  // Check login status on mount and whenever the route changes
   useEffect(() => {
     const token = localStorage.getItem("access");
     setIsLoggedIn(!!token);
-  }, []);
+  }, [location]);
+
+  // Fetch the user's name when logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      const fetchUserProfile = async (token: string) => {
+        try {
+          const response = await axios.get("http://localhost:8000/api/user/profile/", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUserName(response.data.name); // Assuming the API returns { "name": "Luis" }
+        } catch (error) {
+          console.error("Error fetching user profile:", error);
+        }
+      };
+      const token = localStorage.getItem("access");
+      if (token) {
+        fetchUserProfile(token);
+      }
+    } else {
+      setUserName(""); // Clear the name when not logged in
+    }
+  }, [isLoggedIn]);
 
   const toggleDropdown = (label: string) => {
     setDropdowns((prev) => ({
@@ -80,6 +107,7 @@ const Navigation = () => {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     setIsLoggedIn(false);
+    setUserName(""); // Clear the name on logout
     navigate("/login");
   };
 
@@ -181,8 +209,16 @@ const Navigation = () => {
           </div>
 
           <div className="navbar-icons">
-            <div className="user-dropdown-container" ref={userDropdownRef}>
-              <User className="icon" onClick={toggleUserDropdown} />
+            {/* Wrapper for the user icon and hover message */}
+            <div className="user-icon-wrapper" ref={userDropdownRef}>
+              <User
+                className="icon"
+                color={isLoggedIn ? "green" : "black"} // Change color based on login status
+                onClick={toggleUserDropdown}
+              />
+              {isLoggedIn && userName && (
+                <div className="hover-message">Olá {userName}</div>
+              )}
               {dropdowns.userDropdown && (
                 <div className="user-dropdown-menu">
                   {isLoggedIn ? (
