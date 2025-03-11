@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../../styles/pages/login.css";
-import backgroundImage from "../../assets/contact-image.jpg"; // Import the image
+import backgroundImage from "../../assets/contact-image.jpg";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,19 +18,29 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Login bem-sucedido!");
+    try {
+      const response = await axios.post("http://localhost:8000/api/token/", {
+        username: formData.email, // Mapping email to username for Django
+        password: formData.password,
+      });
+      // Store tokens in localStorage
+      localStorage.setItem("access", response.data.access);
+      localStorage.setItem("refresh", response.data.refresh);
+      alert("Login bem-sucedido!");
+      navigate("/dashboard"); // Redirect to a protected page
+    } catch (error) {
+      alert("Credenciais inválidas. Por favor, tente novamente.");
+      console.error(error);
+    }
   };
 
   return (
     <section className="auth-wrapper">
-      {/* Background Image */}
       <div className="auth-bg">
         <img src={backgroundImage} alt="Background" />
       </div>
-
-      {/* Login Form */}
       <div className="auth-container">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
@@ -41,8 +53,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-
-          {/* Password Input with Eye Icon */}
           <label>Senha:</label>
           <div className="password-container">
             <input
@@ -57,15 +67,14 @@ const Login = () => {
               {showPassword ? <EyeOff /> : <Eye />}
             </span>
           </div>
-
-          {/* Forgot Password Link */}
           <div className="forgot-password">
             <Link to="/recuperar-senha">Recuperar palavra-passe</Link>
           </div>
-
           <button type="submit">Entrar</button>
         </form>
-        <p>Não tem uma conta? <Link to="/register">Registre-se</Link></p>
+        <p>
+          Não tem uma conta? <Link to="/register">Registre-se</Link>
+        </p>
       </div>
     </section>
   );

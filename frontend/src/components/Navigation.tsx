@@ -12,6 +12,7 @@ const Navigation = () => {
     userDropdown: false,
   });
   const [language, setLanguage] = useState<"PT" | "EN">("PT");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const isMobile = useMobile();
   const navigate = useNavigate();
 
@@ -46,6 +47,12 @@ const Navigation = () => {
     { label: "Contacto", href: "/contact" },
   ];
 
+  // Check login status on mount
+  useEffect(() => {
+    const token = localStorage.getItem("access");
+    setIsLoggedIn(!!token);
+  }, []);
+
   const toggleDropdown = (label: string) => {
     setDropdowns((prev) => ({
       ...prev,
@@ -67,6 +74,13 @@ const Navigation = () => {
   const handleLinkClick = (href: string) => {
     navigate(href);
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    setIsLoggedIn(false);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -105,20 +119,18 @@ const Navigation = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-main">
-          {/* Logo - Clicking refreshes and redirects */}
           <div className="navbar-logo">
             <a
               href="/"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href = "/"; // Forces a full page refresh
+                window.location.href = "/";
               }}
             >
               <img src={logo} alt="Logo" className="logo-img" />
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="navbar-links desktop">
             {navigationLinks.map((link) => (
               <div key={link.label} className="dropdown-container">
@@ -155,7 +167,7 @@ const Navigation = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       if (link.label === "Home") {
-                        window.location.href = "/"; // Full refresh for Home link
+                        window.location.href = "/";
                       } else {
                         handleLinkClick(link.href);
                       }
@@ -168,18 +180,42 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Icons */}
           <div className="navbar-icons">
             <div className="user-dropdown-container" ref={userDropdownRef}>
               <User className="icon" onClick={toggleUserDropdown} />
               {dropdowns.userDropdown && (
                 <div className="user-dropdown-menu">
-                  <button className="user-dropdown-button" onClick={() => navigate("/login")}>
-                    Iniciar sessão
-                  </button>
-                  <button className="user-dropdown-button" onClick={() => navigate("/register")}>
-                    Criar uma conta
-                  </button>
+                  {isLoggedIn ? (
+                    <>
+                      <button
+                        className="user-dropdown-button"
+                        onClick={() => navigate("/profile")}
+                      >
+                        Perfil
+                      </button>
+                      <button
+                        className="user-dropdown-button"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="user-dropdown-button"
+                        onClick={() => navigate("/login")}
+                      >
+                        Iniciar sessão
+                      </button>
+                      <button
+                        className="user-dropdown-button"
+                        onClick={() => navigate("/register")}
+                      >
+                        Criar uma conta
+                      </button>
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -197,20 +233,25 @@ const Navigation = () => {
                 </button>
               ))}
             </div>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="mobile-menu-button">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="mobile-menu-button"
+            >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && isMobile && (
           <div className="mobile-menu">
             {navigationLinks.map((link) => (
               <div key={link.label} className="mobile-dropdown-container">
                 {link.subItems ? (
                   <>
-                    <button onClick={() => toggleDropdown(link.label)} className="mobile-dropdown-trigger">
+                    <button
+                      onClick={() => toggleDropdown(link.label)}
+                      className="mobile-dropdown-trigger"
+                    >
                       {link.label}
                       <ChevronDown className="dropdown-icon" />
                     </button>
@@ -245,6 +286,35 @@ const Navigation = () => {
                 )}
               </div>
             ))}
+            {/* User options in mobile menu */}
+            {isLoggedIn ? (
+              <>
+                <button
+                  className="mobile-menu-button"
+                  onClick={() => navigate("/profile")}
+                >
+                  Perfil
+                </button>
+                <button className="mobile-menu-button" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="mobile-menu-button"
+                  onClick={() => navigate("/login")}
+                >
+                  Iniciar sessão
+                </button>
+                <button
+                  className="mobile-menu-button"
+                  onClick={() => navigate("/register")}
+                >
+                  Criar uma conta
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
