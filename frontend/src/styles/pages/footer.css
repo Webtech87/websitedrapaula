@@ -59,7 +59,7 @@
 .footer-column {
   flex: 1;
   min-width: 200px;
-  text-align: left;
+  text-align: center;
 }
 
 .footer-column h3 {
@@ -74,15 +74,18 @@
   line-height: 1.6;
   margin-bottom: 15px;
   color: #555;
+  
 }
 
 .footer-column ul {
   list-style: none;
   padding: 0;
+  
 }
 
 .footer-column ul li {
   margin-bottom: 12px;
+  
 }
 
 .footer-column ul li a {
@@ -118,6 +121,9 @@
     text-align: center;
   }
   .footer-column {
+    text-align: center;
+  }
+  .footer-column ul {
     text-align: center;
   }
   .footer-logo img {

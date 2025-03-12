@@ -50,35 +50,27 @@ const Navigation = () => {
     { label: "Contacto", href: "/contact" },
   ];
 
-  // Check login status on mount and whenever the route changes
+  // Combined useEffect for login status and user profile fetching
   useEffect(() => {
+    console.log("Navigation component rendered");
     const token = localStorage.getItem("access");
     setIsLoggedIn(!!token);
-  }, [location]);
-
-  // Fetch the user's name when logged in
-  useEffect(() => {
-    if (isLoggedIn) {
-      const fetchUserProfile = async (token: string) => {
+    if (token) {
+      const fetchUserProfile = async () => {
         try {
           const response = await axios.get("http://localhost:8000/api/user/profile/", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           });
-          setUserName(response.data.name); // Assuming the API returns { "name": "Luis" }
+          setUserName(response.data.full_name);
         } catch (error) {
           console.error("Error fetching user profile:", error);
         }
       };
-      const token = localStorage.getItem("access");
-      if (token) {
-        fetchUserProfile(token);
-      }
+      fetchUserProfile();
     } else {
-      setUserName(""); // Clear the name when not logged in
+      setUserName("");
     }
-  }, [isLoggedIn]);
+  }, [location]); // Re-run when the route changes
 
   const toggleDropdown = (label: string) => {
     setDropdowns((prev) => ({

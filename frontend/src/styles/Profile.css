@@ -1,0 +1,115 @@
+.profile-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.5s ease-out;
+    margin-top: 100px;
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+  
+  .profile-title {
+    font-size: 2.5rem;
+    color: #1a1f2c;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .profile-item {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .profile-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .profile-label {
+    font-weight: 600;
+    color: #2563eb;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .profile-value {
+    color: #1a1f2c;
+    font-size: 1.1rem;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    font-size: 1.2rem;
+    color: #6e59a5;
+  }
+  
+  .error-message {
+    text-align: center;
+    color: #ea384c;
+    padding: 2rem;
+    background: rgba(234, 56, 76, 0.1);
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .profile-page {
+      margin: 1rem;
+      padding: 1.5rem;
+      margin-top: 90px;
+    }
+  
+    .profile-title {
+      font-size: 2rem;
+    }
+  
+    .profile-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .profile-label {
+      text-align: center;
+    }
+
+    .profile-item {
+      text-align: center;
+    }
+  }
+  

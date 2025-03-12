@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -33,6 +33,12 @@ const Login = () => {
       console.error(error);
     }
   };
+
+  // Log mount and unmount to verify rendering
+  useEffect(() => {
+    console.log("Login component mounted");
+    return () => console.log("Login component unmounted");
+  }, []);
 
   return (
     <section className="auth-wrapper">

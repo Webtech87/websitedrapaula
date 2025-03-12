@@ -43,26 +43,6 @@ const Contact = () => {
         <h1 className="contact-header">Contacto</h1>
         
         <div className="contact-content">
-          {/* Contact Information Section */}
-          <div className="contact-info">
-            <div className="info-section">
-              <h2>Horário</h2>
-              <p>Segunda - Sexta: 9:00 - 18:00</p>
-            </div>
-
-            <div className="info-section">
-              <h2>Telefone</h2>
-              <p className="phone-number">(+351) 965 430 026</p>
-              <p className="phone-note">Chamada para rede móvel nacional</p>
-            </div>
-
-            <div className="info-section">
-              <h2>Endereço</h2>
-              <p>Rua Arthur Águedo Miranda, Bloco 2, Loja A</p>
-              <p>Loja C - 000-000, Faro</p>
-            </div>
-          </div>
-
           {/* Contact Form Section */}
           <div className="contact-form">
             {formSubmitted ? (
@@ -115,6 +95,26 @@ const Contact = () => {
                 </button>
               </form>
             )}
+          </div>
+
+          {/* Contact Information Section */}
+          <div className="contact-info">
+            <div className="info-section">
+              <h2>Horário</h2>
+              <p>Segunda - Sexta: 9:00 - 18:00</p>
+            </div>
+
+            <div className="info-section">
+              <h2>Telefone</h2>
+              <p className="phone-number">(+351) 965 430 026</p>
+              <p className="phone-note">Chamada para rede móvel nacional</p>
+            </div>
+
+            <div className="info-section">
+              <h2>Endereço</h2>
+              <p>Rua Arthur Águedo Miranda, Bloco 2, Loja A</p>
+              <p>Loja C - 000-000, Faro</p>
+            </div>
           </div>
         </div>
 

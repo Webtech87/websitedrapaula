@@ -18,6 +18,7 @@ import Contact from "./components/Contact";
 import Cart from "./components/pages/Cart";
 import CourseDetails from "./components/CourseDetails";
 import ProtectedRoute from "./components/ProtectedRoute"; // ✅ Import ProtectedRoute
+import Profile from "./components/Profile";
 import "./styles/global.css";
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
@@ -52,6 +53,7 @@ function App() {
         <Route path="/contact" element={<Contact />} /> {/* ✅ Public contact route */}
         <Route path="/cart" element={<Cart />} />       {/* ✅ Public cart route */}
         <Route path="/course/:id" element={<CourseDetails />} /> {/* ✅ Public course details */}
+        <Route path="/profile" element={<Profile />} />
         
         {/* Protected Routes */}
         <Route
