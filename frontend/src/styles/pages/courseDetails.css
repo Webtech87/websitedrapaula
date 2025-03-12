@@ -1,55 +1,132 @@
-/* Estilos do Contêiner */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 .course-details {
-  padding: 40px 20px;
+  padding: 3rem 2rem;
   max-width: 1200px;
-  margin: 0 auto;
-  background-color: #fff;
-  margin-top: 80px;
-  
-  
+  margin: 2rem auto;
+  background-color: var(--background-color);
+  font-family: 'Poppins', sans-serif;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  margin-top: 130px;
 }
 
 .course-details h1 {
   font-size: 2.5rem;
-  color: #3498db;
-  margin-bottom: 30px;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
   text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.course-details h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+  border-radius: 2px;
 }
 
 /* Layout do Conteúdo */
 .course-content {
   display: flex;
-  gap: 40px;
+  gap: 3rem;
   align-items: flex-start;
-  margin-top: 70px;
+  margin-top: 2rem;
 }
 
 .course-info {
   flex: 2;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .course-info section {
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.course-info section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .course-info h2 {
-  font-size: 1.75rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 5px;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
-.course-info p,
-.course-info li {
+.course-info h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 25px;
+  background: linear-gradient(to bottom, var(--primary-light), var(--primary-color));
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.course-info p {
   font-size: 1rem;
-  color: #333333;
-  line-height: 1.6;
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }
 
 .course-info ul,
 .course-info ol {
-  margin-left: 20px;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.course-info li {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.course-info ul li::before {
+  content: '•';
+  color: var(--primary-color);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.course-info ol {
+  counter-reset: item;
+}
+
+.course-info ol li {
+  counter-increment: item;
+}
+
+.course-info ol li::before {
+  content: counter(item) ". ";
+  color: var(--primary-color);
+  font-weight: bold;
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.5em;
 }
 
 /* Estilos da Seção de Compra */
@@ -57,118 +134,252 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+  animation: slideIn 0.8s ease-out;
 }
 
 .purchase-card {
-  background: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
   text-align: center;
+  border: 1px solid rgba(110, 89, 165, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.purchase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
 }
 
 .purchase-card .price {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #3498db;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchase-card .price::before {
+  content: '$';
+  font-size: 1.5rem;
+  position: relative;
+  top: -15px;
+  margin-right: 5px;
 }
 
 .buy-button,
 .cart-button {
   width: 100%;
-  padding: 15px;
+  padding: 1rem;
   font-size: 1rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all var(--transition-speed) ease;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.buy-button::before,
+.cart-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform var(--transition-speed) ease;
+  z-index: -1;
+}
+
+.buy-button:hover::before,
+.cart-button:hover::before {
+  transform: translateX(0);
 }
 
 .buy-button {
-  background-color: #28a745;
+  background: linear-gradient(135deg, var(--accent-color), #ff5722);
   color: white;
+  box-shadow: 0 4px 15px rgba(255, 120, 70, 0.4);
 }
 
 .buy-button:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 120, 70, 0.6);
 }
 
 .cart-button {
-  background-color: #3498db;
+  background: green;
   color: white;
+  box-shadow: 0 4px 15px rgba(110, 89, 165, 0.4);
 }
 
 .cart-button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(110, 89, 165, 0.6);
 }
 
 /* Seção de Informações Adicionais */
 .detalhes-adicionais {
-  background: #f1f1f1;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(110, 89, 165, 0.1);
 }
 
 .detalhes-adicionais h2 {
-  font-size: 1.5rem;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 5px;
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.detalhes-adicionais h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--primary-light), var(--primary-color));
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+.detalhes-adicionais ul {
+  list-style: none;
+  padding: 0;
 }
 
 .detalhes-adicionais li {
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--light-text);
+  font-size: 0.95rem;
+}
+
+.detalhes-adicionais li::before {
+  content: '✓';
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Ajustes Responsivos */
+@media (max-width: 1024px) {
+  .course-content {
+    gap: 2rem;
+  }
+  
+  .course-details {
+    padding: 2rem 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+
+  h1 {
+    margin-top: 4rem;
+  }
   .course-content {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .course-info {
-    text-align: center;
+    margin-top: 2rem;
   }
 
   .purchase-section {
-    align-items: center;
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
   }
 
   .course-details h1 {
     font-size: 2rem;
   }
+  
+  .course-info section {
+    padding: 1.2rem;
+  }
+  
+  .purchase-card .price {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .course-details {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+  
   .course-details h1 {
     font-size: 1.8rem;
   }
 
-  .course-info h2 {
-    font-size: 1.5rem;
+  .course-info h2,
+  .detalhes-adicionais h2 {
+    font-size: 1.3rem;
+  }
+
+  .purchase-card {
+    padding: 1.5rem;
   }
 
   .purchase-card .price {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .buy-button,
   .cart-button {
-    padding: 12px;
-    font-size: 0.9rem;
+    padding: 0.8rem;
+    font-size: 0.95rem;
   }
-
-  .detalhes-adicionais h2 {
-    font-size: 1.3rem;
+  
+  .course-info section {
+    margin-bottom: 1.5rem;
   }
 }
+
+

@@ -3,6 +3,7 @@ import { Menu, X, Heart, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useMobile } from "../hooks/use-mobile";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
@@ -15,9 +16,10 @@ const Navigation = () => {
   const [language, setLanguage] = useState<"PT" | "EN">("PT");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const [userName, setUserName] = useState(""); // Store the user's name
+  const [tokenExpired, setTokenExpired] = useState(false); // Track token expiration
   const isMobile = useMobile();
   const navigate = useNavigate();
-  const location = useLocation(); // Track route changes
+  const location = useLocation();
 
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const userDropdownRef = useRef<HTMLDivElement>(null);
@@ -50,12 +52,25 @@ const Navigation = () => {
     { label: "Contacto", href: "/contact" },
   ];
 
-  // Combined useEffect for login status and user profile fetching
+  // Function to check if the token is expired
+  const isTokenExpired = (token: string | null) => {
+    if (!token) return true;
+    try {
+      const decoded: any = jwtDecode(token);
+      const currentTime = Date.now() / 1000; // Convert to seconds
+      return decoded.exp < currentTime;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return true; // Treat as expired if decoding fails
+    }
+  };
+
+  // Check login status and fetch user profile
   useEffect(() => {
-    console.log("Navigation component rendered");
     const token = localStorage.getItem("access");
-    setIsLoggedIn(!!token);
-    if (token) {
+    if (token && !isTokenExpired(token)) {
+      setIsLoggedIn(true);
+      setTokenExpired(false);
       const fetchUserProfile = async () => {
         try {
           const response = await axios.get("http://localhost:8000/api/user/profile/", {
@@ -64,13 +79,18 @@ const Navigation = () => {
           setUserName(response.data.full_name);
         } catch (error) {
           console.error("Error fetching user profile:", error);
+          if (axios.isAxiosError(error) && error.response?.status === 401) {
+            handleLogout();
+          }
         }
       };
       fetchUserProfile();
     } else {
+      setIsLoggedIn(false);
       setUserName("");
+      setTokenExpired(true);
     }
-  }, [location]); // Re-run when the route changes
+  }, [location]);
 
   const toggleDropdown = (label: string) => {
     setDropdowns((prev) => ({
@@ -99,7 +119,8 @@ const Navigation = () => {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     setIsLoggedIn(false);
-    setUserName(""); // Clear the name on logout
+    setUserName("");
+    setTokenExpired(true);
     navigate("/login");
   };
 
@@ -201,15 +222,17 @@ const Navigation = () => {
           </div>
 
           <div className="navbar-icons">
-            {/* Wrapper for the user icon and hover message */}
+            {/* Wrapper for user icon and hover message */}
             <div className="user-icon-wrapper" ref={userDropdownRef}>
               <User
                 className="icon"
-                color={isLoggedIn ? "green" : "black"} // Change color based on login status
+                color={isLoggedIn && !tokenExpired ? "green" : "black"}
                 onClick={toggleUserDropdown}
               />
-              {isLoggedIn && userName && (
-                <div className="hover-message">Olá {userName}</div>
+              {isLoggedIn && (
+                <div className="hover-message">
+                  {tokenExpired ? "Your login has expired" : `Olá ${userName}`}
+                </div>
               )}
               {dropdowns.userDropdown && (
                 <div className="user-dropdown-menu">
