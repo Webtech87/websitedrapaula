@@ -172,7 +172,7 @@
 }
 
 .purchase-card .price::before {
-  content: '$';
+  
   font-size: 1.5rem;
   position: relative;
   top: -15px;

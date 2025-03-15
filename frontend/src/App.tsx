@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Banner from "./components/Banner";
 import Courses from "./components/Courses";
@@ -17,9 +17,16 @@ import Wishlist from "./components/pages/Wishlist";
 import Contact from "./components/Contact";
 import Cart from "./components/pages/Cart";
 import CourseDetails from "./components/CourseDetails";
-import ProtectedRoute from "./components/ProtectedRoute"; // ✅ Import ProtectedRoute
+import BookDetails from "./components/BookDetails"; // Add this line
+import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import "./styles/global.css";
+import CookieConsent from "react-cookie-consent";
+
+
+
+
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
 const Dashboard = () => <div>Dashboard (Protected)</div>;
@@ -45,17 +52,62 @@ function App() {
   return (
     <Router>
       <Navigation />
+      {/* Cookie Consent Banner */}
+      <CookieConsent
+        location="bottom"
+        buttonText="Aceitar" // Portuguese for "Accept"
+        declineButtonText="Recusar" // Portuguese for "Decline"
+        cookieName="myCookieConsent"
+        style={{
+          background: "#ffffff",
+          color: "#333",
+          padding: "10px 20px",
+          boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
+          borderRadius: "5px",
+          fontSize: "14px",
+          fontFamily: "Arial, sans-serif",
+        }}
+        buttonStyle={{
+          background: "#4CAF50",
+          color: "#fff",
+          padding: "8px 16px",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+        declineButtonStyle={{
+          background: "#f44336",
+          color: "#fff",
+          padding: "8px 16px",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+        expires={150}
+        enableDeclineButton
+        onDecline={() => {
+          console.log("User declined cookies");
+        }}
+        overlay
+        overlayStyle={{
+          background: "rgba(0,0,0,0.5)",
+        }}
+      >
+        Este site utiliza cookies para melhorar a sua experiência. Ao continuar, você concorda com o uso de cookies.{" "}
+        <Link to="/privacy" style={{ color: "#007bff", textDecoration: "underline" }}>
+          Saiba mais
+        </Link>
+      </CookieConsent>
       <Routes>
-        <Route path="/" element={<Home />} />           {/* ✅ Public home route */}
-        <Route path="/login" element={<Login />} />     {/* ✅ Public login route */}
-        <Route path="/register" element={<Register />} /> {/* ✅ Public register route */}
-        <Route path="/recuperar-senha" element={<RecuperarSenha />} /> {/* ✅ Public password recovery */}
-        <Route path="/contact" element={<Contact />} /> {/* ✅ Public contact route */}
-        <Route path="/cart" element={<Cart />} />       {/* ✅ Public cart route */}
-        <Route path="/course/:id" element={<CourseDetails />} /> {/* ✅ Public course details */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/profile" element={<Profile />} />
-        
-        {/* Protected Routes */}
+        <Route path="/privacy" element={<PrivacyPolicy />} /> {/* New route */}
+        <Route path="/" element={<Books />} />
+        <Route path="/book/:id" element={<BookDetails />} />
         <Route
           path="/wishlist"
           element={

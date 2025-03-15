@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Heart, ShoppingBag, User, ChevronDown } from "lucide-react";
-import { useMobile } from "../hooks/use-mobile";
+import { Menu, X, Heart, ShoppingBag, User, ChevronDown, LogIn, UserPlus, UserCircle, LogOut } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
@@ -9,25 +8,25 @@ import "../styles/navigation.css";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [dropdowns, setDropdowns] = useState({
+  const [activeDropdowns, setActiveDropdowns] = useState({
     navDropdown: null as string | null,
     userDropdown: false,
   });
   const [language, setLanguage] = useState<"PT" | "EN">("PT");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-  const [userName, setUserName] = useState(""); // Store the user's name
-  const [tokenExpired, setTokenExpired] = useState(false); // Track token expiration
-  const isMobile = useMobile();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [tokenExpired, setTokenExpired] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const userDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const navigationLinks = [
     { label: "Home", href: "/" },
     {
-      label: "Sobre a Fundadora",
+      label: "Fundadora",
       href: "#",
       subItems: [{ label: "PSE", href: "#" }],
     },
@@ -93,14 +92,14 @@ const Navigation = () => {
   }, [location]);
 
   const toggleDropdown = (label: string) => {
-    setDropdowns((prev) => ({
+    setActiveDropdowns((prev) => ({
       ...prev,
       navDropdown: prev.navDropdown === label ? null : label,
     }));
   };
 
   const toggleUserDropdown = () => {
-    setDropdowns((prev) => ({
+    setActiveDropdowns((prev) => ({
       ...prev,
       userDropdown: !prev.userDropdown,
     }));
@@ -113,6 +112,7 @@ const Navigation = () => {
   const handleLinkClick = (href: string) => {
     navigate(href);
     setIsMenuOpen(false);
+    setActiveDropdowns({ navDropdown: null, userDropdown: false });
   };
 
   const handleLogout = () => {
@@ -121,40 +121,81 @@ const Navigation = () => {
     setIsLoggedIn(false);
     setUserName("");
     setTokenExpired(true);
+    setActiveDropdowns({ navDropdown: null, userDropdown: false });
     navigate("/login");
+  };
+
+  const toggleMobileMenu = () => {
+    const mobileMenu = mobileMenuRef.current;
+    if (mobileMenu) {
+      if (!isMenuOpen) {
+        setIsMenuOpen(true);
+        setTimeout(() => {
+          mobileMenu.classList.add('open');
+        }, 10);
+      } else {
+        mobileMenu.classList.remove('open');
+        setTimeout(() => {
+          setIsMenuOpen(false);
+        }, 500); // Match transition time
+      }
+    }
   };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (userDropdownRef.current?.contains(event.target as Node)) return;
+      // Handle user dropdown clicks
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdowns(prev => ({ ...prev, userDropdown: false }));
+      }
 
-      let clickedOutsideAll = true;
-      Object.values(dropdownRefs.current).forEach((ref) => {
+      // Handle nav dropdown clicks
+      let clickedOutsideAllDropdowns = true;
+      Object.entries(dropdownRefs.current).forEach(([label, ref]) => {
         if (ref && ref.contains(event.target as Node)) {
-          clickedOutsideAll = false;
+          clickedOutsideAllDropdowns = false;
         }
       });
 
-      if (clickedOutsideAll) {
-        setDropdowns({ navDropdown: null, userDropdown: false });
+      if (clickedOutsideAllDropdowns) {
+        setActiveDropdowns(prev => ({ ...prev, navDropdown: null }));
       }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setDropdowns({ navDropdown: null, userDropdown: false });
-        setIsMenuOpen(false);
+        setActiveDropdowns({ navDropdown: null, userDropdown: false });
+        if (isMenuOpen) toggleMobileMenu();
       }
+    };
+
+    // Close mobile menu on route change
+    const handleRouteChange = () => {
+      if (isMenuOpen) toggleMobileMenu();
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("popstate", handleRouteChange);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("popstate", handleRouteChange);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+  // Handle window resize and close mobile menu if screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        toggleMobileMenu();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMenuOpen]);
 
   return (
     <nav className="navbar">
@@ -174,37 +215,41 @@ const Navigation = () => {
 
           <div className="navbar-links desktop">
             {navigationLinks.map((link) => (
-              <div key={link.label} className="dropdown-container">
+              <div 
+                key={link.label} 
+                className={`dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
+                ref={(el) => (dropdownRefs.current[link.label] = el)}
+              >
                 {link.subItems ? (
                   <>
                     <button
                       onClick={() => toggleDropdown(link.label)}
                       className="dropdown-trigger"
+                      aria-expanded={activeDropdowns.navDropdown === link.label}
+                      aria-haspopup="true"
                     >
                       {link.label}
                       <ChevronDown className="dropdown-icon" />
                     </button>
-                    {dropdowns.navDropdown === link.label && (
-                      <div className="dropdown-menu">
-                        {link.subItems.map((subItem) => (
-                          <a
-                            key={subItem.label}
-                            href={subItem.href}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleLinkClick(subItem.href);
-                              setDropdowns({ ...dropdowns, navDropdown: null });
-                            }}
-                          >
-                            {subItem.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                    <div className="dropdown-menu">
+                      {link.subItems.map((subItem) => (
+                        <a
+                          key={subItem.label}
+                          href={subItem.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleLinkClick(subItem.href);
+                          }}
+                        >
+                          {subItem.label}
+                        </a>
+                      ))}
+                    </div>
                   </>
                 ) : (
                   <a
                     href={link.href}
+                    
                     onClick={(e) => {
                       e.preventDefault();
                       if (link.label === "Home") {
@@ -222,56 +267,79 @@ const Navigation = () => {
           </div>
 
           <div className="navbar-icons">
-            {/* Wrapper for user icon and hover message */}
-            <div className="user-icon-wrapper" ref={userDropdownRef}>
+            <div 
+              className={`user-icon-wrapper ${activeDropdowns.userDropdown ? 'active' : ''}`} 
+              ref={userDropdownRef}
+            >
               <User
                 className="icon"
                 color={isLoggedIn && !tokenExpired ? "green" : "black"}
                 onClick={toggleUserDropdown}
+                aria-expanded={activeDropdowns.userDropdown}
+                aria-haspopup="true"
               />
               {isLoggedIn && (
                 <div className="hover-message">
-                  {tokenExpired ? "Your login has expired" : `Olá ${userName}`}
+                  {tokenExpired ? "Your login has expired" : `Bem vindo(a) ${userName}`}
                 </div>
               )}
-              {dropdowns.userDropdown && (
-                <div className="user-dropdown-menu">
-                  {isLoggedIn ? (
-                    <>
-                      <button
-                        className="user-dropdown-button"
-                        onClick={() => navigate("/profile")}
-                      >
-                        Perfil
-                      </button>
-                      <button
-                        className="user-dropdown-button"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        className="user-dropdown-button"
-                        onClick={() => navigate("/login")}
-                      >
-                        Iniciar sessão
-                      </button>
-                      <button
-                        className="user-dropdown-button"
-                        onClick={() => navigate("/register")}
-                      >
-                        Criar uma conta
-                      </button>
-                    </>
-                  )}
-                </div>
-              )}
+              <div className="user-dropdown-menu">
+                {isLoggedIn ? (
+                  <>
+                    <button
+                      className="user-dropdown-button"
+                      onClick={() => {
+                        navigate("/profile");
+                        toggleUserDropdown();
+                      }}
+                    >
+                      <UserCircle size={18} />
+                      Perfil
+                    </button>
+                    <button
+                      className="user-dropdown-button"
+                      onClick={handleLogout}
+                    >
+                      <LogOut size={18} />
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="user-dropdown-button"
+                      onClick={() => {
+                        navigate("/login");
+                        toggleUserDropdown();
+                      }}
+                    >
+                      <LogIn size={18} />
+                      Iniciar sessão
+                    </button>
+                    <button
+                      className="user-dropdown-button"
+                      onClick={() => {
+                        navigate("/register");
+                        toggleUserDropdown();
+                      }}
+                    >
+                      <UserPlus size={18} />
+                      Criar uma conta
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
-            <Heart className="icon" onClick={handleWishlistClick} />
-            <ShoppingBag className="icon" onClick={() => navigate("/cart")} />
+            <Heart 
+              className="icon" 
+              onClick={handleWishlistClick} 
+              aria-label="Wishlist"
+            />
+            <ShoppingBag 
+              className="icon" 
+              onClick={() => navigate("/cart")} 
+              aria-label="Shopping Cart"
+            />
 
             <div className="language-selector desktop">
               {["PT", "EN"].map((lang) => (
@@ -279,95 +347,120 @@ const Navigation = () => {
                   key={lang}
                   className={language === lang ? "active" : ""}
                   onClick={() => setLanguage(lang as "PT" | "EN")}
+                  aria-pressed={language === lang}
                 >
                   {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
                 </button>
               ))}
             </div>
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleMobileMenu}
               className="mobile-menu-button"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
 
-        {isMenuOpen && isMobile && (
-          <div className="mobile-menu">
-            {navigationLinks.map((link) => (
-              <div key={link.label} className="mobile-dropdown-container">
-                {link.subItems ? (
-                  <>
-                    <button
-                      onClick={() => toggleDropdown(link.label)}
-                      className="mobile-dropdown-trigger"
-                    >
-                      {link.label}
-                      <ChevronDown className="dropdown-icon" />
-                    </button>
-                    {dropdowns.navDropdown === link.label && (
-                      <div className="mobile-dropdown-menu">
-                        {link.subItems.map((subItem) => (
-                          <a
-                            key={subItem.label}
-                            href={subItem.href}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleLinkClick(subItem.href);
-                              setDropdowns({ ...dropdowns, navDropdown: null });
-                            }}
-                          >
-                            {subItem.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.href);
-                    }}
+        <div 
+          className={`mobile-menu ${isMenuOpen ? '' : ''}`}
+          ref={mobileMenuRef}
+        >
+          {navigationLinks.map((link) => (
+            <div 
+              key={link.label} 
+              className={`mobile-dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
+            >
+              {link.subItems ? (
+                <>
+                  <button
+                    onClick={() => toggleDropdown(link.label)}
+                    className="mobile-dropdown-trigger"
+                    aria-expanded={activeDropdowns.navDropdown === link.label}
                   >
                     {link.label}
-                  </a>
-                )}
-              </div>
+                    <ChevronDown className="dropdown-icon" />
+                  </button>
+                  <div className="mobile-dropdown-menu">
+                    {link.subItems.map((subItem) => (
+                      <a
+                        key={subItem.label}
+                        href={subItem.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleLinkClick(subItem.href);
+                        }}
+                      >
+                        {subItem.label}
+                      </a>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                  }}
+                >
+                  {link.label}
+                </a>
+              )}
+            </div>
+          ))}
+          
+          {/* User options in mobile menu */}
+          {isLoggedIn ? (
+            <>
+              <button
+                className="mobile-menu-button"
+                onClick={() => navigate("/profile")}
+              >
+                <UserCircle size={18} />
+                Perfil
+              </button>
+              <button 
+                className="mobile-menu-button" 
+                onClick={handleLogout}
+              >
+                <LogOut size={18} />
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="mobile-menu-button"
+                onClick={() => navigate("/login")}
+              >
+                <LogIn size={18} />
+                Iniciar sessão
+              </button>
+              <button
+                className="mobile-menu-button"
+                onClick={() => navigate("/register")}
+              >
+                <UserPlus size={18} />
+                Criar uma conta
+              </button>
+            </>
+          )}
+          
+          <div className="mobile-language-selector">
+            {["PT", "EN"].map((lang) => (
+              <button
+                key={lang}
+                className={language === lang ? "active" : ""}
+                onClick={() => setLanguage(lang as "PT" | "EN")}
+              >
+                {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+              </button>
             ))}
-            {/* User options in mobile menu */}
-            {isLoggedIn ? (
-              <>
-                <button
-                  className="mobile-menu-button"
-                  onClick={() => navigate("/profile")}
-                >
-                  Perfil
-                </button>
-                <button className="mobile-menu-button" onClick={handleLogout}>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className="mobile-menu-button"
-                  onClick={() => navigate("/login")}
-                >
-                  Iniciar sessão
-                </button>
-                <button
-                  className="mobile-menu-button"
-                  onClick={() => navigate("/register")}
-                >
-                  Criar uma conta
-                </button>
-              </>
-            )}
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
