@@ -218,7 +218,9 @@ const Navigation = () => {
               <div 
                 key={link.label} 
                 className={`dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
-                ref={(el) => (dropdownRefs.current[link.label] = el)}
+                ref={(el) => {
+                  dropdownRefs.current[link.label] = el;
+                }}
               >
                 {link.subItems ? (
                   <>
