@@ -17,29 +17,41 @@ import Wishlist from "./components/pages/Wishlist";
 import Contact from "./components/Contact";
 import Cart from "./components/pages/Cart";
 import CourseDetails from "./components/CourseDetails";
-import BookDetails from "./components/BookDetails"; // Add this line
+import BookDetails from "./components/BookDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import "./styles/global.css";
 import CookieConsent from "react-cookie-consent";
-
-
-
-
+import NossosValores from "./components/pages/NossosValores";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import ArtigosTeses from "./components/pages/ArtigosTeses";
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
 const Dashboard = () => <div>Dashboard (Protected)</div>;
 
 function Home() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.substring(1); // Remove the "#"
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
     <>
       <Banner />
-      <Courses />
-      <Mentorship />
-      <Books />
+      <Courses id="cursos" />
+      <Mentorship id="mentorias" />
+      <Books id="livros" />
       <About />
-      <Imersoes />
+      <Imersoes id="imersoes" />
       <Lancamentos />
       <Testemunhos />
       <ContactForm />
@@ -105,10 +117,15 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} /> {/* New route */}
-        <Route path="/" element={<Books />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/about" element={<About />} />
+        <Route path="/nossos-valores" element={<NossosValores />} />
+        <Route path="/cursos" element={<Courses id="cursos" />} />
+        <Route path="/mentorias" element={<Mentorship id="mentorias" />} />
+        <Route path="/imersoes" element={<Imersoes id="imersoes" />} />
+        <Route path="/artigos-teses" element={<ArtigosTeses />} />
+       
         <Route
           path="/wishlist"
           element={

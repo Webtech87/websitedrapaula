@@ -7,7 +7,7 @@ export const books = [
   {
     id: 1,
     image: book1,
-    title: "A criança e a Motricidade Fina",
+    title: "",
     description: "Um guia essencial para desenvolver habilidades motoras finas em crianças pequenas.",
     price: 29.99,
     originalPrice: 39.99,
@@ -20,7 +20,7 @@ export const books = [
   {
     id: 2,
     image: book2,
-    title: "Brincar e Integração Sensorial nos Primeiros Anos",
+    title: "",
     description: "Explora como brincadeiras ajudam na integração sensorial durante os primeiros anos.",
     price: 39.99,
     category: "ebook",
@@ -30,7 +30,7 @@ export const books = [
   {
     id: 3,
     image: book3,
-    title: "A Integração Sensorial",
+    title: "",
     description: "Uma introdução prática aos conceitos de integração sensorial para pais e educadores.",
     price: 19.99,
     originalPrice: 24.99,
@@ -42,7 +42,7 @@ export const books = [
   {
     id: 4,
     image: book4,
-    title: "O Desenvolvimento da Autonomia dos 0 aos 3 anos",
+    title: "",
     description: "Estratégias para fomentar a independência em bebês e crianças pequenas.",
     price: 24.99,
     category: "printed",

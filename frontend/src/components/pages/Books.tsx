@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/pages/books.css"; // Corrected path
+import "../../styles/pages/books.css";
 import { books } from "../../bookData";
 import { ChevronRight, Star, Search } from "lucide-react";
 import debounce from "lodash/debounce";
 
-const Books = () => {
+const Books = ({ id }: { id: string }) => {
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [hoveredBook, setHoveredBook] = useState<number | null>(null);
@@ -48,10 +48,9 @@ const Books = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="books">
+      <section id={id} className="books">
         <div className="books-header">
           <div className="title-container">
-            
             <h2 className="section-title">Livros e eBooks</h2>
             <p className="section-subtitle">Aproveite agora – descontos exclusivos por tempo limitado</p>
           </div>

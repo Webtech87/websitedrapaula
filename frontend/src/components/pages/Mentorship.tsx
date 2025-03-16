@@ -1,13 +1,14 @@
 import "../../styles/pages/mentorship.css";
 import mentorshipImage from "../../assets/courses/PaulaSerrano-102 1.png";
 
-const Mentorship = () => {
+// Update the component to accept an id prop with TypeScript typing
+const Mentorship = ({ id }: { id: string }) => {
   return (
-    <section className="mentorship">
+    // Add the id prop to the root section element
+    <section id={id} className="mentorship">
       <div className="mentorship-container">
         {/* Intro and Tag */}
         <div className="mentorship-intro-tag">
-          
           <span className="mentorship-tag">Mentoria</span>
           <p className="mentorship-intro">
             Descubra como a mentoria pode transformar sua carreira.

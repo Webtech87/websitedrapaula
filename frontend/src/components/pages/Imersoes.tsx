@@ -4,9 +4,11 @@ import imersao1 from "../../assets/imersoes/imersao1.jpg";
 import imersao2 from "../../assets/imersoes/imersao2.jpg";
 import imersao3 from "../../assets/imersoes/imersao3.jpg";
 
-const images = [imersao1, imersao2, imersao3]; // Array of background images
+// Array of background images
+const images = [imersao1, imersao2, imersao3];
 
-const Imersoes = () => {
+// Update the component to accept an id prop with TypeScript typing
+const Imersoes = ({ id }: { id: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-slide every 5 seconds
@@ -18,7 +20,9 @@ const Imersoes = () => {
   }, []);
 
   return (
+    // Add the id prop to the root section element
     <section
+      id={id}
       className="imersoes"
       style={{ backgroundImage: `url(${images[currentIndex]})` }}
     >

@@ -28,24 +28,24 @@ const Navigation = () => {
     {
       label: "Fundadora",
       href: "#",
-      subItems: [{ label: "PSE", href: "#" }],
+      subItems: [{ label: "PSE", href: "/nossos-valores" }],
     },
     {
       label: "Formações",
       href: "#",
       subItems: [
-        { label: "Cursos", href: "#" },
-        { label: "Mentorias", href: "#" },
-        { label: "Imersoes", href: "#" },
+        { label: "Cursos", href: "#cursos" },
+        { label: "Mentorias", href: "#mentorias" },
+        { label: "Imersoes", href: "#imersoes" },
       ],
     },
-    { label: "Mentorias", href: "#" },
+    { label: "Mentorias", href: "#mentorias" },
     {
       label: "Recursos",
       href: "#",
       subItems: [
-        { label: "Livros e ebooks", href: "#" },
-        { label: "Artigos e teses", href: "#" },
+        { label: "Livros e ebooks", href: "#livros" },
+        { label: "Artigos e teses", href: "/artigos-teses" },
       ],
     },
     { label: "Contacto", href: "/contact" },
@@ -110,9 +110,26 @@ const Navigation = () => {
   };
 
   const handleLinkClick = (href: string) => {
-    navigate(href);
-    setIsMenuOpen(false);
-    setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    if (href.startsWith("#")) {
+      const sectionId = href.substring(1); // Get the ID (e.g., "cursos" from "#cursos")
+      if (location.pathname === "/") {
+        // If already on the home page, scroll to the section
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // If on another page, navigate to the home page with the hash
+        navigate(`/#${sectionId}`);
+      }
+      setIsMenuOpen(false);
+      setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    } else {
+      // For non-hash links, just navigate normally
+      navigate(href);
+      setIsMenuOpen(false);
+      setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    }
   };
 
   const handleLogout = () => {
@@ -144,19 +161,15 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Handle user dropdown clicks
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
         setActiveDropdowns(prev => ({ ...prev, userDropdown: false }));
       }
-
-      // Handle nav dropdown clicks
       let clickedOutsideAllDropdowns = true;
       Object.entries(dropdownRefs.current).forEach(([label, ref]) => {
         if (ref && ref.contains(event.target as Node)) {
           clickedOutsideAllDropdowns = false;
         }
       });
-
       if (clickedOutsideAllDropdowns) {
         setActiveDropdowns(prev => ({ ...prev, navDropdown: null }));
       }
@@ -169,7 +182,6 @@ const Navigation = () => {
       }
     };
 
-    // Close mobile menu on route change
     const handleRouteChange = () => {
       if (isMenuOpen) toggleMobileMenu();
     };
@@ -185,14 +197,12 @@ const Navigation = () => {
     };
   }, [isMenuOpen]);
 
-  // Handle window resize and close mobile menu if screen size changes to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isMenuOpen) {
         toggleMobileMenu();
       }
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [isMenuOpen]);
@@ -251,7 +261,6 @@ const Navigation = () => {
                 ) : (
                   <a
                     href={link.href}
-                    
                     onClick={(e) => {
                       e.preventDefault();
                       if (link.label === "Home") {
@@ -414,7 +423,6 @@ const Navigation = () => {
             </div>
           ))}
           
-          {/* User options in mobile menu */}
           {isLoggedIn ? (
             <>
               <button
