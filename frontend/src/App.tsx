@@ -108,6 +108,7 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicy />} /> {/* New route */}
         <Route path="/" element={<Books />} />
         <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/wishlist"
           element={

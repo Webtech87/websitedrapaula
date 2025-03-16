@@ -1,26 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --primary-color: #1E88E5;
+  --primary-light: #64B5F6;
+  --primary-dark: #0D47A1;
+  --secondary-color: #0D47A1;
+  --accent-color: #2979FF;
+  --text-color: #424242;
+  --light-text: #757575;
+  --background-color: #FFFFFF;
+  --card-background: #FAFAFA;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.3s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #F5F7FA;
+}
 
 .course-details {
-  padding: 3rem 2rem;
+  padding: 2.5rem;
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 6rem auto 4rem;
   background-color: var(--background-color);
   font-family: 'Poppins', sans-serif;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   position: relative;
-  margin-top: 130px;
+  overflow: hidden;
 }
 
 .course-details h1 {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  font-size: 2.25rem;
+  color: var(--primary-dark);
+  margin-bottom: 1.75rem;
   font-weight: 700;
   text-align: center;
   position: relative;
   padding-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .course-details h1::after {
@@ -29,18 +51,17 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: 80px;
   height: 4px;
   background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
   border-radius: 2px;
 }
 
-/* Layout do Conteúdo */
 .course-content {
   display: flex;
   gap: 3rem;
   align-items: flex-start;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .course-info {
@@ -49,17 +70,18 @@
 }
 
 .course-info section {
-  margin-bottom: 2.5rem;
-  padding: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.75rem;
   background-color: var(--card-background);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-speed) ease;
+  border: 1px solid rgba(30, 136, 229, 0.08);
 }
 
 .course-info section:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 24px rgba(30, 136, 229, 0.1);
 }
 
 .course-info h2 {
@@ -82,7 +104,7 @@
 }
 
 .course-info p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-color);
   line-height: 1.8;
   margin-bottom: 1rem;
@@ -95,7 +117,7 @@
 }
 
 .course-info li {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-color);
   line-height: 1.8;
   margin-bottom: 0.8rem;
@@ -112,24 +134,6 @@
   margin-left: -1em;
 }
 
-.course-info ol {
-  counter-reset: item;
-}
-
-.course-info ol li {
-  counter-increment: item;
-}
-
-.course-info ol li::before {
-  content: counter(item) ". ";
-  color: var(--primary-color);
-  font-weight: bold;
-  display: inline-block;
-  margin-left: -1.5em;
-  margin-right: 0.5em;
-}
-
-/* Estilos da Seção de Compra */
 .purchase-section {
   flex: 1;
   display: flex;
@@ -141,12 +145,12 @@
 }
 
 .purchase-card {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: #ffffff;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 2rem;
+  padding: 2.25rem;
   text-align: center;
-  border: 1px solid rgba(110, 89, 165, 0.1);
+  border: 1px solid rgba(30, 136, 229, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -165,90 +169,112 @@
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .purchase-card .price::before {
-  
+  content: 'R$';
   font-size: 1.5rem;
   position: relative;
-  top: -15px;
+  top: -8px;
   margin-right: 5px;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 .buy-button,
-.cart-button {
+.cart-button,
+.wishlist-button {
   width: 100%;
   padding: 1rem;
   font-size: 1rem;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  transition: all 0.25s ease;
   font-weight: 600;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.buy-button::before,
-.cart-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(-100%);
-  transition: transform var(--transition-speed) ease;
-  z-index: -1;
-}
-
-.buy-button:hover::before,
-.cart-button:hover::before {
-  transform: translateX(0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .buy-button {
-  background: linear-gradient(135deg, var(--accent-color), #ff5722);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 120, 70, 0.4);
+  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
 }
 
 .buy-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 120, 70, 0.6);
+  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.5);
 }
 
 .cart-button {
-  background: green;
-  color: white;
-  box-shadow: 0 4px 15px rgba(110, 89, 165, 0.4);
+  background: white;
+  color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--primary-color);
 }
 
 .cart-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(110, 89, 165, 0.6);
+  background-color: rgba(30, 136, 229, 0.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Seção de Informações Adicionais */
+.wishlist-button {
+  background: transparent;
+  color: var(--text-color);
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem;
+}
+
+.wishlist-button:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  color: var(--primary-color);
+  border-color: var(--primary-light);
+}
+
+.wishlist-button svg {
+  transition: fill 0.2s ease, transform 0.3s ease;
+}
+
+.wishlist-button:hover svg {
+  fill: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.wishlist-active {
+  color: var(--primary-color);
+  border-color: var(--primary-light);
+}
+
+.wishlist-active svg {
+  fill: var(--primary-color);
+}
+
 .detalhes-adicionais {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: #ffffff;
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  padding: 1.75rem;
   box-shadow: var(--box-shadow);
-  border: 1px solid rgba(110, 89, 165, 0.1);
+  border: 1px solid rgba(30, 136, 229, 0.1);
 }
 
 .detalhes-adicionais h2 {
   font-size: 1.3rem;
   color: var(--secondary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -270,11 +296,11 @@
 }
 
 .detalhes-adicionais li {
-  margin-bottom: 0.8rem;
-  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1.75rem;
   position: relative;
-  color: var(--light-text);
-  font-size: 0.95rem;
+  color: var(--text-color);
+  font-size: 1rem;
 }
 
 .detalhes-adicionais li::before {
@@ -285,7 +311,21 @@
   font-weight: bold;
 }
 
-/* Animações */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -308,25 +348,93 @@
   }
 }
 
-/* Ajustes Responsivos */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.purchase-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+.course-image {
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+  position: relative;
+}
+
+.course-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  display: block;
+}
+
+.course-image:hover img {
+  transform: scale(1.03);
+}
+
+@media (min-width: 1025px) {
+  .course-image {
+    max-height: 500px;
+    overflow: hidden;
+    margin: 0 auto 2rem;
+    max-width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .course-image img {
+    object-position: center;
+  }
+}
+
+@media (min-width: 1400px) {
+  .course-image {
+    max-width: 70%;
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .course-details {
+    margin: 6rem 2rem 4rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .course-content {
     gap: 2rem;
   }
   
   .course-details {
-    padding: 2rem 1.5rem;
+    padding: 2rem;
+  }
+  
+  .course-details h1 {
+    font-size: 2rem;
+  }
+  
+  .purchase-card {
+    padding: 1.75rem;
   }
 }
 
 @media (max-width: 768px) {
-
-  h1 {
-    margin-top: 4rem;
-  }
   .course-content {
     flex-direction: column;
-    margin-top: 2rem;
   }
 
   .purchase-section {
@@ -336,31 +444,36 @@
   }
 
   .course-details h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    padding-bottom: 0.75rem;
   }
   
   .course-info section {
-    padding: 1.2rem;
+    padding: 1.5rem;
   }
   
   .purchase-card .price {
-    font-size: 2rem;
+    font-size: 2.25rem;
+  }
+  
+  .course-details {
+    margin-top: 5rem;
   }
 }
 
 @media (max-width: 480px) {
   .course-details {
-    padding: 1.5rem 1rem;
-    margin: 1rem;
+    padding: 1.5rem;
+    margin: 4.5rem 1rem 2rem;
   }
   
   .course-details h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .course-info h2,
   .detalhes-adicionais h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .purchase-card {
@@ -372,14 +485,27 @@
   }
 
   .buy-button,
-  .cart-button {
+  .cart-button,
+  .wishlist-button {
     padding: 0.8rem;
     font-size: 0.95rem;
   }
   
   .course-info section {
     margin-bottom: 1.5rem;
+    padding: 1.25rem;
+  }
+  
+  .detalhes-adicionais {
+    padding: 1.25rem;
+  }
+  
+  .course-info p,
+  .course-info li {
+    font-size: 0.95rem;
+  }
+  
+  .detalhes-adicionais li {
+    font-size: 0.9rem;
   }
 }
-
-

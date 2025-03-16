@@ -7,8 +7,8 @@ const About = () => {
       <div className="about-container">
         {/* Header Section: Tag and Heading */}
         <div className="about-header">
-          <span className="about-tag">Conheça a Dra. Paula</span>
-          <h2>Dra. Paula Serrano</h2>
+          <span className="about-tag">Conheça a Paula</span>
+          <h2>Paula Serrano</h2>
         </div>
 
         {/* Right Side: Image */}
@@ -27,9 +27,13 @@ const About = () => {
             Occupational Science and Therapy e Western Psychological Services. É também certificada no 
             tratamento do neuro desenvolvimento (Bobath) pela European Bobath Tutors’ Association.
           </p>
+
+          
+
           <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
             Saiba mais
           </button>
+          
         </div>
       </div>
     </section>
