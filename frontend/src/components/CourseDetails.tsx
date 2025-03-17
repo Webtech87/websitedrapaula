@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { courses } from "../courseData";
+import { Button } from "../components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import "../styles/pages/courseDetails.css";
+
+// Import directly from the same file path
+import { courses } from "../courseData";
 
 const CourseDetails = () => {
   const { id } = useParams<{ id: string }>();
   const course = courses.find((c) => c.id === Number(id));
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   useEffect(() => {
     // Check if course is in wishlist (from localStorage)
@@ -30,6 +35,10 @@ const CourseDetails = () => {
     }
     
     setIsInWishlist(!isInWishlist);
+  };
+
+  const toggleDescription = () => {
+    setIsDescriptionExpanded(!isDescriptionExpanded);
   };
 
   if (!course) {
@@ -59,7 +68,29 @@ const CourseDetails = () => {
         <div className="course-info">
           <section>
             <h2>Descrição do Curso</h2>
-            <p>{course.description}</p>
+            <div className="description-container">
+              <div className={`description-text ${!isDescriptionExpanded ? 'collapsed' : ''}`}>
+                {course.description}
+              </div>
+              <Button 
+                variant="primary" 
+                size="small" 
+                className="expand-button"
+                onClick={toggleDescription}
+              >
+                {isDescriptionExpanded ? (
+                  <>
+                    <span>Ler menos</span>
+                    <ChevronUp className="h-4 w-4" />
+                  </>
+                ) : (
+                  <>
+                    <span>Ler mais</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            </div>
           </section>
 
           <section>

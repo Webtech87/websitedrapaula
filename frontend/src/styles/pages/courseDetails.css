@@ -10,6 +10,12 @@
   --light-text: #757575;
   --background-color: #FFFFFF;
   --card-background: #FAFAFA;
+  --green-color: #4CAF50;
+  --green-light: #8BC34A;
+  --green-dark: #2E7D32;
+  --red-color: #ea384c;
+  --red-light: #ff6b6b;
+  --red-dark: #c62828;
   --border-radius: 12px;
   --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   --transition-speed: 0.3s;
@@ -36,7 +42,7 @@ body {
 
 .course-details h1 {
   font-size: 2.25rem;
-  color: var(--primary-dark);
+  color: #1E88E5;
   margin-bottom: 1.75rem;
   font-weight: 700;
   text-align: center;
@@ -53,7 +59,7 @@ body {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+  background: linear-gradient(135deg, var(--green-light), var(--green-dark));
   border-radius: 2px;
 }
 
@@ -86,7 +92,7 @@ body {
 
 .course-info h2 {
   font-size: 1.5rem;
-  color: var(--secondary-color);
+  color: #1E88E5;
   margin-bottom: 1rem;
   font-weight: 600;
   display: flex;
@@ -98,9 +104,62 @@ body {
   display: inline-block;
   width: 8px;
   height: 25px;
-  background: linear-gradient(to bottom, var(--primary-light), var(--primary-color));
+  background: linear-gradient(to bottom, var(--green-light), var(--green-dark));
   margin-right: 12px;
   border-radius: 4px;
+}
+
+.description-container {
+  position: relative;
+}
+
+.description-text {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.description-text.collapsed {
+  max-height: 7.2em; /* Line height * 4 lines */
+  overflow: hidden;
+  position: relative;
+}
+
+.description-text.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to top, var(--card-background), transparent);
+  pointer-events: none;
+}
+
+.expand-button {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--green-dark);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--green-dark);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  justify-content: center;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expand-button:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+  transform: translateY(-2px);
 }
 
 .course-info p {
@@ -127,7 +186,7 @@ body {
 
 .course-info ul li::before {
   content: '•';
-  color: var(--primary-color);
+  color: var(--green-color);
   font-weight: bold;
   display: inline-block;
   width: 1em;
@@ -162,13 +221,14 @@ body {
   left: 0;
   width: 100%;
   height: 6px;
-  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+  background: linear-gradient(135deg, var(--green-light), var(--green-dark));
+  border-radius: 2px;
 }
 
 .purchase-card .price {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: black;
   margin-bottom: 1.75rem;
   display: flex;
   align-items: center;
@@ -176,7 +236,7 @@ body {
 }
 
 .purchase-card .price::before {
-  content: 'R$';
+  content: '$';
   font-size: 1.5rem;
   position: relative;
   top: -8px;
@@ -208,26 +268,26 @@ body {
 }
 
 .buy-button {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background: linear-gradient(135deg, var(--green-color), var(--green-dark));
   color: white;
-  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .buy-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.5);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
 }
 
 .cart-button {
   background: white;
-  color: var(--primary-color);
+  color: #1E88E5;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--primary-color);
+  border: 1px solid #1E88E5;
 }
 
 .cart-button:hover {
   transform: translateY(-3px);
-  background-color: rgba(30, 136, 229, 0.05);
+  background-color: rgba(76, 175, 80, 0.05);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -255,12 +315,12 @@ body {
 }
 
 .wishlist-active {
-  color: var(--primary-color);
-  border-color: var(--primary-light);
+  color: var(--red-color);
+  border-color: var(--red-light);
 }
 
 .wishlist-active svg {
-  fill: var(--primary-color);
+  fill: var(--red-color);
 }
 
 .detalhes-adicionais {
@@ -273,7 +333,7 @@ body {
 
 .detalhes-adicionais h2 {
   font-size: 1.3rem;
-  color: var(--secondary-color);
+  color: var(--green-dark);
   margin-bottom: 1.25rem;
   font-weight: 600;
   display: flex;
@@ -285,7 +345,7 @@ body {
   display: inline-block;
   width: 6px;
   height: 20px;
-  background: linear-gradient(to bottom, var(--primary-light), var(--primary-color));
+  background: linear-gradient(to bottom, var(--green-light), var(--green-dark));
   margin-right: 10px;
   border-radius: 3px;
 }
@@ -305,7 +365,7 @@ body {
 
 .detalhes-adicionais li::before {
   content: '✓';
-  color: var(--primary-color);
+  color: var(--green-color);
   position: absolute;
   left: 0;
   font-weight: bold;

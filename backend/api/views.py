@@ -1,11 +1,19 @@
-# api/views.py
+# views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .serializers import RegisterSerializer, UserProfileSerializer  # Updated import
+from .serializers import RegisterSerializer, UserProfileSerializer
 from django.contrib.auth.models import User
-from .models import UserProfile  # Import UserProfile from models
+from .models import UserProfile, Document
+from .serializers import DocumentSerializer
+from rest_framework import generics
+from .models import Document  # Assuming you have a Document model
+from . import serializers  # Import the serializers module
+
+class DocumentList(generics.ListAPIView):
+    queryset = Document.objects.all()
+    serializer_class = serializers.DocumentSerializer
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -30,7 +38,7 @@ class UserProfileView(APIView):
         user = request.user
         try:
             profile = UserProfile.objects.get(user=user)
-            serializer = UserProfileSerializer(profile)  # Use serializer for full data
+            serializer = UserProfileSerializer(profile)
             return Response(serializer.data)
         except UserProfile.DoesNotExist:
             return Response(

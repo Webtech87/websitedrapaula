@@ -56,10 +56,12 @@
 /* Desktop navigation links */
 .navbar-links {
   display: none;
+  
 }
 
 .navbar-links.desktop {
   display: none;
+  
 }
 
 .navbar-links.desktop a {
@@ -73,6 +75,7 @@
   align-items: center !important;
   position: relative;
   justify-content: space-evenly;
+  
   
 }
 

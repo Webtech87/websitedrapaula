@@ -1,96 +1,150 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/pages/artigosTeses.css";
+import axios from "axios";
+import { toast } from "sonner";
 
-// Extended data with more info and download links
-const articlesData = [
+interface Article {
+  id: number;
+  title: string;
+  author: string;
+  type: "artigo" | "tese";
+  date: string;
+  description: string;
+  file: string;
+}
+
+// Sample articles data for development/testing
+const sampleArticles: Article[] = [
   {
     id: 1,
-    title: "Integração Sensorial em Crianças com Transtornos do Neurodesenvolvimento",
-    author: "Paula Serrano",
+    title: "Terapia Ocupacional na Reabilitação Neurológica",
+    author: "Dra. Ana Silva",
     type: "artigo",
-    date: "Junho 2023",
-    description: "Estudo abrangente sobre os efeitos da terapia de integração sensorial em crianças com transtornos do espectro autista e TDAH, demonstrando melhorias significativas na regulação emocional e habilidades motoras.",
-    link: "#",
-    downloadUrl: "#"
+    date: "12/05/2023",
+    description: "Este artigo explora abordagens inovadoras em terapia ocupacional para pacientes com lesões neurológicas. A reabilitação neurológica através da terapia ocupacional é um campo em constante evolução, com novas técnicas sendo desenvolvidas para melhorar a qualidade de vida dos pacientes.",
+    file: "/Users/santiclinic/Desktop/clone/websitedrapaula/backend/media/documents/ProjetodeInvestigação_JéssicaPereira  (1).pdf",
   },
   {
     id: 2,
-    title: "Neurodesenvolvimento e Aprendizagem: Uma Perspectiva Integrativa",
-    author: "Paula Serrano",
+    title: "Intervenções em Crianças com TEA",
+    author: "Dr. Carlos Mendes",
     type: "tese",
-    date: "Março 2022",
-    description: "Análise das conexões entre desenvolvimento neurológico e processos de aprendizagem, com foco em intervenções precoces para otimizar o desenvolvimento cognitivo em crianças de 3 a 7 anos.",
-    link: "#",
-    downloadUrl: "#"
+    date: "03/11/2022",
+    description: "Esta tese analisa diferentes abordagens terapêuticas ocupacionais para crianças com Transtorno do Espectro Autista. O estudo apresenta resultados de intervenções realizadas ao longo de dois anos, demonstrando os benefícios de abordagens personalizadas.",
+    file: "sample-document.pdf",
   },
   {
     id: 3,
-    title: "O Papel do Brincar no Desenvolvimento Sensório-Motor",
-    author: "Paula Serrano, Maria Oliveira",
+    title: "Ergonomia no Ambiente de Trabalho Remoto",
+    author: "Profa. Marina Costa",
     type: "artigo",
-    date: "Outubro 2022",
-    description: "Investigação sobre como atividades lúdicas estruturadas podem promover o desenvolvimento sensório-motor em crianças com atrasos no desenvolvimento, incluindo estudos de caso e metodologias práticas.",
-    link: "#",
-    downloadUrl: "#"
+    date: "22/07/2023",
+    description: "Com o aumento do trabalho remoto, este artigo aborda os principais desafios ergonômicos enfrentados por profissionais em home office e como a terapia ocupacional pode contribuir para ambientes mais saudáveis.",
+    file: "sample-document.pdf",
   },
   {
     id: 4,
-    title: "Intervenções Baseadas em Evidências para Crianças com Disfunções Sensoriais",
-    author: "Paula Serrano",
+    title: "Reabilitação de Membros Superiores em Pacientes Pós-AVC",
+    author: "Dr. Roberto Almeida",
     type: "tese",
-    date: "Janeiro 2023",
-    description: "Revisão sistemática das intervenções terapêuticas para disfunções sensoriais, avaliando eficácia e aplicabilidade em diferentes contextos clínicos e educacionais.",
-    link: "#",
-    downloadUrl: "#"
-  }
+    date: "15/01/2023",
+    description: "Estudo longitudinal sobre técnicas de terapia ocupacional para a recuperação da função motora em membros superiores após Acidente Vascular Cerebral, com foco em atividades de vida diária.",
+    file: "sample-document.pdf",
+  },
 ];
 
 const ArtigosTeses = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("todos");
   const [isLoading, setIsLoading] = useState(true);
-  const [articles, setArticles] = useState(articlesData);
+  const [allArticles, setAllArticles] = useState<Article[]>([]); // All articles from API
+  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]); // Filtered articles
   const [expandedArticles, setExpandedArticles] = useState<Record<number, boolean>>({});
+  const [useLocalData, setUseLocalData] = useState(false);
 
   useEffect(() => {
-    // Simulate loading data
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/documents/");
+        console.log("Fetched articles:", response.data); // Debug API response
+        setAllArticles(response.data);
+        setFilteredArticles(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+        // If API fails, use sample data
+        setUseLocalData(true);
+        setAllArticles(sampleArticles);
+        setFilteredArticles(sampleArticles);
+        setIsLoading(false);
+        toast.error("Não foi possível conectar ao servidor. Usando dados de exemplo para demonstração.");
+      }
+    };
 
-    return () => clearTimeout(timer);
+    fetchArticles();
   }, []);
 
   useEffect(() => {
-    // Filter articles based on search term and active filter
-    const filtered = articlesData.filter((article) => {
-      const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                           article.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           article.author.toLowerCase().includes(searchTerm.toLowerCase());
-      
+    const filtered = allArticles.filter((article) => {
+      const matchesSearch =
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.author.toLowerCase().includes(searchTerm.toLowerCase());
+
       const matchesFilter = activeFilter === "todos" || article.type === activeFilter;
-      
+
       return matchesSearch && matchesFilter;
     });
-    
-    setArticles(filtered);
-  }, [searchTerm, activeFilter]);
 
-const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
+    setFilteredArticles(filtered);
+  }, [searchTerm, activeFilter, allArticles]);
+
+  const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
     setActiveFilter(filter);
-};
+  };
 
-  const handleDownload = (articleId: number): void => {
-    // In a real application, this would trigger the download
-    console.log(`Downloading article ID: ${articleId}`);
-    // For demonstration, we'll show an alert
-    alert(`O download do artigo foi iniciado. Em uma aplicação real, o arquivo seria baixado.`);
+  const handleDownload = (article: Article): void => {
+    // Check if the file URL exists
+    if (!article.file) {
+      toast.error(`Arquivo não disponível para "${article.title}"`);
+      return;
+    }
+
+    try {
+      // Create a file path based on whether we're using local data or API data
+      let fileUrl;
+
+      if (useLocalData) {
+        // For sample data during development, use the local public folder
+        fileUrl = `/sample-document.pdf`;
+      } else {
+        // For real backend data, use the path to your media files
+        fileUrl = `http://localhost:8000/media/documents/${article.file}`;
+
+        // Log the file URL for debugging
+        console.log(`Attempting to download file from: ${fileUrl}`);
+      }
+
+      // Create a temporary anchor element to trigger the download
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.setAttribute("download", `${article.title.replace(/\s+/g, "_")}.pdf`);
+      link.setAttribute("target", "_blank"); // Open in new tab (optional)
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success(`Download de "${article.title}" iniciado`);
+    } catch (error) {
+      console.error("Download error:", error);
+      toast.error(`Erro ao baixar "${article.title}"`);
+    }
   };
 
   const toggleExpandArticle = (articleId: number) => {
-    setExpandedArticles(prev => ({
+    setExpandedArticles((prev) => ({
       ...prev,
-      [articleId]: !prev[articleId]
+      [articleId]: !prev[articleId],
     }));
   };
 
@@ -101,6 +155,11 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
         <p className="artigos-teses-subtitle">
           Conhecimento científico em Terapia Ocupacional para profissionais e estudantes
         </p>
+        {useLocalData && (
+          <div className="sample-data-notice">
+            <p>Exibindo dados de exemplo para demonstração. No ambiente de produção, os documentos reais serão exibidos.</p>
+          </div>
+        )}
       </div>
 
       <div className="search-filter-section">
@@ -141,7 +200,7 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
       </div>
 
       <div className="publications-stats">
-        <p>Mostrando {articles.length} de {articlesData.length} publicações</p>
+        <p>Mostrando {filteredArticles.length} de {allArticles.length} publicações</p>
       </div>
 
       {isLoading ? (
@@ -158,8 +217,8 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
         </div>
       ) : (
         <div className="artigos-teses-grid">
-          {articles.length > 0 ? (
-            articles.map((article) => (
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((article) => (
               <div key={article.id} className="publication-card">
                 <div className="publication-header">
                   <div className="publication-type">
@@ -175,7 +234,11 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
                   </div>
                 </div>
                 <div className="publication-content">
-                  <p className={`publication-description ${expandedArticles[article.id] ? 'expanded' : ''}`}>
+                  <p
+                    className={`publication-description ${
+                      expandedArticles[article.id] ? "expanded" : ""
+                    }`}
+                  >
                     {article.description}
                   </p>
                 </div>
@@ -183,13 +246,17 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
                   <button
                     className="publication-read-button"
                     onClick={() => toggleExpandArticle(article.id)}
-                    aria-label={expandedArticles[article.id] ? `Recolher ${article.title}` : `Ler ${article.title}`}
+                    aria-label={
+                      expandedArticles[article.id]
+                        ? `Recolher ${article.title}`
+                        : `Ler ${article.title}`
+                    }
                   >
-                    {expandedArticles[article.id] ? 'Recolher' : 'Ler Completo'}
+                    {expandedArticles[article.id] ? "Recolher" : "Ler Completo"}
                   </button>
-                  <button 
+                  <button
                     className="publication-download-button"
-                    onClick={() => handleDownload(article.id)}
+                    onClick={() => handleDownload(article)}
                     aria-label={`Baixar ${article.title}`}
                   >
                     📥
@@ -200,7 +267,7 @@ const handleFilterClick = (filter: "todos" | "artigo" | "tese"): void => {
           ) : (
             <div className="no-results">
               <p>Nenhuma publicação encontrada com os critérios selecionados.</p>
-              <button 
+              <button
                 className="reset-button"
                 onClick={() => {
                   setSearchTerm("");
