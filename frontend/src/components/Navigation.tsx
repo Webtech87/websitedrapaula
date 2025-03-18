@@ -16,6 +16,7 @@ const Navigation = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [tokenExpired, setTokenExpired] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0); // Added scroll position state
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -109,24 +110,40 @@ const Navigation = () => {
     navigate("/wishlist");
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn(`Section with id "${sectionId}" not found.`);
+      scrollToTop(); // Fallback to top if the section is not found
+    }
+  };
+
   const handleLinkClick = (href: string) => {
     if (href.startsWith("#")) {
-      const sectionId = href.substring(1); // Get the ID (e.g., "cursos" from "#cursos")
+      const sectionId = href.substring(1);
+
       if (location.pathname === "/") {
         // If already on the home page, scroll to the section
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollToSection(sectionId);
       } else {
-        // If on another page, navigate to the home page with the hash
-        navigate(`/#${sectionId}`);
+        // If on another page, navigate to the home page and THEN scroll
+        navigate("/"); // Navigate to home first
+        setTimeout(() => {  //wait for page to load
+          scrollToSection(sectionId); //scroll to the section
+        }, 100);
       }
       setIsMenuOpen(false);
       setActiveDropdowns({ navDropdown: null, userDropdown: false });
     } else {
       // For non-hash links, just navigate normally
       navigate(href);
+      scrollToTop();  //Scroll to the top
       setIsMenuOpen(false);
       setActiveDropdowns({ navDropdown: null, userDropdown: false });
     }
@@ -140,6 +157,7 @@ const Navigation = () => {
     setTokenExpired(true);
     setActiveDropdowns({ navDropdown: null, userDropdown: false });
     navigate("/login");
+    scrollToTop();
   };
 
   const toggleMobileMenu = () => {
@@ -159,6 +177,20 @@ const Navigation = () => {
     }
   };
 
+  //Listen to scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  //This useEffect takes care of closing mobile menu on certain situations
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
@@ -207,8 +239,11 @@ const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [isMenuOpen]);
 
+  // Calculate background color opacity based on scroll position
+  const navbarOpacity = Math.min(1, scrollPosition / 200); // Adjust the divisor to control the sensitivity
+
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ backgroundColor: `rgba(255, 255, 255, ${0.95 - navbarOpacity * 0.3})` }}>
       <div className="navbar-container">
         <div className="navbar-main">
           <div className="navbar-logo">
@@ -217,6 +252,7 @@ const Navigation = () => {
               onClick={(e) => {
                 e.preventDefault();
                 window.location.href = "/";
+                scrollToTop();
               }}
             >
               <img src={logo} alt="Logo" className="logo-img" />
@@ -225,8 +261,8 @@ const Navigation = () => {
 
           <div className="navbar-links desktop">
             {navigationLinks.map((link) => (
-              <div 
-                key={link.label} 
+              <div
+                key={link.label}
                 className={`dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
                 ref={(el) => {
                   dropdownRefs.current[link.label] = el;
@@ -265,6 +301,7 @@ const Navigation = () => {
                       e.preventDefault();
                       if (link.label === "Home") {
                         window.location.href = "/";
+                        scrollToTop();
                       } else {
                         handleLinkClick(link.href);
                       }
@@ -278,8 +315,8 @@ const Navigation = () => {
           </div>
 
           <div className="navbar-icons">
-            <div 
-              className={`user-icon-wrapper ${activeDropdowns.userDropdown ? 'active' : ''}`} 
+            <div
+              className={`user-icon-wrapper ${activeDropdowns.userDropdown ? 'active' : ''}`}
               ref={userDropdownRef}
             >
               <User
@@ -302,6 +339,7 @@ const Navigation = () => {
                       onClick={() => {
                         navigate("/profile");
                         toggleUserDropdown();
+                        scrollToTop();
                       }}
                     >
                       <UserCircle size={18} />
@@ -322,6 +360,7 @@ const Navigation = () => {
                       onClick={() => {
                         navigate("/login");
                         toggleUserDropdown();
+                        scrollToTop();
                       }}
                     >
                       <LogIn size={18} />
@@ -332,6 +371,7 @@ const Navigation = () => {
                       onClick={() => {
                         navigate("/register");
                         toggleUserDropdown();
+                        scrollToTop();
                       }}
                     >
                       <UserPlus size={18} />
@@ -341,14 +381,20 @@ const Navigation = () => {
                 )}
               </div>
             </div>
-            <Heart 
-              className="icon" 
-              onClick={handleWishlistClick} 
+            <Heart
+              className="icon"
+              onClick={() => {
+                handleWishlistClick();
+                scrollToTop();
+              }}
               aria-label="Wishlist"
             />
-            <ShoppingBag 
-              className="icon" 
-              onClick={() => navigate("/cart")} 
+            <ShoppingBag
+              className="icon"
+              onClick={() => {
+                navigate("/cart");
+                scrollToTop();
+              }}
               aria-label="Shopping Cart"
             />
 
@@ -375,13 +421,13 @@ const Navigation = () => {
           </div>
         </div>
 
-        <div 
+        <div
           className={`mobile-menu ${isMenuOpen ? '' : ''}`}
           ref={mobileMenuRef}
         >
           {navigationLinks.map((link) => (
-            <div 
-              key={link.label} 
+            <div
+              key={link.label}
               className={`mobile-dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
             >
               {link.subItems ? (
@@ -422,18 +468,21 @@ const Navigation = () => {
               )}
             </div>
           ))}
-          
+
           {isLoggedIn ? (
             <>
               <button
                 className="mobile-menu-button"
-                onClick={() => navigate("/profile")}
+                onClick={() => {
+                  navigate("/profile");
+                  scrollToTop();
+                }}
               >
                 <UserCircle size={18} />
                 Perfil
               </button>
-              <button 
-                className="mobile-menu-button" 
+              <button
+                className="mobile-menu-button"
                 onClick={handleLogout}
               >
                 <LogOut size={18} />
@@ -444,21 +493,27 @@ const Navigation = () => {
             <>
               <button
                 className="mobile-menu-button"
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  navigate("/login");
+                  scrollToTop();
+                }}
               >
                 <LogIn size={18} />
                 Iniciar sessão
               </button>
               <button
                 className="mobile-menu-button"
-                onClick={() => navigate("/register")}
+                onClick={() => {
+                  navigate("/register");
+                  scrollToTop();
+                }}
               >
                 <UserPlus size={18} />
                 Criar uma conta
               </button>
             </>
           )}
-          
+
           <div className="mobile-language-selector">
             {["PT", "EN"].map((lang) => (
               <button
