@@ -16,7 +16,7 @@ SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://websitedrapaula.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -126,6 +126,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # React development server (Vite)
 ]
+
+CSRF_TRUSTED_ORIGINS = ['websitedrapaula.onrender.com']
 
 # For production, you will need to make the following changes:
 # 1. Set DEBUG = False
