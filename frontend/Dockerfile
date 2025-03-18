@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 #command to run react
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
