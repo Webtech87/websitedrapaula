@@ -2,7 +2,8 @@ import os
 import dj_database_url
 from pathlib import Path
 from datetime import timedelta
-from secret_files.secret_data import SECRET_KEY, PSQL_DB, PSQL_USER, PSQL_USER_PASSWORD
+
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
