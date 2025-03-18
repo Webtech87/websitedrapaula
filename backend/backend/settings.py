@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'api',
+    'backend.api',
 ]
 
 # REST Framework configuration for JWT authentication
