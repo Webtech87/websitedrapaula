@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.sqlite3
+.idea/
 
 # Django specific
 backend/db.sqlite3
@@ -15,3 +16,4 @@ frontend/dist/
 
 # Environment files
 .env
+
