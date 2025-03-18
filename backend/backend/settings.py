@@ -128,7 +128,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # React development server (Vite)
 ]
 
-CSRF_TRUSTED_ORIGINS = ['websitedrapaula.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com']
 
 # For production, you will need to make the following changes:
 # 1. Set DEBUG = False
