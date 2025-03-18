@@ -16,7 +16,7 @@ SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://websitedrapaula.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
