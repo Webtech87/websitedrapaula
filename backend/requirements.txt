@@ -14,9 +14,11 @@ google-auth==2.38.0
 google-auth-httplib2==0.2.0
 google-auth-oauthlib==1.2.1
 googleapis-common-protos==1.68.0
+gunicorn==23.0.0
 httplib2==0.22.0
 idna==3.10
 oauthlib==3.2.2
+packaging==24.2
 phonenumbers==8.13.54
 pillow==11.1.0
 proto-plus==1.26.0
@@ -34,3 +36,4 @@ sqlparse==0.5.3
 tzdata==2025.1
 uritemplate==4.1.1
 urllib3==2.3.0
+whitenoise==6.9.0
