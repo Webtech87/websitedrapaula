@@ -21,7 +21,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/token/", {
+      const response = await axios.post("https://websitedrapaula.onrender.com/api/token/", {
         username: formData.email,
         password: formData.password,
       });
