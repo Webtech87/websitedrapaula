@@ -14,15 +14,20 @@
   right: 0;
   background-color: rgba(255, 255, 255, 0.95); /* Initial background */
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #eaeaea;
   z-index: 50;
   transition: background-color 0.3s ease; /* Smooth transition for background */
 }
 
 .navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.6); /* More transparent when scrolled */
+    background-color: rgba(255, 255, 255, 0.95); /* More transparent when scrolled */
 }
 
+
+.navbar-links.desktop a.active-link {
+  color: #ff0000; /* Example: Change the color to red */
+  font-weight: bold;   /* Example: Make the text bold */
+  /* Add any other styles you want for the active link */
+}
 
 
 
@@ -61,10 +66,13 @@
 .navbar-links {
   display: none;
   
+  
 }
 
 .navbar-links.desktop {
   display: none;
+
+  
   
 }
 
