@@ -17,7 +17,7 @@ SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
 
 # Application definition
 INSTALLED_APPS = [
@@ -127,6 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # React development server (Vite)
     "https://websitedrapaula-frontend.onrender.com",
+    "https://paulaserranoeducacao.pt"
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com']
