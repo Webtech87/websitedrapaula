@@ -29,6 +29,7 @@ import ArtigosTeses from "./components/pages/ArtigosTeses";
 import MentorshipDetails from './components/pages/MentorshipDetails'; // Corrected path to the file
 import BookDetails from "./components/pages/BookDetails";
 import AboutDetail from "./components/pages/AboutDetail"; // Added import for AboutDetail
+import ImersaoDetails from "./components/pages/ImersaoDetails"; 
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
 const Dashboard = () => <div>Dashboard (Protected)</div>;
@@ -129,6 +130,7 @@ function App() {
         <Route path="/mentorship-details" element={<MentorshipDetails />} />
         <Route path="/book/:id" element={<BookDetails />} /> 
         <Route path="/about-detail" element={<AboutDetail />} /> 
+        <Route path="/imersao-details" element={<ImersaoDetails />} />
         
        
         <Route
