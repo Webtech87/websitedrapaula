@@ -1,5 +1,6 @@
 # Python (Backend)
 venv/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -8,6 +9,7 @@ __pycache__/
 # Django specific
 backend/db.sqlite3
 backend/media/
+backend/secret_files/
 
 # Node.js (Frontend)
 frontend/node_modules/
