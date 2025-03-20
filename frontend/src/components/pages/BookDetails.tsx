@@ -86,7 +86,7 @@ const BookDetails = () => {
       <div className="book-details-header">
         <Link to="/" className="back-button">
           <ChevronLeft size={16} />
-          <span>Voltar aos Livros</span>
+          <span>Voltar</span>
         </Link>
         <h1 className="book-title">{book.title}</h1>
       </div>
@@ -150,9 +150,9 @@ const BookDetails = () => {
             </div>
             
             <div className="book-details-price">
-              <div className="price-current">${book.price.toFixed(2)}</div>
+              <div className="price-current">€{book.price.toFixed(2)}</div>
               {book.originalPrice && (
-                <div className="price-original">${book.originalPrice.toFixed(2)}</div>
+                <div className="price-original">€{book.originalPrice.toFixed(2)}</div>
               )}
               {book.discount && (
                 <div className="discount-text">

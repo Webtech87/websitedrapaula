@@ -137,6 +137,7 @@ function App() {
         <Route path="/about-detail" element={<AboutDetail />} /> 
         <Route path="/imersao-details" element={<ImersaoDetails />} />
         <Route path="/lancamento/:id" element={<LancamentoDetail />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
        
         
        

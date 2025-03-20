@@ -3,6 +3,7 @@ import "../../styles/pages/artigosTeses.css";
 import axios from "axios";
 import { toast } from "sonner";
 
+
 interface Article {
   id: number;
   title: string;
@@ -17,39 +18,39 @@ interface Article {
 const sampleArticles: Article[] = [
   {
     id: 1,
-    title: "Terapia Ocupacional na Reabilitação Neurológica",
-    author: "Dra. Ana Silva",
+    title: "O brincar e o processamento sensorial em criancas dos 36 aos 72 meses",
+    author: "Margarida Isabel Dias Ribeiro Sabino Cardoso",
     type: "artigo",
-    date: "12/05/2023",
-    description: "Este artigo explora abordagens inovadoras em terapia ocupacional para pacientes com lesões neurológicas. A reabilitação neurológica através da terapia ocupacional é um campo em constante evolução, com novas técnicas sendo desenvolvidas para melhorar a qualidade de vida dos pacientes.",
-    file: "/Users/santiclinic/Desktop/clone/websitedrapaula/backend/media/documents/ProjetodeInvestigação_JéssicaPereira  (1).pdf",
+    date: "12/07/2024",
+    description: "Brincar é a principal ocupação nos primeiros anos de vida da criança, existindo um papel central do processamento sensorial no desenvolvimento do brincar (Parham & Fazio, 2008). Neste sentido, importa perceber a relação que existe entre o processamento sensorial da criança e as competências do brincar. ",
+    file: "Projeto Final_Brincar e Processamento Sensorial dos 36 aos 72 meses_julho_Margarida Cardoso (2).pdf",
   },
   {
     id: 2,
-    title: "Intervenções em Crianças com TEA",
-    author: "Dr. Carlos Mendes",
+    title: "Construção e validação de uma grelha de avaliação dos comportamentos do brincar com o corpo, de bebés entre os 10 e os 12 meses, em contexto educativo e sua relação com o perfil sensorial 2",
+    author: "Jéssica Filipa Dias Pereira",
     type: "tese",
-    date: "03/11/2022",
-    description: "Esta tese analisa diferentes abordagens terapêuticas ocupacionais para crianças com Transtorno do Espectro Autista. O estudo apresenta resultados de intervenções realizadas ao longo de dois anos, demonstrando os benefícios de abordagens personalizadas.",
-    file: "sample-document.pdf",
+    date: "03/02/2023",
+    description: "Ao brincar a criança dá significado ao mundo que a rodeia, expressa-se e estabelece relacionamentos com os outros.",
+    file: "Projeto Final_Brincar e Processamento Sensorial dos 36 aos 72 meses_julho_Margarida Cardoso (2).pdf",
   },
   {
     id: 3,
     title: "Ergonomia no Ambiente de Trabalho Remoto",
-    author: "Profa. Marina Costa",
+    author: "Ana Margarida Almeida Reis",
     type: "artigo",
     date: "22/07/2023",
-    description: "Com o aumento do trabalho remoto, este artigo aborda os principais desafios ergonômicos enfrentados por profissionais em home office e como a terapia ocupacional pode contribuir para ambientes mais saudáveis.",
-    file: "sample-document.pdf",
+    description: "Avaliar a capacidade discriminativa do teste de estereognosia do SASI: comparação da prova com e sem alterações.",
+    file: "Projeto Final_Brincar e Processamento Sensorial dos 36 aos 72 meses_julho_Margarida Cardoso (2).pdf",
   },
   {
     id: 4,
-    title: "Reabilitação de Membros Superiores em Pacientes Pós-AVC",
-    author: "Dr. Roberto Almeida",
+    title: "Screening Assessment of Sensory Integration (SASI) - Research Ed. V.2.2: Análise da capacidade discriminativa do teste de estereognosia de crianças portuguesas entre os 4 e 7 anos e 11 meses",
+    author: "Ana Margarida Almeida Reis",
     type: "tese",
-    date: "15/01/2023",
-    description: "Estudo longitudinal sobre técnicas de terapia ocupacional para a recuperação da função motora em membros superiores após Acidente Vascular Cerebral, com foco em atividades de vida diária.",
-    file: "sample-document.pdf",
+    date: "15/02/2023",
+    description: "Avaliar a capacidade discriminativa do teste de estereognosia do SASI: comparação da prova com e sem alterações.",
+    file: "Projeto Final_Brincar e Processamento Sensorial dos 36 aos 72 meses_julho_Margarida Cardoso (2).pdf",
   },
 ];
 
@@ -116,22 +117,29 @@ const ArtigosTeses = () => {
 
       if (useLocalData) {
         // For sample data during development, use the local public folder
-        fileUrl = `/sample-document.pdf`;
+        fileUrl = `/pdfs/${article.file}`;
       } else {
-        // For real backend data, use the path to your media files
-        fileUrl = `http://localhost:8000/media/documents/${article.file}`;
-
-        // Log the file URL for debugging
-        console.log(`Attempting to download file from: ${fileUrl}`);
+        // For real backend data, use the appropriate path
+        // Extract just the filename from the full path (if any)
+        const fileName = article.file.split('/').pop();
+        fileUrl = `/pdfs/${fileName}`;
       }
+
+      // Log the file URL for debugging
+      console.log(`Attempting to download file from: ${fileUrl}`);
 
       // Create a temporary anchor element to trigger the download
       const link = document.createElement("a");
       link.href = fileUrl;
       link.setAttribute("download", `${article.title.replace(/\s+/g, "_")}.pdf`);
-      link.setAttribute("target", "_blank"); // Open in new tab (optional)
+      
+      // For some browsers that require the link to be in the DOM
       document.body.appendChild(link);
+      
+      // Trigger the download
       link.click();
+      
+      // Clean up
       document.body.removeChild(link);
 
       toast.success(`Download de "${article.title}" iniciado`);
@@ -155,11 +163,6 @@ const ArtigosTeses = () => {
         <p className="artigos-teses-subtitle">
           Conhecimento científico em Terapia Ocupacional para profissionais e estudantes
         </p>
-        {useLocalData && (
-          <div className="sample-data-notice">
-            <p>Exibindo dados de exemplo para demonstração. No ambiente de produção, os documentos reais serão exibidos.</p>
-          </div>
-        )}
       </div>
 
       <div className="search-filter-section">
@@ -252,7 +255,7 @@ const ArtigosTeses = () => {
                         : `Ler ${article.title}`
                     }
                   >
-                    {expandedArticles[article.id] ? "Recolher" : "Ler Completo"}
+                    {expandedArticles[article.id] ? "Recolher" : "Ler Mais"}
                   </button>
                   <button
                     className="publication-download-button"
