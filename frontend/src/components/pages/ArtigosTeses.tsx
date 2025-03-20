@@ -65,7 +65,7 @@ const ArtigosTeses = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/documents/");
+        const response = await axios.get("http://websitedrapaula.onrender.com/api/documents/");
         console.log("Fetched articles:", response.data); // Debug API response
         setAllArticles(response.data);
         setFilteredArticles(response.data);
@@ -119,7 +119,7 @@ const ArtigosTeses = () => {
         fileUrl = `/sample-document.pdf`;
       } else {
         // For real backend data, use the path to your media files
-        fileUrl = `http://localhost:8000/media/documents/${article.file}`;
+        fileUrl = `http://websitedrapaula.onrender.com/media/documents/${article.file}`;
 
         // Log the file URL for debugging
         console.log(`Attempting to download file from: ${fileUrl}`);
