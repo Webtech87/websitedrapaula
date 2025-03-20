@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/pages/imersoes.css"; // Import updated CSS
+import { useNavigate } from "react-router-dom";
+import "../../styles/pages/imersoes.css";
 import imersao1 from "../../assets/imersoes/imersao1.jpg";
 import imersao2 from "../../assets/imersoes/imersao2.jpg";
 import imersao3 from "../../assets/imersoes/imersao3.jpg";
@@ -10,6 +11,7 @@ const images = [imersao1, imersao2, imersao3];
 // Update the component to accept an id prop with TypeScript typing
 const Imersoes = ({ id }: { id: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   // Auto-slide every 5 seconds
   useEffect(() => {
@@ -18,6 +20,11 @@ const Imersoes = ({ id }: { id: string }) => {
     }, 5000);
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+
+  // Handle button click to navigate to ImersaoDetails page
+  const handleSaberMaisClick = () => {
+    navigate("/imersao-details");
+  };
 
   return (
     // Add the id prop to the root section element
@@ -34,7 +41,7 @@ const Imersoes = ({ id }: { id: string }) => {
             Agende a sua imersão individual ou em grupo e aprimore as suas
             habilidades com experiência clínica.
           </p>
-          <button className="imersoes-button" onClick={() => alert("Clicked!")}>
+          <button className="imersoes-button" onClick={handleSaberMaisClick}>
             Saber Mais
           </button>
         </div>

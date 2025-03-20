@@ -1,5 +1,6 @@
 import "../../styles/pages/about.css";
 import aboutImage from "../../assets/about/Design sem nome 1.png";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -30,9 +31,11 @@ const About = () => {
 
           
 
-          <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
-            Saiba mais
-          </button>
+          <Link to="/about-detail">
+            <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
+              Saiba mais
+            </button>
+          </Link>
           
         </div>
       </div>

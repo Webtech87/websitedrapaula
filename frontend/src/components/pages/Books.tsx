@@ -157,10 +157,11 @@ const Books = ({ id }: { id: string }) => {
           )}
         </div>
 
-        <Link to="/all-books" className="view-all-link">
-          <span>Ver todos os livros</span>
-          <ChevronRight size={18} />
-        </Link>
+        
+          
+          
+         
+
       </section>
     </div>
   );

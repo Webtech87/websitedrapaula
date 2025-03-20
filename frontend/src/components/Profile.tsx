@@ -31,7 +31,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("https://websitedrapaula.onrender.com/api/user/profile/", {
+        const response = await axios.get("http://localhost:8000/api/user/profile/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfileData(response.data);

@@ -272,8 +272,10 @@ body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-align: left;
+  text-align: center;
+  opacity: -0.91;
 }
+  
 
 /* Rating stars */
 .book-rating {
@@ -282,6 +284,7 @@ body {
   gap: 2px;
   margin-bottom: 5px;
   justify-content: flex-start;
+  
 }
 
 .star {

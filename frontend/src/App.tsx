@@ -17,7 +17,6 @@ import Wishlist from "./components/pages/Wishlist";
 import Contact from "./components/Contact";
 import Cart from "./components/pages/Cart";
 import CourseDetails from "./components/CourseDetails";
-import BookDetails from "./components/BookDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
@@ -28,6 +27,14 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ArtigosTeses from "./components/pages/ArtigosTeses";
 import MentorshipDetails from './components/pages/MentorshipDetails'; // Corrected path to the file
+import BookDetails from "./components/pages/BookDetails";
+import AboutDetail from "./components/pages/AboutDetail"; // Added import for AboutDetail
+import ImersaoDetails from "./components/pages/ImersaoDetails"; 
+import LancamentoDetail from './components/pages/LancamentoDetail'; // Ensure this file exists or correct the path
+
+
+
+
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
 const Dashboard = () => <div>Dashboard (Protected)</div>;
@@ -119,7 +126,6 @@ function App() {
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/nossos-valores" element={<NossosValores />} />
         <Route path="/cursos" element={<Courses id="cursos" />} />
@@ -127,6 +133,12 @@ function App() {
         <Route path="/imersoes" element={<Imersoes id="imersoes" />} />
         <Route path="/artigos-teses" element={<ArtigosTeses />} />
         <Route path="/mentorship-details" element={<MentorshipDetails />} />
+        <Route path="/book/:id" element={<BookDetails />} /> 
+        <Route path="/about-detail" element={<AboutDetail />} /> 
+        <Route path="/imersao-details" element={<ImersaoDetails />} />
+        <Route path="/lancamento/:id" element={<LancamentoDetail />} />
+       
+        
        
         <Route
           path="/wishlist"
