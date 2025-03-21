@@ -124,29 +124,43 @@ const Navigation = () => {
     }
   };
 
-  const handleLinkClick = (href: string) => {
-    if (href.startsWith("#")) {
-      const sectionId = href.substring(1);
-
-      if (location.pathname === "/") {
-        // If already on the home page, scroll to the section
-        scrollToSection(sectionId);
-      } else {
-        // If on another page, navigate to the home page and THEN scroll
-        navigate("/"); // Navigate to home first
-        setTimeout(() => {  //wait for page to load
-          scrollToSection(sectionId); //scroll to the section
-        }, 100);
-      }
-      setIsMenuOpen(false);
-      setActiveDropdowns({ navDropdown: null, userDropdown: false });
-    } else {
-      // For non-hash links, just navigate normally
-      navigate(href);
-      scrollToTop();  //Scroll to the top
-      setIsMenuOpen(false);
-      setActiveDropdowns({ navDropdown: null, userDropdown: false });
+  const closeMobileMenu = () => {
+    if (isMenuOpen && mobileMenuRef.current) {
+      mobileMenuRef.current.classList.remove('open');
+      setTimeout(() => {
+        setIsMenuOpen(false);
+      }, 500); // Match transition time
     }
+  };
+
+  const handleLinkClick = (href: string) => {
+    // First close the mobile menu
+    closeMobileMenu();
+    
+    // Reset all dropdowns
+    setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    
+    // Handle navigation with a slight delay to allow animation to start
+    setTimeout(() => {
+      if (href.startsWith("#")) {
+        const sectionId = href.substring(1);
+  
+        if (location.pathname === "/") {
+          // If already on the home page, scroll to the section
+          scrollToSection(sectionId);
+        } else {
+          // If on another page, navigate to the home page and THEN scroll
+          navigate("/"); // Navigate to home first
+          setTimeout(() => {  //wait for page to load
+            scrollToSection(sectionId); //scroll to the section
+          }, 100);
+        }
+      } else {
+        // For non-hash links, just navigate normally
+        navigate(href);
+        scrollToTop();  //Scroll to the top
+      }
+    }, 10); // Small delay to ensure the closing animation starts
   };
 
   const handleLogout = () => {
@@ -156,6 +170,7 @@ const Navigation = () => {
     setUserName("");
     setTokenExpired(true);
     setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    closeMobileMenu();
     navigate("/login");
     scrollToTop();
   };
@@ -210,12 +225,12 @@ const Navigation = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveDropdowns({ navDropdown: null, userDropdown: false });
-        if (isMenuOpen) toggleMobileMenu();
+        closeMobileMenu();
       }
     };
 
     const handleRouteChange = () => {
-      if (isMenuOpen) toggleMobileMenu();
+      closeMobileMenu();
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -232,7 +247,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isMenuOpen) {
-        toggleMobileMenu();
+        closeMobileMenu();
       }
     };
     window.addEventListener("resize", handleResize);
@@ -251,6 +266,7 @@ const Navigation = () => {
               href="/"
               onClick={(e) => {
                 e.preventDefault();
+                closeMobileMenu();
                 window.location.href = "/";
                 scrollToTop();
               }}
@@ -300,6 +316,7 @@ const Navigation = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       if (link.label === "Home") {
+                        closeMobileMenu();
                         window.location.href = "/";
                         scrollToTop();
                       } else {
@@ -337,6 +354,7 @@ const Navigation = () => {
                     <button
                       className="user-dropdown-button"
                       onClick={() => {
+                        closeMobileMenu();
                         navigate("/profile");
                         toggleUserDropdown();
                         scrollToTop();
@@ -358,6 +376,7 @@ const Navigation = () => {
                     <button
                       className="user-dropdown-button"
                       onClick={() => {
+                        closeMobileMenu();
                         navigate("/login");
                         toggleUserDropdown();
                         scrollToTop();
@@ -369,6 +388,7 @@ const Navigation = () => {
                     <button
                       className="user-dropdown-button"
                       onClick={() => {
+                        closeMobileMenu();
                         navigate("/register");
                         toggleUserDropdown();
                         scrollToTop();
@@ -384,6 +404,7 @@ const Navigation = () => {
             <Heart
               className="icon"
               onClick={() => {
+                closeMobileMenu();
                 handleWishlistClick();
                 scrollToTop();
               }}
@@ -392,6 +413,7 @@ const Navigation = () => {
             <ShoppingBag
               className="icon"
               onClick={() => {
+                closeMobileMenu();
                 navigate("/cart");
                 scrollToTop();
               }}
@@ -474,6 +496,7 @@ const Navigation = () => {
               <button
                 className="mobile-menu-button"
                 onClick={() => {
+                  closeMobileMenu();
                   navigate("/profile");
                   scrollToTop();
                 }}
@@ -494,6 +517,7 @@ const Navigation = () => {
               <button
                 className="mobile-menu-button"
                 onClick={() => {
+                  closeMobileMenu();
                   navigate("/login");
                   scrollToTop();
                 }}
@@ -504,6 +528,7 @@ const Navigation = () => {
               <button
                 className="mobile-menu-button"
                 onClick={() => {
+                  closeMobileMenu();
                   navigate("/register");
                   scrollToTop();
                 }}
@@ -519,7 +544,10 @@ const Navigation = () => {
               <button
                 key={lang}
                 className={language === lang ? "active" : ""}
-                onClick={() => setLanguage(lang as "PT" | "EN")}
+                onClick={() => {
+                  setLanguage(lang as "PT" | "EN");
+                  closeMobileMenu();
+                }}
               >
                 {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
               </button>
