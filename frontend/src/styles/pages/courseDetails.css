@@ -236,10 +236,11 @@ body {
 }
 
 .purchase-card .price::before {
-  content: '$';
-  font-size: 1.5rem;
+  content: '€';
+  font-size: 2.1rem;
   position: relative;
-  top: -8px;
+  top: 1px;
+  right: -90px;
   margin-right: 5px;
 }
 
@@ -364,13 +365,13 @@ body {
   font-size: 1rem;
 }
 
+/* Remove the ::before pseudo-element that creates the grey checkmark */
 .detalhes-adicionais li::before {
-  content: '✓';
-  color: var(--green-color);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
+  content: none;
+  
 }
+
+
 
 .skeleton {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -539,10 +540,13 @@ body {
 
   .purchase-card {
     padding: 1.5rem;
+   
   }
 
-  .purchase-card .price {
+  .purchase-card .price::before {
     font-size: 1.8rem;
+    position: relative;
+    left: 82px;
   }
 
   .buy-button,

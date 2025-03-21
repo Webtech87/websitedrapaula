@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import "../styles/pages/courseDetails.css";
 
 // Import directly from the same file path
@@ -102,6 +102,11 @@ const CourseDetails = () => {
             <h2>Localização</h2>
             <p>{course.Localizacao}</p>
           </section>
+
+          <section>
+            <h2>Data</h2>
+            <p>{course.date}</p>
+          </section>
         </div>
         
         <div className="purchase-section">
@@ -136,14 +141,25 @@ const CourseDetails = () => {
               </button>
             </div>
           </div>
+
+
           
           <div className="detalhes-adicionais">
             <h2>O que você vai aprender</h2>
             <ul>
-              <li>Técnicas avançadas de terapia manual</li>
-              <li>Avaliação e diagnóstico precisos</li>
-              <li>Plano de tratamento personalizado</li>
-              <li>Prevenção de lesões recorrentes</li>
+              {course.learningOutcomes ? (
+                course.learningOutcomes.map((outcome, index) => (
+                  <li key={index}>
+                    <Check className="h-4 w-4 inline-block mr-2 text-green-600" />
+                    {outcome}
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <Check className="h-4 w-4 inline-block mr-2 text-green-600" />
+                  Informações sobre o conteúdo do curso em breve.
+                </li>
+              )}
             </ul>
           </div>
         </div>
