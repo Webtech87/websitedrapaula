@@ -32,7 +32,7 @@ const Lancamentos = () => {
       <div className="lancamentos-container-main">
         <div className="lancamentos-header">
           <h2 className={`lancamentos-title ${isTextVisible ? "fade-in" : ""}`}>
-            Novos Lançamentos
+            Destaques
           </h2>
           <p className={`lancamentos-subtitle ${isTextVisible ? "fade-in" : ""}`}>
             Conteúdo atualizado para transformar sua prática – descubra as novidades!
