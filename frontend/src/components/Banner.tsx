@@ -7,7 +7,7 @@ const Banner: React.FC = () => {
       <div className="banner-content">
         <h1>Intervenção terapêutica na prática</h1>
         <p>Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.</p>
-        <a href="/about" className="cta-button">Saber mais</a>
+        <a href="#about" className="cta-button">Saber mais</a>
       </div>
     </section>
   );
