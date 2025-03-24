@@ -60,7 +60,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post("http://websitedrapaula.onrender.com/api/register/", dataToSend, {
+      const response = await axios.post("http://localhost:8000/api/register/", dataToSend, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -71,8 +71,12 @@ const Register = () => {
         navigate("/login"); // Redirect to login page on success
       }
     } catch (error) {
-      if (error.response) {
-        console.error("Erro no registro:", error.response.data);
+      if (axios.isAxiosError(error) && error.response) {
+        if (axios.isAxiosError(error) && error.response) {
+          console.error("Erro no registro:", error.response.data);
+        } else {
+          console.error("Erro no registro:", error);
+        }
         alert("Erro ao registrar: " + JSON.stringify(error.response.data));
       } else {
         console.error("Erro no registro:", error);

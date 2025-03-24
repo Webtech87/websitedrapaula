@@ -127,7 +127,7 @@ const Books = ({ id }: { id: string }) => {
                       </div>
                       <div className="book-price-container">
                         {book.discount && book.originalPrice && (
-                          <span className="book-original-price">${book.originalPrice}</span>
+                          <span className="book-original-price">€{book.originalPrice}</span>
                         )}
                         <span className="book-price">${book.price}</span>
                       </div>
