@@ -3,7 +3,10 @@ import book1 from "./assets/courses/image1.png";
 import book2 from "./assets/courses/image2.png";
 import book3 from "./assets/courses/image3.png";
 import book4 from "./assets/courses/image4.jpg";
-
+import book5 from "./assets/courses/capa-a-integracao-sensorial-ocupacional-na-infancia.png"
+import book6 from "./assets/courses/a-linguagem-e-o-brincar-em-condicoes-neurodiverso.png"
+import book7 from "./assets/courses/instrumento-de-avaliacao-do-modelo-ludico.png"
+import book8 from "./assets/courses/the-role-of-play-in-child-assessment-and-intervetion.png"
 export interface Book {
   id: number;
   image: string;
@@ -144,7 +147,7 @@ export const books: Book[] = [
   // Add 4 eBooks here
   {
     id: 5,
-    image: book1,
+    image: book5,
     title: "A Integração Sensorial e o Engajamento Ocupacional na Infância (eBook)",
     description: "Este eBook explora a relação entre integração sensorial e engajamento ocupacional na infância, fornecendo ferramentas práticas para profissionais e pais.",
     price: 9.99,
@@ -172,7 +175,7 @@ export const books: Book[] = [
   },
   {
     id: 6,
-    image: book2,
+    image: book6,
     title: "Guia Prático: Brincadeiras Sensoriais para Crianças (eBook)",
     description: "Uma coleção completa de atividades e brincadeiras sensoriais para estimular o desenvolvimento infantil de forma natural e divertida.",
     price: 7.99,
@@ -199,7 +202,7 @@ export const books: Book[] = [
   },
   {
     id: 7,
-    image: book3,
+    image: book7,
     title: "Desenvolvimento Infantil: Marcos e Sinais de Alerta (eBook)",
     description: "Um guia essencial sobre os marcos do desenvolvimento infantil e como identificar precocemente sinais que possam necessitar de atenção especializada.",
     price: 8.99,
@@ -226,7 +229,7 @@ export const books: Book[] = [
   },
   {
     id: 8,
-    image: book4,
+    image: book8,
     title: "Autonomia na Primeira Infância: Guia para Pais e Educadores (eBook)",
     description: "Um manual completo com estratégias práticas para promover a autonomia das crianças nos primeiros anos de vida, seguindo princípios de abordagens baseadas em evidências.",
     price: 6.99,
