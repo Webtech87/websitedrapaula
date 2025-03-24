@@ -1,25 +1,42 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/pages/books.css";
-import { books } from "../../bookData";
-import { ChevronRight, Star, Search } from "lucide-react";
+import { books, Book } from "../../bookData";
+import { ChevronRight, Star, Search, Download, Book as BookIcon } from "lucide-react";
 import debounce from "lodash/debounce";
 
 const Books = ({ id }: { id: string }) => {
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
-  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<string>("impresso");
   const [hoveredBook, setHoveredBook] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const bookContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleImageLoad = (index: number) => {
-    setLoadedImages((prev) => [...prev, index]);
+  const handleImageLoad = useCallback((index: number) => {
+    setLoadedImages(prev => [...new Set([...prev, index])]);
+  }, []);
+
+  const debouncedSearch = useCallback(
+    debounce((value: string) => setSearchQuery(value), 300),
+    []
+  );
+
+  const handleDownload = (e: React.MouseEvent, url: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = url.split('/').pop() || 'ebook.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  const debouncedSearch = useCallback(debounce((value: string) => setSearchQuery(value), 300), []);
-
   const filteredBooks = books
-    .filter((book) => (activeFilter === "all" ? true : book.category === activeFilter))
+    .filter((book) => {
+      if (activeFilter === "all") return true;
+      return book.category === activeFilter;
+    })
     .filter((book) =>
       searchQuery.trim() ? book.title.toLowerCase().includes(searchQuery.toLowerCase()) : true
     );
@@ -27,7 +44,7 @@ const Books = ({ id }: { id: string }) => {
   const filters = [
     { id: "all", label: "Todos" },
     { id: "ebook", label: "eBooks" },
-    { id: "printed", label: "Impressos" },
+    { id: "impresso", label: "Impressos" },
   ];
 
   useEffect(() => {
@@ -40,11 +57,11 @@ const Books = ({ id }: { id: string }) => {
       { root: null, rootMargin: "0px", threshold: 0.1 }
     );
 
-    const bookItems = document.querySelectorAll(".book-wrapper");
+    const bookItems = bookContainerRef.current?.querySelectorAll(".book-wrapper") || [];
     bookItems.forEach((item) => observer.observe(item));
 
     return () => bookItems.forEach((item) => observer.unobserve(item));
-  }, []);
+  }, [filteredBooks]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -62,6 +79,7 @@ const Books = ({ id }: { id: string }) => {
                 placeholder="Buscar livros..."
                 onChange={(e) => debouncedSearch(e.target.value)}
                 className="search-input"
+                aria-label="Campo de busca por livros"
               />
             </div>
           </div>
@@ -91,54 +109,88 @@ const Books = ({ id }: { id: string }) => {
                 className="book-wrapper"
                 onMouseEnter={() => setHoveredBook(book.id)}
                 onMouseLeave={() => setHoveredBook(null)}
+                aria-label={`Card do livro: ${book.title}`}
               >
-                <Link to={`/book/${book.id}`} className="book-link">
-                  <div className="book-card">
-                    <div className="image-container">
-                      <img
-                        src={book.image}
-                        alt={book.title}
-                        className={`book-image ${loadedImages.includes(book.id) ? "loaded" : ""}`}
-                        onLoad={() => handleImageLoad(book.id)}
-                        onError={(e) => (e.currentTarget.src = "/fallback-image.jpg")}
-                      />
-                      {!loadedImages.includes(book.id) && (
-                        <div className="image-placeholder">
-                          <div className="loader"></div>
-                        </div>
-                      )}
-                    </div>
-                    {book.discount && (
-                      <div className="book-discount">
-                        <span>{book.discount}% OFF</span>
+                <div className="book-card">
+                  <div className="image-container">
+                    <img
+                      src={book.image}
+                      alt={`Capa do livro: ${book.title}`}
+                      className={`book-image ${loadedImages.includes(book.id) ? "loaded" : ""}`}
+                      onLoad={() => handleImageLoad(book.id)}
+                      onError={(e) => (e.currentTarget.src = "/fallback-image.jpg")}
+                      loading="lazy"
+                    />
+                    {!loadedImages.includes(book.id) && (
+                      <div className="image-placeholder">
+                        <div className="loader"></div>
                       </div>
                     )}
-                    <div className="book-info">
-                      <h3 className="book-title">{book.title}</h3>
-                      <div className="book-rating">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={14}
-                            className={i < (book.rating || 0) ? "star filled" : "star"}
-                          />
-                        ))}
-                        {book.rating && <span className="rating-count">({book.reviews || 0})</span>}
-                      </div>
-                      <div className="book-price-container">
-                        {book.discount && book.originalPrice && (
-                          <span className="book-original-price">€{book.originalPrice}</span>
-                        )}
-                        <span className="book-price">${book.price}</span>
-                      </div>
+                  </div>
+                  {book.discount && (
+                    <div className="book-discount">
+                      <span>{book.discount}%</span>
                     </div>
-                    <div className={`book-overlay ${hoveredBook === book.id ? "active" : ""}`}>
-                      <span className="view-details">
-                        Ver detalhes <ChevronRight size={16} />
+                  )}
+                  {book.category === "ebook" && (
+                    <div className="book-ebook-badge">
+                      <BookIcon size={14} aria-hidden="true" />
+                      <span>eBook</span>
+                    </div>
+                  )}
+                  <div className="book-info">
+                    <h3 className="book-title">{book.title}</h3>
+                    <div className="book-rating">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={`star-${book.id}-${i}`}
+                          size={14}
+                          className={i < (book.rating || 0) ? "star filled" : "star"}
+                          aria-label={i < (book.rating || 0) ? "Estrela preenchida" : "Estrela vazia"}
+                        />
+                      ))}
+                      {book.rating && (
+                        <span className="rating-count">
+                          ({book.reviews?.toLocaleString() || 0})
+                        </span>
+                      )}
+                    </div>
+                    <div className="book-price-container">
+                      {book.discount && book.originalPrice && (
+                        <span className="book-original-price">
+                          €{book.originalPrice.toFixed(2).replace('.', ',')}
+                        </span>
+                      )}
+                      <span className="book-price">
+                        €{book.price.toFixed(2).replace('.', ',')}
                       </span>
                     </div>
                   </div>
-                </Link>
+                  <div className={`book-overlay ${hoveredBook === book.id ? "active" : ""}`}>
+                    {book.category === "ebook" ? (
+                      <a 
+                        href={book.downloadUrl}
+                        className="download-button"
+                        onClick={(e) => {
+                          handleDownload(e, book.downloadUrl!);
+                          e.stopPropagation();
+                        }}
+                        aria-label={`Baixar eBook: ${book.title}`}
+                      >
+                        <Download size={16} aria-hidden="true" />
+                        <span>Baixar eBook</span>
+                      </a>
+                    ) : (
+                      <Link 
+                        to={`/book/${book.id}`} 
+                        className="view-details"
+                        aria-label={`Ver detalhes do livro: ${book.title}`}
+                      >
+                        Ver detalhes <ChevronRight size={16} aria-hidden="true" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </div>
             ))
           ) : (
@@ -148,20 +200,15 @@ const Books = ({ id }: { id: string }) => {
                 className="reset-button"
                 onClick={() => {
                   setSearchQuery("");
-                  setActiveFilter("all");
+                  setActiveFilter("impresso");
                 }}
+                aria-label="Limpar filtros de busca"
               >
                 Limpar filtros
               </button>
             </div>
           )}
         </div>
-
-        
-          
-          
-         
-
       </section>
     </div>
   );

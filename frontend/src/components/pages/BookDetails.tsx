@@ -84,7 +84,7 @@ const BookDetails = () => {
   return (
     <div className="book-details-container">
       <div className="book-details-header">
-        <Link to="/" className="back-button">
+        <Link to="/#livros" className="back-button">
           <ChevronLeft size={16} />
           <span>Voltar</span>
         </Link>
