@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { books } from '../../bookData';
-import '../../styles/pages/BookDetails.css';
+import '<div styleName={} />
+<div styleName={} />
+<styles />
+<pages />
+<b></b>ookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, Tag, AlertCircle, BookOpen } from 'lucide-react';
 
 const BookDetails = () => {
