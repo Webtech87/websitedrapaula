@@ -71,8 +71,12 @@ const Register = () => {
         navigate("/login"); // Redirect to login page on success
       }
     } catch (error) {
-      if (error.response) {
-        console.error("Erro no registro:", error.response.data);
+      if (axios.isAxiosError(error) && error.response) {
+        if (axios.isAxiosError(error) && error.response) {
+          console.error("Erro no registro:", error.response.data);
+        } else {
+          console.error("Erro no registro:", error);
+        }
         alert("Erro ao registrar: " + JSON.stringify(error.response.data));
       } else {
         console.error("Erro no registro:", error);

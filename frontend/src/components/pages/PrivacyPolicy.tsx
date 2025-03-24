@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../../styles/pages/privacyPolicy.css";
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy" style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
       <h2>Contato</h2>
       <p>
         Se você tiver alguma dúvida sobre nosso uso de cookies ou outras tecnologias, entre em contato conosco em{" "}
-        <a href="mailto:seu-email@example.com">seu-email@example.com</a>.
+        <a href="mailto:seu-email@example.com">paulaserranoeducacao@gmail.com</a>.
       </p>
     </div>
   );

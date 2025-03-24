@@ -7,16 +7,15 @@ export const courses = [
   {
     id: 1,
     image: img1,
-    title: "Conteudos Programaticos Brincar e TO Teoria e Pratica",
+    title: "Brincar e TO-Teoria-Pratica",
     description: `
 O Brincar na Terapia ocupacional – Da teoria à prática
+
 Curso
-Formação – 8 horas gravadas + 14  horas online síncrono+ 5 horas de trabalho e campo+ 21 horas  presenciais
-Formadores
+Formação 4 dias presenciais
 
+Formadores:
  Paula Serrano – Terapeuta Ocupacional
-
-
 
 
 Enquadramento  
@@ -24,8 +23,6 @@ Os terapeutas ocupacionais usam o brincar na prática tanto para avaliação qua
 
 
 Conteúdos Programáticos
-
-
 Definindo o brincar
 Revisão das diferentes teorias do brincar
 A evolução do brincar na terapia ocupacional
@@ -33,30 +30,35 @@ Quadros de referência do brincar na terapia ocupacional
 A sequência de desenvolvimento do brincar ao longo da infância
 Desenvolvimento das competências do brincar com o corpo, com objetos e simbólico 
 Avaliação do brincar
+
 Entrevista 
 Questionários: The Play History (Takata)
 Organização da observação em contexto natural  
+
 Instrumentos: Revised Knox Preschool Play scale (Knox); Test of Playfulness (TOP) ( Bundy)
 Definição dos objetivos terapêuticos
+
 Promover o brincar: 
 o papel do TO
 a intervenção terapêutica, 
 intervenção no contexto da criança
 
 
-
-
-
-
-
-
 Metodologia
 Exposição teórica discussão de grupos e exercícios práticos
 
 `,
-    price: 199.99,
+    price: 450,
     instructor: "Paula Serrano",
-    Localizacao: "Sao Paulo",
+    Localizacao: "Brasil / Rio de Janeiro",
+    date: "15-18 de Setembro, 2023",
+    learningOutcomes: [
+      "Teorias e Quadros de Referência",
+      "Desenvolvimento e Competências Lúdicas",
+      "Métodos de Avaliação",
+      "Estratégias de Intervenção",
+      
+    ]
   },
   {
     id: 2,
@@ -109,9 +111,17 @@ Metodologia
        As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.    
 
 `,
-    price: 249.99,
-    instructor: "Ana Costa",
-    Localizacao: "Sao Paulo",
+    price: 350,
+    instructor: "Paula Serrano",
+    Localizacao: "Brasil",
+    date: "10-12 de Outubro, 2023",
+    learningOutcomes: [
+      "Compreender os fatores que influenciam o desenvolvimento nos primeiros anos de vida",
+      "Aplicar conhecimentos de neurociências na prática de integração sensorial",
+      "Utilizar instrumentos específicos de avaliação como SPM2 e Perfil Sensorial de Dunn",
+      "Desenvolver raciocínio clínico para análise de dados de avaliação",
+      
+    ]
   },
   {
     id: 3,
@@ -161,9 +171,17 @@ Metodologia
        As sessões de trabalho serão teóricas e práticas com análise de vídeos.     
 
 `,
-    price: 299.99,
-    instructor: "Mariana Lopes",
-    Localizacao: "Sao Paulo",
+    price: 350,
+    instructor: "Paula Serrano",
+    Localizacao: "Brasil",
+    date: "5-7 de Novembro, 2023",
+    learningOutcomes: [
+      "Identificar e analisar disfunções de integração sensorial",
+      "Aplicar metodologias específicas de avaliação em integração sensorial",
+      "Interpretar instrumentos como SPM, SPMp e perfil sensorial Dunn",
+      "Desenvolver raciocínio clínico baseado em dados de avaliação",
+      
+    ]
   },
   {
     id: 4,
@@ -212,8 +230,16 @@ Metodologia
        As sessões de trabalho serão on line, teóricas e com analise de vídeos de casos clínicos.    
 
 `,
-    price: 199.99,
-    instructor: "Clara Mendes",
-    Localizacao: "Sao Paulo",
+    price: 350,
+    instructor: "Paula Serrano",
+    Localizacao: "Brasil",
+    date: "20-22 de Dezembro, 2023",
+    learningOutcomes: [
+      "Compreender as etapas do brincar dos 0 aos 3 anos",
+      "Identificar os elementos da ludicidade na primeira infância",
+      "Aplicar instrumentos de avaliação do brincar e integração sensorial",
+      "Classificar perturbações de processamento sensorial na primeira infância",
+      
+    ]
   },
 ];
