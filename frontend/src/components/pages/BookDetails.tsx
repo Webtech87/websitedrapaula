@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { books } from '../../bookData';
-import '<div styleName={} />
-<div styleName={} />
-<styles />
-<pages />
-<b></b>ookDetails.css';
+import '../../styles/pages/bookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, Tag, AlertCircle, BookOpen } from 'lucide-react';
 
 const BookDetails = () => {
@@ -88,7 +84,7 @@ const BookDetails = () => {
   return (
     <div className="book-details-container">
       <div className="book-details-header">
-        <Link to="/#livros" className="back-button">
+        <Link to="/" className="back-button">
           <ChevronLeft size={16} />
           <span>Voltar</span>
         </Link>
