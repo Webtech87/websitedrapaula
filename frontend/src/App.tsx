@@ -28,6 +28,8 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ArtigosTeses from "./components/pages/ArtigosTeses";
 import MentorshipDetails from './components/pages/MentorshipDetails'; // Corrected path to the file
+import Success from "./components/pages/Success";
+import Cancel from "./components/pages/Cancel";
 
 // Placeholder for a protected Dashboard page (replace with your actual component if needed)
 const Dashboard = () => <div>Dashboard (Protected)</div>;
@@ -127,7 +129,9 @@ function App() {
         <Route path="/imersoes" element={<Imersoes id="imersoes" />} />
         <Route path="/artigos-teses" element={<ArtigosTeses />} />
         <Route path="/mentorship-details" element={<MentorshipDetails />} />
-       
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
+        
         <Route
           path="/wishlist"
           element={

@@ -84,9 +84,10 @@ class CreateCheckoutSession(APIView):
                     'quantity': 1,
                 }],
                 mode='payment',
-                success_url='http://localhost:8000/success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url='http://localhost:8000/cancel',
+                success_url='http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url='http://localhost:5173/cancel',
                 metadata={'course_id': course_data['id']},  # Store course ID in metadata
+                payment_method_types=['card'],
             )
 
             return Response({'id': checkout_session.id}, status=status.HTTP_200_OK)
