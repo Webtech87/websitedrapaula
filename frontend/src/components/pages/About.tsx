@@ -3,7 +3,12 @@ import "../../styles/pages/about.css";
 import aboutImage from "../../assets/about/Design sem nome 1.png";
 import { Link } from "react-router-dom";
 
-const About = () => {
+// Add interface for props
+interface AboutProps {
+  id?: string;
+}
+
+const About: React.FC<AboutProps> = ({ id }) => {
   const [showFullText, setShowFullText] = useState(false);
 
   const toggleText = () => {
@@ -11,7 +16,8 @@ const About = () => {
   };
 
   return (
-    <section className="about">
+    // Add id to section element
+    <section id={id} className="about">
       <div className="about-container">
         {/* Header Section: Tag and Heading */}
         <div className="about-header">

@@ -58,7 +58,7 @@ function Home() {
       <Courses id="cursos" />
       <Mentorship id="mentorias" />
       <Books id="livros" />
-      <About />
+      <About id="about" />
       <Imersoes id="imersoes" />
       <Lancamentos />
       <Testemunhos />
