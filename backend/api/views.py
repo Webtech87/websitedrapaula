@@ -64,6 +64,33 @@ class CreateCheckoutSession(APIView):
 
             # Assuming you're sending course ID and other necessary data from frontend
             course_id = data.get('courseId')
+            
+            '''
+            # Check if subscription is selected
+            subscription = data.get('subscription', False)  
+
+            # Simulating retrieving the course data from the database
+            course_data = {
+                "id": course_id,
+                "price": 24999,  # Price in cents
+                "name": "Raciocinio clinico e intervencao em integracao sensorial nos primeiros anos de vida",
+                "image_url": "https://example.com/course-image.jpg",  # Replace with actual image URL
+            }
+
+            # Create Stripe Checkout session
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[{
+                    'price': 'price_1R6ZFE7KTiag90qeIhIA3jod',  # Use the price ID for subscription
+                    'quantity': 1,
+                }],
+                mode='subscription',
+                success_url='http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url='http://localhost:5173/cancel',
+                metadata={'course_id': course_data['id']},  # Store course ID in metadata
+                payment_method_types=['card'],                
+                customer_email="felipe.silva@webtech87.pt",
+            )'''  
+
 
             # Simulating retrieving the course data from the database
             course_data = {
@@ -86,11 +113,13 @@ class CreateCheckoutSession(APIView):
                     },
                     'quantity': 1,
                 }],
-                mode='payment',
+                mode='subscription',
+                invoice_creation={"enabled": True},
                 success_url='http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url='http://localhost:5173/cancel',
                 metadata={'course_id': course_data['id']},  # Store course ID in metadata
-                payment_method_types=['card'],
+                payment_method_types=['card'],                
+                customer_email="felipe.silva@webtech87.pt",
             )
 
             return Response({'id': checkout_session.id}, status=status.HTTP_200_OK)
@@ -98,7 +127,7 @@ class CreateCheckoutSession(APIView):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
-class StripeWebhook(APIView):
+'''class StripeWebhook(APIView):
     permission_classes = []  # No authentication required for Stripe to send data
 
     @method_decorator(csrf_exempt)  # Webhooks don't use CSRF protection
@@ -124,4 +153,4 @@ class StripeWebhook(APIView):
 
             # Here, you can send a receipt, enroll the user in a course, etc.
 
-        return JsonResponse({"status": "success"}, status=200)
+        return JsonResponse({"status": "success"}, status=200)'''
