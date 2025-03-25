@@ -9,12 +9,18 @@ const Banner: React.FC = () => {
         <h1>Intervenção terapêutica na prática</h1>
         <p>Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.</p>
 
-
-        <Link to="/about" className="cta-button">Saber mais</Link>
+     
+      
+<Link 
+  to={{ pathname: "/", hash: "#about" }} 
+  className="cta-button"
+>
+  Saber mais
+</Link>
 
       </div>
 
-      
+
     </section>
   );
 };

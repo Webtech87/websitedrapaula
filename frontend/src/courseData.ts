@@ -1,7 +1,7 @@
-import img1 from "./assets/courses/curso1.jpg";
-import img2 from "./assets/courses/curso2.jpg";
-import img3 from "./assets/courses/curso5.jpg";
-import img4 from "./assets/courses/curso3.jpg";
+import img1 from "./assets/courses/Brincar e terapia ocupacional - da teoria à prática.jpg";
+import img2 from "./assets/courses/raciocinio clinico e intervenção nos primeiros anos de vida.jpg";
+import img3 from "./assets/courses/Integração Sensorial - avaliação e raciocinio clinico.jpg";
+import img4 from "./assets/courses/avaliação e raciocinio clinico na primeira infancia - foco no brincar e integração sensorial.jpg";
 
 export const courses = [
   {
