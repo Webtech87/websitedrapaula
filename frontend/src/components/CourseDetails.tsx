@@ -62,6 +62,7 @@ const CourseDetails = () => {
         body: JSON.stringify({ 
           courseId: id,
           title: course.title,
+          //subscription: true, for Stripe
 
          }), // Send course ID
       });
