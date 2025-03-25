@@ -12,6 +12,9 @@ from .models import Document  # Assuming you have a Document model
 from . import serializers  # Import the serializers module
 
 import stripe
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from secret_files.secret_data import STRIPE_SECRET_KEY
 
 class DocumentList(generics.ListAPIView):
@@ -94,3 +97,31 @@ class CreateCheckoutSession(APIView):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class StripeWebhook(APIView):
+    permission_classes = []  # No authentication required for Stripe to send data
+
+    @method_decorator(csrf_exempt)  # Webhooks don't use CSRF protection
+    def post(self, request, *args, **kwargs):
+        payload = request.body  # Get raw body data
+        sig_header = request.headers.get("Stripe-Signature")  # Get Stripe signature
+
+        endpoint_secret = "your_webhook_secret_here"  # You'll get this from Stripe dashboard
+
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+            )
+        except ValueError:
+            return JsonResponse({"error": "Invalid payload"}, status=400)
+        except stripe.error.SignatureVerificationError:
+            return JsonResponse({"error": "Invalid signature"}, status=400)
+
+        # Handle different events
+        if event["type"] == "checkout.session.completed":
+            session = event["data"]["object"]
+            print(f"✅ Payment successful! Session ID: {session['id']}")
+
+            # Here, you can send a receipt, enroll the user in a course, etc.
+
+        return JsonResponse({"status": "success"}, status=200)
