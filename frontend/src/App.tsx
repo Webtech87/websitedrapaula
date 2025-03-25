@@ -127,6 +127,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/about" element={<About />} />
+        <Route path="/about-detail" element={<AboutDetail />} />
         <Route path="/nossos-valores" element={<NossosValores />} />
         <Route path="/cursos" element={<Courses id="cursos" />} />
         <Route path="/mentorias" element={<Mentorship id="mentorias" />} />
@@ -134,7 +135,6 @@ function App() {
         <Route path="/artigos-teses" element={<ArtigosTeses />} />
         <Route path="/mentorship-details" element={<MentorshipDetails />} />
         <Route path="/book/:id" element={<BookDetails />} /> 
-        <Route path="/about-detail" element={<AboutDetail />} /> 
         <Route path="/imersao-details" element={<ImersaoDetails />} />
         <Route path="/lancamento/:id" element={<LancamentoDetail />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
