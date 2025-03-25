@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Banner.css";
 
 const Banner: React.FC = () => {
@@ -7,8 +8,13 @@ const Banner: React.FC = () => {
       <div className="banner-content">
         <h1>Intervenção terapêutica na prática</h1>
         <p>Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.</p>
-        <a href="#about" className="cta-button">Saber mais</a>
+
+
+        <Link to="/about" className="cta-button">Saber mais</Link>
+
       </div>
+
+      
     </section>
   );
 };
