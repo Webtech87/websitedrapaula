@@ -6,6 +6,9 @@ import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
+import ptFlag from "../assets/pt.png"
+import gbFlag from "../assets/en.png"
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdowns, setActiveDropdowns] = useState({
@@ -73,7 +76,7 @@ const Navigation = () => {
       setTokenExpired(false);
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get("http://websitedrapaula.onrender.com/api/user/profile/", {
+          const response = await axios.get("http://localhost:8000/api/user/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUserName(response.data.full_name);
@@ -421,16 +424,19 @@ const Navigation = () => {
             />
 
             <div className="language-selector desktop">
-              {["PT", "EN"].map((lang) => (
-                <button
-                  key={lang}
-                  className={language === lang ? "active" : ""}
-                  onClick={() => setLanguage(lang as "PT" | "EN")}
-                  aria-pressed={language === lang}
-                >
-                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
-                </button>
-              ))}
+              {["PT", "EN"].map((lang) => {
+                console.log("Rendering Language:", lang);
+                return (
+                  <button
+                    key={lang}
+                    className={language === lang ? "active" : ""}
+                    onClick={() => setLanguage(lang as "PT" | "EN")}
+                    aria-pressed={language === lang}
+                  >
+                    {lang} <img src={lang === "PT" ? ptFlag : gbFlag} alt={lang} width="20" />
+                  </button>
+                );
+              })}
             </div>
             <button
               onClick={toggleMobileMenu}
