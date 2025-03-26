@@ -60,7 +60,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post("http://websitedrapaula.onrender.com/api/register/", dataToSend, {
+      const response = await axios.post("https://websitedrapaula.onrender.com/api/register/", dataToSend, {
         headers: {
           "Content-Type": "application/json",
         },
