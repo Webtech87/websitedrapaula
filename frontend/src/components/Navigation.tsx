@@ -43,7 +43,6 @@ const Navigation = () => {
         { label: "Imersoes", href: "#imersoes" },
       ],
     },
-    { label: "Mentorias", href: "#mentorias" },
     {
       label: "Recursos",
       href: "#",
