@@ -2,7 +2,8 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-from secret_files.secret_data import EMAIL_SENDER, EMAIL_SENDER_PASSWORD
+EMAIL_SENDER = os.getenv('EMAIL_SENDER')
+EMAIL_SENDER_PASSWORD = os.getenv('EMAIL_SENDER_PASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

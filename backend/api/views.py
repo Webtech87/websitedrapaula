@@ -13,11 +13,10 @@ from . import serializers  # Import the serializers module
 
 # For Email
 from django.core.mail import EmailMultiAlternatives
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
 import logging
-from secret_files.secret_data import EMAIL_SENDER
+import os
+
+EMAIL_SENDER = os.getenv('EMAIL_SENDER')
 
 # Get your email sender details from settings
 from django.conf import settings
@@ -75,7 +74,7 @@ class EmailSenderView(APIView):
 
                 # Validate data (basic check)
                 if not all([full_name, email, subject, message]):
-                    return JsonResponse({'error': 'Missing required fields'}, status=400)
+                    return Response({'error': 'Missing required fields'}, status=400)
 
                 email_subject = 'Novo Formulário Preenchido'
                 email_body = f"""
