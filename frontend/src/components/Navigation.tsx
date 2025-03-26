@@ -76,7 +76,7 @@ const Navigation = () => {
       setTokenExpired(false);
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get("http://localhost:8000/api/user/profile/", {
+          const response = await axios.get("http://websitedrapaula.onrender.com/api/user/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUserName(response.data.full_name);
