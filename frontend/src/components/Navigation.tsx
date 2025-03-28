@@ -6,6 +6,9 @@ import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
+import ptFlag from "../assets/pt.png"
+import gbFlag from "../assets/en.png"
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdowns, setActiveDropdowns] = useState({
@@ -421,7 +424,7 @@ const Navigation = () => {
                   onClick={() => setLanguage(lang as "PT" | "EN")}
                   aria-pressed={language === lang}
                 >
-                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+                  {lang} <img src={lang === "PT" ? ptFlag : gbFlag} alt={lang} width="20" height="11" />
                 </button>
               ))}
             </div>
