@@ -17,10 +17,12 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import logging
-from secret_files.secret_data import EMAIL_SENDER
+import os
 
 # Get your email sender details from settings
 from django.conf import settings
+
+EMAIL_SENDER = os.getenv('EMAIL_SENDER')
 
 class DocumentList(generics.ListAPIView):
     queryset = Document.objects.all()

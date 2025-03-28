@@ -35,7 +35,7 @@ const Contact = () => {
     if (!validateForm()) return;
   
     try {
-      const response = await fetch("http://localhost:8000/api/send_contact_email/", {
+      const response = await fetch("https://websitedrapaula.onrender.com/api/send_contact_email/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
