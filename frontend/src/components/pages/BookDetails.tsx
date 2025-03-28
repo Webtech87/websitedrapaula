@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { books } from '../../bookData';
-import '../../styles/pages/BookDetails.css';
+import '../../styles/pages/bookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, Tag, AlertCircle, BookOpen } from 'lucide-react';
 
 const BookDetails = () => {
@@ -155,6 +155,7 @@ const BookDetails = () => {
                 <div className="price-original">€{book.originalPrice.toFixed(2)}</div>
               )}
               {book.discount && (
+                
                 <div className="discount-text">
                   Poupa {book.discount}%
                 </div>
@@ -245,6 +246,10 @@ const BookDetails = () => {
               >
                 Comprar Agora
               </button>
+
+              
+
+
             </div>
           </div>
         </div>

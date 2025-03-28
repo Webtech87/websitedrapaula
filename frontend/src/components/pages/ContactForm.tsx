@@ -32,7 +32,7 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -52,38 +52,18 @@ const ContactForm = () => {
     // If no errors, submit the form
     if (!Object.values(newErrors).some((error) => error)) {
       setIsSubmitting(true);
-
-      try {
-        const response = await fetch("http://localhost:8000/api/send_contact_email/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            full_name: formData.name,  // Make sure the field names match backend
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-          }),
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
-          setSubmitted(true);
-          setFormData({ name: "", email: "", subject: "", message: "" });
-          setTimeout(() => {
-            setSubmitted(false);
-          }, 5000);
-        } else {
-          alert("Erro ao enviar email: " + data.error);
-        }
-      } catch (error) {
-        console.error("Erro:", error);
-        alert("Erro ao enviar email.");
-      } finally {
+      
+      // Simulate form submission
+      setTimeout(() => {
         setIsSubmitting(false);
-      }
+        setSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        
+        // Reset submitted state after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }, 1500);
     }
   };
 
@@ -103,9 +83,8 @@ const ContactForm = () => {
 
           <ul className="cf-contact-benefits">
             <li>Solicitar orçamentos personalizados</li>
-            <li>Obter informações técnicas sobre nossos produtos</li>
-            <li>Reportar qualquer questão sobre entregas</li>
-            <li>Dar sugestões para melhorarmos nossos serviços</li>
+            <li>Obter informações técnicas sobre os nossos produtos</li>
+            <li>Dar sugestões para melhorarmos os nossos serviços</li>
           </ul>
 
           <p>
@@ -163,7 +142,6 @@ const ContactForm = () => {
                 <option value="">Selecione um assunto</option>
                 <option value="duvida">Dúvida sobre produtos</option>
                 <option value="orcamento">Solicitar orçamento</option>
-                <option value="entrega">Informação sobre entrega</option>
                 <option value="feedback">Feedback</option>
                 <option value="outro">Outro assunto</option>
               </select>

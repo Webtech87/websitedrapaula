@@ -6,9 +6,6 @@ import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 
-import ptFlag from "../assets/pt.png"
-import gbFlag from "../assets/en.png"
-
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdowns, setActiveDropdowns] = useState({
@@ -28,11 +25,10 @@ const Navigation = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const navigationLinks = [
-    { label: "Home", href: "/" },
+    { label: "Home", href: "/nossos-valores" },
     {
-      label: "Fundadora",
-      href: "#",
-      subItems: [{ label: "PSE", href: "/nossos-valores" }],
+      label: "Conheca a Paula Serrano",
+      href: "#about",
     },
     {
       label: "Formações",
@@ -43,6 +39,7 @@ const Navigation = () => {
         { label: "Imersoes", href: "#imersoes" },
       ],
     },
+    
     {
       label: "Recursos",
       href: "#",
@@ -317,13 +314,7 @@ const Navigation = () => {
                     href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      if (link.label === "Home") {
-                        closeMobileMenu();
-                        window.location.href = "/";
-                        scrollToTop();
-                      } else {
-                        handleLinkClick(link.href);
-                      }
+                      handleLinkClick(link.href);
                     }}
                   >
                     {link.label}
@@ -423,19 +414,16 @@ const Navigation = () => {
             />
 
             <div className="language-selector desktop">
-              {["PT", "EN"].map((lang) => {
-                console.log("Rendering Language:", lang);
-                return (
-                  <button
-                    key={lang}
-                    className={language === lang ? "active" : ""}
-                    onClick={() => setLanguage(lang as "PT" | "EN")}
-                    aria-pressed={language === lang}
-                  >
-                    {lang} <img src={lang === "PT" ? ptFlag : gbFlag} alt={lang} width="20" />
-                  </button>
-                );
-              })}
+              {["PT", "EN"].map((lang) => (
+                <button
+                  key={lang}
+                  className={language === lang ? "active" : ""}
+                  onClick={() => setLanguage(lang as "PT" | "EN")}
+                  aria-pressed={language === lang}
+                >
+                  {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+                </button>
+              ))}
             </div>
             <button
               onClick={toggleMobileMenu}
