@@ -70,24 +70,24 @@ class EmailSenderView(APIView):
                 
                 full_name = data.get('full_name')
                 email = data.get('email')
-                subject = data.get('subject')
+                subject = data.get('subject', None) # Default to None if not provided
                 message = data.get('message')
 
                 # Validate data (basic check)
-                if not all([full_name, email, subject, message]):
+                if not all([full_name, email, message]):
                     return JsonResponse({'error': 'Missing required fields'}, status=400)
 
-                email_subject = 'Novo Formulário Preenchido'
-                email_body = f"""
-                Nome: {full_name}
-                Email: {email}
-                Assunto: {subject}
-                Mensagem: {message}
-                """
+                email_subject = "Novo Formulário Preenchido"
+
+                # Construct email body
+                email_body = f"Nome: {full_name}\nEmail: {email}\n"
+                if subject:  # Only add subject if it exists
+                    email_body += f"Assunto: {subject}\n"
+                email_body += f"Mensagem: {message}"
 
                 email_msg = EmailMultiAlternatives(
                     subject=email_subject,
-                    body=email_body,
+                    body=email_body,  # Remove extra spaces if subject is missing
                     from_email=EMAIL_SENDER,
                     to=[EMAIL_SENDER],
                     reply_to=[email]  # Reply-to user

@@ -28,14 +28,41 @@ const Contact = () => {
     return true;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  
+    // Use validateForm() to check for errors
     if (!validateForm()) return;
-
-    console.log("Form submitted:", formData);
-    setFormSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
+  
+    try {
+      const response = await fetch("http://localhost:8000/api/send_contact_email/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            full_name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        }
+      );
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        setFormSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setFormSubmitted(false), 5000);
+      } else {
+        setError(`Erro ao enviar email: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      setError("Erro ao enviar email.");
+    }
   };
+  
 
   return (
     <div className="contact-page">
