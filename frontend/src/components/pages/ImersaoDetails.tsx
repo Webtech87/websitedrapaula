@@ -27,12 +27,12 @@ const ImersaoDetails = () => {
 
   // Gallery images
   const galleryImages = [
-    "/src/assets/galleryPse/img7.jpeg",
-    "/src/assets/galleryPse/img2.jpeg",
-    "/src/assets/galleryPse/img3.jpeg",
-    "/src/assets/galleryPse/img4.jpeg",
-    "/src/assets/galleryPse/img5.jpeg",
-    "/src/assets/galleryPse/img6.jpeg",
+    "/galleryPse/img7.jpeg",
+    "/galleryPse/img2.jpeg",
+    "/galleryPse/img3.jpeg",
+    "/galleryPse/img4.jpeg",
+    "/galleryPse/img5.jpeg",
+    "/galleryPse/img6.jpeg",
   ];
 
   return (
@@ -46,7 +46,7 @@ const ImersaoDetails = () => {
   <section 
     className="imersao-hero"
     style={{ 
-      backgroundImage: "url('/src/assets/galleryPse/img7.jpeg')",
+      backgroundImage: "url('/galleryPse/img7.jpeg')",
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}
@@ -275,7 +275,7 @@ const ImersaoDetails = () => {
       {/* Replace this div with an actual image */}
       <div className="next-steps-image">
         <img 
-          src="/src/assets/galleryPse/img1.jpeg"  // Update this path to your actual image
+          src="/galleryPse/img1.jpeg"  // Update this path to your actual image
           alt="Próximos passos da imersão"
           className="next-steps-visual"
         />
