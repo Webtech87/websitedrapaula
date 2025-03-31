@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import "../../styles/pages/carousel.css";
-import modulo1 from "../../assets/galleryPse/img6.jpeg";
+import modulo1 from "/galleryPse/img6.jpeg";
 import modulo2 from "../../assets/courses/curso4.jpg";
 import modulo3 from "../../assets/courses/curso2.jpg";
 import modulo4 from "../../assets/courses/curso3.jpg";
 import modulo5 from "../../assets/courses/curso1.jpg";
-import modulo6 from "../../assets/galleryPse/img2.jpeg";
+import modulo6 from "/galleryPse/img2.jpeg";
 import modulo7 from "../../assets/courses/curso5.jpg";
 import modulo8 from "../../assets/courses/curso3.jpg";
 import ImageModal from "../../components/ImageModal";
