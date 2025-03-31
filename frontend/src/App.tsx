@@ -31,6 +31,8 @@ import BookDetails from "./components/pages/BookDetails";
 import AboutDetail from "./components/pages/AboutDetail"; // Added import for AboutDetail
 import ImersaoDetails from "./components/pages/ImersaoDetails"; 
 import LancamentoDetail from './components/pages/LancamentoDetail'; // Ensure this file exists or correct the path
+import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 
 
 
@@ -71,6 +73,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navigation />
       {/* Cookie Consent Banner */}
       <CookieConsent
@@ -159,6 +162,11 @@ function App() {
           }
         />
       </Routes>
+
+      <WhatsAppButton 
+        phoneNumber="5511999999999" // Replace with your actual WhatsApp number
+        message="Hello, I have a question about your courses" // Custom default message
+      />
     </Router>
   );
 }
