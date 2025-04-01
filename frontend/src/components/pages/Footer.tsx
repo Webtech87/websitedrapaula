@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Left - Logo & Social Icons */}
         <div className="footer-logo-section">
-          <img src="src/assets/logo.svg" alt="Logo Paula Serrano" className="footer-logo" />
+          <img src="../../assets/logo.svg" alt="Logo Paula Serrano" className="footer-logo" />
           
           {/* Social Media Icons */}
           <div className="social-icons">
