@@ -1,6 +1,7 @@
 import React from "react";
 import { Instagram, Facebook, Mail } from "lucide-react";
 import "../../styles/pages/footer.css";
+import logo from "../../assets/logo.svg";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Left - Logo & Social Icons */}
         <div className="footer-logo-section">
-          <img src="../../assets/logo.svg" alt="Logo Paula Serrano" className="footer-logo" />
+          <img src={logo} alt="Logo Paula Serrano" className="footer-logo" />
           
           {/* Social Media Icons */}
           <div className="social-icons">
