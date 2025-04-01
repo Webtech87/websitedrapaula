@@ -141,7 +141,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com', "https://paulaserranoeducacao.pt"]
 
 # For production, you will need to make the following changes:
 # 1. Set DEBUG = False
