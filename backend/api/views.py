@@ -91,7 +91,7 @@ class EmailSenderView(APIView):
 
         return credentials
 
-    def search_spreadsheet_by_name(self, service, spreadsheet_name="contacto_site"):
+    def search_spreadsheet_by_name(self, service, spreadsheet_name="Contactos Site"):
         # Search for a sheet by name in Google Drive.
         query = f"name = '{spreadsheet_name}' and mimeType = 'application/vnd.google-apps.spreadsheet'"
         results = service.files().list(q=query, fields="files(id, name)").execute()
@@ -130,14 +130,14 @@ class EmailSenderView(APIView):
 
         # First, use the Drive API to check for an existing sheet
         drive_service = build('drive', 'v3', credentials=credentials)
-        sheet_id = self.search_spreadsheet_by_name(drive_service, 'contacto_site')
+        sheet_id = self.search_spreadsheet_by_name(drive_service, 'Contactos Site')
         
         if not sheet_id:
             #print("-------------Sheet not found, creating new one...")
             # If no sheet exists, create a new one using the Sheets API
             sheets_service = build('sheets', 'v4', credentials=credentials)
             spreadsheet = {
-                'properties': {'title': 'contacto_site'}
+                'properties': {'title': 'Contactos Site'}
             }
             sheet = sheets_service.spreadsheets().create(body=spreadsheet, fields='spreadsheetId').execute()
             sheet_id = sheet['spreadsheetId']
@@ -171,8 +171,51 @@ class EmailSenderView(APIView):
             self.share_sheet_with_email(sheet_id)
 
         return sheet_id
+    
+    def rename_sheet(self, sheet_id, new_name="Contactos"):
+        """Rename the default 'Sheet1' to a new name."""
+        credentials = self.get_credentials()
+        sheets_service = build("sheets", "v4", credentials=credentials)
 
-    def add_data_to_sheet(self, sheet_id, data, sheet_name='Sheet1'):
+        # Get the sheet ID of "Sheet1"
+        sheet_metadata = sheets_service.spreadsheets().get(spreadsheetId=sheet_id).execute()
+        sheets = sheet_metadata.get("sheets", [])
+        
+        if not sheets:
+            print("No sheets found in the spreadsheet.")
+            return
+
+        sheet1_id = sheets[0]["properties"]["sheetId"]  # Get the first sheet's ID
+        current_name = sheets[0]["properties"]["title"]  # Get the sheet's current name
+
+        if current_name == new_name:  # If already renamed, do nothing
+            print(f"Sheet is already named '{new_name}', skipping rename.")
+            return
+
+        # Request to rename the sheet
+        batch_update_request = {
+            "requests": [
+                {
+                    "updateSheetProperties": {
+                        "properties": {
+                            "sheetId": sheet1_id,
+                            "title": new_name,
+                        },
+                        "fields": "title",
+                    }
+                }
+            ]
+        }
+
+        try:
+            sheets_service.spreadsheets().batchUpdate(
+                spreadsheetId=sheet_id, body=batch_update_request
+            ).execute()
+            print(f"Sheet renamed to '{new_name}' successfully.")
+        except Exception as e:
+            print(f"Error renaming sheet: {e}")
+
+    def add_data_to_sheet(self, sheet_id, data, sheet_name='Contactos'):
         # Append data to the given Google Sheet.
         credentials = self.get_credentials()
         service = build('sheets', 'v4', credentials=credentials)
@@ -194,6 +237,21 @@ class EmailSenderView(APIView):
             body=body
         ).execute()
 
+    #USE TO DELETE A GOOGLE SHEETS FILE PROGRAMATICALLY
+        
+    def delete_file(self, file_id="1P-P_ynQ8JTNjeimLRiF7UyqkB-MA34BZKEc_UfJKNJY"):
+        credentials = self.get_credentials()
+
+        # Build the drive service
+        drive_service = build('drive', 'v3', credentials=credentials)
+
+        try:
+            # Delete the file using the fileId
+            drive_service.files().delete(fileId=file_id).execute()
+            print(f"File with ID {file_id} deleted successfully.")
+        except Exception as e:
+            print(f"An error occurred while deleting the file: {e}")
+            
 
     def post(self, request, *args, **kwargs): #need to override the post method of APIView, not create a custom method like send_contact_email
         if request.method == 'POST':
@@ -212,6 +270,7 @@ class EmailSenderView(APIView):
                 try:
                     # Create or retrieve the sheet and append data
                     sheet_id = self.create_or_get_sheet()
+                    self.rename_sheet(sheet_id)
                     self.add_data_to_sheet(sheet_id, {'full_name': full_name, 'email': email, 'subject': subject, 'message': message})
                 except Exception as e:
                     print(f"An error occurred with Google Sheets: {e}")
