@@ -5,12 +5,19 @@ import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { courses } from "../courseData";
 import "../styles/pages/courseDetails.css";
 
+//Stripe import
+import { loadStripe } from "@stripe/stripe-js";
+ 
+const stripePromise = loadStripe("pk_test_51R3aKG02WJ5SC5OuibYH0CUWqCUZ2qztRC1CuYADfRvSzVpUnIrek5UHM0PrHE9VmXqMiM2VEdDYPNqfrxEbubT300FNeA3uMt");
+
 const CourseDetails = () => {
   const { id } = useParams<{ id: string }>();
   const course = courses.find((c) => c.id === Number(id));
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
+  const [loading, setLoading] = useState(false); //for Stripe
 
   useEffect(() => {
     // Check if course is in wishlist (from localStorage)
@@ -37,6 +44,37 @@ const CourseDetails = () => {
 
   const toggleDescription = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
+  };
+
+  const handleCheckout = async () => {
+    try {
+      // Send request to backend to create a Checkout Session
+      const response = await fetch("https://websitedrapaula.onrender.com/payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          courseId: id,
+          title: course.title,
+          price: course.price* 100,
+          //subscription: true, for Stripe
+
+         }), // Send course ID
+      });
+
+      const data = await response.json();
+
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;  // ✅ Redirect to Stripe
+      } else {
+          console.error("Failed to create Checkout Session:", data);
+      }
+    } catch (error) {
+        console.error("Error:", error);
+    } finally {
+        setLoading(false);
+    }
   };
 
   if (!course) {
@@ -306,7 +344,7 @@ const CourseDetails = () => {
           <div className="purchase-card">
             <div className="price">{course.price}</div>
             <div className="button-container">
-              <button className="buy-button">
+              <button className="buy-button" onClick={handleCheckout}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 6H21L19 16H5L3 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M8 21C8.55228 21 9 20.5523 9 20C9 19.4477 8.55228 19 8 19C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21Z" fill="currentColor"/>

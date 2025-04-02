@@ -15,5 +15,6 @@ urlpatterns = [
     path('api/', include('api.urls')),  # Include api app's URLs
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Token obtain endpoint
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Token refresh endpoint
+    path('payment/', include('payment.urls')),
     path('', home),
 ]

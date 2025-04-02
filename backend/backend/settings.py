@@ -6,6 +6,8 @@ from datetime import timedelta
 EMAIL_SENDER = os.getenv('EMAIL_SENDER')
 EMAIL_SENDER_PASSWORD = os.getenv('EMAIL_SENDER_PASSWORD')
 SECRET_KEY = os.getenv('SECRET_KEY')
+STRIPE_TEST_SECRET_KEY = os.getenv("STRIPE_TEST_SECRET_KEY")
+STRIPE_TEST_PUBLISHABLE_KEY = os.getenv("STRIPE_TEST_PUBLISHABLE_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'api',
+    'payment',
 ]
 
 # REST Framework configuration for JWT authentication
@@ -142,6 +145,8 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com', "https://paulaserranoeducacao.pt"]
+
+STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET_TEST')
 
 # For production, you will need to make the following changes:
 # 1. Set DEBUG = False
