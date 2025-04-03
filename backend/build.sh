@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 set -o errexit
 
@@ -8,7 +8,13 @@ cd backend
 # Install dependencies
 pip install -r requirements.txt
 
-# Apply database migrations
+# Remove all migration files except for `__init__.py` (you should do this only if needed)
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+
+# Recreate migrations
+python manage.py makemigrations
+
+# Apply migrations in the correct order
 python manage.py migrate admin
 python manage.py migrate users
 python manage.py migrate
