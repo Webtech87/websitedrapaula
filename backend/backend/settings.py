@@ -2,15 +2,24 @@ import os
 import dj_database_url
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 
-EMAIL_SENDER = os.getenv('EMAIL_SENDER')
-EMAIL_SENDER_PASSWORD = os.getenv('EMAIL_SENDER_PASSWORD')
-SECRET_KEY = os.getenv('SECRET_KEY')
-STRIPE_TEST_SECRET_KEY = os.getenv("STRIPE_TEST_SECRET_KEY")
-STRIPE_TEST_PUBLISHABLE_KEY = os.getenv("STRIPE_TEST_PUBLISHABLE_KEY")
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ======================
+# SECURITY CONFIGURATION
+# ======================
+SECRET_KEY = os.getenv('SECRET_KEY')
+EMAIL_SENDER = os.getenv('EMAIL_SENDER')
+EMAIL_SENDER_PASSWORD = os.getenv('EMAIL_SENDER_PASSWORD')
+
+STRIPE_TEST_SECRET_KEY = os.getenv("STRIPE_TEST_SECRET_KEY")
+STRIPE_TEST_PUBLISHABLE_KEY = os.getenv("STRIPE_TEST_PUBLISHABLE_KEY")
+
+STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET_TEST')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -19,12 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # For development, allow localhost and 127.0.0.1
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
 
-# Application definition
+# ===================
+# APPLICATION CONFIG
+# ===================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,29 +43,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party apps
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'api',
+    'django_extensions',
+    'django_countries',
+    'phonenumber_field',
+
+
+    # Local apps
+    'users',  # Only your users app remains
     'payment',
 ]
 
-# REST Framework configuration for JWT authentication
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    # Optional but recommended for added security
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-}
+AUTH_USER_MODEL = 'users.CustomUser'
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Access token valid for 60 minutes
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Refresh token valid for 1 day
-}
-
+# =================
+# MIDDLEWARE CONFIG
+# =================
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be before CommonMiddleware for CORS
     'django.middleware.security.SecurityMiddleware',
@@ -67,12 +75,84 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ========================
+# REST FRAMEWORK SETTINGS
+# ========================
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+}
+
+# ===================
+# JWT CONFIGURATION
+# ===================
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+}
+
+# ===================
+# CORS CONFIGURATION
+# ===================
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Only allow all in development
+CORS_ALLOW_CREDENTIALS = True
+
+if not CORS_ALLOW_ALL_ORIGINS:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",  # React development server (Vite)
+        "https://websitedrapaula-frontend.onrender.com",
+        "https://paulaserranoeducacao.pt",
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    'https://websitedrapaula.onrender.com', 
+    "https://paulaserranoeducacao.pt",
+    ]
+
+# ===================
+# DATABASE CONFIG
+# ===================
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
+
+# ===================
+# URL & TEMPLATE CONFIG
+# ===================
 ROOT_URLCONF = 'backend.urls'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,25 +165,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+# ===================
+# PASSWORD VALIDATION
+# ===================
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -113,30 +186,36 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
+# ===================
+# INTERNATIONALIZATION
+# ===================
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-STATIC_URL = 'static/'
+# ===================
+# STATIC & MEDIA FILES
+# ===================
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# CORS settings for React frontend
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # React development server (Vite)
-    "https://websitedrapaula-frontend.onrender.com",
-    "https://paulaserranoeducacao.pt",
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
 ]
 
-# For Email
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ===================
+# DEFAULT AUTO FIELD
+# ===================
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ===================
+# EMAIL CONFIGURATION
+# ===================
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = EMAIL_SENDER
 EMAIL_HOST_PASSWORD = EMAIL_SENDER_PASSWORD
@@ -144,9 +223,62 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-CSRF_TRUSTED_ORIGINS = ['https://websitedrapaula.onrender.com', "https://paulaserranoeducacao.pt"]
 
-STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET_TEST')
+# ===================
+# REGISTRATION SETTINGS
+# ===================
+ACCOUNT_EMAIL_VERIFICATION = os.getenv('ACCOUNT_EMAIL_VERIFICATION', 'optional')
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+
+# ===================
+# PHONENUMBER SETTINGS
+# ===================
+PHONENUMBER_DEFAULT_REGION = 'US'
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
+
+# ===================
+# LOGGING CONFIGURATION
+# ===================
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}
+
+# ===================
+# CUSTOM USER SETTINGS
+# ===================
+PASSWORD_RESET_TIMEOUT = 86400  # 1 day in seconds
+
+
 
 # For production, you will need to make the following changes:
 # 1. Set DEBUG = False

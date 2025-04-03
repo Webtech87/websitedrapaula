@@ -30,7 +30,7 @@ const Navigation = () => {
   const navigationLinks = [
     { label: "Home", href: "/nossos-valores" },
     {
-      label: "Conheca a Paula Serrano",
+      label: "Conheça a Paula Serrano",
       href: "#about",
     },
     {
@@ -73,19 +73,38 @@ const Navigation = () => {
     if (token && !isTokenExpired(token)) {
       setIsLoggedIn(true);
       setTokenExpired(false);
+
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get("https://websitedrapaula.onrender.com/api/user/profile/", {
+          const token = localStorage.getItem("access");
+          const response = await axios.get("https://websitedrapaula.onrender.com/api/users/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
-          setUserName(response.data.full_name);
+      
+          // Updated response structure check
+          if (response.data?.success && response.data?.user?.full_name) {
+            setUserName(response.data.user.full_name);
+          } else {
+            console.warn("Unexpected profile data structure:", response.data);
+            // Handle case where structure is unexpected but request succeeded
+            if (response.data?.full_name) {
+              // Fallback to direct full_name access (backward compatibility)
+              setUserName(response.data.full_name);
+            }
+          }
         } catch (error) {
           console.error("Error fetching user profile:", error);
-          if (axios.isAxiosError(error) && error.response?.status === 401) {
-            handleLogout();
+      
+          if (axios.isAxiosError(error)) {
+            if (error.response?.status === 401) {
+              handleLogout();
+            } else if (error.response?.status === 404) {
+              console.error("Profile endpoint not found - check backend URL");
+            }
           }
         }
       };
+
       fetchUserProfile();
     } else {
       setIsLoggedIn(false);
