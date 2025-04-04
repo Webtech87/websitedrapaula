@@ -225,6 +225,10 @@
   transform: translateY(-1px);
 }
 
+button.submit-button:disabled {
+  cursor: not-allowed;
+}
+
 .error-message {
   color: var(--error-color);
   background: rgba(234, 56, 76, 0.1);

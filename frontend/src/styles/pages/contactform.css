@@ -160,6 +160,10 @@ h2 {
   position: relative;
 }
 
+button.submit-button:disabled {
+  cursor: not-allowed !important;
+}
+
 .cf-contact-form label {
   display: block;
   margin-bottom: 8px;

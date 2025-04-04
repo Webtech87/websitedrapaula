@@ -9,6 +9,7 @@ const Contact = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -33,6 +34,8 @@ const Contact = () => {
   
     // Use validateForm() to check for errors
     if (!validateForm()) return;
+
+    setIsSubmitting(true);
   
     try {
       const response = await fetch("https://websitedrapaula.onrender.com/api/send_contact_email/", {
@@ -60,6 +63,8 @@ const Contact = () => {
     } catch (error) {
       console.error("Erro:", error);
       setError("Erro ao enviar email.");
+    } finally {
+      setIsSubmitting(false); // Stop loading
     }
   };
   
@@ -117,8 +122,8 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit" className="submit-button">
-                  Enviar
+                <button type="submit" className="submit-button" disabled={isSubmitting}>
+                  {isSubmitting ? "Enviando..." : "Enviar"}
                 </button>
               </form>
             )}

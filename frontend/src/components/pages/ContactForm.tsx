@@ -31,7 +31,7 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -52,17 +52,37 @@ const ContactForm = () => {
     if (!Object.values(newErrors).some((error) => error)) {
       setIsSubmitting(true);
       
-      // Simulate form submission
-      setTimeout(() => {
+      try {
+        const response = await fetch("https://websitedrapaula.onrender.com/api/send_contact_email/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            full_name: formData.name,  // Make sure the field names match backend
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          setSubmitted(true);
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setTimeout(() => {
+            setSubmitted(false);
+          }, 5000);
+        } else {
+          alert("Erro ao enviar email: " + data.error);
+        }
+      } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao enviar email.");
+      } finally {
         setIsSubmitting(false);
-        setSubmitted(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        
-        // Reset submitted state after 5 seconds
-        setTimeout(() => {
-          setSubmitted(false);
-        }, 5000);
-      }, 1500);
+      }
     }
   };
 
@@ -164,6 +184,7 @@ const ContactForm = () => {
             </div>
 
             <button 
+              className="submit-button"
               type="submit" 
               disabled={isSubmitting || submitted}
             >
