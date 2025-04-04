@@ -8,15 +8,11 @@ cd backend
 # Install dependencies
 pip install -r requirements.txt
 
-# Remove all migration files except for `__init__.py` (you should do this only if needed)
-find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+# Fake initial migrations if needed to fix order issue
+python manage.py migrate --fake users
+python manage.py migrate --fake admin
 
-# Recreate migrations
-python manage.py makemigrations
-
-# Apply migrations in the correct order
-python manage.py migrate admin
-python manage.py migrate users
+# Apply all migrations properly
 python manage.py migrate
 
 # Collect static files
