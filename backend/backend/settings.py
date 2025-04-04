@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -27,10 +28,10 @@ STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET_TEST')
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
 
 # ===================
 # APPLICATION CONFIG
@@ -65,6 +66,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be before CommonMiddleware for CORS
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,22 +124,23 @@ if not CORS_ALLOW_ALL_ORIGINS:
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5173",
+        "https://websitedrapaula-frontend.onrender.com",
+        "https://paulaserranoeducacao.pt",
     ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
+    "https://websitedrapaula.onrender.com", 
+    "https://paulaserranoeducacao.pt",
 ]
 
 # ===================
 # DATABASE CONFIG
 # ===================
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 # ===================
