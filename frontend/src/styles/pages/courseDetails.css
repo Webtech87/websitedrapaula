@@ -328,12 +328,12 @@ body {
   justify-content: center;
 }
 
-.purchase-card .price::after {
+.purchase-card .price::before {
   content: '€';
   font-size: 2.1rem;
   position: relative;
   top: 1px;
-  right: 0px;
+  right: -90px;
   margin-right: 5px;
 }
 
@@ -385,6 +385,8 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
+
+/*
 .wishlist-button {
   background: transparent;
   color: var(--text-color);
@@ -417,6 +419,8 @@ body {
 .wishlist-active svg {
   fill: var(--red-color);
 }
+
+*/
 
 .contact-info {
   margin-top: 1.5rem;
@@ -708,3 +712,6 @@ body {
     font-size: 0.9rem;
   }
 }
+
+
+
