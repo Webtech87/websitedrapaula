@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Button } from "@/components/ui/button";  // Adjusted path
 import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { courses } from "../courseData";
 import "../styles/pages/courseDetails.css";
 
-//Stripe import
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe("pk_test_51R3aKG02WJ5SC5OuibYH0CUWqCUZ2qztRC1CuYADfRvSzVpUnIrek5UHM0PrHE9VmXqMiM2VEdDYPNqfrxEbubT300FNeA3uMt");
-
 const CourseDetails = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string | undefined }>();
+  const navigate = useNavigate(); // Initialize navigate
   const course = courses.find((c) => c.id === Number(id));
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-
-  const [loading, setLoading] = useState(false); //for Stripe
 
   useEffect(() => {
     // Check if course is in wishlist (from localStorage)
@@ -27,6 +21,10 @@ const CourseDetails = () => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    console.log("Current login state:", localStorage.getItem("isLoggedIn"));
+  }, []);
 
   const toggleWishlist = () => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
@@ -46,34 +44,29 @@ const CourseDetails = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
   };
 
-  const handleCheckout = async () => {
-    try {
-      // Send request to backend to create a Checkout Session
-      const response = await fetch("http://localhost:8000/payment/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ 
-          courseId: id,
-          title: course.title,
-          price: course.price* 100,
-          //subscription: true, for Stripe
+  const handleAddToCart = () => {
+    // Check if the user is logged in
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-         }), // Send course ID
-      });
+    console.log("Login state:", {
+      rawValue: localStorage.getItem("isLoggedIn"),
+      interpretedAs: isLoggedIn,
+    });
 
-      const data = await response.json();
+    if (!isLoggedIn) {
+      // Redirect to login page with return URL
+      navigate("/login", { state: { from: window.location.pathname } });
+      return; // Exit the function to prevent further execution
+    }
 
-      if (data.checkout_url) {
-        window.location.href = data.checkout_url;  // ✅ Redirect to Stripe
-      } else {
-          console.error("Failed to create Checkout Session:", data);
-      }
-    } catch (error) {
-        console.error("Error:", error);
-    } finally {
-        setLoading(false);
+    // Add to cart logic (only if logged in)
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (!cart.includes(Number(id))) {
+      cart.push(Number(id));
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Curso adicionado ao carrinho!");
+    } else {
+      alert("O curso já está no carrinho.");
     }
   };
 
@@ -344,7 +337,7 @@ const CourseDetails = () => {
           <div className="purchase-card">
             <div className="price">{course.price}</div>
             <div className="button-container">
-              <button className="buy-button" onClick={handleCheckout}>
+              <button className="buy-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 6H21L19 16H5L3 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M8 21C8.55228 21 9 20.5523 9 20C9 19.4477 8.55228 19 8 19C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21Z" fill="currentColor"/>
@@ -352,7 +345,7 @@ const CourseDetails = () => {
                 </svg>
                 Comprar Agora
               </button>
-              <button className="cart-button">
+              <button className="cart-button" onClick={handleAddToCart}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 20C9 21.1 8.1 22 7 22C5.9 22 5 21.1 5 20C5 18.9 5.9 18 7 18C8.1 18 9 18.9 9 20Z" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M20 20C20 21.1 19.1 22 18 22C16.9 22 16 21.1 16 20C16 18.9 16.9 18 18 18C19.1 18 20 18.9 20 20Z" stroke="currentColor" strokeWidth="1.5"/>
@@ -399,5 +392,8 @@ const CourseDetails = () => {
     </div>
   );
 };
+
+// When login is successful:
+localStorage.setItem("isLoggedIn", "true"); // Use string "true"
 
 export default CourseDetails;
