@@ -1,5 +1,4 @@
 import os
-import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -28,10 +27,10 @@ STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET_TEST')
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # ===================
 # APPLICATION CONFIG
@@ -66,7 +65,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be before CommonMiddleware for CORS
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,24 +121,23 @@ if not CORS_ALLOW_ALL_ORIGINS:
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "http://localhost:5173",  # React development server (Vite)
-        "https://websitedrapaula-frontend.onrender.com",
-        "https://paulaserranoeducacao.pt",
+        "http://localhost:5173",
     ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
-    'https://websitedrapaula.onrender.com', 
-    "https://paulaserranoeducacao.pt",
-    ]
+]
 
 # ===================
 # DATABASE CONFIG
 # ===================
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # ===================
@@ -199,7 +196,7 @@ USE_TZ = True
 # STATIC & MEDIA FILES
 # ===================
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
