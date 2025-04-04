@@ -29,7 +29,7 @@ interface BackendErrors {
   non_field_errors?: string[];
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://websitedrapaula.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 const REGISTER_ENDPOINT = `${API_BASE_URL}/api/auth/register/`;
 
 const Register = () => {
