@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/pages/contactform.css";
 
-
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,7 +31,7 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -52,38 +51,18 @@ const ContactForm = () => {
     // If no errors, submit the form
     if (!Object.values(newErrors).some((error) => error)) {
       setIsSubmitting(true);
-
-      try {
-        const response = await fetch("https://websitedrapaula.onrender.com/api/send_contact_email/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            full_name: formData.name,  // Make sure the field names match backend
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-          }),
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
-          setSubmitted(true);
-          setFormData({ name: "", email: "", subject: "", message: "" });
-          setTimeout(() => {
-            setSubmitted(false);
-          }, 5000);
-        } else {
-          alert("Erro ao enviar email: " + data.error);
-        }
-      } catch (error) {
-        console.error("Erro:", error);
-        alert("Erro ao enviar email.");
-      } finally {
+      
+      // Simulate form submission
+      setTimeout(() => {
         setIsSubmitting(false);
-      }
+        setSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        
+        // Reset submitted state after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }, 1500);
     }
   };
 
@@ -108,7 +87,8 @@ const ContactForm = () => {
           </ul>
 
           <p>
-            Para um atendimento imediato durante o horário comercial (Seg-Sex: 9h-18h), também pode contactar-nos diretamente pelo telefone <strong>(+351) 965 430 026</strong>. Garantimos uma resposta por e-mail em até 24 horas úteis para todas as mensagens recebidas.
+            Para um atendimento imediato durante o horário comercial (Seg-Sex: 9h-18h), também pode contactar-nos diretamente pelo telefone <a href="tel:+351965430026" className="cf-phone-link">(+351) 965 430 026</a>. 
+            Garantimos uma resposta por e-mail em até 24 horas úteis para todas as mensagens recebidas.
           </p>
         </div>
 
