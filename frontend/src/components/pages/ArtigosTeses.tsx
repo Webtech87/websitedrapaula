@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Download } from "lucide-react";
 import "../../styles/pages/artigosTeses.css";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 
 interface Article {
   id: number;
