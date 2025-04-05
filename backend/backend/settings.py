@@ -31,7 +31,7 @@ SECRET_KEY = SECRET_KEY
 DEBUG = False
 
 # For development, allow localhost and 127.0.0.1
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'websitedrapaula.onrender.com', 'websitedrapaula-v2.onrender.com','websitedrapaula-frontend-v2.onrender.com', 'websitedrapaula-frontend.onrender.com', 'paulaserranoeducacao.pt']
 
 # ===================
 # APPLICATION CONFIG
