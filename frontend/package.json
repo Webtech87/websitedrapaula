@@ -12,6 +12,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^6.1.0",
     "axios": "^1.8.2",
+    "config": "^3.3.12",
     "date-fns": "^4.1.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^12.5.0",
