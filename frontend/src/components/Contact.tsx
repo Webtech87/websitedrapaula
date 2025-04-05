@@ -38,7 +38,7 @@ const Contact = () => {
     setIsSubmitting(true);
   
     try {
-      const response = await fetch("https://websitedrapaula.onrender.com/api/send_contact_email/", {
+      const response = await fetch("https://websitedrapaula-v2.onrender.com/api/send_contact_email/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -53,7 +53,7 @@ def send_activate_link_by_email(user, request):
     current_site = get_current_site(request)
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
-    activation_link = f"{getattr(settings, 'SITE_DOMAIN', 'https://websitedrapaula.onrender.com')}{reverse('users:confirm', kwargs={'uidb64': uid, 'token': token})}"
+    activation_link = f"{getattr(settings, 'SITE_DOMAIN', 'https://websitedrapaula.onrender.com', 'https://websitedrapaula-v2.onrender.com')}{reverse('users:confirm', kwargs={'uidb64': uid, 'token': token})}"
 
     context = {
         'user': user,

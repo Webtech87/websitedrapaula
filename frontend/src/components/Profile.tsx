@@ -40,7 +40,7 @@ const Profile = () => {
         throw new Error("No authentication token found");
       }
 
-      const response = await axios.get("https://websitedrapaula.onrender.com/api/users/profile/", {
+      const response = await axios.get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
         headers: { 
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"

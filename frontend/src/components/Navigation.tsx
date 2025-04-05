@@ -77,7 +77,7 @@ const Navigation = () => {
       const fetchUserProfile = async () => {
         try {
           const token = localStorage.getItem("access");
-          const response = await axios.get("https://websitedrapaula.onrender.com/api/users/profile/", {
+          const response = await axios.get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
       
