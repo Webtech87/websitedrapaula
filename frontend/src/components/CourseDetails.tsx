@@ -80,7 +80,7 @@ const CourseDetails = () => {
   const handleCheckout = async () => {
     try {
       // Send request to backend to create a Checkout Session
-      const response = await fetch("https://websitedrapaula.onrender.com/payment/", {
+      const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
