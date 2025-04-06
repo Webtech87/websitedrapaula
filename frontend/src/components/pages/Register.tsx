@@ -186,14 +186,11 @@ const Register = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Form submitted");
     setIsSubmitting(true);
     
     try {
       const isValid = await validateForm();
-      console.log("Validation Result:", isValid);
       if (!isValid) {
-        console.log("Validation failed, exiting...");
         setIsSubmitting(false);
         return;
       }
@@ -315,7 +312,7 @@ const Register = () => {
         <form className="register-form" onSubmit={handleSubmit} noValidate>
           {/* Personal Information */}
           <div className="form-group">
-            <label htmlFor="fullName">Full Name*</label>
+            <label htmlFor="fullName">Nome Completo</label>
             <input
               type="text"
               id="fullName"
@@ -325,13 +322,13 @@ const Register = () => {
               required
               autoComplete="name"
               className={errors.fullName ? "error-input" : ""}
-              placeholder="First and last name"
+              placeholder="Primeiro e ultimo nome "
             />
             {errors.fullName && <span className="error">{errors.fullName}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone*</label>
+            <label htmlFor="phone">Telefone</label>
             <div className="phone-input-group">
               <select
                 name="country"
@@ -340,7 +337,7 @@ const Register = () => {
                 className={`country-select ${errors.country ? "error-input" : ""}`}
                 required
               >
-                <option value="">Code</option>
+                <option value="">Indicativo</option>
                 {countries.map((c) => (
                   <option key={c.code} value={c.code}>
                     {c.phoneCode} {c.code}
@@ -356,7 +353,7 @@ const Register = () => {
                 required
                 autoComplete="tel"
                 className={`phone-input ${errors.phone ? "error-input" : ""}`}
-                placeholder="Phone number"
+                placeholder="Telefone"
               />
             </div>
             {errors.phone && <span className="error">{errors.phone}</span>}
@@ -364,7 +361,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="gender">Gender</label>
+            <label htmlFor="gender">Gênero</label>
             <select
               name="gender"
               id="gender"
@@ -372,17 +369,17 @@ const Register = () => {
               onChange={handleChange}
               className={errors.gender ? "error-input" : ""}
             >
-              <option value="">Select Gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="O">Other</option>
-              <option value="PNS">Prefer not to say</option>
+              <option value="">Selecionar gênero</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+              <option value="O">Outro</option>
+              <option value="PNS">Prefiro nao dizer</option>
             </select>
             {errors.gender && <span className="error">{errors.gender}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="birthDate">Birth Date</label>
+            <label htmlFor="birthDate">Data de Nascimento</label>
             <input
               type="date"
               id="birthDate"
@@ -424,14 +421,14 @@ const Register = () => {
               minLength={8}
               autoComplete="new-password"
               className={errors.password ? "error-input" : ""}
-              placeholder="At least 8 characters"
+              placeholder="Sua senha deve ter no mínimo 8 caracteres."
             />
             {renderPasswordStrength()}
             {errors.password && <span className="error">{errors.password}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password*</label>
+            <label htmlFor="confirmPassword">Confirmar Password*</label>
             <input
               type="password"
               id="confirmPassword"
@@ -441,7 +438,7 @@ const Register = () => {
               required
               autoComplete="new-password"
               className={errors.confirmPassword ? "error-input" : ""}
-              placeholder="Re-enter your password"
+              placeholder="Confirme sua senha"
             />
             {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
           </div>
@@ -480,7 +477,7 @@ const Register = () => {
               "Criar Conta"
             )}
           </button>
-          {console.log('isSubmitting:', isSubmitting, 'isCheckingBreach:', isCheckingBreach)}
+
           <p className="login-link">
             Já possui uma conta? <a href="/login">Fazer login</a>
           </p>
