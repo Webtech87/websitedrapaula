@@ -42,9 +42,11 @@ const Mentorship = ({ id }: { id: string }) => {
           </p>
           <h3>Vantagens da Mentoria Profissional</h3>
           <ul>
-            <li>Acesso a conhecimentos e experiências valiosos.</li>
-            <li>Insights sobre boas práticas e estratégias eficazes.</li>
-            <li>Desenvolvimento acelerado de competências.</li>
+            <p>
+              <li>Acesso a conhecimentos e experiências valiosos.</li>
+              <li>Insights sobre boas práticas e estratégias eficazes.</li>
+              <li>Desenvolvimento acelerado de competências.</li>
+            </p>            
           </ul>
           <button
             className="mentorship-button"
