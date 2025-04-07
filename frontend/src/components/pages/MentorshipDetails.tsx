@@ -153,8 +153,8 @@ const MentorshipDetails = () => {
         </div>
       </div>
 
-      <section id="faq">
-        <h2>Perguntas Frequentes</h2>
+      <section id="faq" className="mentorship-faq">
+        <h2 className="mentorship-faq-title">Perguntas Frequentes</h2>      
         {faqs.map((faq, index) => (
           <div 
             key={index} 

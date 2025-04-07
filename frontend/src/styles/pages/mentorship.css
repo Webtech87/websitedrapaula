@@ -100,9 +100,9 @@
   text-align: center;
 }
 
-li {
+.mentorship-main-content li {
   margin-bottom: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 .mentorship-main-content ul {
