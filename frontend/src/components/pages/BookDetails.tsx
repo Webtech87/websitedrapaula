@@ -104,7 +104,6 @@ const BookDetails = () => {
             courseId: id,
             title: book.title,
             price: book.price * 100,
-            image: book.image,
             // subscription: true, // For Stripe if needed later
           }),
         });

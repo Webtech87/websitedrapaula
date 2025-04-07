@@ -62,11 +62,6 @@ def payment_test(request):
 
             price = data.get('price', 0)
             title = data.get('title')
-            image = data.get('image')  # 🔥 Add this
-
-            # Optional: convert relative path to full URL
-            if image and image.startswith("/"):
-                image = request.build_absolute_uri(image)
 
 
             success_url = request.build_absolute_uri(reverse('payment:payment_completed'))
@@ -83,7 +78,6 @@ def payment_test(request):
                             'currency': 'eur',
                             'product_data': {
                                 'name': title,
-                                'images': [image] if image else [],
                             },
                             'unit_amount': price,  # price in cents
                         },

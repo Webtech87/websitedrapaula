@@ -45,7 +45,7 @@ export const books: Book[] = [
   {
     id: 1,
     image: book1,
-    title: "A crianca e a Motricidade Fina",
+    title: "A Criança e a Motricidade Fina",
     description: "A motricidade fina é a maneira como usamos os nossos braços, mãos e dedos. Refere-se às competências necessárias para manipular um objeto, ou seja, como usar a mão e os dedos de forma precisa, de acordo com a exigência da atividade.O desenvolvimento da motricidade fina é essencial para a interação da criança com o meio e acontece quando a criança se relaciona com objetos e usa ferramentas, por exemplo nas atividades da vida diária. Este livro foca-se no desenvolvimento da motricidade fina, nas diversas faixas etárias da infância, ilustrando a sua relação com o dia a dia da criança. Para além do desenvolvimento, explora as competências necessárias para que a motricidade fina se desenvolva sem problemas.São ainda, aconselhados equipamentos e materiais, que podem ajudar as crianças que apresentam dificuldades nesta área.",
     price: 14,
     category: "impresso",
@@ -71,7 +71,7 @@ export const books: Book[] = [
   {
     id: 2,
     image: book2,
-    title: "A Integracao Sensorial",
+    title: "A Integração Sensorial",
     description: "A integração sensorial é o processo neurológico que organiza as nossas sensações, é a base para todas as formas de aprendizagem para que possamos viver no mundo e este faça sentido. É o alicerce para a aprendizagem académica, para as competências necessárias à realização das atividades da vida diária e sociais, e mesmo para a capacidade de ter empatia pelo outro.Aquilo que vemos, cheiramos, ouvimos, saboreamos ou tocamos é decifrado a cada momento na nossa experiência de viver, juntamente com os nossos «sentidos secretos»: vestibular e propriocetivo. Quando a criança tem problemas no processamento das sensações (disfunção de integração sensorial) tem dificuldade em usar a informação recebida pelos sentidos para conseguir funcionar eficientemente nas atividades quotidianas - podem surgir problemas de coordenação motora, dificuldades na regulação do sono, na alimentação, na atenção, no desempenho das atividades de autocuidado, na aprendizagem, no brincar e no desenvolvimento emocional e social.",
     price: 14.90,
     category: "impresso",
@@ -95,7 +95,7 @@ export const books: Book[] = [
   {
     id: 3,
     image: book3,
-    title: "Brincar e Integracao Sensorial Nos Primeiros Anos",
+    title: "Brincar e Integração Sensorial nos Primeiros Anos",
     description: "Todos os bebés nascem com características que os tornam únicos. Gradualmente vão-se adaptando à família e ao meio onde nascem e, de forma natural, o desenvolvimento acontece e a autonomia vai surgindo, à medida que se envolvem e se movem no ciclo de vida da família. Desenvolvimento é o termo usado para descrever as mudanças no crescimento físico da criança e na sua capacidade de aprender em termos de comportamento sensório-motor, socioemocional, cognitivo e em competências de comunicação. Todas estas áreas estão ligadas e cada uma depende e influencia as outras, sendo visíveis no comportamento do bebé e na sua cada vez maior autonomia.",
     price: 16.00,
     originalPrice: 24.99,
@@ -175,7 +175,7 @@ export const books: Book[] = [
   {
     id: 6,
     image: book6,
-    title: "A Linguagem e o Brincar em Condicoes Neurodiversas (eBook)",
+    title: "A Linguagem e o Brincar em Condições Neurodiversas (eBook)",
     description: "Uma coleção completa de atividades e brincadeiras sensoriais para estimular o desenvolvimento infantil de forma natural e divertida.",
     price: 7.99,
     originalPrice: 11.99,
@@ -202,7 +202,7 @@ export const books: Book[] = [
   {
     id: 7,
     image: book7,
-    title: "Instrumentos de Avaliacao do Modelo Ludico (eBook)",
+    title: "Instrumentos de Avaliação do Modelo Lúdico (eBook)",
     description: "Um guia essencial sobre os marcos do desenvolvimento infantil e como identificar precocemente sinais que possam necessitar de atenção especializada.",
     price: 8.99,
     originalPrice: 12.99,
@@ -229,7 +229,7 @@ export const books: Book[] = [
   {
     id: 8,
     image: book8,
-    title: "The Role of play in child assessment and intervention (eBook)",
+    title: "The Role of Play in Child Assessment and Intervention (eBook)",
     description: "Um manual completo com estratégias práticas para promover a autonomia das crianças nos primeiros anos de vida, seguindo princípios de abordagens baseadas em evidências.",
     price: 6.99,
     originalPrice: 9.99,
