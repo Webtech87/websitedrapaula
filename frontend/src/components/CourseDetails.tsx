@@ -5,6 +5,20 @@ import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { courses } from "../courseData";
 import "../styles/pages/courseDetails.css";
 
+//Stripe import
+import { loadStripe } from "@stripe/stripe-js";
+ 
+// Get the publishable key from Vite env variables
+const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+
+// Optional: check if key exists to avoid silent failure
+if (!stripePublicKey) {
+  throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_PUBLISHABLE_KEY is defined in your .env file.");
+}
+
+// Load Stripe with the publishable key
+export const stripePromise = loadStripe(stripePublicKey);
+
 const CourseDetails = () => {
   const { id } = useParams<{ id: string | undefined }>();
   const navigate = useNavigate(); // Initialize navigate
@@ -12,6 +26,8 @@ const CourseDetails = () => {
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
+  const [loading, setLoading] = useState(false); //for Stripe
 
   useEffect(() => {
     // Check if course is in wishlist (from localStorage)
@@ -67,6 +83,37 @@ const CourseDetails = () => {
       alert("Curso adicionado ao carrinho!");
     } else {
       alert("O curso já está no carrinho.");
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      // Send request to backend to create a Checkout Session
+      const response = await fetch("http://localhost:8000/payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          courseId: id,
+          title: course.title,
+          price: course.price * 100,
+          //subscription: true, for Stripe
+
+         }), // Send course ID
+      });
+
+      const data = await response.json();
+
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;  // ✅ Redirect to Stripe
+      } else {
+          console.error("Failed to create Checkout Session:", data);
+      }
+    } catch (error) {
+        console.error("Error:", error);
+    } finally {
+        setLoading(false);
     }
   };
 
@@ -337,7 +384,7 @@ const CourseDetails = () => {
           <div className="purchase-card">
             <div className="price">{course.price}</div>
             <div className="button-container">
-              <button className="buy-button">
+              <button className="buy-button" onClick={handleCheckout}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 6H21L19 16H5L3 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M8 21C8.55228 21 9 20.5523 9 20C9 19.4477 8.55228 19 8 19C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21Z" fill="currentColor"/>
