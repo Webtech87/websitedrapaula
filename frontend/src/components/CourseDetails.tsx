@@ -8,7 +8,16 @@ import "../styles/pages/courseDetails.css";
 //Stripe import
 import { loadStripe } from "@stripe/stripe-js";
  
-const stripePromise = loadStripe("pk_test_51R3aKG02WJ5SC5OuibYH0CUWqCUZ2qztRC1CuYADfRvSzVpUnIrek5UHM0PrHE9VmXqMiM2VEdDYPNqfrxEbubT300FNeA3uMt");
+// Get the publishable key from Vite env variables
+const stripePublicKey = import.meta.env.VITE_STRIPE_LIVE_PUBLISHABLE_KEY;
+
+// Optional: check if key exists to avoid silent failure
+if (!stripePublicKey) {
+  throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_LIVE_PUBLISHABLE_KEY is defined in your .env file.");
+}
+
+// Load Stripe with the publishable key
+export const stripePromise = loadStripe(stripePublicKey);
 
 const CourseDetails = () => {
   const { id } = useParams<{ id: string | undefined }>();

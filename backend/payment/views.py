@@ -11,7 +11,7 @@ import json
 
 
 
-stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+stripe.api_key = settings.STRIPE_LIVE_SECRET_KEY
 
 
 @csrf_exempt
