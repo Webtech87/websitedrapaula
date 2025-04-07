@@ -6,6 +6,20 @@ import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen } from 'l
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 
+//Stripe import
+import { loadStripe } from "@stripe/stripe-js";
+ 
+// Get the publishable key from Vite env variables
+const stripePublicKey = import.meta.env.VITE_STRIPE_LIVE_PUBLISHABLE_KEY;
+
+// Optional: check if key exists to avoid silent failure
+if (!stripePublicKey) {
+  throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_LIVE_PUBLISHABLE_KEY is defined in your .env file.");
+}
+
+// Load Stripe with the publishable key
+export const stripePromise = loadStripe(stripePublicKey);
+
 const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -21,6 +35,8 @@ const BookDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const [loading, setLoading] = useState(false); //for Stripe
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,18 +86,41 @@ const BookDetails = () => {
     }
   };
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (!user) {
       navigate('/login');
       showNotification('Por favor, faça login para finalizar a compra');
       return;
     }
-
+  
     if (book) {
-      addToCart(book);
-      setIsAddedToCart(true);
-      showNotification('Redirecionando para o checkout...');
-      navigate('/checkout');
+      try {
+        const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            courseId: id,
+            title: book.title,
+            price: book.price * 100,
+            image: book.image,
+            // subscription: true, // For Stripe if needed later
+          }),
+        });
+  
+        const data = await response.json();
+  
+        if (data.checkout_url) {
+          window.location.href = data.checkout_url;  // ✅ Redirect to Stripe
+        } else {
+          console.error("Failed to create Checkout Session:", data);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

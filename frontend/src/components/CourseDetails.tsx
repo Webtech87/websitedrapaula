@@ -98,6 +98,7 @@ const CourseDetails = () => {
           courseId: id,
           title: course.title,
           price: course.price * 100,
+          image: course.image,
           //subscription: true, for Stripe
 
          }), // Send course ID
