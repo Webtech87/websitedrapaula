@@ -170,7 +170,7 @@ export const books: Book[] = [
     relatedBooks: [2, 3],
     bestSeller: true,
     newRelease: true,
-    downloadUrl: "/pdfs/Integracao-Sensorial-Engajamento-Ocupacional.pdf"
+    downloadUrl: "/pdfs/ebook-integracao-sensorial-engajamento-ocupacional.pdf"
   },
   {
     id: 6,
@@ -197,7 +197,7 @@ export const books: Book[] = [
     relatedBooks: [5, 7],
     bestSeller: true,
     newRelease: true,
-    downloadUrl: "/pdfs/Guia-Pratico-Brincadeiras-Sensoriais.pdf"
+    downloadUrl: "/pdfs/ebook-guia-pratico-brincadeiras-sensoriais.pdf"
   },
   {
     id: 7,
@@ -224,7 +224,7 @@ export const books: Book[] = [
     relatedBooks: [6, 8],
     bestSeller: false,
     newRelease: true,
-    downloadUrl: "/pdfs/Instrumentos-Avaliacao-Brincar-Deficiencia-Fisica.pdf"
+    downloadUrl: "/pdfs/ebook-instrumentos-avaliacao-brincar-deficiencia-fisica.pdf"
   },
   {
     id: 8,
@@ -252,7 +252,7 @@ export const books: Book[] = [
     relatedBooks: [4, 7],
     bestSeller: true,
     newRelease: true,
-    downloadUrl: "/pdfs/E-book The_Role_of_Play_in_Child_Assessement and.pdf"
+    downloadUrl: "/pdfs/ebook-the-role-of-play-in-child-assessement.pdf"
   }
 ];
 
