@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { books } from '../../bookData';
+import { books, Book } from '../../bookData';
 import '../../styles/pages/bookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
@@ -17,19 +17,14 @@ if (!stripePublicKey) {
   throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_LIVE_PUBLISHABLE_KEY is defined in your .env file.");
 }
 
-// Load Stripe with the publishable key
-export const stripePromise = loadStripe(stripePublicKey);
-
 const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
   const [user, setUser] = useState<boolean>(true); // Replace with actual auth check
-  const book = books.find((book: { id: number }) => book.id === Number(id)) as {
-    tags: string[];
-    [key: string]: any;
-  } | undefined;
+  
+  const book = id ? books.find((book: Book) => book.id === Number(id)) : undefined;
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -290,21 +285,26 @@ const BookDetails = () => {
             </div>
 
             <div className="book-actions">
-              <button
-                className={`cart-button ${isAddedToCart ? 'added' : ''}`}
-                onClick={handleAddToCart}
-                disabled={isAddedToCart || book.availability === 'out-of-stock'}
-              >
-                <ShoppingCart size={18} />
-                <span>{isAddedToCart ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}</span>
-              </button>
-              <button
-                className="buy-button"
-                onClick={handleBuyNow}
-                disabled={book.availability === 'out-of-stock'}
-              >
-                Comprar Agora
-              </button>
+              <div className="buttons-container">
+                <button
+                  className={`cart-button ${isAddedToCart ? 'added' : ''}`}
+                  onClick={handleAddToCart}
+                  disabled={isAddedToCart || book.availability === 'out-of-stock'}
+                >
+                  <ShoppingCart size={18} />
+                  <span>{isAddedToCart ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}</span>
+                </button>
+                <button
+                  className="buy-button"
+                  onClick={handleBuyNow}
+                  disabled={book.availability === 'out-of-stock'}
+                >
+                  Comprar Agora
+                </button>
+              </div>
+              <p className="exclusive-sale-message">
+                ⚠️ Atenção: Este produto tem venda exclusiva para Portugal🇵🇹. Envios apenas para território português.
+              </p>
             </div>
           </div>
         </div>
