@@ -7,15 +7,15 @@ export const courses = [
   {
     id: 1,
     image: img1,
-    title: "Brincar e TO-Teoria-Pratica",
+    title: "O Brincar na Terapia Ocupacional – Da teoria à prática",
     description: `
-O Brincar na Terapia ocupacional – Da teoria à prática
+O Brincar na Terapia Ocupacional – Da teoria à prática
 
 Curso
 Formação 4 dias presenciais
 
 Formadores:
- Paula Serrano – Terapeuta Ocupacional
+Paula Serrano – Terapeuta Ocupacional
 
 
 Enquadramento  
@@ -62,7 +62,7 @@ Exposição teórica discussão de grupos e exercícios práticos
   {
     id: 2,
     image: img2,
-    title: "Raciocinio clinico e intervencao em integracao sensorial nos primeiros anos de vida",
+    title: "Raciocínio Clínico e Intervenção em Integração Sensorial nos Primeiros Anos de Vida",
     description: `
 Raciocínio clínico e intervenção em integração sensorial nos primeiros anos de vida
 
@@ -103,7 +103,7 @@ Conteúdos Programáticos:
 • Fidelidade à integração sensorial de Ayres na prática clínica
 
 Metodologia:
-As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.
+As sessões de trabalho serão presenciais, teóricas e práticas com análise de vídeos de casos clínicos.
 `,
     price: 350,
     instructor: "Paula Serrano",
@@ -119,9 +119,9 @@ As sessões de trabalho serão presenciais, teóricas e práticas com analise de
   {
     id: 3,
     image: img3,
-    title: "Integracao Sensorial: Avaliacao e Raciocínio Clinico",
+    title: "Integração Sensorial: Avaliação e Raciocínio Clínico",
     description: `
-Integração sensorial: Avaliação e Raciocínio clínico
+Integração sensorial: Avaliação e Raciocínio Clínico
 
 Programa da ação de formação:
 Ação de formação sobre Avaliação e raciocínio Clínico em integração sensorial - 24 horas
@@ -173,9 +173,9 @@ As sessões de trabalho serão teóricas e práticas com análise de vídeos.
   {
     id: 4,
     image: img4,
-    title: "Avaliação e Raciocínio clínico na primeira Infância – foco no brincar e integração sensorial",
+    title: "Avaliação e Raciocínio Clínico na Primeira Infância – foco no brincar e integração sensorial",
     description: `
-Avaliação e Raciocínio clínico na primeira Infância – foco no brincar e integração sensorial
+Avaliação e Raciocínio Clínico na Primeira Infância – foco no brincar e integração sensorial
 
 Programa da ação de formação:
 Ação de formação sobre Avaliação e raciocínio clínico na Primeira Infância – Foco no brincar e integração sensorial

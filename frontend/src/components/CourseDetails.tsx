@@ -147,7 +147,7 @@ const CourseDetails = () => {
             <div className="description-container">
               <div className={`description-text ${!isDescriptionExpanded ? 'collapsed' : ''}`}>
                 <div className="description-structure">
-                  {course.title?.includes("Brincar e TO") && (
+                  {course.title?.includes("Brincar na Terapia Ocupacional") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação 4 dias presenciais com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -176,7 +176,7 @@ const CourseDetails = () => {
                             <li>Entrevista</li>
                             <li>Questionários: The Play History (Takata)</li>
                             <li>Organização da observação em contexto natural</li>
-                            <li>Instrumentos: Revised Knox Preschool Play scale (Knox); Test of Playfulness (TOP) (Bundy)</li>
+                            <li>Instrumentos: Revised Knox Preschool Play Scale (Knox); Test of Playfulness (TOP) (Bundy)</li>
                             <li>Definição dos objetivos terapêuticos</li>
                           </ul>
                         </div>
@@ -194,11 +194,11 @@ const CourseDetails = () => {
                       </div>
                       
                       <h3 className="description-subtitle">Metodologia</h3>
-                      <p>Exposição teórica discussão de grupos e exercícios práticos</p>
+                      <p>Exposição teórica, discussão de grupos e exercícios práticos</p>
                     </>
                   )}
                   
-                  {course.title?.includes("Raciocinio clinico e intervencao") && (
+                  {course.title?.includes("Raciocínio Clínico e Intervenção") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração - 24 horas com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -242,11 +242,11 @@ const CourseDetails = () => {
                       </div>
                       
                       <h3 className="description-subtitle">Metodologia</h3>
-                      <p>As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.</p>
+                      <p>As sessões de trabalho serão presenciais, teóricas e práticas com análise de vídeos de casos clínicos.</p>
                     </>
                   )}
                   
-                  {course.title?.includes("Integracao Sensorial: Avaliacao") && (
+                  {course.title?.includes("Integração Sensorial: Avaliação") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação de 24 horas com Paula Serrano – Mestre em Terapia Ocupacional- área de especialização Integração Sensorial.</p>
@@ -290,7 +290,7 @@ const CourseDetails = () => {
                     </>
                   )}
                   
-                  {course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
+                  {course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
                     <div data-course="Avaliacao">
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração – 21 horas com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -335,10 +335,10 @@ const CourseDetails = () => {
                     </div>
                   )}
                   
-                  {!course.title?.includes("Brincar e TO") && 
-                   !course.title?.includes("Raciocinio clinico e intervencao") && 
-                   !course.title?.includes("Integracao Sensorial: Avaliacao") && 
-                   !course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
+                  {!course.title?.includes("Brincar na Terapia Ocupacional") && 
+                   !course.title?.includes("Raciocínio Clínico e Intervenção") && 
+                   !course.title?.includes("Integração Sensorial: Avaliação") && 
+                   !course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
                     <p>{course.description}</p>
                   )}
                 </div>
@@ -407,7 +407,7 @@ const CourseDetails = () => {
               
             </div>
             <div className="contact-info">
-            Para esclarecimento de qualquer duvida, contate a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
+            Para esclarecimento de qualquer dúvida, contacte a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
             </div>
           </div>
           
