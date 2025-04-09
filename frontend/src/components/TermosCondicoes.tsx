@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TermosCondicoes.css";
+import "../styles/termosCondicoes.css";
 
 const TermosCondicoes = () => {
   return (
