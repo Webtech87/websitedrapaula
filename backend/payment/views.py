@@ -59,31 +59,35 @@ def payment_test(request):
         print("✅ Received POST request for checkout!")
         try:
             data = json.loads(request.body)
-
-            price = data.get('price', 0)
-            title = data.get('title')
-
+            cart_items = data.get("cartItems", [])  # expecting a list of items
 
             success_url = request.build_absolute_uri(reverse('payment:payment_completed'))
             cancel_url = request.build_absolute_uri(reverse('payment:payment_canceled'))
 
-            #teste real payment
-            session_data = {
-                'payment_method_types': ['card'],
-                #'client_reference_id': '1',
-                #'customer': customer.id,
-                'line_items': [
-                    {
+            line_items = []
+            for item in cart_items:
+                try:
+                    title = item.get("title")
+                    price = int(item.get("price", 0))
+                    quantity = int(item.get("quantity", 1))
+                    
+                    if not title or price <= 0:
+                        continue  # skip invalid items
+
+                    line_items.append({
                         'price_data': {
                             'currency': 'eur',
-                            'product_data': {
-                                'name': title,
-                            },
-                            'unit_amount': price,  # price in cents
+                            'product_data': {'name': title},
+                            'unit_amount': price,
                         },
-                        'quantity': 1,
-                    },
-                ],
+                        'quantity': quantity,
+                    })
+                except Exception as e:
+                    print("Skipping invalid cart item:", item, str(e))
+
+            session_data = {
+                'payment_method_types': ['card'],
+                'line_items': line_items,
                 'mode': 'payment',
                 'payment_intent_data': {
                     'setup_future_usage': 'off_session'
@@ -94,9 +98,11 @@ def payment_test(request):
 
             session = stripe.checkout.Session.create(**session_data)
 
-            return JsonResponse({'checkout_url': session.url})  # ✅ Return session URL to frontend
+            return JsonResponse({'checkout_url': session.url})
+
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
+
     print("❌ Invalid request method:", request.method)
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
