@@ -289,7 +289,7 @@ const Cart = () => {
                             </div>
                             <button 
                                 className="checkout-button"
-                                onClick={() => console.log("Proceed to checkout")}
+                                onClick={handleCheckout}
                             >
                                 Finalizar Compra
                                 <ArrowRight size={18} />

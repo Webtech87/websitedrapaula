@@ -115,10 +115,14 @@ const BookDetails = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ 
-            courseId: id,
-            title: book.title,
-            price: book.price * 100,
-            // subscription: true, // For Stripe if needed later
+            cartItems: [
+              {
+                bookId: id,
+                title: course.title,
+                price: course.price * 100,
+                //subscription: true, for Stripe
+              }
+            ]
           }),
         });
   

@@ -114,11 +114,14 @@ const CourseDetails = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          courseId: id,
-          title: course.title,
-          price: course.price * 100,
-          //subscription: true, for Stripe
-
+          cartItems: [
+            {
+              courseId: id,
+              title: course.title,
+              price: course.price * 100,
+              //subscription: true, for Stripe
+            }
+          ]
          }), // Send course ID
       });
 
