@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
-import { Button } from "@/components/ui/button";  // Adjusted path
+import { useParams, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { courses } from "../courseData";
+import { useCart, Course } from "../context/CartContext";
 import "../styles/pages/courseDetails.css";
 
 //Stripe import
@@ -21,7 +22,8 @@ export const stripePromise = loadStripe(stripePublicKey);
 
 const CourseDetails = () => {
   const { id } = useParams<{ id: string | undefined }>();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const course = courses.find((c) => c.id === Number(id));
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -75,14 +77,10 @@ const CourseDetails = () => {
       return; // Exit the function to prevent further execution
     }
 
-    // Add to cart logic (only if logged in)
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    if (!cart.includes(Number(id))) {
-      cart.push(Number(id));
-      localStorage.setItem("cart", JSON.stringify(cart));
+    // Add to cart using the context
+    if (course) {
+      addToCart(course, 'course');
       alert("Curso adicionado ao carrinho!");
-    } else {
-      alert("O curso já está no carrinho.");
     }
   };
 
@@ -147,7 +145,7 @@ const CourseDetails = () => {
             <div className="description-container">
               <div className={`description-text ${!isDescriptionExpanded ? 'collapsed' : ''}`}>
                 <div className="description-structure">
-                  {course.title?.includes("Brincar na Terapia Ocupacional") && (
+                  {course.title?.includes("Brincar e TO") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação 4 dias presenciais com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -176,7 +174,7 @@ const CourseDetails = () => {
                             <li>Entrevista</li>
                             <li>Questionários: The Play History (Takata)</li>
                             <li>Organização da observação em contexto natural</li>
-                            <li>Instrumentos: Revised Knox Preschool Play Scale (Knox); Test of Playfulness (TOP) (Bundy)</li>
+                            <li>Instrumentos: Revised Knox Preschool Play scale (Knox); Test of Playfulness (TOP) (Bundy)</li>
                             <li>Definição dos objetivos terapêuticos</li>
                           </ul>
                         </div>
@@ -194,11 +192,11 @@ const CourseDetails = () => {
                       </div>
                       
                       <h3 className="description-subtitle">Metodologia</h3>
-                      <p>Exposição teórica, discussão de grupos e exercícios práticos</p>
+                      <p>Exposição teórica discussão de grupos e exercícios práticos</p>
                     </>
                   )}
                   
-                  {course.title?.includes("Raciocínio Clínico e Intervenção") && (
+                  {course.title?.includes("Raciocinio clinico e intervencao") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração - 24 horas com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -242,11 +240,11 @@ const CourseDetails = () => {
                       </div>
                       
                       <h3 className="description-subtitle">Metodologia</h3>
-                      <p>As sessões de trabalho serão presenciais, teóricas e práticas com análise de vídeos de casos clínicos.</p>
+                      <p>As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.</p>
                     </>
                   )}
                   
-                  {course.title?.includes("Integração Sensorial: Avaliação") && (
+                  {course.title?.includes("Integracao Sensorial: Avaliacao") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação de 24 horas com Paula Serrano – Mestre em Terapia Ocupacional- área de especialização Integração Sensorial.</p>
@@ -290,7 +288,7 @@ const CourseDetails = () => {
                     </>
                   )}
                   
-                  {course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
+                  {course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
                     <div data-course="Avaliacao">
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração – 21 horas com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -335,10 +333,10 @@ const CourseDetails = () => {
                     </div>
                   )}
                   
-                  {!course.title?.includes("Brincar na Terapia Ocupacional") && 
-                   !course.title?.includes("Raciocínio Clínico e Intervenção") && 
-                   !course.title?.includes("Integração Sensorial: Avaliação") && 
-                   !course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
+                  {!course.title?.includes("Brincar e TO") && 
+                   !course.title?.includes("Raciocinio clinico e intervencao") && 
+                   !course.title?.includes("Integracao Sensorial: Avaliacao") && 
+                   !course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
                     <p>{course.description}</p>
                   )}
                 </div>
@@ -400,13 +398,13 @@ const CourseDetails = () => {
                 </svg>
                 Adicionar ao Carrinho
               </button>
-
+              
               <div className="disclaimer-text">
                 Obs.: O valor final pode sofrer variações devido à taxa de câmbio e/ou impostos locais, conforme a política do meio de pagamento escolhido.
-              </div>          
+              </div>
             </div>
             <div className="contact-info">
-            Para esclarecimento de qualquer dúvida, contacte a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
+            Para esclarecimento de qualquer duvida, contate a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
             </div>
           </div>
           
@@ -433,8 +431,5 @@ const CourseDetails = () => {
     </div>
   );
 };
-
-// When login is successful:
-localStorage.setItem("isLoggedIn", "true"); // Use string "true"
 
 export default CourseDetails;

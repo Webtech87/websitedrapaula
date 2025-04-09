@@ -17,6 +17,10 @@ if (!stripePublicKey) {
   throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_LIVE_PUBLISHABLE_KEY is defined in your .env file.");
 }
 
+// Load Stripe with the publishable key
+export const stripePromise = loadStripe(stripePublicKey);
+
+
 const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -75,7 +79,8 @@ const BookDetails = () => {
     }
 
     if (book) {
-      addToCart(book);
+      // Use the updated addToCart with itemType parameter
+      addToCart(book, 'book');
       setIsAddedToCart(true);
       showNotification('Adicionado ao carrinho com sucesso!');
     }
