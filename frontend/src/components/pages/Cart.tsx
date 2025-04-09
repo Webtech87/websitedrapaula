@@ -18,6 +18,7 @@ if (!stripePublicKey) {
 // Load Stripe with the publishable key
 export const stripePromise = loadStripe(stripePublicKey);
 
+
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -143,7 +144,7 @@ const Cart = () => {
         } catch (error) {
           console.error("Error during checkout:", error);
         }
-      };
+    };
 
     return (
         <div className={`cart-page ${isLoaded ? 'fade-in' : ''}`}>
@@ -300,6 +301,7 @@ const Cart = () => {
                 <Link to="/" className="continue-shopping">
                     Continuar Comprando
                 </Link>
+                
             </div>
         </div>
     );

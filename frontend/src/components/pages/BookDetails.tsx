@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { books, Book } from '../../bookData';
 import '../../styles/pages/bookDetails.css';
-import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen } from 'lucide-react';
+import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen, Check, X } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 
@@ -31,8 +31,12 @@ const BookDetails = () => {
   const book = id ? books.find((book: Book) => book.id === Number(id)) : undefined;
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
+  
+  // Toast notification states
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
+  
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const [loading, setLoading] = useState(false); //for Stripe
@@ -44,28 +48,38 @@ const BookDetails = () => {
     }
   }, [book, wishlist]);
 
-  const showNotification = (message: string) => {
-    setPopupMessage(message);
-    setShowPopup(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 3000);
+  // Add effect to automatically hide toast after delay
+  useEffect(() => {
+    let timer: number;
+    if (showToast) {
+      timer = window.setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [showToast]);
+
+  // New function to show toast notifications
+  const displayToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
+    setToastMessage(message);
+    setToastType(type);
+    setShowToast(true);
   };
 
   const handleWishlist = () => {
     if (!user) {
       navigate('/login');
-      showNotification('Por favor, faça login para adicionar à lista de desejos');
+      displayToast('Por favor, faça login para adicionar à lista de desejos', 'info');
       return;
     }
 
     if (book) {
       if (isWishlisted) {
         removeFromWishlist(book.id);
-        showNotification('Removido da lista de desejos!');
+        displayToast('Removido da lista de desejos!', 'success');
       } else {
         addToWishlist(book.id);
-        showNotification('Adicionado à lista de desejos!');
+        displayToast('Adicionado à lista de desejos!', 'success');
       }
       setIsWishlisted(!isWishlisted);
     }
@@ -74,7 +88,7 @@ const BookDetails = () => {
   const handleAddToCart = () => {
     if (!user) {
       navigate('/login');
-      showNotification('Por favor, faça login para adicionar ao carrinho');
+      displayToast('Por favor, faça login para adicionar ao carrinho', 'info');
       return;
     }
 
@@ -82,14 +96,14 @@ const BookDetails = () => {
       // Use the updated addToCart with itemType parameter
       addToCart(book, 'book');
       setIsAddedToCart(true);
-      showNotification('Adicionado ao carrinho com sucesso!');
+      displayToast('Livro adicionado ao carrinho com sucesso!', 'success');
     }
   };
 
   const handleBuyNow = async () => {
     if (!user) {
       navigate('/login');
-      showNotification('Por favor, faça login para finalizar a compra');
+      displayToast('Por favor, faça login para finalizar a compra', 'info');
       return;
     }
   
@@ -163,6 +177,25 @@ const BookDetails = () => {
 
   return (
     <div className="book-details-container">
+      {/* Toast Notification */}
+      {showToast && (
+        <div className={`toast-notification ${toastType}`}>
+          <div className="toast-content">
+            {toastType === 'success' && <Check size={18} className="toast-icon" />}
+            {toastType === 'error' && <X size={18} className="toast-icon" />}
+            {toastType === 'info' && <AlertCircle size={18} className="toast-icon" />}
+            <span>{toastMessage}</span>
+          </div>
+          <button 
+            className="toast-close" 
+            onClick={() => setShowToast(false)}
+            aria-label="Fechar notificação"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
       <div className="book-details-header">
         <Link to="/#livros" className="back-button">
           <ChevronLeft size={16} />
@@ -314,12 +347,6 @@ const BookDetails = () => {
           </div>
         </div>
       </div>
-
-      {showPopup && (
-        <div className="notification-popup">
-          <div className="notification-content">{popupMessage}</div>
-        </div>
-      )}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Check } from "lucide-react";
+import { ChevronDown, ChevronUp, Check, Heart, ShoppingCart, X } from "lucide-react";
 import { courses } from "../courseData";
-import { useCart, Course } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import "../styles/pages/courseDetails.css";
 
 //Stripe import
@@ -24,52 +25,71 @@ const CourseDetails = () => {
   const { id } = useParams<{ id: string | undefined }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
   const course = courses.find((c) => c.id === Number(id));
-  const [isInWishlist, setIsInWishlist] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  
+  // Add notification state
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationType, setNotificationType] = useState<'success' | 'error'>('success');
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const [loading, setLoading] = useState(false); //for Stripe
+  
+  // Check if the course is in the wishlist using the context
+  const isInWishlist = wishlist.includes(Number(id));
 
   useEffect(() => {
-    // Check if course is in wishlist (from localStorage)
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setIsInWishlist(wishlist.includes(Number(id)));
-    
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
-    console.log("Current login state:", localStorage.getItem("isLoggedIn"));
-  }, []);
+    // Hide notification after 3 seconds
+    let timer: number;
+    if (showNotification) {
+      timer = window.setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [showNotification]);
 
   const toggleWishlist = () => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    
-    if (isInWishlist) {
-      const newWishlist = wishlist.filter((itemId: number) => itemId !== Number(id));
-      localStorage.setItem("wishlist", JSON.stringify(newWishlist));
-    } else {
-      wishlist.push(Number(id));
-      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    // Check if the user is logged in
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      // Redirect to login page with return URL
+      navigate("/login", { state: { from: window.location.pathname } });
+      return; // Exit the function to prevent further execution
     }
-    
-    setIsInWishlist(!isInWishlist);
+
+    // Use the wishlist context to add/remove the course
+    if (isInWishlist) {
+      removeFromWishlist(Number(id));
+      showToast("Curso removido dos favoritos", "success");
+    } else {
+      addToWishlist(Number(id));
+      showToast("Curso adicionado aos favoritos", "success");
+    }
   };
 
   const toggleDescription = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
   };
 
+  // Function to show toast notification
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setNotificationMessage(message);
+    setNotificationType(type);
+    setShowNotification(true);
+  };
+
   const handleAddToCart = () => {
     // Check if the user is logged in
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-    console.log("Login state:", {
-      rawValue: localStorage.getItem("isLoggedIn"),
-      interpretedAs: isLoggedIn,
-    });
 
     if (!isLoggedIn) {
       // Redirect to login page with return URL
@@ -80,7 +100,8 @@ const CourseDetails = () => {
     // Add to cart using the context
     if (course) {
       addToCart(course, 'course');
-      alert("Curso adicionado ao carrinho!");
+      // Show toast notification instead of alert
+      showToast("Curso adicionado ao carrinho!", "success");
     }
   };
 
@@ -126,6 +147,27 @@ const CourseDetails = () => {
 
   return (
     <div className="course-details" data-course-id={id}>
+      {/* Toast Notification */}
+      {showNotification && (
+        <div className={`toast-notification ${notificationType}`}>
+          <div className="toast-content">
+            {notificationType === 'success' ? (
+              <Check size={18} className="toast-icon" />
+            ) : (
+              <X size={18} className="toast-icon" />
+            )}
+            <span>{notificationMessage}</span>
+          </div>
+          <button 
+            className="toast-close" 
+            onClick={() => setShowNotification(false)}
+            aria-label="Fechar notificação"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
       <h1>{course.title}</h1>
       
       <div className="course-image">
@@ -380,7 +422,20 @@ const CourseDetails = () => {
         
         <div className="purchase-section">
           <div className="purchase-card">
-            <div className="price">{course.price}</div>
+            <div className="price-wishlist-container">
+              <div className="price">{course.price}</div>
+              <button 
+                className="wishlist-button"
+                onClick={toggleWishlist}
+                aria-label={isInWishlist ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+              >
+                <Heart 
+                  size={24} 
+                  fill={isInWishlist ? "#ff6b6b" : "none"} 
+                  color={isInWishlist ? "#ff6b6b" : "#757575"} 
+                />
+              </button>
+            </div>
             <div className="button-container">
               <button className="buy-button" onClick={handleCheckout}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -391,11 +446,7 @@ const CourseDetails = () => {
                 Comprar Agora
               </button>
               <button className="cart-button" onClick={handleAddToCart}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 20C9 21.1 8.1 22 7 22C5.9 22 5 21.1 5 20C5 18.9 5.9 18 7 18C8.1 18 9 18.9 9 20Z" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M20 20C20 21.1 19.1 22 18 22C16.9 22 16 21.1 16 20C16 18.9 16.9 18 18 18C19.1 18 20 18.9 20 20Z" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M3 3H5.5L7.5 14H18L21 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <ShoppingCart size={20} />
                 Adicionar ao Carrinho
               </button>
               
