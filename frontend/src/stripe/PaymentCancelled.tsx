@@ -32,7 +32,7 @@ const PaymentCancelled: React.FC = () => {
           type: item.type,
           id: item.id,
           title: item.title,
-          price: Number(item.price) * 100,
+          price: Number(item.price),
           quantity: item.quantity,
         }))
       : savedProduct
