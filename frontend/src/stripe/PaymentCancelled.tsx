@@ -4,6 +4,7 @@ import { AlertTriangle, ArrowLeft, CreditCard, HelpCircle } from 'lucide-react';
 import '../styles/stripeCancel.css';
 
 const PaymentCancelled: React.FC = () => {
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -17,6 +18,53 @@ const PaymentCancelled: React.FC = () => {
     // Track cancellation event
     console.log('Página de pagamento cancelado visualizada');
   }, []);
+
+  // 🚨 Handle retry checkout from saved product in localStorage
+  const handleRetryCheckout = async () => {
+    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const savedProduct = JSON.parse(localStorage.getItem('lastCheckedProduct') || 'null');
+
+    const itemsToRetry = savedCart.length > 0
+      ? savedCart.map(item => ({
+          type: item.type,
+          id: item.id,
+          title: item.title,
+          price: Number(item.price) * 100,
+          quantity: item.quantity || 1,
+        }))
+      : savedProduct
+        ? [{
+            type: savedProduct.bookId ? 'book' : 'course',
+            id: savedProduct.bookId || savedProduct.courseId,
+            title: savedProduct.title,
+            price: savedProduct.price * 100,
+            quantity: 1,
+          }]
+        : [];
+
+    try {
+      // Send saved product data to backend to create a new checkout session
+      const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cartItems: itemsToRetry,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;  // ✅ Redirect to Stripe checkout
+      } else {
+        console.error("Failed to create Checkout Session:", data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const handleReasonSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     console.log('Motivo do cancelamento:', event.target.value);
@@ -78,7 +126,7 @@ const PaymentCancelled: React.FC = () => {
             <ArrowLeft size={18} />
             Voltar para Início
           </Link>
-          <button className="retry-button">
+          <button className="retry-button" onClick={handleRetryCheckout}>
             <CreditCard size={18} />
             Tentar Novamente
           </button>

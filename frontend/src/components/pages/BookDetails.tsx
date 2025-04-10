@@ -111,6 +111,12 @@ const BookDetails = () => {
     }
   
     if (book) {
+      // 🚨 Save product details in localStorage for retrying later if the checkout is canceled
+      localStorage.setItem("lastCheckedProduct", JSON.stringify({
+        bookId: id,
+        title: book?.title,
+        price: book?.price,
+      }));
       try {
         const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
           method: "POST",
@@ -121,8 +127,8 @@ const BookDetails = () => {
             cartItems: [
               {
                 bookId: id,
-                title: course.title,
-                price: course.price * 100,
+                title: book.title,
+                price: book.price * 100,
                 //subscription: true, for Stripe
               }
             ]

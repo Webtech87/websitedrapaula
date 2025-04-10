@@ -107,6 +107,13 @@ const CourseDetails = () => {
 
   const handleCheckout = async () => {
     try {
+      // 🚨 Save product details in localStorage for retrying later if the checkout is canceled
+      localStorage.setItem("lastCheckedProduct", JSON.stringify({
+        courseId: id,
+        title: course?.title,
+        price: course?.price,
+      }));
+      
       // Send request to backend to create a Checkout Session
       const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
         method: "POST",
