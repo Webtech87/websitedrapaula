@@ -190,7 +190,7 @@ const CourseDetails = () => {
             <div className="description-container">
               <div className={`description-text ${!isDescriptionExpanded ? 'collapsed' : ''}`}>
                 <div className="description-structure">
-                  {course.title?.includes("Brincar e TO") && (
+                  {course.title?.includes("O Brincar na Terapia Ocupacional") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação 4 dias presenciais com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -241,7 +241,7 @@ const CourseDetails = () => {
                     </>
                   )}
                   
-                  {course.title?.includes("Raciocinio clinico e intervencao") && (
+                  {course.title?.includes("Raciocínio Clínico e Intervenção") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração - 24 horas com a Terapeuta Ocupacional Paula Serrano.</p>
@@ -289,7 +289,7 @@ const CourseDetails = () => {
                     </>
                   )}
                   
-                  {course.title?.includes("Integracao Sensorial: Avaliacao") && (
+                  {course.title?.includes("Integração Sensorial: Avaliação") && (
                     <>
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Formação de 24 horas com Paula Serrano – Mestre em Terapia Ocupacional- área de especialização Integração Sensorial.</p>
@@ -333,7 +333,7 @@ const CourseDetails = () => {
                     </>
                   )}
                   
-                  {course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
+                  {course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
                     <div data-course="Avaliacao">
                       <h3 className="description-subtitle">Sobre o Curso</h3>
                       <p>Duração – 21 horas com a Terapeuta Ocupacional Paula Serrano.</p>
