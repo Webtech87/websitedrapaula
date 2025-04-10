@@ -62,7 +62,7 @@ def payment_test(request):
             cart_items = data.get("cartItems", [])  # expecting a list of items
 
             success_url = "https://paulaserranoeducacao.pt/payment-success"
-            cancel_url = "https://paulaserranoeducacao.pt/payment-cancel"
+            cancel_url = "https://paulaserranoeducacao.pt/payment-cancelled"
 
             line_items = []
             for item in cart_items:
