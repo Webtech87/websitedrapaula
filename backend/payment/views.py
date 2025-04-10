@@ -61,8 +61,8 @@ def payment_test(request):
             data = json.loads(request.body)
             cart_items = data.get("cartItems", [])  # expecting a list of items
 
-            success_url = request.build_absolute_uri(reverse('payment:payment_completed'))
-            cancel_url = request.build_absolute_uri(reverse('payment:payment_canceled'))
+            success_url = "https://paulaserranoeducacao.pt/payment-success"
+            cancel_url = "https://paulaserranoeducacao.pt/payment-cancel"
 
             line_items = []
             for item in cart_items:
