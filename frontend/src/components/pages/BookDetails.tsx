@@ -24,7 +24,7 @@ export const stripePromise = loadStripe(stripePublicKey);
 const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addToCart } = useCart();
   const [user, setUser] = useState<boolean>(true); // Replace with actual auth check
   
@@ -43,10 +43,11 @@ const BookDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (book && wishlist.includes(book.id)) {
-      setIsWishlisted(true);
+    if (book) {
+      // Check if book is in wishlist with type 'book'
+      setIsWishlisted(isInWishlist(book.id, 'book'));
     }
-  }, [book, wishlist]);
+  }, [book, isInWishlist]);
 
   // Add effect to automatically hide toast after delay
   useEffect(() => {
@@ -75,10 +76,12 @@ const BookDetails = () => {
 
     if (book) {
       if (isWishlisted) {
-        removeFromWishlist(book.id);
+        // Explicitly specify the type as 'book'
+        removeFromWishlist(book.id, 'book');
         displayToast('Removido da lista de desejos!', 'success');
       } else {
-        addToWishlist(book.id);
+        // Explicitly specify the type as 'book'
+        addToWishlist(book.id, 'book');
         displayToast('Adicionado à lista de desejos!', 'success');
       }
       setIsWishlisted(!isWishlisted);
