@@ -148,6 +148,7 @@ function App() {
             <Route path="/politica" element={<Politica />} />
             <Route path="/politica-cookies" element={<PoliticaCookies />} />
             <Route path="/termos-condicoes" element={<TermosCondicoes />} />
+            <Route path="/politica-privacidade" element={<Politica />} />
             <Route
               path="/wishlist"
               element={
