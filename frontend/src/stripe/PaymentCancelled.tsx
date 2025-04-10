@@ -28,7 +28,7 @@ const PaymentCancelled: React.FC = () => {
     console.log("🧾 Saved Product:", savedProduct);
 
     const itemsToRetry = savedCart.length > 0
-      ? savedCart.map(item => ({ add 
+      ? savedCart.map(item => ({ 
           type: item.type,
           id: item.id,
           title: item.title,
