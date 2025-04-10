@@ -117,6 +117,10 @@ const BookDetails = () => {
         title: book?.title,
         price: book?.price,
       }));
+
+      console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
+
+
       try {
         const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
           method: "POST",

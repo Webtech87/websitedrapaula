@@ -24,8 +24,11 @@ const PaymentCancelled: React.FC = () => {
     const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
     const savedProduct = JSON.parse(localStorage.getItem('lastCheckedProduct') || 'null');
 
+    console.log("🧾 Saved Cart:", savedCart);
+    console.log("🧾 Saved Product:", savedProduct);
+
     const itemsToRetry = savedCart.length > 0
-      ? savedCart.map(item => ({
+      ? savedCart.map(item => ({ add 
           type: item.type,
           id: item.id,
           title: item.title,
@@ -41,6 +44,8 @@ const PaymentCancelled: React.FC = () => {
             quantity: 1,
           }]
         : [];
+
+    console.log("➡️ itemsToRetry:", itemsToRetry);
 
     try {
       // Send saved product data to backend to create a new checkout session

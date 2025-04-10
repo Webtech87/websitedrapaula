@@ -125,6 +125,8 @@ const Cart = () => {
 
         // Save the entire cart in localStorage
         localStorage.setItem('cart', JSON.stringify(flattenedCart));
+
+        console.log("🧾 Saved Cart:", flattenedCart);
       
         try {
           const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {

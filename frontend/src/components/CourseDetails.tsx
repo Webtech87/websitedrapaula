@@ -113,6 +113,8 @@ const CourseDetails = () => {
         title: course?.title,
         price: course?.price,
       }));
+
+      console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
       
       // Send request to backend to create a Checkout Session
       const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
