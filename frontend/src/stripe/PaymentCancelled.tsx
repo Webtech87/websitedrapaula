@@ -62,23 +62,29 @@ const PaymentCancelled: React.FC = () => {
     const itemsToRetry = savedCart.length > 0
     ? savedCart.map(item => {
         // Remove expiry field from each item in the cart
-        const { expiry, ...itemWithoutExpiry } = item;
+        const { expiry, type, id, title, price, quantity } = item;
         return {
-          type: itemWithoutExpiry.type,
-          id: itemWithoutExpiry.id,
-          title: itemWithoutExpiry.title,
-          price: Number(itemWithoutExpiry.price),
-          quantity: itemWithoutExpiry.quantity,
+          type: type,
+          id: id,
+          title: title,
+          price: Number(price),
+          quantity: quantity,
         };
       })
     : savedProduct
       ? (() => {
           // Destructure savedProduct and remove the expiry field
-          const { expiry, ...productWithoutExpiry } = savedProduct;
+          const { expiry, bookId, courseId, title, price } = savedProduct;
+
+          if (!bookId && !courseId) {
+            console.error('Product has no valid id!');
+            return [];
+          }
+
           return {
-            id: productWithoutExpiry.bookId || productWithoutExpiry.courseId,
-            title: productWithoutExpiry.title,
-            price: productWithoutExpiry.price * 100,  // Stripe expects price in cents
+            id: bookId || courseId,
+            title: title,
+            price: price * 100,
             quantity: 1,
           };
         })() // Immediately invoked function expression (IIFE) to handle the logic
