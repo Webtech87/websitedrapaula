@@ -56,6 +56,11 @@ const PaymentCancelled: React.FC = () => {
     // Use getWithExpiry to check expiration and retrieve only valid data
     const savedCart = getWithExpiry('cart');  // Will return null if expired
     const savedProduct = getWithExpiry('lastCheckedProduct');  // Will return null if expired
+
+    if (!savedCart && !savedProduct) {
+      // Show alert when both cart and product are expired or unavailable
+      alert('Sua sessão expirou. Por favor, inicie o processo de compra novamente.');
+    }
   
     console.log("🧾 Saved Cart:", savedCart);
     console.log("🧾 Saved Product:", savedProduct);
