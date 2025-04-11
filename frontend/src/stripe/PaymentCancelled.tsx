@@ -2,6 +2,21 @@ import React, { useEffect } from 'react';
 import { AlertTriangle, CreditCard, HelpCircle } from 'lucide-react';
 import '../styles/stripeCancel.css';
 
+const getWithExpiry = (key: string) => {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) return null;
+
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+
+  if (now.getTime() > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
+
+  return item.value;
+};
+
 const PaymentCancelled: React.FC = () => {
 
   useEffect(() => {
@@ -16,6 +31,24 @@ const PaymentCancelled: React.FC = () => {
 
     // Track cancellation event
     console.log('Página de pagamento cancelado visualizada');
+
+    // Check and remove expired items
+    const cart = getWithExpiry('cart');
+    const product = getWithExpiry('lastCheckedProduct');
+
+    if (!cart && !product) {
+      // Show alert when both cart and product are expired or unavailable
+      alert('Sua sessão expirou. Por favor, inicie o processo de compra novamente.');
+    }
+
+    // Optional: Schedule cleanup anyway after 2 minutes
+    const cleanupTimer = setTimeout(() => {
+      localStorage.removeItem('cart');
+      localStorage.removeItem('lastCheckedProduct');
+      console.log("🧹 localStorage cleaned after 2 minutes");
+    }, 300000);
+
+    return () => clearTimeout(cleanupTimer); // Clean up on unmount
   }, []);
 
   // 🚨 Handle retry checkout from saved product in localStorage

@@ -40,6 +40,16 @@ const CourseDetails = () => {
   // Check if the course is in the wishlist using the type-aware isInWishlist function
   const courseInWishlist = isInWishlist(Number(id), 'course');
 
+  // ✅ Utility to store data with expiry
+  const setWithExpiry = (key: string, value: any, ttl: number) => {
+    const now = new Date();
+    const item = {
+      value,
+      expiry: now.getTime() + ttl,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
@@ -107,12 +117,12 @@ const CourseDetails = () => {
 
   const handleCheckout = async () => {
     try {
-      // 🚨 Save product details in localStorage for retrying later if the checkout is canceled
-      localStorage.setItem("lastCheckedProduct", JSON.stringify({
+      // ✅ Save with expiry (1 hour = 3600000 ms)
+      setWithExpiry("lastCheckedProduct", {
         courseId: id,
         title: course?.title,
         price: course?.price,
-      }));
+      }, 300000); // ✅ 5 minutes = 300000 ms
 
       console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
       

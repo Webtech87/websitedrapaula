@@ -39,7 +39,7 @@ const Navigation = () => {
       subItems: [
         { label: "Cursos", href: "#cursos" },
         { label: "Mentorias", href: "#mentorias" },
-        { label: "Imersoes", href: "#imersoes" },
+        { label: "Imersões", href: "#imersoes" },
       ],
     },
     

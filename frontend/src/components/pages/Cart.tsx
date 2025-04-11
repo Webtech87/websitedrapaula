@@ -18,6 +18,15 @@ if (!stripePublicKey) {
 // Load Stripe with the publishable key
 export const stripePromise = loadStripe(stripePublicKey);
 
+// ✅ Utility to store data with expiry
+const setWithExpiry = (key: string, value: any, ttl: number) => {
+    const now = new Date();
+    const item = {
+        value,
+        expiry: now.getTime() + ttl,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+};
 
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -123,8 +132,8 @@ const Cart = () => {
           }
         });
 
-        // Save the entire cart in localStorage
-        localStorage.setItem('cart', JSON.stringify(flattenedCart));
+        // Save the entire cart in localStorage using setWithExpiry
+        setWithExpiry("cart", flattenedCart, 300000); // Set expiry time for 5 minutes (300000 ms)
 
         console.log("🧾 Saved Cart:", flattenedCart);
       

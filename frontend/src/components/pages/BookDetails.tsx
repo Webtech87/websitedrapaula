@@ -41,6 +41,16 @@ const BookDetails = () => {
 
   const [loading, setLoading] = useState(false); //for Stripe
 
+  // ✅ Utility to store data with expiry
+  const setWithExpiry = (key: string, value: any, ttl: number) => {
+    const now = new Date();
+    const item = {
+      value,
+      expiry: now.getTime() + ttl,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (book) {
@@ -111,12 +121,11 @@ const BookDetails = () => {
     }
   
     if (book) {
-      // 🚨 Save product details in localStorage for retrying later if the checkout is canceled
-      localStorage.setItem("lastCheckedProduct", JSON.stringify({
+      setWithExpiry("lastCheckedProduct", {
         bookId: id,
         title: book?.title,
         price: book?.price,
-      }));
+      }, 300000); // ✅ 5 minutes = 300000 ms
 
       console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
 
