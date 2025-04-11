@@ -53,41 +53,28 @@ const PaymentCancelled: React.FC = () => {
 
   // 🚨 Handle retry checkout from saved product in localStorage
   const handleRetryCheckout = async () => {
-    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const savedProduct = JSON.parse(localStorage.getItem('lastCheckedProduct') || 'null');
-
+    // Use getWithExpiry to check expiration and retrieve only valid data
+    const savedCart = getWithExpiry('cart');  // Will return null if expired
+    const savedProduct = getWithExpiry('lastCheckedProduct');  // Will return null if expired
+  
     console.log("🧾 Saved Cart:", savedCart);
     console.log("🧾 Saved Product:", savedProduct);
-
-    const itemsToRetry = savedCart.length > 0
-    ? savedCart.map(item => {
-        // Remove expiry field from each item in the cart
-        const { expiry, type, id, title, price, quantity } = item;
-        return {
-          type: type,
-          id: id,
-          title: title,
-          price: Number(price),
-          quantity: quantity,
-        };
-      })
-    : savedProduct
-      ? (() => {
-          // Destructure savedProduct and remove the expiry field
-          const { expiry, bookId, courseId, title, price } = savedProduct;
-
-          if (!bookId && !courseId) {
-            console.error('Product has no valid id!');
-            return [];
-          }
-
-          return {
-            id: bookId || courseId,
-            title: title,
-            price: price * 100,
-            quantity: 1,
-          };
-        })() // Immediately invoked function expression (IIFE) to handle the logic
+  
+    const itemsToRetry = savedCart && savedCart.length > 0
+      ? savedCart.map(item => ({
+          type: item.type,
+          id: item.id,
+          title: item.title,
+          price: Number(item.price),
+          quantity: item.quantity,
+        }))
+      : savedProduct
+      ? [{
+          id: savedProduct.bookId || savedProduct.courseId,
+          title: savedProduct.title,
+          price: savedProduct.price * 100,  // Stripe expects price in cents
+          quantity: 1,
+        }]
       : [];
 
 
