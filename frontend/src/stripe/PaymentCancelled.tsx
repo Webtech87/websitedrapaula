@@ -60,21 +60,30 @@ const PaymentCancelled: React.FC = () => {
     console.log("🧾 Saved Product:", savedProduct);
 
     const itemsToRetry = savedCart.length > 0
-      ? savedCart.map(item => ({ 
-          type: item.type,
-          id: item.id,
-          title: item.title,
-          price: Number(item.price),
-          quantity: item.quantity,
-        }))
-      : savedProduct
-        ? [{
-            id: savedProduct.bookId || savedProduct.courseId,
-            title: savedProduct.title,
-            price: savedProduct.price * 100,
+    ? savedCart.map(item => {
+        // Remove expiry field from each item in the cart
+        const { expiry, ...itemWithoutExpiry } = item;
+        return {
+          type: itemWithoutExpiry.type,
+          id: itemWithoutExpiry.id,
+          title: itemWithoutExpiry.title,
+          price: Number(itemWithoutExpiry.price),
+          quantity: itemWithoutExpiry.quantity,
+        };
+      })
+    : savedProduct
+      ? (() => {
+          // Destructure savedProduct and remove the expiry field
+          const { expiry, ...productWithoutExpiry } = savedProduct;
+          return {
+            id: productWithoutExpiry.bookId || productWithoutExpiry.courseId,
+            title: productWithoutExpiry.title,
+            price: productWithoutExpiry.price * 100,  // Stripe expects price in cents
             quantity: 1,
-          }]
-        : [];
+          };
+        })() // Immediately invoked function expression (IIFE) to handle the logic
+      : [];
+
 
     console.log("➡️ itemsToRetry:", itemsToRetry);
 
