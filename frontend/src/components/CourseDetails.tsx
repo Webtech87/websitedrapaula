@@ -546,7 +546,7 @@ const CourseDetails = () => {
             <div className="button-container">
               {Number(id) !== 5 ? (
                   <>
-                    <button className="buy-button">
+                    <button className="buy-button" onClick={handleCheckout}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 6H21L19 16H5L3 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M8 21C8.55228 21 9 20.5523 9 20C9 19.4477 8.55228 19 8 19C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21Z" fill="currentColor"/>
