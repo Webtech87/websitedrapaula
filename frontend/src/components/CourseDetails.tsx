@@ -397,12 +397,12 @@ const CourseDetails = () => {
                     </div>
                   )}
                   
-                  {!course.title?.includes("Brincar e TO") && 
-                   !course.title?.includes("Raciocinio clinico e intervencao") && 
-                   !course.title?.includes("Integracao Sensorial: Avaliacao") && 
-                   !course.title?.includes("Avaliação e Raciocínio clínico na primeira Infância") && (
+                  {!course.title?.includes("O Brincar na Terapia Ocupacional") && 
+                   !course.title?.includes("Raciocínio Clínico e Intervenção") && 
+                   !course.title?.includes("Integração Sensorial: Avaliação") && 
+                   !course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
                     <>
-                       {course.title?.includes("Programa Internacional") ? (
+                       {course.title?.includes("Programa Internacional") && (
                          <div className="programa-internacional">
                            <div className="programa-header">
                              <h3 className="description-subtitle programa-title">Sobre o Programa</h3>
@@ -486,9 +486,7 @@ const CourseDetails = () => {
                              <h3>Inscrições Limitadas</h3>
                              <p>As inscrições para este programa são limitadas para garantir a qualidade da formação. Para informações sobre as próximas turmas e processo de inscrição, entre em contato por email.</p>
                            </div>
-                         </div>
-                       ) : (
-                         <p>{course.description}</p>
+                         </div>                       
                        )}
                      </>
                   )}
