@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, CreditCard, HelpCircle } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { AlertTriangle, CreditCard, HelpCircle } from 'lucide-react';
 import '../styles/stripeCancel.css';
 
 const PaymentCancelled: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -18,6 +20,55 @@ const PaymentCancelled: React.FC = () => {
     // Track cancellation event
     console.log('Página de pagamento cancelado visualizada');
   }, []);
+
+   // Handle page unload (reload/close)
+   const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+    const confirmClear = window.confirm(
+      "Tem certeza que deseja sair? Sua seleção será apagada."
+    );
+    if (confirmClear) {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("lastCheckedProduct");
+    } else {
+      e.preventDefault();
+      e.returnValue = ""; // Required for some browsers to trigger dialog
+    }
+  };
+
+  useEffect(() => {
+    // Listen for beforeunload event when the page is being closed or reloaded
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup the event listener when component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Block navigation and ask for confirmation before leaving
+    const handleNavigation = (e: BeforeUnloadEvent) => {
+      const confirmClear = window.confirm(
+        "Tem certeza que deseja sair? Sua seleção será apagada."
+      );
+      if (confirmClear) {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("lastCheckedProduct");
+      } else {
+        // Prevent navigation if user cancels
+        e.preventDefault();
+        e.returnValue = ""; // Required for some browsers to trigger dialog
+      }
+    };
+
+    // Add a beforeunload event listener on location change to intercept navigation
+    window.addEventListener("beforeunload", handleNavigation);
+
+    // Cleanup beforeunload listener when component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleNavigation);
+    };
+  }, [location]);
 
   // 🚨 Handle retry checkout from saved product in localStorage
   const handleRetryCheckout = async () => {
@@ -126,10 +177,6 @@ const PaymentCancelled: React.FC = () => {
         </div>
         
         <div className="cancelled-actions">
-          <Link to="/" className="back-button">
-            <ArrowLeft size={18} />
-            Voltar para Início
-          </Link>
           <button className="retry-button" onClick={handleRetryCheckout}>
             <CreditCard size={18} />
             Tentar Novamente
