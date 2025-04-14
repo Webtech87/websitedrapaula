@@ -190,7 +190,7 @@ const Cart = () => {
                         </div>
                         <h2>O teu carrinho está vazio</h2>
                         <p>Adiciona produtos ao teu carrinho para continuar o processo de compra.</p>
-                        <Link to="/books" className="browse-button">
+                        <Link to="/" className="browse-button">
                             Explorar
                         </Link>
                     </div>
