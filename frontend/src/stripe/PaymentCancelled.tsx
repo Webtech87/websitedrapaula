@@ -159,7 +159,7 @@ const PaymentCancelled: React.FC = () => {
             <div>
               <h3>Precisa de ajuda?</h3>
               <p>Nossa equipe de suporte está disponível para ajudá-lo com qualquer problema que você possa ter encontrado.</p>
-              <a href="#" className="contact-link">Contatar Suporte</a>
+              <a href="#" className="contact-link">Contactar Suporte</a>
             </div>
           </div>
         </div>

@@ -79,7 +79,7 @@ const Contact = () => {
           <div className="contact-form">
             {formSubmitted ? (
               <div className="form-success">
-                <p>Obrigado! Entraremos em contato em breve.</p>
+                <p>Obrigado! Entraremos em contacto em breve.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>

@@ -91,13 +91,13 @@ const ContactForm = () => {
       <div className="cf-contact-container">
         {/* Left Side - Text */}
         <div className="cf-contact-text">
-          <h2>Entre em Contato</h2>
+          <h2>Entre em Contacto</h2>
           <p>
             Na Paula Serrano, valorizamos cada ligação com os nossos clientes. Seja para esclarecer dúvidas, receber feedback valioso ou simplesmente trocar uma ideia, a nossa equipa está sempre pronta para ouvir e ajudar.
           </p>
           
           <p>
-            Utilize nosso formulário de contato para:
+            Utilize nosso formulário de contacto para:
           </p>
 
           <ul className="cf-contact-benefits">

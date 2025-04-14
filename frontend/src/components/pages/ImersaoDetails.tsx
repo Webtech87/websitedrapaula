@@ -74,7 +74,7 @@ const ImersaoDetails = () => {
         <div className="imersao-hero-content">
           <span className="badge">Programa de Imersão</span>
           <h1>Experiência Clínica Intensiva</h1>
-          <p>Eleve sua prática profissional com o nosso programa de imersão especializado</p>
+          <p>Eleve a sua prática profissional com o nosso programa de imersão especializado</p>
         </div>
       </section>
 
@@ -90,7 +90,7 @@ const ImersaoDetails = () => {
           <div className="overview-text">
             <p>
               O nosso programa de imersão oferece uma experiência prática intensiva para 
-              profissionais e estudantes que desejam melhorar as suas competencias clínicas 
+              profissionais e estudantes que desejam melhorar as suas competências clínicas 
               em um ambiente real e supervisionado. Durante o período de imersão, você terá 
               a oportunidade de aplicar conhecimentos teóricos em situações práticas, recebendo 
               feedback direto de supervisores experientes.
@@ -104,7 +104,7 @@ const ImersaoDetails = () => {
               </div>
               <div className="highlight-content">
                 <h4>Experiência Prática</h4>
-                <p>Aprenda na pratica, com casos reais e situações clínicas autênticas</p>
+                <p>Aprenda na prática, com casos reais e situações clínicas autênticas</p>
               </div>
             </div>
             
@@ -124,7 +124,7 @@ const ImersaoDetails = () => {
               </div>
               <div className="highlight-content">
                 <h4>Certificação Diferenciada</h4>
-                <p>Obtenha um certificado que comprova sua experiência prática intensiva</p>
+                <p>Obtenha um certificado que comprova a sua experiência prática intensiva</p>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ const ImersaoDetails = () => {
               <div className="step-number">4</div>
               <div className="step-content">
                 <h3>Feedback </h3>
-                <p>Durante toda a imersão, você recebe feedback contínuo sobre seu desempenho, permitindo o seu crescimento profissional em tempo real.</p>
+                <p>Durante toda a imersão, você recebe feedback contínuo sobre o seu desempenho, permitindo o seu crescimento profissional em tempo real.</p>
               </div>
             </div>
             
@@ -301,12 +301,12 @@ const ImersaoDetails = () => {
               />
             </div>
             <div className="next-steps-text">
-              <h3>Pronto para começar sua jornada de transformação profissional?</h3>
+              <h3>Pronto para começar a sua jornada de transformação profissional?</h3>
               <p>O processo para participar de nossas imersões é simples e direto:</p>
               
               <ol className="next-steps-list">
                 <li>
-                  <strong>Entre em contato</strong> - Agende uma consulta inicial com a nossa equipa através do formulário de contato ou telefone.
+                  <strong>Entre em contacto</strong> - Agende uma consulta inicial com a nossa equipa através do formulário de contacto ou telefone.
                 </li>
                 <li>
                   <strong>Avaliação de perfil</strong> - Realizamos uma breve entrevista para entender as suas necessidades e objetivos.
@@ -336,7 +336,7 @@ const ImersaoDetails = () => {
         <div className="container">
           <div className="cta-content">
             <h2>Pronto para Elevar a Sua Experiência Profissional?</h2>
-            <p>Entre em contato para mais informações sobre nossos programas de imersão e agende uma consulta com nossos especialistas.</p>
+            <p>Entre em contacto para mais informações sobre os nossos programas de imersão e agende uma consulta com os nossos especialistas.</p>
             <div className="cta-buttons">
               <button className="imersao-details-secondary-button" onClick={handleButtonClick}>Solicitar Informações</button>
             </div>

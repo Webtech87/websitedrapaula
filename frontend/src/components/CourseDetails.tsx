@@ -494,7 +494,7 @@ const CourseDetails = () => {
                            
                            <div className="programa-inscricao">
                              <h3>Inscrições Limitadas</h3>
-                             <p>As inscrições para este programa são limitadas para garantir a qualidade da formação. Para informações sobre as próximas turmas e processo de inscrição, entre em contato por email.</p>
+                             <p>As inscrições para este programa são limitadas para garantir a qualidade da formação. Para informações sobre as próximas turmas e processo de inscrição, entre em contacto por email.</p>
                            </div>
                          </div>                       
                        )}
@@ -591,7 +591,7 @@ const CourseDetails = () => {
               </div>
             </div>
             <div className="contact-info">
-            Para esclarecimento de qualquer duvida, contate a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
+            Para esclarecimento de qualquer duvida, contacte a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
             </div>
           </div>
           

@@ -61,7 +61,7 @@ const PaymentSuccess: React.FC = () => {
           <h2>Próximos Passos</h2>
           <ul className="steps-list">
             <li>Um e-mail de confirmação foi enviado para o seu endereço de e-mail registrado.</li>
-            <li>Para quaisquer dúvidas, entre em contato com nossa equipa de suporte.</li>
+            <li>Para quaisquer dúvidas, entre em contacto com nossa equipa de suporte.</li>
           </ul>
         </div>
         

@@ -141,7 +141,7 @@ const MentorshipDetails = () => {
             <h3>Mentoria em Grupo</h3>
             <p>
               Aprenda em um ambiente colaborativo com outros profissionais, 
-              compartilhando experiências e ampliando sua rede de contatos.
+              compartilhando experiências e ampliando sua rede de contactos.
             </p>
             <ul>
               <li>Troca de experiências entre os participantes</li>

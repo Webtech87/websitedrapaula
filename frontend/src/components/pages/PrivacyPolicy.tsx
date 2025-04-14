@@ -141,10 +141,10 @@ const PrivacyPolicy = () => {
           className="animate-on-load" 
           ref={setRef(5)}
         >
-          <h2 className="privacy-heading">Contato</h2>
+          <h2 className="privacy-heading">Contacto</h2>
           <p className="privacy-paragraph">
             Se você tiver alguma dúvida sobre nosso uso de cookies ou outras tecnologias, entre em 
-            contato conosco em{" "}
+            contacto conosco em{" "}
             <a href="mailto:paulaserranoeducacao@gmail.com" className="privacy-link">
               paulaserranoeducacao@gmail.com
             </a>.
