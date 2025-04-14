@@ -472,7 +472,9 @@ const Navigation = () => {
                     aria-expanded={activeDropdowns.navDropdown === link.label}
                   >
                     {link.label}
-                    <ChevronDown className="dropdown-icon" />
+                    <ChevronDown 
+                      className={`dropdown-icon ${activeDropdowns.navDropdown === link.label ? 'rotate' : ''}`} 
+                    />
                   </button>
                   <div className="mobile-dropdown-menu">
                     {link.subItems.map((subItem) => (
