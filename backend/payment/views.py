@@ -24,10 +24,10 @@ def stripe_webhook(request):
             payload, sig_header, settings.STRIPE_ENDPOINT_SECRET
         )
     except ValueError as e:
-        print("Ошибка ValueError:", str(e))  # Логи о проблемах с парсингом
+        print("ValueError occurred:", str(e))  # Logs about problems with parsing
         return JsonResponse({"error": "Invalid payload"}, status=400)
     except stripe.error.SignatureVerificationError as e:
-        print("Ошибка подписи Stripe:", str(e))  # Логи о неверной подписи
+        print("Stripe signature error:", str(e))  # Logs about incorrect signature
         return JsonResponse({"error": "Invalid signature"}, status=400)
 
     if event["type"] == "checkout.session.completed":
