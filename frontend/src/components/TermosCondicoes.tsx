@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TermosCondicoes.css";
+import "../styles/termosCondicoes.css";
 import {useTranslation} from "react-i18next";
 
 const TermosCondicoes = () => {
