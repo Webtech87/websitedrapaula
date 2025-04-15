@@ -443,7 +443,7 @@ const Navigation = () => {
                   onClick={() => i18n.changeLanguage(lang as "PT" | "EN")}
                   aria-pressed={i18n.language === lang}
                 >
-                  {lang} {lang === "pt" ? ptFlag : gbFlag}
+                  {lang} <img src={lang === "pt" ? ptFlag : gbFlag} alt={lang} width="20" height="11" />
                 </button>
               ))}
             </div>
@@ -564,7 +564,7 @@ const Navigation = () => {
                   i18n.changeLanguage(lang);
                 }}
               >
-                {lang} {lang === "pt" ? ptFlag : gbFlag}
+                {lang} {lang === "pt" ? "🇵🇹" : "🇬🇧"}
               </button>
             ))}
           </div>
