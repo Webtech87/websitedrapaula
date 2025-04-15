@@ -5,6 +5,7 @@ import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
+import { useTranslation } from 'react-i18next';
 
 import ptFlag from "../assets/pt.png"
 import gbFlag from "../assets/en.png"
@@ -15,7 +16,7 @@ const Navigation = () => {
     navDropdown: null as string | null,
     userDropdown: false,
   });
-  const [language, setLanguage] = useState<"PT" | "EN">("PT");
+  const { t, i18n } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [tokenExpired, setTokenExpired] = useState(false);
@@ -28,30 +29,30 @@ const Navigation = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const navigationLinks = [
-    { label: "Home", href: "/nossos-valores" },
+    { label: t("home"), href: "/nossos-valores" },
     {
-      label: "Conheça a Paula Serrano",
+      label: t("meating_ps"),
       href: "#about",
     },
     {
-      label: "Formações",
+      label: t("tranings"),
       href: "#",
       subItems: [
-        { label: "Cursos", href: "#cursos" },
-        { label: "Mentorias", href: "#mentorias" },
-        { label: "Imersões", href: "#imersoes" },
+        { label: t("tranings_courses"), href: "#cursos" },
+        { label: t("tranings_mentorships"), href: "#mentorias" },
+        { label: t("tranings_Immersions"), href: "#imersoes" },
       ],
     },
-    
+
     {
-      label: "Recursos",
+      label: t("resources"),
       href: "#",
       subItems: [
-        { label: "Livros e ebooks", href: "#livros" },
-        { label: "Artigos e teses", href: "/artigos-teses" },
+        { label: t("resources_books"), href: "#livros" },
+        { label: t("resources_articles"), href: "/artigos-teses" },
       ],
     },
-    { label: "Contacto", href: "/contact" },
+    { label: t("contact"), href: "/contact" },
   ];
 
   // Function to check if the token is expired
@@ -80,7 +81,7 @@ const Navigation = () => {
           const response = await axios.get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
-      
+
           // Updated response structure check
           if (response.data?.success && response.data?.user?.full_name) {
             setUserName(response.data.user.full_name);
@@ -94,7 +95,7 @@ const Navigation = () => {
           }
         } catch (error) {
           console.error("Error fetching user profile:", error);
-      
+
           if (axios.isAxiosError(error)) {
             if (error.response?.status === 401) {
               handleLogout();
@@ -157,21 +158,24 @@ const Navigation = () => {
   const handleLinkClick = (href: string) => {
     // First close the mobile menu
     closeMobileMenu();
-    
+
     // Reset all dropdowns
     setActiveDropdowns({ navDropdown: null, userDropdown: false });
-    
+
     // Handle navigation with a slight delay to allow animation to start
     setTimeout(() => {
       if (href.startsWith("#")) {
         const sectionId = href.substring(1);
-  
+
         if (location.pathname === "/") {
           // If already on the home page, scroll to the section
           scrollToSection(sectionId);
         } else {
-          // If on another page, navigate to the home page with the hash in the URL
-          navigate(`/#${sectionId}`);
+          // If on another page, navigate to the home page and THEN scroll
+          navigate("/"); // Navigate to home first
+          setTimeout(() => {  //wait for page to load
+            scrollToSection(sectionId); //scroll to the section
+          }, 100);
         }
       } else {
         // For non-hash links, just navigate normally
@@ -274,7 +278,6 @@ const Navigation = () => {
 
   // Calculate background color opacity based on scroll position
   const navbarOpacity = Math.min(1, scrollPosition / 200); // Adjust the divisor to control the sensitivity
-
   return (
     <nav className="navbar" style={{ backgroundColor: `rgba(255, 255, 255, ${0.95 - navbarOpacity * 0.3})` }}>
       <div className="navbar-container">
@@ -380,7 +383,7 @@ const Navigation = () => {
                       onClick={handleLogout}
                     >
                       <LogOut size={18} />
-                      Logout
+                      {t("logout")}
                     </button>
                   </>
                 ) : (
@@ -395,7 +398,7 @@ const Navigation = () => {
                       }}
                     >
                       <LogIn size={18} />
-                      Iniciar sessão
+                      {t("login")}
                     </button>
                     <button
                       className="user-dropdown-button"
@@ -407,7 +410,7 @@ const Navigation = () => {
                       }}
                     >
                       <UserPlus size={18} />
-                      Criar uma conta
+                      {t("registration")}
                     </button>
                   </>
                 )}
@@ -433,14 +436,14 @@ const Navigation = () => {
             />
 
             <div className="language-selector desktop">
-              {["PT", "EN"].map((lang) => (
+              {i18n.languages.map((lang) => (
                 <button
                   key={lang}
-                  className={language === lang ? "active" : ""}
-                  onClick={() => setLanguage(lang as "PT" | "EN")}
-                  aria-pressed={language === lang}
+                  className={i18n.language === lang ? "active" : ""}
+                  onClick={() => i18n.changeLanguage(lang as "PT" | "EN")}
+                  aria-pressed={i18n.language === lang}
                 >
-                  {lang} <img src={lang === "PT" ? ptFlag : gbFlag} alt={lang} width="20" height="11" />
+                  {lang} {lang === "pt" ? ptFlag : gbFlag}
                 </button>
               ))}
             </div>
@@ -472,9 +475,7 @@ const Navigation = () => {
                     aria-expanded={activeDropdowns.navDropdown === link.label}
                   >
                     {link.label}
-                    <ChevronDown 
-                      className={`dropdown-icon ${activeDropdowns.navDropdown === link.label ? 'rotate' : ''}`} 
-                    />
+                    <ChevronDown className="dropdown-icon" />
                   </button>
                   <div className="mobile-dropdown-menu">
                     {link.subItems.map((subItem) => (
@@ -523,7 +524,7 @@ const Navigation = () => {
                 onClick={handleLogout}
               >
                 <LogOut size={18} />
-                Logout
+                {t("logout")}
               </button>
             </>
           ) : (
@@ -537,7 +538,7 @@ const Navigation = () => {
                 }}
               >
                 <LogIn size={18} />
-                Iniciar sessão
+                {t("login")}
               </button>
               <button
                 className="mobile-menu-button"
@@ -548,22 +549,22 @@ const Navigation = () => {
                 }}
               >
                 <UserPlus size={18} />
-                Criar uma conta
+                {t("registration")}
               </button>
             </>
           )}
 
           <div className="mobile-language-selector">
-            {["PT", "EN"].map((lang) => (
+            {i18n.languages.map((lang) => (
               <button
                 key={lang}
-                className={language === lang ? "active" : ""}
+                className={i18n.language === lang ? "active" : ""}
                 onClick={() => {
-                  setLanguage(lang as "PT" | "EN");
                   closeMobileMenu();
+                  i18n.changeLanguage(lang);
                 }}
               >
-                {lang} {lang === "PT" ? "🇵🇹" : "🇬🇧"}
+                {lang} {lang === "pt" ? ptFlag : gbFlag}
               </button>
             ))}
           </div>

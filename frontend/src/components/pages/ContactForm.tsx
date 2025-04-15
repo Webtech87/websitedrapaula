@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/pages/contactform.css";
+import { useTranslation } from 'react-i18next';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -86,43 +87,44 @@ const ContactForm = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <section className="cf-contact-section">
       <div className="cf-contact-container">
         {/* Left Side - Text */}
         <div className="cf-contact-text">
-          <h2>Entre em Contacto</h2>
+          <h2>{t("contact_form_h2")}</h2>
           <p>
-            Na Paula Serrano, valorizamos cada ligação com os nossos clientes. Seja para esclarecer dúvidas, receber feedback valioso ou simplesmente trocar uma ideia, a nossa equipa está sempre pronta para ouvir e ajudar.
+            {t("contact_our_valor1")}
           </p>
           
           <p>
-            Utilize nosso formulário de contacto para:
+            {t("contact_our_valor2")}
           </p>
 
           <ul className="cf-contact-benefits">
-            <li>Solicitar orçamentos personalizados</li>
-            <li>Obter informações técnicas sobre os nossos produtos</li>
-            <li>Dar sugestões para melhorarmos os nossos serviços</li>
+            <li>{t("contact_our_benefits1")}</li>
+            <li>{t("contact_our_benefits2")}</li>
+            <li>{t("contact_our_benefits3")}</li>
           </ul>
 
           <p>
-            Para um atendimento imediato durante o horário comercial (Seg-Sex: 9h-18h), também pode contactar-nos diretamente pelo telefone <a href="tel:+351965430026" className="cf-phone-link">(+351) 965 430 026</a>. 
-            Garantimos uma resposta por e-mail em até 24 horas úteis para todas as mensagens recebidas.
+            {t("contact_contact_imediatly")}
           </p>
         </div>
 
         {/* Right Side - Form */}
         <div className="cf-contact-form">
-          <h2>Envie-nos uma mensagem</h2>
+          <h2>{t("contact_us_form_h2")}</h2>
           <form onSubmit={handleSubmit}>
             <div className="cf-form-group">
-              <label htmlFor="name">Nome:</label>
+              <label htmlFor="name">{t("contact_us_form_name")}:</label>
               <input
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Digite seu nome completo"
+                placeholder={t("contact_us_form_name_placeholder")}
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -133,7 +135,7 @@ const ContactForm = () => {
             </div>
 
             <div className="cf-form-group">
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">{t("contact_us_form_email")}:</label>
               <input
                 id="email"
                 type="email"
@@ -149,7 +151,7 @@ const ContactForm = () => {
             </div>
 
             <div className="cf-form-group">
-              <label htmlFor="subject">Assunto:</label>
+              <label htmlFor="subject">{t("contact_us_form_subject")}:</label>
               <select
                 id="subject"
                 name="subject"
@@ -159,21 +161,21 @@ const ContactForm = () => {
                 aria-required="true"
                 disabled={isSubmitting}
               >
-                <option value="">Selecione um assunto</option>
-                <option value="duvida">Dúvida sobre produtos</option>
-                <option value="orcamento">Solicitar orçamento</option>
-                <option value="feedback">Feedback</option>
-                <option value="outro">Outro assunto</option>
+                <option value="">{t("contact_us_form_subject_1")}</option>
+                <option value="duvida">{t("contact_us_form_subject_2")}</option>
+                <option value="orcamento">{t("contact_us_form_subject_3")}</option>
+                <option value="feedback">{t("contact_us_form_subject_4")}</option>
+                <option value="outro">{t("contact_us_form_subject_5")}</option>
               </select>
               {errors.subject && <span className="cf-error">{errors.subject}</span>}
             </div>
 
             <div className="cf-form-group">
-              <label htmlFor="message">Mensagem:</label>
+              <label htmlFor="message">{t("contact_us_form_messag")}:</label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="Escreva sua mensagem detalhada aqui..."
+                placeholder={t("contact_us_form_messag_placeholder")}
                 value={formData.message}
                 onChange={handleChange}
                 required
@@ -188,7 +190,7 @@ const ContactForm = () => {
               type="submit" 
               disabled={isSubmitting || submitted}
             >
-              {isSubmitting ? 'Enviando...' : submitted ? 'Mensagem Enviada!' : 'Enviar mensagem'}
+              {isSubmitting ? t("sended") : submitted ? 'Mensagem Enviada!' : t("contact_us_form_button")}
             </button>
           </form>
         </div>

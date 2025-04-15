@@ -3,6 +3,7 @@ import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
 
 load_dotenv()
 
@@ -190,11 +191,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # ===================
 # INTERNATIONALIZATION
 # ===================
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('pt', _('Portuguese')),
+]
 
 # ===================
 # STATIC & MEDIA FILES
