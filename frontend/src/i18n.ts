@@ -10,7 +10,6 @@ i18n
     .use(LanguageDetector)
     .use(initReactI18next) // Интеграция с React
     .init({
-        lng: "pt",
         fallbackLng: ["en", "pt"],
         supportedLngs: ["en", "pt"],
         debug: true,
