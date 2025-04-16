@@ -5,6 +5,7 @@ import { ChevronDown, ChevronUp, Check, Heart, ShoppingCart, X } from "lucide-re
 import { courses } from "../courseData";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
+import {useTranslation} from "react-i18next";
 
 import "../styles/pages/courseDetails.css";
 
@@ -23,6 +24,7 @@ if (!stripePublicKey) {
 export const stripePromise = loadStripe(stripePublicKey);
 
 const CourseDetails = () => {
+  const {t} = useTranslation();
   const { id } = useParams<{ id: string | undefined }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -191,16 +193,16 @@ const CourseDetails = () => {
         </div>
       )}
 
-      <h1>{course.title}</h1>
-      
+      <h1>{t(`courses.${course.id}.title`)}</h1>
+
       <div className="course-image">
-        {!imageLoaded && <div className="skeleton" style={{ height: '300px' }}></div>}
-        <img 
-          src={course.image} 
-          alt={course.title} 
-          onLoad={() => setImageLoaded(true)}
-          style={{ display: imageLoaded ? 'block' : 'none' }}
-        />
+          {!imageLoaded && <div className="skeleton" style={{height: '300px'}}></div>}
+          <img
+              src={course.image}
+              alt={course.title}
+              onLoad={() => setImageLoaded(true)}
+              style={{display: imageLoaded ? 'block' : 'none'}}
+          />
 
         {/* Partner logos for course ID 5 */}
         {Number(id) === 5 && (
@@ -215,290 +217,298 @@ const CourseDetails = () => {
       <div className="course-content">
         <div className="course-info">
           <section>
-            <h2>Descrição do Curso</h2>
+            <h2>{t(`courses.${course.id}.description_course`)}</h2>
             <div className="description-container">
               <div className={`description-text ${!isDescriptionExpanded ? 'collapsed' : ''}`}>
                 <div className="description-structure">
                   {course.title?.includes("O Brincar na Terapia Ocupacional") && (
                     <>
-                      <h3 className="description-subtitle">Sobre o Curso</h3>
-                      <p>Formação 4 dias presenciais com a Terapeuta Ocupacional Paula Serrano.</p>
+                      <h3 className="description-subtitle">{t(`courses.${course.id}.about_course`)}</h3>
+                      <p>{t(`courses.${course.id}.about_course_p`)}</p>
+
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.equipaments`)}</h3>
+                                            <p>{t(`courses.${course.id}.equipaments_p1`)}</p>
+                                            <p>{t(`courses.${course.id}.equipaments_p2`)}</p>
+                                            <p>{t(`courses.${course.id}.equipaments_p3`)}</p>
                       
-                      <h3 className="description-subtitle">Enquadramento</h3>
-                      <p>Os terapeutas ocupacionais usam o brincar na prática tanto para avaliação quanto para intervenção, mas o uso específico do brincar na terapia ocupacional pediátrica varia. Na literatura da terapia ocupacional sobre o brincar são referidas preocupações relativamente à forma como os terapeutas ocupacionais abordam o papel do brincar na sua intervenção.</p>
-                      <p>Vários artigos sugerem restrições e falta de ênfase à abordagem dirigida ao brincar por terapeutas ocupacionais pediátricos. Essas restrições incluem atitudes de desvalorização em relação ao brincar, enquanto se dá maior ênfase no desenvolvimento de competências não relacionadas ao brincar (ex. competências motoras, sociais), falha na avaliação do brincar e dificuldade na definição de um plano de intervenção dirigido à ocupação do brincar.</p>
-                      <p>No entanto a avaliação do brincar e a intervenção dirigida à ocupação do brincar é vital para o desenvolvimento infantil, para a saúde e respeito pela infância.</p>
-                      
-                      <h3 className="description-subtitle">Conteúdos Programáticos</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.course_content_title1`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>Definindo o brincar</li>
-                          <li>Revisão das diferentes teorias do brincar</li>
-                          <li>A evolução do brincar na terapia ocupacional</li>
-                          <li>Quadros de referência do brincar na terapia ocupacional</li>
-                          <li>A sequência de desenvolvimento do brincar ao longo da infância</li>
-                          <li>Desenvolvimento das competências do brincar com o corpo, com objetos e simbólico</li>
+                                                    <li>{t(`courses.${course.id}.course_content_title1_li.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.course_content_title1_li.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.course_content_title1_li.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.course_content_title1_li.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.course_content_title1_li.5`)}</li>
                         </ul>
                       </div>
                       
                       <div className="content-subcategory">
-                        <h4 className="description-subtitle-secondary">Avaliação do brincar</h4>
+                                                <h4 className="description-subtitle-secondary">{t(`courses.${course.id}.course_content_title2`)}</h4>
                         <div className="content-list">
                           <ul>
-                            <li>Entrevista</li>
-                            <li>Questionários: The Play History (Takata)</li>
-                            <li>Organização da observação em contexto natural</li>
-                            <li>Instrumentos: Revised Knox Preschool Play scale (Knox); Test of Playfulness (TOP) (Bundy)</li>
-                            <li>Definição dos objetivos terapêuticos</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title2_li.1`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title2_li.2`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title2_li.3`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title2_li.4`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title2_li.5`)}</li>
                           </ul>
                         </div>
                       </div>
                       
                       <div className="content-subcategory">
-                        <h4 className="description-subtitle-secondary">Promover o brincar</h4>
+                                                <h4 className="description-subtitle-secondary">{t(`courses.${course.id}.course_content_title3`)}</h4>
                         <div className="content-list">
                           <ul>
-                            <li>O papel do Terapeuta Ocupacional</li>
-                            <li>A intervenção terapêutica</li>
-                            <li>Intervenção no contexto da criança</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title3_li.1`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title3_li.2`)}</li>
+                                                        <li>{t(`courses.${course.id}.course_content_title3_li.3`)}</li>
                           </ul>
                         </div>
                       </div>
                       
-                      <h3 className="description-subtitle">Metodologia</h3>
-                      <p>Exposição teórica discussão de grupos e exercícios práticos</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.metodology_h`)}</h3>
+                                            <p>{t(`courses.${course.id}.metodology_p`)}</p>
                     </>
                   )}
                   
                   {course.title?.includes("Raciocínio Clínico e Intervenção") && (
                     <>
-                      <h3 className="description-subtitle">Sobre o Curso</h3>
-                      <p>Duração - 24 horas com a Terapeuta Ocupacional Paula Serrano.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_1.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_1.p`)}</p>
                       
-                      <h3 className="description-subtitle">Área de Intervenção</h3>
-                      <p>Integração Sensorial</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_2.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_2.p`)}</p>
                       
-                      <h3 className="description-subtitle">Destinatários</h3>
-                      <p>Terapeutas ocupacionais com certificação em Integração Sensorial</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_3.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_3.p`)}</p>
                       
-                      <h3 className="description-subtitle">Objetivos Gerais</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_4.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>Refletir sobre o desenvolvimento nos primeiros anos de vida e os fatores que o condicionam</li>
-                          <li>Analisar o contributo das teorias de desenvolvimento e das neurociências para a nossa compreensão do desenvolvimento infantil</li>
-                          <li>Analisar a evidencia científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres</li>
-                          <li>Explorar a importância da avaliação de integração sensorial, as metodologias e os diversos instrumentos disponíveis</li>
-                          <li>Praticar o raciocínio clínico interpretando os dados da avaliação</li>
-                          <li>Elaborar objetivos terapêuticos com base na avaliação</li>
-                          <li>Planear a intervenção</li>
-                          <li>Analisar a intervenção terapêutica usando a abordagem de integração sensorial de Ayres</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.5`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.6`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.7`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.8`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Conteúdos Programáticos</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_5.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>O desenvolvimento infantil e os fatores de suporte</li>
-                          <li>A integração sensorial de Ayres e a evidencia científica do impacto dos sistemas sensoriais no desenvolvimento</li>
-                          <li>A autorregulação e a disfunção sensorial</li>
-                          <li>Praxis e o conceito de Affordance</li>
-                          <li>Desenvolvimento da praxis e os sinais precoces de dispraxia</li>
-                          <li>Classificação das perturbações de processamento sensorial na primeira infância</li>
-                          <li>Instrumentos de avaliação da disfunção de integração sensorial</li>
-                          <li>Analise de uma escala de desenvolvimento sob a perspetiva da integração sensorial</li>
-                          <li>A organização da observação não estruturada e estruturada do processamento sensorial</li>
-                          <li>Análise dos dados da avaliação e Raciocínio clínico</li>
-                          <li>Planeamento da intervenção: Objetivos, organização da sessão</li>
-                          <li>Fidelidade à integração sensorial de Ayres na prática clínica</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.5`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.6`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.7`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.8`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.9`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.10`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.11`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.12`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Metodologia</h3>
-                      <p>As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_6.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_6.p`)}</p>
                     </>
                   )}
                   
                   {course.title?.includes("Integração Sensorial: Avaliação") && (
                     <>
-                      <h3 className="description-subtitle">Sobre o Curso</h3>
-                      <p>Formação de 24 horas com Paula Serrano – Mestre em Terapia Ocupacional- área de especialização Integração Sensorial.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_1.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_1.p`)}</p>
                       
-                      <h3 className="description-subtitle">Área de Intervenção</h3>
-                      <p>Integração Sensorial</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_2.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_2.p`)}</p>
                       
-                      <h3 className="description-subtitle">Destinatários</h3>
-                      <p>Terapeutas ocupacionais com formação pós graduada em Integração Sensorial</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_3.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_3.p`)}</p>
                       
-                      <h3 className="description-subtitle">Objetivos Gerais</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_4.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>Analisar a disfunção de integração sensorial e a relação com os motivos de referenciação</li>
-                          <li>Explorar a importância da avaliação de integração sensorial, as metodologias e os diversos instrumentos disponíveis</li>
-                          <li>Praticar o raciocínio clínico interpretando os dados da avaliação</li>
-                          <li>Definir objetivos de desempenho ocupacional e objetivos de integração sensorial</li>
-                          <li>Analisar vários formatos de relatório que documentem as dificuldades de integração sensorial e a relação com o desempenho ocupacional</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.list.5`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Conteúdos Programáticos</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_5.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>Disfunção da Integração Sensorial</li>
-                          <li>Motivos de referenciação que levam à avaliação em integração sensorial</li>
-                          <li>O processo de avaliação em integração sensorial</li>
-                          <li>Metodologias de avaliação</li>
-                          <li>Aplicação, e análise da História Sensorial</li>
-                          <li>As observações não estruturadas e as observações estruturadas</li>
-                          <li>Análise e interpretação de instrumentos de avaliação – SPM, SPMp, perfil sensorial Dunn</li>
-                          <li>Interpretação de uma escala de desenvolvimento à luz da integração sensorial</li>
-                          <li>Raciocínio clínico</li>
-                          <li>Definição de objetivos de desempenho ocupacional e objetivos de integração sensorial</li>
-                          <li>A elaboração do relatório</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.5`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.6`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.7`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.8`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.9`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.10`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.list.11`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Metodologia</h3>
-                      <p>As sessões de trabalho serão teóricas e práticas com análise de vídeos.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_6.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_6.p`)}</p>
                     </>
                   )}
                   
                   {course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
                     <div data-course="Avaliacao">
-                      <h3 className="description-subtitle">Sobre o Curso</h3>
-                      <p>Duração – 21 horas com a Terapeuta Ocupacional Paula Serrano.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_1.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_1.p`)}</p>
                       
-                      <h3 className="description-subtitle">Área de Intervenção</h3>
-                      <p>Integração Sensorial e Brincar</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_2.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_2.p`)}</p>
                       
-                      <h3 className="description-subtitle">Destinatários</h3>
-                      <p>Terapeutas ocupacionais com formação pós graduada em Integração Sensorial</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_3.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_3.p`)}</p>
                       
-                      <h3 className="description-subtitle">Objetivos Gerais</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_4.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>Analisar a investigação e as etapas do brincar com o corpo, com os objetos e social/emocional na primeira infância</li>
-                          <li>Analisar os elementos da ludicidade (playfulness) na primeira Infância</li>
-                          <li>Analisar a importância da integração sensorial e a classificação das perturbações regulatórias do processamento sensorial na primeira infância</li>
-                          <li>Explorar a importância da avaliação de integração sensorial, e do brincar, as metodologias e os diversos instrumentos disponíveis</li>
-                          <li>Praticar o raciocínio clínico interpretando os dados da avaliação</li>
-                          <li>Elaborar objetivos terapêuticos com base na avaliação</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.5`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_4.l1.6`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Conteúdos Programáticos</h3>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_5.title`)}</h3>
                       <div className="content-list">
                         <ul>
-                          <li>O Brincar na Terapia Ocupacional</li>
-                          <li>O desenvolvimento do brincar dos 0 aos 3 anos: as etapas e os sinais de alarme do brincar com o corpo, com os objetos e simbólico</li>
-                          <li>O desenvolvimento do comportamento lúdico</li>
-                          <li>A avaliação do Brincar</li>
-                          <li>Instrumentos de avaliação do brincar</li>
-                          <li>A Integração Sensorial na primeira infância e a disfunção de integração sensorial</li>
-                          <li>Classificação das perturbações de processamento sensorial na primeira infância</li>
-                          <li>As Neurociências, o brincar e a integração sensorial</li>
-                          <li>Instrumentos de avaliação de integração sensorial dos 0 aos 3 anos</li>
-                          <li>Raciocínio clínico</li>
-                          <li>Avaliação, raciocínio clínico e o planeamento da intervenção</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.1`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.2`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.3`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.4`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.5`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.6`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.7`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.8`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.9`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.10`)}</li>
+                                                    <li>{t(`courses.${course.id}.title_5.l1.11`)}</li>
                         </ul>
                       </div>
                       
-                      <h3 className="description-subtitle">Metodologia</h3>
-                      <p>As sessões de trabalho serão teóricas e praticas, com analise de vídeos de casos clínicos.</p>
+                                            <h3 className="description-subtitle">{t(`courses.${course.id}.title_6.title`)}</h3>
+                                            <p>{t(`courses.${course.id}.title_6.p`)}</p>
                     </div>
                   )}
                   
-                  {!course.title?.includes("O Brincar na Terapia Ocupacional") && 
-                   !course.title?.includes("Raciocínio Clínico e Intervenção") && 
-                   !course.title?.includes("Integração Sensorial: Avaliação") && 
-                   !course.title?.includes("Avaliação e Raciocínio Clínico na Primeira Infância") && (
-                    <>
-                       {course.title?.includes("Programa Internacional") && (
+                                    {course.title?.includes("Programa Internacional") && (
                          <div className="programa-internacional">
                            <div className="programa-header">
-                             <h3 className="description-subtitle programa-title">Sobre o Programa</h3>
-                             <div className="programa-badge">360 horas | 18 meses</div>
-                           </div>
-                           
+                                                <h3 className="description-subtitle programa-title">{t("courses.5.title_1.title")}</h3>
+                                                <div className="programa-badge">{t("courses.5.title_1.p")}</div>
                            <div className="programa-info-grid">
                              <div className="programa-info-item">
-                               <h4 className="programa-info-title">Formadores</h4>
-                               <p>Professores de Portugal, Brasil e Estados Unidos da América</p>
+                               <h4 className="programa-info-title">{t(`courses.${course.id}.title_1.subtitle.1.title`)}</h4>
+                               <p>{t(`courses.${course.id}.title_1.subtitle.1.p`)}</p>
                              </div>
                              
                              <div className="programa-info-item">
-                               <h4 className="programa-info-title">Área de Intervenção</h4>
-                               <p>Integração Sensorial</p>
+                               <h4 className="programa-info-title">{t(`courses.${course.id}.title_1.subtitle.3.title`)}</h4>
+                               <p>{t(`courses.${course.id}.title_1.subtitle.3.p`)}</p>
                              </div>
                              
                              <div className="programa-info-item">
-                               <h4 className="programa-info-title">Destinatários</h4>
-                               <p>Terapeutas ocupacionais</p>
+                               <h4 className="programa-info-title">{t(`courses.${course.id}.title_1.subtitle.2.title`)}</h4>
+                               <p>{t(`courses.${course.id}.title_1.subtitle.2.p`)}</p>
                              </div>
                              
                              <div className="programa-info-item">
-                               <h4 className="programa-info-title">Metodologia</h4>
-                               <p>Aulas teóricas on-line e aulas práticas presenciais</p>
+                               <h4 className="programa-info-title">{t(`courses.${course.id}.title_1.subtitle.4.title`)}</h4>
+                               <p>{t(`courses.${course.id}.title_1.subtitle.4.p`)}</p>
                              </div>
                            </div>
                            
                            <div className="programa-section">
-                             <h3 className="description-subtitle">Objectivos Gerais</h3>
+                                                    <h3 className="description-subtitle">{t("courses.5.title_2.title")}</h3>
                              <div className="programa-objetivos">
                                <ul>
-                                 <li>Compreender os fundamentos da Teoria de Integração Sensorial (IS) de Jean Ayres</li>
-                                 <li>Identificar os sistemas sensoriais envolvidos na integração sensorial e a sua influência no desenvolvimento humano</li>
-                                 <li>Reconhecer a neurofisiologia subjacente à reatividade sensorial, processamento e praxis</li>
-                                 <li>Relacionar disfunções do processamento sensorial com dificuldades no desempenho ocupacional</li>
-                                 <li>Avaliar e interpretar dificuldades sensoriais utilizando diversas metodologias e instrumentos de avaliação</li>
-                                 <li>Interpretar a informação do processo avaliativo e utilizar o raciocínio clínico com base na taxonomia atual</li>
-                                 <li>Elaborar um plano de intervenção dirigido às dificuldades de desempenho ocupacional</li>
-                                 <li>Implementar a intervenção utilizando a abordagem de integração sensorial</li>
-                                 <li>Discutir evidências científicas sobre a eficácia da Integração Sensorial como abordagem terapêutica</li>
+                                                            <li>{t("courses.5.title_2.li.1")}</li>
+                                                            <li>{t("courses.5.title_2.li.2")}</li>
+                                                            <li>{t("courses.5.title_2.li.3")}</li>
+                                                            <li>{t("courses.5.title_2.li.4")}</li>
+                                                            <li>{t("courses.5.title_2.li.5")}</li>
+                                                            <li>{t("courses.5.title_2.li.6")}</li>
+                                                            <li>{t("courses.5.title_2.li.7")}</li>
+                                                            <li>{t("courses.5.title_2.li.8")}</li>
+                                                            <li>{t("courses.5.title_2.li.9")}</li>
                                </ul>
                              </div>
                            </div>
                            
                            <div className="programa-section">
-                             <h3 className="description-subtitle">Conteúdos Programáticos</h3>
-                             <div className="programa-conteudos">
+                                                    <h3 className="description-subtitle">{t("courses.5.title_3.title")}</h3>
+                                                    <div
+                                                        className="programa-conteudos">
                                <ul>
-                                 <li>Fundamentos teóricos e neurocientíficos da Integração Sensorial</li>
-                                 <li>Sistemas sensoriais e seu impacto no desenvolvimento</li>
-                                 <li>Neurofisiologia da reatividade sensorial e processamento</li>
+                                                            <li>{t("courses.5.title_3.li.1")}</li>
+                                                            <li>{t("courses.5.title_3.li.2")}</li>
+                                                            <li>{t("courses.5.title_3.li.3")}</li>
                                  <li className="with-subitems">
-                                   Avaliação em Integração Sensorial:
+                                                                {t("courses.5.title_3.li.4.title")}
                                    <ul className="subitems">
-                                     <li>Metodologias de avaliação</li>
-                                     <li>Instrumentos padronizados</li>
-                                     <li>Interpretação de resultados</li>
+                                                                    <li>
+                                                                        {t("courses.5.title_3.li.4.li.0")}
+                                                                    </li>
+                                                                    <li>
+                                                                        {t("courses.5.title_3.li.4.li.1")}
+                                                                    </li>
+                                                                    <li>
+                                                                        {t("courses.5.title_3.li.4.li.2")}
+                                                                    </li>
                                    </ul>
                                  </li>
-                                 <li>Raciocínio clínico e diagnóstico terapêutico</li>
+                                                            <li>
+                                                                {t("courses.5.title_3.li.5")}
+                                                            </li>
                                  <li className="with-subitems">
-                                   Planeamento da intervenção:
+                                                                {t("courses.5.title_3.li.6.title")}
                                    <ul className="subitems">
-                                     <li>Definição de objetivos</li>
-                                     <li>Estratégias baseadas na Integração Sensorial</li>
+                                                                    <li>
+                                                                        {t("courses.5.title_3.li.6.li.0")}
+                                                                    </li>
+                                                                    <li>
+                                                                        {t("courses.5.title_3.li.6.li.1")}
+                                                                    </li>
                                    </ul>
                                  </li>
-                                 <li>Implementação da intervenção segundo a medida de fidelidade na abordagem de Ayres</li>
-                                 <li>Evidência científica na prática de Integração Sensorial</li>
+                                                            <li>
+                                                                {t("courses.5.title_3.li.7")}
+                                                            </li>
+                                                            <li>
+                                                                {t("courses.5.title_3.li.8")}
+                                                            </li>
                                </ul>
                              </div>
                            </div>
                            
                            <div className="programa-metodologia">
-                             <h3 className="description-subtitle">Metodologia</h3>
-                             <p>O programa combina sessões teóricas online com sessões práticas presenciais em várias cidades do Brasil (localizações a confirmar). A formação será ministrada por especialistas internacionais de Portugal, Brasil e Estados Unidos da América.</p>
+                                                    <h3 className="description-subtitle">{t("courses.5.title_4.title")}</h3>
+                                                    <p>{t("courses.5.title_4.p")}</p>
                            </div>
-                           
-                           <div className="programa-inscricao">
-                             <h3>Inscrições Limitadas</h3>
-                             <p>As inscrições para este programa são limitadas para garantir a qualidade da formação. Para informações sobre as próximas turmas e processo de inscrição, entre em contacto por email.</p>
+                                                <div
+                                                    className="programa-inscricao">
+                                                    <h3>{t("courses.5.title_5.title")}</h3>
+                                                    <p>{t("courses.5.title_5.p")}</p>
                            </div>
                          </div>                       
-                       )}
-                     </>
+                      </div>
                   )}
                 </div>
               </div>
@@ -510,13 +520,13 @@ const CourseDetails = () => {
               >
                 {isDescriptionExpanded ? (
                   <>
-                    <span>Ler menos</span>
-                    <ChevronUp className="h-4 w-4" />
+                                        <span>{t("more_read")}</span>
+                                        <ChevronUp className="h-4 w-4"/>
                   </>
                 ) : (
                   <>
-                    <span>Ler mais</span>
-                    <ChevronDown className="h-4 w-4" />
+                                        <span>{t("less_read")}</span>
+                                        <ChevronDown className="h-4 w-4"/>
                   </>
                 )}
               </Button>
@@ -524,18 +534,18 @@ const CourseDetails = () => {
           </section>
 
           <section>
-            <h2>Professor(a)</h2>
-            <p>{course.instructor}</p>
+                        <h2>{t(`courses.${course.id}.teacher`)}</h2>
+                        <p>{t(`courses.${course.id}.instructor`)}</p>
           </section>
 
           <section>
-            <h2>Localização</h2>
-            <p>{course.Localizacao}</p>
+                        <h2>{t(`courses.${course.id}.localization.title`)}</h2>
+                        <p>{t(`courses.${course.id}.localization.description`)}</p>
           </section>
 
           <section>
-            <h2>Data</h2>
-            <p>{course.date}</p>
+                        <h2>{t(`courses.${course.id}.a_date.title`)}</h2>
+                        <p>{t(`courses.${course.id}.a_date.description`)}</p>
           </section>
         </div>
         
@@ -570,40 +580,38 @@ const CourseDetails = () => {
                         <path d="M8 21C8.55228 21 9 20.5523 9 20C9 19.4477 8.55228 19 8 19C7.44772 19 7 19.4477 7 20C7 20.5523 7.44772 21 8 21Z" fill="currentColor"/>
                         <path d="M16 21C16.5523 21 17 20.5523 17 20C17 19.4477 16.5523 19 16 19C15.4477 19 15 19.4477 15 20C15 20.5523 15.4477 21 16 21Z" fill="currentColor"/>
                       </svg>
-                      Comprar Agora
+                                {t("buy_button")}
                     </button>
                     <button className="cart-button" onClick={handleAddToCart}>
                       <ShoppingCart size={20} />
-                      Adicionar ao Carrinho
+                      {t("add_to_cart")}
                     </button>
                   </>
                 ) : (
                   <a href="https://imersao.inclusaoeficiente.com.br/interessados-pos-is" target="_blank" rel="noopener noreferrer" className="inscrever-button">
-                   Inscrever Agora
+                   {t("enroll_button")}
                  </a>
                 )}
               
               <div className="disclaimer-text">
-                {Number(id) === 5 
-                   ? "Obs: Inscreva-se para garantir sua vaga no próximo grupo. Vagas limitadas para assegurar a qualidade da formação."
-                   : "Obs.: O valor final pode sofrer variações devido à taxa de câmbio e/ou impostos locais, conforme a política do meio de pagamento escolhido."
-                }
+                                {t("obs")}
               </div>
             </div>
             <div className="contact-info">
-            Para esclarecimento de qualquer duvida, contacte a Paula Serrano por email: <a href="mailto:paulaserranoeducacao@gmail.com" className="email-link">paulaserranoeducacao@gmail.com</a>
+                            {t("contact_by_mail")} <a
+                            href="mailto:paulaserranoeducacao@gmail.com"
+                            className="email-link">paulaserranoeducacao@gmail.com</a>
             </div>
           </div>
           
           <div className="detalhes-adicionais">
-            <h2>O que você vai aprender</h2>
+                        <h2>{t("learning_on_course")}</h2>
             <ul>
               {course.learningOutcomes ? (
                 course.learningOutcomes.map((outcome, index) => (
                   <li key={index}>
-                    <Check className="h-4 w-4 inline-block mr-2 text-green-600" />
-                    
-                    {outcome}
+                                        <Check className="h-4 w-4 inline-block mr-2 text-green-600"/>
+                                        {t(`courses.${course.id}.learningOutcomes.${index}`)}
                   </li>
                 ))
               ) : (
