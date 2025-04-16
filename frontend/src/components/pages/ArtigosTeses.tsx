@@ -11,7 +11,8 @@ interface Article {
     title: string;
     author: string;
     type: "artigo" | "tese";
-    date: string;
+    date_month: string;
+    date_year: string;
     description: string;
     file: string;
 }
@@ -24,7 +25,8 @@ const sampleArticles: Article[] = [
         title: "Adaptação cultural e linguística e recolha dos dados normativos das Structured Observations of Sensory Related Motor Performance",
         author: "Paula de Jesus Mendes Serrano",
         type: "tese",
-        date: "Janeiro/2013",
+        date_month: "january", // Use key from translation.json for optimized translation
+        date_year:"2013",
         description: "Desde o início do desenvolvimento da teoria de integração sensorial...",
         file: "/pdfs/adaptacao-cultural-linguistica.pdf", // Corrected file path
     },
@@ -33,7 +35,8 @@ const sampleArticles: Article[] = [
         title: "Screening Assessment of Sensory Integration (SASI) - Research Ed. V.2.2: Análise da capacidade discriminativa do teste de estereognosia de crianças portuguesas entre os 4 e 7 anos e 11 meses",
         author: "Ana Margarida Almeida Reis",
         type: "tese",
-        date: "Fevereiro/2023",
+        date_month: "february", // Use key from translation.json for optimized translation
+        date_year:"2023",
         description: "O desenvolvimento dos sistemas sensoriais tem um papel essencial...",
         file: "/pdfs/analise-da-capacidade-discriminativa.pdf", // Corrected file path
     },
@@ -42,7 +45,8 @@ const sampleArticles: Article[] = [
         title: "Comportamento e competências sociais em crianças dos 3 aos 5 anos: Relação com o processamento sensorial",
         author: "Margarida Isabel Araújo Oliveira",
         type: "tese",
-        date: "Abril/2020",
+        date_month: "april", // Use key from translation.json for optimized translation
+        date_year:"2020",
         description: "As crianças com dificuldade de regulação sensorial demonstram dificuldades...",
         file: "/pdfs/comportamento-e-competencias-sociais.pdf", // Corrected file path
     },
@@ -51,7 +55,8 @@ const sampleArticles: Article[] = [
         title: "Construção e validação de uma grelha de avaliação dos comportamentos do brincar com o corpo, de bebés entre os 10 e os 12 meses, em contexto educativo e sua relação com o perfil sensorial 2",
         author: "Jéssica Filipa Dias Pereira",
         type: "tese",
-        date: "Fevereiro/2023",
+        date_month: "february", // Use key from translation.json for optimized translation
+        date_year:"2023",
         description: "Ao brincar a criança dá significado ao mundo que a rodeia, expressa-se e estabelece...",
         file: "/pdfs/comportamentos-brincar-corpo.pdf", // Corrected file path
     },
@@ -60,7 +65,8 @@ const sampleArticles: Article[] = [
         title: "Contributo para adaptação cultural e linguística da Ayres Sensory Integration® Intervention Fidelity Measure para Língua Portuguesa",
         author: "João Pedro Mira Cadima",
         type: "tese",
-        date: "Junho/2012",
+        date_month: "june", // Use key from translation.json for optimized translation
+        date_year:"2012",
         description: "Atualmente a intervenção segundo o modelo de Integração Sensorial, Ayres Sensory Integration...",
         file: "/pdfs/contributo-para-adaptacao-cultural-e-linguistica.pdf", // Corrected file path
     },
@@ -69,7 +75,8 @@ const sampleArticles: Article[] = [
         title: "Neurociência do Brincar - Revisão Scoping",
         author: "Cláudia Alexandra Gonçalves Valente",
         type: "tese",
-        date: "Dezembro/2021",
+        date_month: "december", // Use key from translation.json for optimized translation
+        date_year:"2021",
         description: "O Brincar tem sido pouco explorado e tem sido investigado sobretudo como...",
         file: "/pdfs/neurociencia-do-brincar.pdf", // Corrected file path
     },
@@ -78,7 +85,8 @@ const sampleArticles: Article[] = [
         title: "O brincar e o processamento sensorial em crianças dos 36 aos 72 meses",
         author: "Margarida Isabel Dias Ribeiro Sabino Cardoso",
         type: "tese",
-        date: "Julho/2024",
+        date_month: "july", // Use key from translation.json for optimized translation
+        date_year:"2024",
         description: "Brincar é a principal ocupação nos primeiros anos de vida da criança, existindo um papel...",
         file: "/pdfs/o-brincar-e-o-processamento-sensorial.pdf", // Corrected file path
     },
@@ -87,7 +95,8 @@ const sampleArticles: Article[] = [
         title: "Problemas de sono e processamento sensorial: Estudo exploratório com grupo de crianças de 5 e 6 anos",
         author: "Ana Rita Silva Sousa",
         type: "tese",
-        date: "Março/2019",
+        date_month: "march", // Use key from translation.json for optimized translation
+        date_year:"2019",
         description: "O sono e os problemas de sono têm vindo a merecer atenção na área da Terapia Ocupacional...",
         file: "/pdfs/problemas-de-sono-e-processamento-sensorial.pdf", // Corrected file path
     },
@@ -262,8 +271,8 @@ const ArtigosTeses = () => {
                                 <h2 className="publication-title">{t(`articles.${article.id}.title`)}</h2>
 
                                 <div className="publication-meta">
-                                    <span className="publication-author">Por {article.author}</span>
-                                    <span className="publication-date">{article.date}</span>
+                                    <span className="publication-author">{t("by")} {article.author}</span>
+                                    <span className="publication-date">{t(`months.${article.date_month}`)}/{article.date_year}</span>
                                 </div>
                             </div>
                             <div className="publication-content">
