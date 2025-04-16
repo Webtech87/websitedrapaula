@@ -89,7 +89,7 @@ const Contact = () => {
                 {error && <div className="error-message">{error}</div>}
 
                 <div className="form-group">
-                  <label htmlFor="name">{t("name")}</label>
+                  <label htmlFor="name">{t("contact_us_form_name")}:</label>
                   <input
                     type="text"
                     id="name"
@@ -101,7 +101,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">{t("contact_us_form_email")}:</label>
                   <input
                     type="email"
                     id="email"
@@ -113,7 +113,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">{t("contact_us_form_messag")}</label>
+                  <label htmlFor="message">{t("contact_us_form_messag")}:</label>
                   <textarea
                     id="message"
                     name="message"
