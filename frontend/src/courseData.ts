@@ -82,7 +82,7 @@ Terapeutas ocupacionais com certificação em Integração Sensorial
 Objectivos Gerais:
 • Refletir sobre o desenvolvimento nos primeiros anos de vida e os fatores que o condicionam
 • Analisar o contributo das teorias de desenvolvimento e das neurociências para a nossa compreensão do desenvolvimento infantil
-• Analisar a evidencia científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres
+• Analisar a evidência científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres
 • Explorar a importância da avaliação de integração sensorial, as metodologias e os diversos instrumentos disponíveis
 • Praticar o raciocínio clínico interpretando os dados da avaliação
 • Elaborar objetivos terapêuticos com base na avaliação
@@ -91,7 +91,7 @@ Objectivos Gerais:
 
 Conteúdos Programáticos:
 • O desenvolvimento infantil e os fatores de suporte
-• A integração sensorial de Ayres e a evidencia científica do impacto dos sistemas sensoriais no desenvolvimento
+• A integração sensorial de Ayres e a evidência científica do impacto dos sistemas sensoriais no desenvolvimento
 • A autorregulação e a disfunção sensorial
 • Praxis e o conceito de Affordance
 • Desenvolvimento da praxis e os sinais precoces de dispraxia

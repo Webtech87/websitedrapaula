@@ -103,9 +103,9 @@
       "title_4": {
         "title": "General Objectives",
         "list": {
-          "1": "Reflect on development in the early years and influencing factors",
-          "2": "Analyze contributions of developmental theories and neuroscience to understanding child development",
-          "3": "Analyze the current scientific evidence on sensory systems supporting Ayres Sensory Integration",
+          "1": "Reflect on development in the early years of life and the factors that influence it",
+          "2": "Analyze the contributions of developmental theories and neuroscience to our understanding of child development",
+          "3": "Analyze the current scientific evidence on sensory systems supporting Ayres Sensory Integration approach",
           "4": "Explore the importance of sensory integration assessment, methodologies, and tools available",
           "5": "Practice clinical reasoning by interpreting assessment data",
           "6": "Develop therapeutic goals based on assessment",
@@ -127,7 +127,7 @@
           "9": "Organizing structured and unstructured sensory processing observations",
           "10": "Assessment data analysis and Clinical Reasoning",
           "11": "Intervention Planning: Goals, session organization",
-          "12": "Ayres Sensory Integration fidelity in clinical practice"
+          "12": "Fidelity to Ayres Sensory Integration in clinical practice"
         }
       },
       "title_6": {
@@ -373,6 +373,7 @@
 }
 
   },
+  "tranings_mentorships_intro": "Mentorship",
   "tranings_mentorships_description_p": "Discover how mentorship can transform your career.",
   "tranings_mentorships_description_h2": "Professional Mentorship: What Is It and What Are Its Benefits?",
   "tranings_mentorships_description_h2_p": "Professional mentorship is a process where a more experienced professional (mentor) guides and supports a less experienced professional (mentee) in career development. This relationship is based on the exchange of experiences, knowledge, and practical advice, helping the mentee overcome challenges and develop skills.",
@@ -772,9 +773,11 @@
     "december": "December"
   },
   "buy_button": "Buy Now",
+  "full_program": "Full Program",
   "enroll_button": "Enroll Now",
   "add_to_cart": "Add to cart",
   "obs": "Note: The final price may vary due to exchange rates and/or local taxes, according to the policy of the selected payment method.",
+  "obs_course_5": "Note: Enroll to secure your spot in the next group. Limited spots available to ensure the quality of the training.",
   "contact_by_mail": "For any clarification, contact Paula Serrano by email: ",
   "learning_on_course": "What you will learn",
   "privacity": {

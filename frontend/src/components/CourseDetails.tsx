@@ -520,12 +520,12 @@ const CourseDetails = () => {
               >
                 {isDescriptionExpanded ? (
                   <>
-                                        <span>{t("more_read")}</span>
+                                        <span>{t("less_read")}</span>
                                         <ChevronUp className="h-4 w-4"/>
                   </>
                 ) : (
                   <>
-                                        <span>{t("less_read")}</span>
+                                        <span>{t("more_read")}</span>
                                         <ChevronDown className="h-4 w-4"/>
                   </>
                 )}
@@ -554,7 +554,7 @@ const CourseDetails = () => {
             <div className="price-wishlist-container">
             <div className="price">
                  {Number(id) === 5 
-                   ? "Programa Completo" 
+                   ? t("full_program") 
                    : course.price}
                </div>
                {Number(id) !== 5 && (
@@ -594,7 +594,9 @@ const CourseDetails = () => {
                 )}
               
               <div className="disclaimer-text">
-                                {t("obs")}
+                {Number(id) === 5 
+                   ? t("obs_course_5") 
+                   : t("obs")}
               </div>
             </div>
             <div className="contact-info">

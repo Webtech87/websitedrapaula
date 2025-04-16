@@ -105,7 +105,7 @@
         "list": {
           "1": "Refletir sobre o desenvolvimento nos primeiros anos de vida e os fatores que o condicionam",
           "2": "Analisar o contributo das teorias de desenvolvimento e das neurociências para a nossa compreensão do desenvolvimento infantil",
-          "3": "Analisar a evidencia científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres",
+          "3": "Analisar a evidência científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres",
           "4": "Explorar a importância da avaliação de integração sensorial, as metodologias e os diversos instrumentos disponíveis",
           "5": "Praticar o raciocínio clínico interpretando os dados da avaliação",
           "6": "Elaborar objetivos terapêuticos com base na avaliação",
@@ -117,7 +117,7 @@
         "title": "Conteúdos Programáticos",
         "list": {
           "1": "O desenvolvimento infantil e os fatores de suporte",
-          "2": "A integração sensorial de Ayres e a evidencia científica do impacto dos sistemas sensoriais no desenvolvimento",
+          "2": "A integração sensorial de Ayres e a evidência científica do impacto dos sistemas sensoriais no desenvolvimento",
           "3": "A autorregulação e a disfunção sensorial",
           "4": "Praxis e o conceito de Affordance",
           "5": "Desenvolvimento da praxis e os sinais precoces de dispraxia",
@@ -132,7 +132,7 @@
       },
       "title_6": {
         "title": "Metodologia",
-        "p": "As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos."
+        "p": "As sessões de trabalho serão presenciais, teóricas e práticas com análise de vídeos de casos clínicos."
       },
       "teacher": "Professor(a)",
       "localization": {
@@ -234,7 +234,7 @@
       },
       "title_3": {
         "title": "Destinatários",
-        "p": "Terapeutas ocupacionais com formação pós graduada em Integração Sensorial"
+        "p": "Terapeutas ocupacionais com formação pós-graduada em Integração Sensorial"
       },
       "title_4": {
         "title": "Objetivos Gerais",
@@ -372,6 +372,7 @@
       }
     }
   },
+  "tranings_mentorships_intro": "Mentoria",
   "tranings_mentorships_description_p": "Descubra como a mentoria pode transformar a sua carreira.",
   "tranings_mentorships_description_h2": "Mentoria Profissional: O Que é e Quais São as Suas Vantagens?",
   "tranings_mentorships_description_h2_p": "A mentoria profissional é um processo no qual um profissional mais experiente (mentor) orienta e apoia outro profissional menos  experiente (mentorado) no desenvolvimento da sua carreira. Essa relação baseia-se na troca de experiências, conhecimentos e conselhos práticos, ajudando o mentorado a superar desafios e desenvolver competências.",
@@ -792,9 +793,11 @@
     "december": "Dezembro"
   },
   "buy_button": "Comprar Agora",
+  "full_program": "Programa Completo",
   "enroll_button": "Inscrever Agora",
   "add_to_cart": "Adicionar ao carinho",
   "obs": "Obs.: O valor final pode sofrer variações devido à taxa de câmbio e/ou impostos locais, conforme a política do meio de pagamento escolhido.",
+  "obs_course_5": "Obs.: Inscreva-se para garantir sua vaga no próximo grupo. Vagas limitadas para assegurar a qualidade da formação.",
   "contact_by_mail": "Para esclarecimento de qualquer dúvida, contacte a Paula Serrano por email: ",
   "learning_on_course": "O que você vai aprender",
   "privacity": {

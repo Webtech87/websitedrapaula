@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import "../../styles/pages/mentorship.css";
 import mentorshipImage from "../../assets/courses/PaulaSerrano-102 1.png";
+import {useTranslation} from "react-i18next";
 
 const Mentorship = ({ id }: { id: string }) => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -10,13 +11,15 @@ const Mentorship = ({ id }: { id: string }) => {
     navigate('/mentorship-details'); // Navigate to the MentorshipDetails page
   };
 
+  const {t} = useTranslation();
+
   return (
     <section id={id} className="mentorship">
       <div className="mentorship-container">
         <div className="mentorship-intro-tag">
-          <span className="mentorship-tag">Mentoria</span>
+          <span className="mentorship-tag">{t("tranings_mentorships_intro")}</span>
           <p className="mentorship-intro">
-            Descubra como a mentoria pode transformar sua carreira.
+            {t("tranings_mentorships_description_p")}
           </p>
         </div>
 
@@ -31,21 +34,16 @@ const Mentorship = ({ id }: { id: string }) => {
         </div>
 
         <div className="mentorship-main-content">
-          <h2>Mentoria Profissional: O Que é e Quais São as Suas Vantagens?</h2>
+          <h2>{t("tranings_mentorships_description_h2")}</h2>
           <p>
-            A mentoria profissional é um processo no qual um profissional mais
-            experiente (mentor) orienta e apoia outro profissional menos
-            experiente (mentorado) no desenvolvimento da sua carreira. Essa
-            relação baseia-se na troca de experiências, conhecimentos e
-            conselhos práticos, ajudando o mentorado a superar desafios e
-            desenvolver competências.
+          {t("tranings_mentorships_description_h2_p")}
           </p>
-          <h3>Vantagens da Mentoria Profissional</h3>
+          <h3>{t("tranings_mentorships_description_h3")}</h3>
           <ul>
             <p>
-              <li>Acesso a conhecimentos e experiências valiosos.</li>
-              <li>Insights sobre boas práticas e estratégias eficazes.</li>
-              <li>Desenvolvimento acelerado de competências.</li>
+              <li>{t("mentorships_ul_lu1")}</li>
+              <li>{t("mentorships_ul_lu2")}</li>
+              <li>{t("mentorships_ul_lu3")}</li>
             </p>            
           </ul>
           <button
@@ -53,7 +51,7 @@ const Mentorship = ({ id }: { id: string }) => {
             aria-label="Saiba mais sobre mentoria"
             onClick={handleSaibaMaisClick} // Use the new function
           >
-            Saiba mais
+            {t("more_info")}
           </button>
           <p className="mentorship-testimonial">
             
