@@ -1,12 +1,12 @@
 {
-  "home": "Inicio",
+  "home": "Início",
   "meating_ps": "Conheça a Paula Serrano",
   "tranings": "Formações",
   "tranings_courses": "Cursos",
   "tranings_mentorships": "Mentorias",
   "tranings_Immersions": "Imersões",
   "resources": "Recursos",
-  "resources_books": "Livros e ebooks",
+  "resources_books": "Livros e e-books",
   "resources_articles": "Artigos e teses",
   "contact": "Contacto",
   "login": "Iniciar sessão",
@@ -211,7 +211,7 @@
       }
     },
     "4": {
-      "title": "Avaliação e Raciocínio Clínico na Primeira Infância – Foco no brincar e integração sensorial",
+      "title": "Avaliação e Raciocínio Clínico na Primeira Infância – Foco no Brincar e Integração Sensorial",
       "description": "Avaliação e Raciocínio Clínico na Primeira Infância – Foco no Brincar e Integração Sensorial\n\nDuração: 21 horas\n\nFormadora:\nPaula Serrano – Terapeuta Ocupacional\n\nConteúdo Programático: Desenvolvimento lúdico (0-3 anos), ferramentas de avaliação e classificação de perturbações do processamento sensorial ...",
       "price": 350,
       "instructor": "Paula Serrano",
@@ -278,7 +278,7 @@
       }
     },
     "5": {
-      "title": "Programa Internacional de formação em Integração Sensorial",
+      "title": "Programa Internacional de Formação em Integração Sensorial",
       "price": null,
       "instructor": "Paula Serrano e equipa internacional",
       "Localizacao": "Online e Brasil (várias cidades a confirmar)",
@@ -372,9 +372,9 @@
       }
     }
   },
-  "tranings_mentorships_description_p": "Descubra como a mentoria pode transformar sua carreira.",
+  "tranings_mentorships_description_p": "Descubra como a mentoria pode transformar a sua carreira.",
   "tranings_mentorships_description_h2": "Mentoria Profissional: O Que é e Quais São as Suas Vantagens?",
-  "tranings_mentorships_description_h2_p": " A mentoria profissional é um processo no qual um profissional mais experiente (mentor) orienta e apoia outro profissional menos  experiente (mentorado) no desenvolvimento da sua carreira. Essa relação baseia-se na troca de experiências, conhecimentos e conselhos práticos, ajudando o mentorado a superar desafios e desenvolver competências.",
+  "tranings_mentorships_description_h2_p": "A mentoria profissional é um processo no qual um profissional mais experiente (mentor) orienta e apoia outro profissional menos  experiente (mentorado) no desenvolvimento da sua carreira. Essa relação baseia-se na troca de experiências, conhecimentos e conselhos práticos, ajudando o mentorado a superar desafios e desenvolver competências.",
   "tranings_mentorships_description_h3": "Vantagens da Mentoria Profissional",
   "mentorships_ul_lu1": "Acesso a conhecimentos e experiências valiosos.",
   "mentorships_ul_lu2": "Insights sobre boas práticas e estratégias eficazes.",
@@ -393,28 +393,28 @@
   "read_more": "Ler mais",
   "read_less": "Ler menos",
   "practice_learn": "Aprenda na Prática!",
-  "practice_learn_p": "Agende a sua imersão individual ou em grupo e desenvolva as suas competencias durante a experiência clínica.",
+  "practice_learn_p": "Agende a sua imersão individual ou em grupo e desenvolva as suas competências durante a experiência clínica.",
   "news_h2": "Galeria de Imagens",
   "news_p": "Cada imagem e vídeo conta parte da nossa jornada!",
   "galery_img": {
-    "img1": "Sala de Formacoes.",
-    "img2": "Aulas de Grupo",
-    "img3": "Salas para teoria à prática em terapia ocupacional.",
-    "img4": "Formacoes exclusivas.",
-    "img5": "Aulas praticas.",
-    "img6": "Avaliacao e Raciocínio Clinico.",
+    "img1": "Sala de Formações",
+    "img2": "Aulas de grupo",
+    "img3": "Salas para teoria à prática em terapia ocupacional",
+    "img4": "Formações exclusivas",
+    "img5": "Aulas Práticas",
+    "img6": "Avaliação e Raciocínio Clínico",
     "img7": "Salas para ensino",
-    "img8": "Ativadades Individuais e em grupo.",
-    "img9": "Espaço de convivência.",
-    "img10": "Ambiente acolhedor.",
-    "img11": "Detalhes arquitetônicos.",
-    "img12": "Salas modernas.",
-    "img13": "Equipamentos de última geração.",
-    "img14": "Espaço para eventos.",
-    "img15": "Área de estudos.",
-    "img16": "Laboratório prático.",
-    "img17": "Espaço colaborativo.",
-    "img18": "Ambiente de relaxamento.",
+    "img8": "Ativadades Individuais e em Grupo",
+    "img9": "Espaço de convivência",
+    "img10": "Ambiente acolhedor",
+    "img11": "Detalhes arquitetónicos",
+    "img12": "Salas modernas",
+    "img13": "Equipamentos de última geração",
+    "img14": "Espaço para eventos",
+    "img15": "Área de estudos",
+    "img16": "Laboratório prático",
+    "img17": "Espaço colaborativo",
+    "img18": "Ambiente de relaxamento",
     "img19": "Atividades práticas",
     "img20": "Aulas em grupo",
     "img21": "Demonstrações",
@@ -473,17 +473,17 @@
     }
   },
   "folowers_h2": "O que dizem sobre nós",
-  "folowers_p": "Conheça a experiência de nossos clientes com nossos cursos e mentorias",
-  "contact_form_h2": "Entre em Contato",
-  "contact_our_valor1": "Na Paula Serrano, valorizamos cada ligação com os nossos clientes. Seja para esclarecer dúvidas, receber feedback valioso ou simplesmente trocar uma ideia, a nossa equipa está sempre pronta para ouvir e ajudar.",
-  "contact_our_valor2": "Utilize nosso formulário de contato para:",
+  "folowers_p": "Conheça a experiência de nossos clientes com nossos cursos e mentorias.",
+  "contact_form_h2": "Entre em Contacto",
+  "contact_our_valor1": "Na Paula Serrano Educação, valorizamos cada ligação com os nossos clientes. Seja para esclarecer dúvidas, receber feedback valioso ou simplesmente trocar uma ideia, a nossa equipa está sempre pronta para ouvir e ajudar.",
+  "contact_our_valor2": "Utilize nosso formulário de contacto para:",
   "contact_our_benefits1": "Solicitar orçamentos personalizados",
   "contact_our_benefits2": "Obter informações técnicas sobre os nossos produtos",
   "contact_our_benefits3": "Dar sugestões para melhorarmos os nossos serviços",
   "contact_contact_imediatly": "Para um atendimento imediato durante o horário comercial (Seg-Sex: 9h-18h), também pode contactar-nos diretamente pelo telefone (+351) 965 430 026. Garantimos uma resposta por e-mail em até 24 horas úteis para todas as mensagens recebidas.",
   "contact_us_form_h2": "Envie-nos uma mensagem",
   "contact_us_form_name": "Nome",
-  "contact_us_form_name_placeholder": "Digite seu nome completo",
+  "contact_us_form_name_placeholder": "Digite o seu nome completo",
   "contact_us_form_email": "Email",
   "contact_us_form_subject": "Assunto",
   "contact_us_form_subject_1": "Selecione um assunto",
@@ -491,13 +491,14 @@
   "contact_us_form_subject_3": "Solicitar orçamento",
   "contact_us_form_subject_4": "Feedback",
   "contact_us_form_subject_5": "Outro assunto",
-  "contact_us_form_messag": "Messagem",
-  "contact_us_form_messag_placeholder": "Escreva sua mensagem detalhada aqui...",
-  "contact_us_form_button": "Enviar messagem",
+  "contact_us_form_messag": "Mensagem",
+  "contact_us_form_messag_placeholder": "Escreva a sua mensagem detalhada aqui...",
+  "contact_us_form_button": "Enviar mensagem",
   "sended": "Enviado...",
-  "schedule": "Horario",
+  "contact_us_success": "Obrigado! Entraremos em contacto em breve.",
+  "schedule": "Horário",
   "mon-fri": "Segunda - Sexta",
-  "phone": "Telephone",
+  "phone": "Telefone",
   "phone_info": "(Chamada para rede móvel nacional)",
   "adress": "Morada",
   "cust_area": "Área do cliente",
@@ -516,12 +517,12 @@
   "home_val_p": "Princípios fundamentais que guiam cada decisão e iniciativa",
   "mission": "Missão",
   "mission_p1": "Valorizamos a partilha de conhecimento como uma ferramenta poderosa para ampliar horizontes e trazer mais qualidade de vida às famílias. Acreditamos que, ao disseminar saberes, podemos criar um impacto positivo que vai muito além do indivíduo, alcançando comunidades inteiras.",
-  "mission_p2": "Buscamos criar um ambiente onde cada criança possa florescer em seu próprio ritmo, respeitando sua individualidade e apoiando seu desenvolvimento integral. Nossa abordagem reconhece que cada jornada de crescimento é única.",
+  "mission_p2": "Buscamos criar um ambiente onde cada criança possa florescer em seu próprio ritmo, respeitando sua individualidade e apoiando seu desenvolvimento integral. A nossa abordagem reconhece que cada jornada de crescimento é única.",
   "bases": "Princípios Fundamentais",
   "basses": {
     "1": {
       "title": "Inovação",
-      "text": "Buscamos constantemente novas abordagens e metodologias para aprimorar nossas práticas educativas."
+      "text": "Buscamos constantemente novas abordagens e metodologias para aprimorar as nossas práticas educativas."
     },
     "2": {
       "title": "Integridade",
@@ -529,7 +530,7 @@
     },
     "3": {
       "title": "Empatia",
-      "text": "Colocamo-nos no lugar do outro para compreender suas necessidades e desafios únicos."
+      "text": "Colocamo-nos no lugar do outro para compreender as suas necessidades e desafios únicos."
     },
     "4": {
       "title": "Excelência",
@@ -537,7 +538,7 @@
     },
     "5": {
       "title": "Colaboração",
-      "text": "Valorizamos o trabalho em equipe e a troca de ideias para alcançar resultados significativos."
+      "text": "Valorizamos o trabalho em equipa e a troca de ideias para alcançar resultados significativos."
     },
     "6": {
       "title": "Respeito",
@@ -545,20 +546,20 @@
     }
   },
   "commitments": "Nosso Compromisso",
-  "commitments_p1": "Por meio de cursos, mentorias e materiais didáticos, o nosso objetivo é capacitar profissionais nas suas práticas diárias. Oferecemos ferramentas para que eles apoiem crianças e famílias na sua jornada de crescimento e desenvolvimento. Assim, buscamos contribuir para que cada ser humano alcance seu máximo potencial, respeitando sua singularidade e promovendo uma sociedade mais inclusiva e fortalecida.",
+  "commitments_p1": "Por meio de cursos, mentorias e materiais didácticos, o nosso objetivo é capacitar profissionais nas suas práticas diárias. Oferecemos ferramentas para que eles apoiem crianças e famílias na sua jornada de crescimento e desenvolvimento. Assim, buscamos contribuir para que cada ser humano alcance o seu máximo potencial, respeitando a sua singularidade e promovendo uma sociedade mais inclusiva e fortalecida.",
   "commitments_p2": "Estamos comprometidos em criar recursos acessíveis e programas que inspirem educadores e famílias a trabalharem juntos pelo bem-estar das crianças. Acreditamos que através desta colaboração podemos construir as bases para um futuro onde todas as crianças tenham a oportunidade de prosperar.",
   "mentorship_program": "Programa de Mentoria",
   "mentorship_program_h1": "Mentoria Profissional Personalizada",
-  "mentorship_program_h1_p": "Desenvolva suas habilidades e acelere sua carreira com orientação especializada",
+  "mentorship_program_h1_p": "Desenvolva as suas habilidades e acelere a sua carreira com orientação especializada",
   "mentorship_h3_1": "O Programa",
-  "mentorship_h3_1_p": "Nossa mentoria profissional foi desenvolvida para profissionais que buscam acelerar o desenvolvimento de suas carreiras através de orientação personalizada. Com encontros semanais e acompanhamento contínuo, você terá acesso a insights valiosos e estratégias práticas para atingir seus objetivos profissionais.",
+  "mentorship_h3_1_p": "A nossa mentoria profissional foi desenvolvida para profissionais que buscam acelerar o desenvolvimento de suas carreiras através de orientação personalizada. Com encontros semanais e acompanhamento contínuo, você terá acesso a insights valiosos e estratégias práticas para atingir os seus objetivos profissionais.",
   "mentorship_h3_2": "Benefícios",
   "mentorship_h3_2_p": {
     "1": {
-      "text": "Visão personalizada sobre seu desenvolvimento profissional"
+      "text": "Visão personalizada sobre o seu desenvolvimento profissional"
     },
     "2": {
-      "text": "Feedback sincero e construtivo sobre seus pontos fortes e áreas de melhoria"
+      "text": "Feedback sincero e construtivo sobre os seus pontos fortes e áreas de melhoria"
     },
     "3": {
       "text": "Acesso a redes profissionais e oportunidades exclusivas"
@@ -568,7 +569,7 @@
     }
   },
   "mentorship_h3_3": "Metodologia",
-  "mentorship_h3_3_p": "Nossa metodologia combina sessões individuais de mentoria, exercícios práticos e projetos aplicados ao seu contexto profissional. Trabalhamos com uma abordagem estruturada em 3 fases:",
+  "mentorship_h3_3_p": "A nossa metodologia combina sessões individuais de mentoria, exercícios práticos e projetos aplicados ao seu contexto profissional. Trabalhamos com uma abordagem estruturada em 3 fases:",
   "mentorship_h3_3_p_fases": {
     "1": {
       "text": "Diagnóstico e definição de objetivos claros"
@@ -580,12 +581,12 @@
       "text": "Implementação e avaliação de resultados"
     }
   },
-  "meet_mentorship_programm": "Conheça nossos programas de mentoria",
+  "meet_mentorship_programm": "Conheça os nossos programas de mentoria",
   "ind_and_group_mentorchip": "Mentoria Individual e Mentoria em grupo",
   "mentor_info_list": {
     "indiv": {
       "h": "Mentoria Individual",
-      "text": "Atendimento personalizado para suas necessidades específicas de carreira. Sessões exclusivas com seu mentor dedicado, focadas nos seus objetivos e desafios particulares.",
+      "text": "Atendimento personalizado para as suas necessidades específicas de carreira. Sessões exclusivas com o seu mentor dedicado, focadas nos seus objetivos e desafios particulares.",
       "li1": "Plano de desenvolvimento 100% personalizado",
       "li2": "Feedback contínuo e direcionado",
       "li3": "Flexibilidade de horários e temas",
@@ -593,7 +594,7 @@
     },
     "group": {
       "h": "Mentoria em Grupo",
-      "text": "Aprenda em um ambiente colaborativo com outros profissionais, compartilhando experiências e ampliando sua rede de contatos.",
+      "text": "Aprenda em um ambiente colaborativo com outros profissionais, compartilhando experiências e ampliando a sua rede de contactos.",
       "li1": "Troca de experiências entre os participantes",
       "li2": "Custo mais acessível que a mentoria individual",
       "li3": "Networking com profissionais de diferentes áreas",
@@ -604,30 +605,30 @@
   "FAQ": {
     "1": {
       "question": "Como funciona o processo de mentoria?",
-      "answer": "O processo de mentoria inicia com uma avaliação do seu perfil e objetivos profissionais. Em seguida, estabelecemos um plano personalizado com encontros regulares onde você receberá orientação, feedback e desafios para acelerar seu desenvolvimento."
+      "answer": "O processo de mentoria inicia com uma avaliação do seu perfil e objetivos profissionais. Em seguida, estabelecemos um plano personalizado com encontros regulares onde você receberá orientação, feedback e desafios para acelerar o seu desenvolvimento."
     },
     "2": {
       "question": "Qual é a duração da mentoria?",
-      "answer": "A duração da mentoria sera definida apos a avaliacao das necessidades."
+      "answer": "A duração da mentoria será definida após a avaliação das necessidades."
     },
     "3": {
       "question": "Quais são os pré-requisitos para participar?",
-      "answer": "Não existem pré-requisitos formais, apenas o compromisso com seu desenvolvimento e disponibilidade para os encontros que forem agendados."
+      "answer": "Não existem pré-requisitos formais, apenas o compromisso com o seu desenvolvimento e disponibilidade para os encontros que forem agendados."
     },
     "4": {
       "question": "Como são realizados os encontros?",
-      "answer": "Os encontros são realizados remotamente através de plataformas de videoconferência como Zoom ou Google Meet, permitindo flexibilidade e conveniência para todos os participantes"
+      "answer": "Os encontros são realizados remotamente através de plataformas de videoconferência como Zoom ou Google Meet, permitindo flexibilidade e conveniência para todos os participantes."
     }
   },
   "imerssion_program": "Programa de Imersão",
   "imerssion_h1": "Experiência Clínica Intensiva",
-  "imerssion_p": "Eleve sua prática profissional com o nosso programa de imersão especializado",
+  "imerssion_p": "Eleve a sua prática profissional com o nosso programa de imersão especializado",
   "imerssion_geral_h1": "Visão Geral",
-  "imerssion_geral_p": "O nosso programa de imersão oferece uma experiência prática intensiva para profissionais e estudantes que desejam melhorar as suas competencias clínicas em um ambiente real e supervisionado. Durante o período de imersão, você terá a oportunidade de aplicar conhecimentos teóricos em situações práticas, recebendo feedback direto de supervisores experientes.",
+  "imerssion_geral_p": "O nosso programa de imersão oferece uma experiência prática intensiva para profissionais e estudantes que desejam melhorar as suas competências clínicas em um ambiente real e supervisionado. Durante o período de imersão, você terá a oportunidade de aplicar conhecimentos teóricos em situações práticas, recebendo feedback direto de supervisores experientes.",
   "imerssion_geral_cards": {
     "1": {
       "title": "Experiência Prática",
-      "text": "Aprenda na pratica, com casos reais e situações clínicas autênticas"
+      "text": "Aprenda na prática, com casos reais e situações clínicas autênticas"
     },
     "2": {
       "title": "Mentoria Individualizada",
@@ -635,7 +636,7 @@
     },
     "3": {
       "title": "Certificação Diferenciada",
-      "text": "Obtenha um certificado que comprova sua experiência prática intensiva"
+      "text": "Obtenha um certificado que comprova a sua experiência prática intensiva"
     }
   },
   "formats": {
@@ -692,7 +693,7 @@
       },
       "4": {
         "title": "Feedback ",
-        "text": "Durante toda a imersão, você recebe feedback contínuo sobre seu desempenho, permitindo o seu crescimento profissional em tempo real."
+        "text": "Durante toda a imersão, você recebe feedback contínuo sobre o seu desempenho, permitindo o seu crescimento profissional em tempo real."
       },
       "5": {
         "title": "Certificação",
@@ -703,12 +704,12 @@
   "space": "Conheçam o nosso espaço",
   "steps": {
     "title": "Próximos Passos",
-    "h3": "Pronto para começar sua jornada de transformação profissional?",
+    "h3": "Pronto para começar a sua jornada de transformação profissional?",
     "p": "O processo para participar de nossas imersões é simples e direto:",
     "list": {
       "1": {
-        "strong": "Entre em contato",
-        "text": "Agende uma consulta inicial com a nossa equipa através do formulário de contato ou telefone."
+        "strong": "Entre em contacto",
+        "text": "Agende uma consulta inicial com a nossa equipa através do formulário de contacto ou telefone."
       },
       "2": {
         "strong": "Avaliação de perfil",
@@ -726,30 +727,50 @@
   },
   "imerssion_contact_us": {
     "title": "Pronto para Elevar a Sua Experiência Profissional?",
-    "text": "Entre em contato para mais informações sobre nossos programas de imersão e agende uma consulta com nossos especialistas."
+    "text": "Entre em contacto para mais informações sobre os nossos programas de imersão e agende uma consulta com os nossos especialistas."
   },
   "atrigs_and_theses_h1": "Artigos e Teses Acadêmicas",
   "atrigs_and_theses_p": "Conhecimento científico em Terapia Ocupacional para profissionais e estudantes",
   "article": "Artigo",
   "articles": {
     "1": {
-      "title": "O brincar e o processamento sensorial em criancas dos 36 aos 72 meses",
-      "description": "Brincar é a principal ocupação nos primeiros anos de vida da criança..."
-    },
-    "2": {
       "title": "Adaptação cultural e linguística e recolha dos dados normativos das Structured Observations of Sensory Related Motor Performance",
       "description": "Desde o início do desenvolvimento da teoria de integração sensorial..."
     },
+    "2": {
+      "title": "Screening Assessment of Sensory Integration (SASI) - Research Ed. V.2.2: Análise da capacidade discriminativa do teste de estereognosia de crianças portuguesas entre os 4 e 7 anos e 11 meses",
+      "description": "O desenvolvimento dos sistemas sensoriais tem um papel essencial..."
+    },
     "3": {
-      "title": "Comportamentos do brincar com o corpo, de bebes entre os 10 e os 12 meses",
-      "description": "Introdução: Ao brincar a criança dá significado ao mundo que a rodeia..."
+      "title": "Comportamento e competências sociais em crianças dos 3 aos 5 anos: Relação com o processamento sensorial",
+      "description": "As crianças com dificuldade de regulação sensorial demonstram dificuldades..."
+    },
+    "4": {
+      "title": "Construção e validação de uma grelha de avaliação dos comportamentos do brincar com o corpo, de bebés entre os 10 e os 12 meses, em contexto educativo e sua relação com o perfil sensorial 2",
+      "description": "Ao brincar a criança dá significado ao mundo que a rodeia, expressa-se e estabelece..."
+    },
+    "5": {
+      "title": "Contributo para adaptação cultural e linguística da Ayres Sensory Integration® Intervention Fidelity Measure para Língua Portuguesa",
+      "description": "Atualmente a intervenção segundo o modelo de Integração Sensorial, Ayres Sensory Integration..."
+    },
+    "6": {
+      "title": "Neurociência do Brincar - Revisão Scoping",
+      "description": "O Brincar tem sido pouco explorado e tem sido investigado sobretudo como..."
+    },
+    "7": {
+      "title": "O brincar e o processamento sensorial em crianças dos 36 aos 72 meses",
+      "description": "Brincar é a principal ocupação nos primeiros anos de vida da criança, existindo um papel..."
+    },
+    "8": {
+      "title": "Problemas de sono e processamento sensorial: Estudo exploratório com grupo de crianças de 5 e 6 anos",
+      "description": "O sono e os problemas de sono têm vindo a merecer atenção na área da Terapia Ocupacional..."
     }
   },
   "search_bar_palceholder": "Pesquisar por título, autor ou conteúdo...",
-  "showing": "Monstrando",
+  "showing": "A mostrar",
   "publications": "publicações",
   "of": "de",
-  "teses": "Theses",
+  "teses": "Teses",
   "no_publications_find": "Nenhuma publicação encontrada com os critérios selecionados.",
   "allert_msg": {
     "add_course": "Adicionado ao carrinho!",
@@ -773,7 +794,7 @@
   "enroll_button": "Inscrever Agora",
   "add_to_cart": "Adicionar ao carinho",
   "obs": "Obs.: O valor final pode sofrer variações devido à taxa de câmbio e/ou impostos locais, conforme a política do meio de pagamento escolhido.",
-  "contact_by_mail": "Para esclarecimento de qualquer duvida, contate a Paula Serrano por email: ",
+  "contact_by_mail": "Para esclarecimento de qualquer dúvida, contacte a Paula Serrano por email: ",
   "learning_on_course": "O que você vai aprender",
   "privacity": {
     "title": "Política de Privacidade",
@@ -925,19 +946,19 @@
   },
   "account": {
     "login": {
-      "reset_password": "Reset Password",
+      "reset_password": "Repor Palavra-Passe",
       "not_member": "Não possui uma conta?"
     },
     "signup": {
       "full_name": "Nome Completo",
       "phone": "Telefone",
-      "country": "Selecione o seu pais",
-      "gender": "Genero",
+      "country": "Selecione o seu país",
+      "gender": "Gênero",
       "select_gender": "Selecionar gênero",
       "gm": "Masculino",
       "gf": "Feminino",
       "go": "Outro",
-      "g_anonimus": "Prefiro nao dizer",
+      "g_anonimus": "Prefiro não dizer",
       "bd": "Data de Nascimento",
       "pc": "Confirmar Password*",
       "accept_terms_cond": "Eu aceito os ",
@@ -957,10 +978,10 @@
     "title": "O teu Carrinho",
     "clr_cart": "Limpar Carrinho",
     "empty_list": "O teu carrinho está vazio",
-    "p": "Adiciona produtos ao teu carrinho para continuar o processo de compra.",
+    "p": "Adiciona produtos ao seu carrinho para continuar o processo de compra.",
     "buy": "Comprar",
     "button": "Explorar",
-    "bottom_button": "Continuar Comprar"
+    "bottom_button": "Continuar a Comprar"
   }
 }
 

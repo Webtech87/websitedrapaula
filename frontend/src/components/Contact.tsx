@@ -81,7 +81,7 @@ const Contact = () => {
           <div className="contact-form">
             {formSubmitted ? (
               <div className="form-success">
-                <p>Obrigado! Entraremos em contato em breve.</p>
+                <p>{t("contact_us_success")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>

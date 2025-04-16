@@ -152,8 +152,8 @@ const MentorshipDetails = () => {
                 </div>
             </div>
 
-            <section id="faq">
-                <h2>{t("FAQ_title")}</h2>
+            <section id="faq" className="mentorship-faq">
+                <h2 className="mentorship-faq-title">{t("FAQ_title")}</h2>
                 {faqs.map((faq, index) => (
                     <div
                         key={index}

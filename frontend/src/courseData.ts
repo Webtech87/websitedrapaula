@@ -174,7 +174,7 @@ As sessões de trabalho serão teóricas e práticas com análise de vídeos.
   {
     id: 4,
     image: img4,
-    title: "Avaliação e Raciocínio Clínico na Primeira Infância – foco no brincar e integração sensorial",
+    title: "Avaliação e Raciocínio Clínico na Primeira Infância – Foco no Brincar e Integração Sensorial",
     description: `
 Avaliação e Raciocínio Clínico na Primeira Infância – foco no brincar e integração sensorial
 
@@ -231,7 +231,7 @@ As sessões de trabalho serão teóricas e praticas, com analise de vídeos de c
   {
     id: 5,
     image: img5,
-    title: "Programa Internacional de formação em Integração Sensorial",
+    title: "Programa Internacional de Formação em Integração Sensorial",
     description: `
   Programa Internacional de formação em Integração Sensorial
   

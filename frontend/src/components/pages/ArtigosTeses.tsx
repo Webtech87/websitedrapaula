@@ -21,30 +21,75 @@ interface Article {
 const sampleArticles: Article[] = [
     {
         id: 1,
-        title: "O brincar e o processamento sensorial em criancas dos 36 aos 72 meses",
-        author: "Margarida Isabel Dias Ribeiro Sabino Cardoso",
-        type: "artigo",
-        date: "12/07/2024",
-        description: "Brincar é a principal ocupação nos primeiros anos de vida da criança...",
-        file: "/pdfs/o-brincar-e-o-processamento-sensorial.pdf", // Corrected file path
-    },
-    {
-        id: 2,
         title: "Adaptação cultural e linguística e recolha dos dados normativos das Structured Observations of Sensory Related Motor Performance",
         author: "Paula de Jesus Mendes Serrano",
-        type: "artigo",
-        date: "03/01/2013",
+        type: "tese",
+        date: "Janeiro/2013",
         description: "Desde o início do desenvolvimento da teoria de integração sensorial...",
         file: "/pdfs/adaptacao-cultural-linguistica.pdf", // Corrected file path
     },
     {
-        id: 3,
-        title: "Comportamentos do brincar com o corpo, de bebes entre os 10 e os 12 meses",
+        id: 2,
+        title: "Screening Assessment of Sensory Integration (SASI) - Research Ed. V.2.2: Análise da capacidade discriminativa do teste de estereognosia de crianças portuguesas entre os 4 e 7 anos e 11 meses",
         author: "Ana Margarida Almeida Reis",
-        type: "artigo",
-        date: "22/02/2023",
-        description: "Introdução: Ao brincar a criança dá significado ao mundo que a rodeia...",
+        type: "tese",
+        date: "Fevereiro/2023",
+        description: "O desenvolvimento dos sistemas sensoriais tem um papel essencial...",
+        file: "/pdfs/analise-da-capacidade-discriminativa.pdf", // Corrected file path
+    },
+    {
+        id: 3,
+        title: "Comportamento e competências sociais em crianças dos 3 aos 5 anos: Relação com o processamento sensorial",
+        author: "Margarida Isabel Araújo Oliveira",
+        type: "tese",
+        date: "Abril/2020",
+        description: "As crianças com dificuldade de regulação sensorial demonstram dificuldades...",
+        file: "/pdfs/comportamento-e-competencias-sociais.pdf", // Corrected file path
+    },
+    {
+        id: 4,
+        title: "Construção e validação de uma grelha de avaliação dos comportamentos do brincar com o corpo, de bebés entre os 10 e os 12 meses, em contexto educativo e sua relação com o perfil sensorial 2",
+        author: "Jéssica Filipa Dias Pereira",
+        type: "tese",
+        date: "Fevereiro/2023",
+        description: "Ao brincar a criança dá significado ao mundo que a rodeia, expressa-se e estabelece...",
         file: "/pdfs/comportamentos-brincar-corpo.pdf", // Corrected file path
+    },
+    {
+        id: 5,
+        title: "Contributo para adaptação cultural e linguística da Ayres Sensory Integration® Intervention Fidelity Measure para Língua Portuguesa",
+        author: "João Pedro Mira Cadima",
+        type: "tese",
+        date: "Junho/2012",
+        description: "Atualmente a intervenção segundo o modelo de Integração Sensorial, Ayres Sensory Integration...",
+        file: "/pdfs/contributo-para-adaptacao-cultural-e-linguistica.pdf", // Corrected file path
+    },
+    {
+        id: 6,
+        title: "Neurociência do Brincar - Revisão Scoping",
+        author: "Cláudia Alexandra Gonçalves Valente",
+        type: "tese",
+        date: "Dezembro/2021",
+        description: "O Brincar tem sido pouco explorado e tem sido investigado sobretudo como...",
+        file: "/pdfs/neurociencia-do-brincar.pdf", // Corrected file path
+    },
+    {
+        id: 7,
+        title: "O brincar e o processamento sensorial em crianças dos 36 aos 72 meses",
+        author: "Margarida Isabel Dias Ribeiro Sabino Cardoso",
+        type: "tese",
+        date: "Julho/2024",
+        description: "Brincar é a principal ocupação nos primeiros anos de vida da criança, existindo um papel...",
+        file: "/pdfs/o-brincar-e-o-processamento-sensorial.pdf", // Corrected file path
+    },
+    {
+        id: 8,
+        title: "Problemas de sono e processamento sensorial: Estudo exploratório com grupo de crianças de 5 e 6 anos",
+        author: "Ana Rita Silva Sousa",
+        type: "tese",
+        date: "Março/2019",
+        description: "O sono e os problemas de sono têm vindo a merecer atenção na área da Terapia Ocupacional...",
+        file: "/pdfs/problemas-de-sono-e-processamento-sensorial.pdf", // Corrected file path
     },
 ];
 
