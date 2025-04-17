@@ -904,6 +904,8 @@
     "img24": "Eventos",
     "img25": "Depoimentos"
   },
+  "enlarge_img":"Ampliar imagem",
+  "enlarge_vid":"Ampliar vídeo",
   "folowers": {
     "1": {
       "comment": "A metodologia é muito prática e facilmente aplicável no dia a dia. Superou minhas expectativas!",
@@ -1471,7 +1473,7 @@
   "whatsapp_contact_me": "Precisa de ajuda? Fale connosco!",
   "back": "Voltar",
   "zomboni": "Comprar na Zamboni",
-  "book_botton_atention": "⚠\uFE0F Atenção: Este produto tem venda exclusiva para Portugal\uD83C\uDDF5\uD83C\uDDF9. Envios apenas para território português."
+  "book_botton_atention": "⚠\uFE0F Atenção: Este produto tem venda exclusiva para Portugal <ptFlag/>. Envios apenas para território português."
 }
 
 

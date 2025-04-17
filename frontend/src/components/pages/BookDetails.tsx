@@ -5,7 +5,10 @@ import '../../styles/pages/bookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen, Check, X, ExternalLink } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
+
+import ptFlag from "../../assets/flag-pt.png"
+import brFlag from "../../assets/flag-br.png"
 
 //Stripe import
 import { loadStripe } from "@stripe/stripe-js";
@@ -371,7 +374,7 @@ const BookDetails = () => {
                   onClick={handleBuyNow}
                   disabled={book.availability === 'out-of-stock'}
                 >
-                  <span>🇵🇹</span>
+                  <span><img src={ptFlag} alt="pt" width="20" /></span>
                   <span>{t("buy_button")}</span>
                 </button>
                 <button
@@ -379,12 +382,17 @@ const BookDetails = () => {
                   onClick={handleExternalPurchase}
                   aria-label="Comprar na Zamboni Books"
                 >
-                  <span>🇧🇷</span>
+                  <span><img src={brFlag} alt="br" width="20" /></span>
                   <span>{t("zomboni")}</span>
                 </button>
               </div>
               <p className="exclusive-sale-message">
-                {t("book_botton_atention")}
+                <Trans
+                  i18nKey="book_botton_atention"
+                  components={{
+                    ptFlag: <img src={ptFlag} alt="Portugal flag" width="20" style={{ display: "inline", verticalAlign: "middle" }} />,
+                  }}
+                />
               </p>
             </div>
           </div>

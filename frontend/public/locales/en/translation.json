@@ -904,6 +904,8 @@
     "img24": "Events",
     "img25": "Testimonials"
   },
+  "enlarge_img":"Enlarge image",
+  "enlarge_vid":"Enlarge video",
   "folowers": {
     "1": {
       "comment": "The methodology is very practical and easily applicable to daily life. It exceeded my expectations!",
@@ -1469,6 +1471,6 @@
   "whatsapp_contact_me": "Need help? Contact us!",
   "back": "Back",
   "zomboni": "Buy from Zamboni",
-  "book_botton_atention": "⚠️ Attention: This product is exclusively sold in Portugal 🇵🇹. Shipping only within Portuguese territory."
+  "book_botton_atention": "⚠️ Attention: This product is exclusively sold in Portugal <ptFlag/>. Shipping only within Portuguese territory."
 }
 

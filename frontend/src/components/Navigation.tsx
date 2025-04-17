@@ -7,8 +7,8 @@ import logo from "../assets/20.png";
 import "../styles/navigation.css";
 import { useTranslation } from 'react-i18next';
 
-import ptFlag from "../assets/pt.png"
-import gbFlag from "../assets/en.png"
+import ptFlag from "../assets/flag-pt.png"
+import gbFlag from "../assets/flag-gb.png"
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -440,7 +440,9 @@ const Navigation = () => {
                   onClick={() => i18n.changeLanguage(lang as "PT" | "EN")}
                   aria-pressed={i18n.language === lang}
                 >
-                  {lang} <img src={lang === "pt" ? ptFlag : gbFlag} alt={lang} width="20" height="11" />
+                  <span className="lang-button-content">
+                    {lang} <img src={lang === "pt" ? ptFlag : gbFlag} alt={lang} width="20" />
+                  </span>
                 </button>
               ))}
             </div>
