@@ -1,6 +1,5 @@
 # Python (Backend)
 venv/
-.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -16,6 +15,6 @@ frontend/dist/
 
 # Environment files
 .env
-
 #secret files
 backend/secret_files/
+.idea

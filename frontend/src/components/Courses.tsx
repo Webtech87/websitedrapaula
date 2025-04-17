@@ -49,7 +49,11 @@ const Courses = ({ id }: { id: string }) => {
               onMouseEnter={() => setHoveredCourse(course.id)}
               onMouseLeave={() => setHoveredCourse(null)}
             >
-              <Link to={`/course/${course.id}`} className="course-link">
+              <Link 
+                to={`/course/${course.id}`} 
+                className="course-link"
+                aria-label={`Ver o curso: ${course.title}`}
+              >
                 <div
                   className={`course-card ${
                     hoveredCourse === course.id ? "hovered" : ""

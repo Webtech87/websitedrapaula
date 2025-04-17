@@ -4,8 +4,8 @@ import "../styles/Banner.css";
 import { useTranslation } from "react-i18next";
 
 const Banner: React.FC = () => {
-  const { t } = useTranslation();
-  return (
+    const { t } = useTranslation();
+    return (
     <section className="banner">
       <div className="banner-content">
         <h1>{t("banner_title_h1")}</h1>

@@ -4,19 +4,20 @@ import img3 from "./assets/courses/Integração Sensorial - avaliação e racioc
 import img4 from "./assets/courses/avaliação e raciocinio clinico na primeira infancia - foco no brincar e integração sensorial.jpg";
 import img5 from "./assets/courses/pgis-image.png";
 
+
 export const courses = [
-  {
+    {
     id: 1,
     image: img1,
-    title: "O Brincar na Terapia Ocupacional – Da teoria à prática",
+    title: "Brincar e TO-Teoria-Pratica",
     description: `
-O Brincar na Terapia Ocupacional – Da teoria à prática
+O Brincar na Terapia ocupacional – Da teoria à prática
 
 Curso
 Formação 4 dias presenciais
 
 Formadores:
-Paula Serrano – Terapeuta Ocupacional
+ Paula Serrano – Terapeuta Ocupacional
 
 
 Enquadramento  
@@ -49,7 +50,7 @@ Metodologia
 Exposição teórica discussão de grupos e exercícios práticos
 
 `,
-    price: 546,
+    price: 515,
     instructor: "Paula Serrano",
     Localizacao: "Brasil / Rio de Janeiro",
     date: "17-20 de Maio, 2025",
@@ -63,7 +64,7 @@ Exposição teórica discussão de grupos e exercícios práticos
   {
     id: 2,
     image: img2,
-    title: "Raciocínio Clínico e Intervenção em Integração Sensorial nos Primeiros Anos de Vida",
+    title: "Raciocinio clinico e intervencao em integracao sensorial nos primeiros anos de vida",
     description: `
 Raciocínio clínico e intervenção em integração sensorial nos primeiros anos de vida
 
@@ -82,7 +83,7 @@ Terapeutas ocupacionais com certificação em Integração Sensorial
 Objectivos Gerais:
 • Refletir sobre o desenvolvimento nos primeiros anos de vida e os fatores que o condicionam
 • Analisar o contributo das teorias de desenvolvimento e das neurociências para a nossa compreensão do desenvolvimento infantil
-• Analisar a evidência científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres
+• Analisar a evidencia científica atual sobre os sistemas sensoriais que suportam a abordagem da integração sensorial de Ayres
 • Explorar a importância da avaliação de integração sensorial, as metodologias e os diversos instrumentos disponíveis
 • Praticar o raciocínio clínico interpretando os dados da avaliação
 • Elaborar objetivos terapêuticos com base na avaliação
@@ -91,7 +92,7 @@ Objectivos Gerais:
 
 Conteúdos Programáticos:
 • O desenvolvimento infantil e os fatores de suporte
-• A integração sensorial de Ayres e a evidência científica do impacto dos sistemas sensoriais no desenvolvimento
+• A integração sensorial de Ayres e a evidencia científica do impacto dos sistemas sensoriais no desenvolvimento
 • A autorregulação e a disfunção sensorial
 • Praxis e o conceito de Affordance
 • Desenvolvimento da praxis e os sinais precoces de dispraxia
@@ -104,7 +105,7 @@ Conteúdos Programáticos:
 • Fidelidade à integração sensorial de Ayres na prática clínica
 
 Metodologia:
-As sessões de trabalho serão presenciais, teóricas e práticas com análise de vídeos de casos clínicos.
+As sessões de trabalho serão presenciais, teóricas e práticas com analise de vídeos de casos clínicos.
 `,
     price: 350,
     instructor: "Paula Serrano",
@@ -120,9 +121,9 @@ As sessões de trabalho serão presenciais, teóricas e práticas com análise d
   {
     id: 3,
     image: img3,
-    title: "Integração Sensorial: Avaliação e Raciocínio Clínico",
+    title: "Integracao Sensorial: Avaliacao e Raciocínio Clinico",
     description: `
-Integração sensorial: Avaliação e Raciocínio Clínico
+Integração sensorial: Avaliação e Raciocínio clínico
 
 Programa da ação de formação:
 Ação de formação sobre Avaliação e raciocínio Clínico em integração sensorial - 24 horas
@@ -174,9 +175,9 @@ As sessões de trabalho serão teóricas e práticas com análise de vídeos.
   {
     id: 4,
     image: img4,
-    title: "Avaliação e Raciocínio Clínico na Primeira Infância – Foco no Brincar e Integração Sensorial",
+    title: "Avaliação e Raciocínio clínico na primeira Infância – foco no brincar e integração sensorial",
     description: `
-Avaliação e Raciocínio Clínico na Primeira Infância – foco no brincar e integração sensorial
+Avaliação e Raciocínio clínico na primeira Infância – foco no brincar e integração sensorial
 
 Programa da ação de formação:
 Ação de formação sobre Avaliação e raciocínio clínico na Primeira Infância – Foco no brincar e integração sensorial
@@ -226,12 +227,10 @@ As sessões de trabalho serão teóricas e praticas, com analise de vídeos de c
       "Classificar perturbações de processamento sensorial na primeira infância",
     ]
   },
-
-
-  {
+      {
     id: 5,
     image: img5,
-    title: "Programa Internacional de Formação em Integração Sensorial",
+    title: "Programa Internacional de formação em Integração Sensorial",
     description: `
   Programa Internacional de formação em Integração Sensorial
   
@@ -290,5 +289,5 @@ As sessões de trabalho serão teóricas e praticas, com analise de vídeos de c
       "Implementar intervenções baseadas na abordagem de integração sensorial",
       "Analisar a evidência científica sobre a eficácia da Integração Sensorial",
     ]
-  },
+  }
 ];

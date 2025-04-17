@@ -2,7 +2,8 @@ import { useState } from "react";
 import "../../styles/pages/about.css";
 import aboutImage from "../../assets/about/Design sem nome 1.png";
 import { Link } from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+
 
 // Add interface for props
 interface AboutProps {
@@ -11,12 +12,10 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ id }) => {
   const [showFullText, setShowFullText] = useState(false);
-
+  const { t, i18n } = useTranslation();
   const toggleText = () => {
     setShowFullText(!showFullText);
   };
-
-  const {t} = useTranslation();
 
   return (
     // Add id to section element
@@ -49,12 +48,12 @@ const About: React.FC<AboutProps> = ({ id }) => {
             onClick={toggleText}
             aria-expanded={showFullText}
           >
-            {showFullText ? t("less_read") : t("more_read")}
+            {showFullText ? t("read_less") : t("read_more")}
           </button>
 
           <Link to="/about-detail">
             <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
-              {t("come_meeting")} 
+              {t("come_meeting")}
             </button>
           </Link>
         </div>

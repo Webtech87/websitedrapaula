@@ -364,12 +364,6 @@
   border-radius: 6px;
 }
 
-.lang-button-content {
-  display: flex;
-  align-items: center; /* vertical centering */
-  gap: 6px; /* space between text and image */
-}
-
 /* Mobile menu button */
 .mobile-menu-button {
   display: block;

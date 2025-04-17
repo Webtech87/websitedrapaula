@@ -29,7 +29,4 @@ urlpatterns = [
     
     # Home
     path('', home, name='home'),
-
-    # tripe
-    path('payment/', include('payment.urls')),
 ]

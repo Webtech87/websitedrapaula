@@ -225,10 +225,6 @@
   transform: translateY(-1px);
 }
 
-button.submit-button:disabled {
-  cursor: not-allowed;
-}
-
 .error-message {
   color: var(--error-color);
   background: rgba(234, 56, 76, 0.1);
@@ -259,12 +255,6 @@ button.submit-button:disabled {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.footer-section {
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-}
-
 .footer-section h3 {
   color: var(--primary-color);
   font-size: 1.2rem;
@@ -281,8 +271,7 @@ button.submit-button:disabled {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 40px;
   height: 2px;
   background-color: var(--primary-light);

@@ -323,7 +323,7 @@ const Lancamentos = () => {
                                                             <Maximize2 size={20}/>
                                                         </button>
                                                         <span className="carousel-action"
-                                                              onClick={() => openMediaModal(item)}>{t("enlarge_img")}</span>
+                                                              onClick={() => openMediaModal(item)}>Ampliar imagem</span>
                                                     </div>
                                                 </>
                                             ) : (
@@ -365,7 +365,7 @@ const Lancamentos = () => {
                                                             <Maximize2 size={20}/>
                                                         </button>
                                                         <span className="carousel-action"
-                                                              onClick={() => openMediaModal(item, index)}>{t("enlarge_vid")}</span>
+                                                              onClick={() => openMediaModal(item, index)}>Ampliar vídeo</span>
                                                     </div>
                                                 </>
                                             )}

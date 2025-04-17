@@ -10,7 +10,6 @@ const Contact = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -30,45 +29,14 @@ const Contact = () => {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-  
-    // Use validateForm() to check for errors
     if (!validateForm()) return;
 
-    setIsSubmitting(true);
-  
-    try {
-      const response = await fetch("https://websitedrapaula-v2.onrender.com/api/send_contact_email/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            full_name: formData.name,
-            email: formData.email,
-            message: formData.message,
-          }),
-        }
-      );
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        setFormSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setFormSubmitted(false), 5000);
-      } else {
-        setError(`Erro ao enviar email: ${data.error}`);
-      }
-    } catch (error) {
-      console.error("Erro:", error);
-      setError("Erro ao enviar email.");
-    } finally {
-      setIsSubmitting(false); // Stop loading
-    }
+    console.log("Form submitted:", formData);
+    setFormSubmitted(true);
+    setFormData({ name: "", email: "", message: "" });
   };
-
   const { t } = useTranslation();
 
   return (
@@ -81,7 +49,7 @@ const Contact = () => {
           <div className="contact-form">
             {formSubmitted ? (
               <div className="form-success">
-                <p>{t("contact_us_success")}</p>
+                <p>Obrigado! Entraremos em contato em breve.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
@@ -89,7 +57,7 @@ const Contact = () => {
                 {error && <div className="error-message">{error}</div>}
 
                 <div className="form-group">
-                  <label htmlFor="name">{t("contact_us_form_name")}:</label>
+                  <label htmlFor="name">{t("full_name")}</label>
                   <input
                     type="text"
                     id="name"
@@ -101,7 +69,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">{t("contact_us_form_email")}:</label>
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -113,7 +81,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">{t("contact_us_form_messag")}:</label>
+                  <label htmlFor="message">{t("contact_us_form_messag")}</label>
                   <textarea
                     id="message"
                     name="message"

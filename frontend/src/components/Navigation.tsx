@@ -6,10 +6,6 @@ import { jwtDecode } from 'jwt-decode';
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
 import { useTranslation } from 'react-i18next';
-
-import ptFlag from "../assets/flag-pt.png"
-import gbFlag from "../assets/flag-gb.png"
-
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdowns, setActiveDropdowns] = useState({
@@ -78,7 +74,7 @@ const Navigation = () => {
       const fetchUserProfile = async () => {
         try {
           const token = localStorage.getItem("access");
-          const response = await axios.get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
+          const response = await axios.get("http://localhost:8000/api/users/profile/", {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -115,11 +111,11 @@ const Navigation = () => {
   }, [location]);
 
   const toggleDropdown = (label: string) => {
-    setActiveDropdowns((prev) => ({
-      ...prev,
-      navDropdown: prev.navDropdown === label ? null : label,
-    }));
-  };
+  setActiveDropdowns((prev) => ({
+    ...prev,
+    navDropdown: prev.navDropdown === label ? null : label,
+  }));
+};
 
   const toggleUserDropdown = () => {
     setActiveDropdowns((prev) => ({
@@ -180,7 +176,7 @@ const Navigation = () => {
         scrollToTop();  //Scroll to the top
       }
     }, 10); // Small delay to ensure the closing animation starts
-  };
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("access");
@@ -313,6 +309,8 @@ const Navigation = () => {
                       {link.label}
                       <ChevronDown className="dropdown-icon" />
                     </button>
+
+                    
                     <div className="dropdown-menu">
                       {link.subItems.map((subItem) => (
                         <a
@@ -440,9 +438,7 @@ const Navigation = () => {
                   onClick={() => i18n.changeLanguage(lang as "PT" | "EN")}
                   aria-pressed={i18n.language === lang}
                 >
-                  <span className="lang-button-content">
-                    {lang} <img src={lang === "pt" ? ptFlag : gbFlag} alt={lang} width="20" />
-                  </span>
+                  {lang} {lang === "pt" ? "🇵🇹" : "🇬🇧"}
                 </button>
               ))}
             </div>
@@ -468,14 +464,20 @@ const Navigation = () => {
             >
               {link.subItems ? (
                 <>
+
                   <button
-                    onClick={() => toggleDropdown(link.label)}
-                    className="mobile-dropdown-trigger"
-                    aria-expanded={activeDropdowns.navDropdown === link.label}
-                  >
-                    {link.label}
-                    <ChevronDown className="dropdown-icon" />
-                  </button>
+  onClick={() => toggleDropdown(link.label)}
+  className="mobile-dropdown-trigger"
+  aria-expanded={activeDropdowns.navDropdown === link.label}
+>
+  {link.label}
+  <ChevronDown 
+    className={`dropdown-icon ${activeDropdowns.navDropdown === link.label ? 'rotate' : ''}`} 
+  />
+</button>
+
+
+
                   <div className="mobile-dropdown-menu">
                     {link.subItems.map((subItem) => (
                       <a

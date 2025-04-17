@@ -1,23 +1,23 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useTranslation } from "react-i18next";
 import "../../styles/pages/mentorship.css";
 import mentorshipImage from "../../assets/courses/PaulaSerrano-102 1.png";
-import {useTranslation} from "react-i18next";
 
 const Mentorship = ({ id }: { id: string }) => {
   const navigate = useNavigate(); // Initialize useNavigate
+
+  const { t } = useTranslation();
 
   const handleSaibaMaisClick = () => {
     navigate('/mentorship-details'); // Navigate to the MentorshipDetails page
   };
 
-  const {t} = useTranslation();
-
   return (
     <section id={id} className="mentorship">
       <div className="mentorship-container">
         <div className="mentorship-intro-tag">
-          <span className="mentorship-tag">{t("tranings_mentorships_intro")}</span>
+          <span className="mentorship-tag">{t("tranings_mentorships")}</span>
           <p className="mentorship-intro">
             {t("tranings_mentorships_description_p")}
           </p>
@@ -34,17 +34,19 @@ const Mentorship = ({ id }: { id: string }) => {
         </div>
 
         <div className="mentorship-main-content">
-          <h2>{t("tranings_mentorships_description_h2")}</h2>
+          <h2>{
+            t("tranings_mentorships_description_h2")
+          }</h2>
           <p>
-          {t("tranings_mentorships_description_h2_p")}
+            {
+              t("tranings_mentorships_description_h2_p")
+            }
           </p>
           <h3>{t("tranings_mentorships_description_h3")}</h3>
           <ul>
-            <p>
-              <li>{t("mentorships_ul_lu1")}</li>
-              <li>{t("mentorships_ul_lu2")}</li>
-              <li>{t("mentorships_ul_lu3")}</li>
-            </p>            
+            <li>{t("mentorships_ul_lu1")}</li>
+            <li>{t("mentorships_ul_lu2")}</li>
+            <li>{t("mentorships_ul_lu3")}</li>
           </ul>
           <button
             className="mentorship-button"

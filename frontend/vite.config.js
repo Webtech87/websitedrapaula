@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import path from "path"; // <-- Add this import
 
 export default defineConfig({
-  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,7 +11,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": "https://websitedrapaula-v2.onrender.com",
+      "/api": "http://127.0.0.1:8000",
     },
   },
 });

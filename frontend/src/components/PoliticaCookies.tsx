@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/politicaCookies.css";
+import "../styles/PoliticaCookies.css";
 import {useTranslation} from "react-i18next";
 
 const PoliticaCookies = () => {

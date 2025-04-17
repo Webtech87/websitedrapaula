@@ -104,9 +104,9 @@
       "title_4": {
         "title": "General Objectives",
         "list": {
-          "1": "Reflect on development in the early years of life and the factors that influence it",
-          "2": "Analyze the contributions of developmental theories and neuroscience to our understanding of child development",
-          "3": "Analyze the current scientific evidence on sensory systems supporting Ayres Sensory Integration approach",
+          "1": "Reflect on development in the early years and influencing factors",
+          "2": "Analyze contributions of developmental theories and neuroscience to understanding child development",
+          "3": "Analyze the current scientific evidence on sensory systems supporting Ayres Sensory Integration",
           "4": "Explore the importance of sensory integration assessment, methodologies, and tools available",
           "5": "Practice clinical reasoning by interpreting assessment data",
           "6": "Develop therapeutic goals based on assessment",
@@ -128,7 +128,7 @@
           "9": "Organizing structured and unstructured sensory processing observations",
           "10": "Assessment data analysis and Clinical Reasoning",
           "11": "Intervention Planning: Goals, session organization",
-          "12": "Fidelity to Ayres Sensory Integration in clinical practice"
+          "12": "Ayres Sensory Integration fidelity in clinical practice"
         }
       },
       "title_6": {
@@ -310,7 +310,7 @@
           },
           "4": {
             "title": "Methodology",
-            "p": "Online theoretical classes and in-person practical sessions"
+            "p": "Online theoretical classes and practical in-person sessions"
           }
         }
       },
@@ -842,7 +842,6 @@
       "newRelease": "New Release"
     }
   },
-  "tranings_mentorships_intro": "Mentorship",
   "tranings_mentorships_description_p": "Discover how mentorship can transform your career.",
   "tranings_mentorships_description_h2": "Professional Mentorship: What Is It and What Are Its Benefits?",
   "tranings_mentorships_description_h2_p": "Professional mentorship is a process where a more experienced professional (mentor) guides and supports a less experienced professional (mentee) in career development. This relationship is based on the exchange of experiences, knowledge, and practical advice, helping the mentee overcome challenges and develop skills.",
@@ -878,24 +877,24 @@
   "news_h2": "Image Gallery",
   "news_p": "Each image and video tells part of our journey!",
   "galery_img": {
-    "img1": "Training Room",
+    "img1": "Training Room.",
     "img2": "Group Classes",
-    "img3": "Rooms for theory-to-practice in occupational therapy",
-    "img4": "Exclusive Trainings",
-    "img5": "Practical Lessons",
-    "img6": "Evaluation and Clinical Reasoning",
+    "img3": "Rooms for theory-to-practice in occupational therapy.",
+    "img4": "Exclusive Trainings.",
+    "img5": "Practical Lessons.",
+    "img6": "Evaluation and Clinical Reasoning.",
     "img7": "Classrooms for teaching",
-    "img8": "Individual and group activities",
-    "img9": "Living space",
-    "img10": "Welcoming environment",
-    "img11": "Architectural details",
-    "img12": "Modern rooms",
-    "img13": "State-of-the-art equipment",
-    "img14": "Event space",
-    "img15": "Study area",
-    "img16": "Practical laboratory",
-    "img17": "Collaborative space",
-    "img18": "Relaxation environment",
+    "img8": "Individual and group activities.",
+    "img9": "Living space.",
+    "img10": "Welcoming environment.",
+    "img11": "Architectural details.",
+    "img12": "Modern rooms.",
+    "img13": "State-of-the-art equipment.",
+    "img14": "Event space.",
+    "img15": "Study area.",
+    "img16": "Practical laboratory.",
+    "img17": "Collaborative space.",
+    "img18": "Relaxation environment.",
     "img19": "Practical activities",
     "img20": "Group lessons",
     "img21": "Demonstrations",
@@ -904,8 +903,6 @@
     "img24": "Events",
     "img25": "Testimonials"
   },
-  "enlarge_img":"Enlarge image",
-  "enlarge_vid":"Enlarge video",
   "folowers": {
     "1": {
       "comment": "The methodology is very practical and easily applicable to daily life. It exceeded my expectations!",
@@ -978,7 +975,6 @@
   "contact_us_form_messag_placeholder": "Write your detailed message here...",
   "contact_us_form_button": "Send Message",
   "sended": "Sended...",
-  "contact_us_success": "Thank you! We will get back to you shortly.",
   "schedule": "Schedule",
   "mon-fri": "Monday - Friday",
   "phone": "Phone",
@@ -1215,39 +1211,18 @@
   "atrigs_and_theses_h1": "Articles and Academic Theses",
   "atrigs_and_theses_p": "Scientific knowledge in Occupational Therapy for professionals and students",
   "article": "Article",
-  "by":"By",
   "articles": {
     "1": {
-      "title": "Cultural and linguistic adaptation and normative data collection of the Structured Observations of Sensory Related Motor Performance",
-      "description": "Since the beginning of the development of sensory integration theory..."
+      "title": "Play and sensory processing in children aged 36 to 72 months",
+      "description": "Playing is the main occupation in the early years of a child's life..."
     },
     "2": {
-      "title": "Screening Assessment of Sensory Integration (SASI) - Research Ed. V.2.2: Analysis of the discriminative capacity of the stereognosis test in Portuguese children aged between 4 and 7 years and 11 months",
-      "description": "The development of sensory systems plays an essential role..."
+      "title": "Cultural and linguistic adaptation and collection of normative data from the Structured Observations of Sensory Related Motor Performance",
+      "description": "Since the development of the theory of sensory integration..."
     },
     "3": {
-      "title": "Behavior and social skills in children aged 3 to 5 years: Relationship with sensory processing",
-      "description": "Children with sensory regulation difficulties show challenges..."
-    },
-    "4": {
-      "title": "Construction and validation of a play behavior assessment grid involving the body, for babies aged 10 to 12 months in educational settings, and its relationship with the sensory profile 2",
-      "description": "Through play, the child gives meaning to the world around them, expresses themselves, and establishes..."
-    },
-    "5": {
-      "title": "Contribution to the cultural and linguistic adaptation of the Ayres Sensory Integration® Intervention Fidelity Measure for the Portuguese language",
-      "description": "Currently, intervention based on the Sensory Integration model, Ayres Sensory Integration..."
-    },
-    "6": {
-      "title": "Neuroscience of Play - Scoping Review",
-      "description": "Play has been underexplored and has mostly been investigated as..."
-    },
-    "7": {
-      "title": "Play and sensory processing in children aged 36 to 72 months",
-      "description": "Play is the main occupation in the early years of a child’s life, with a role that..."
-    },
-    "8": {
-      "title": "Sleep problems and sensory processing: Exploratory study with a group of children aged 5 and 6 years",
-      "description": "Sleep and sleep problems have been gaining attention in the field of Occupational Therapy..."
+      "title": "Body-related play behaviors in babies aged 10 to 12 months",
+      "description": "Introduction: By playing, the child gives meaning to the world around them..."
     }
   },
   "search_bar_palceholder": "Search by title, author, or content...",
@@ -1274,13 +1249,10 @@
     "november": "November",
     "december": "December"
   },
-  "buy_button": "Buy Now",
-  "full_program": "Full Program",
-  "enroll_button": "Enroll Now",
+  "buy_button": "Buy now",
   "add_to_cart": "Add to cart",
   "has_been_add_to_cart": "A item added to cart",
   "obs": "Note: The final price may vary due to exchange rates and/or local taxes, according to the policy of the selected payment method.",
-  "obs_course_5": "Note: Enroll to secure your spot in the next group. Limited spots available to ensure the quality of the training.",
   "contact_by_mail": "For any clarification, contact Paula Serrano by email: ",
   "learning_on_course": "What you will learn",
   "privacity": {
@@ -1471,6 +1443,10 @@
   "whatsapp_contact_me": "Need help? Contact us!",
   "back": "Back",
   "zomboni": "Buy from Zamboni",
-  "book_botton_atention": "⚠️ Attention: This product is exclusively sold in Portugal <ptFlag/>. Shipping only within Portuguese territory."
+  "book_botton_atention": "⚠️ Attention: This product is exclusively sold in Portugal 🇵🇹. Shipping only within Portuguese territory.",
+  "form_placeholder": {
+    "pass_roles": "Your password must be at least 8 characters long.",
+    "pass_conf": "Confirm your password"
+  }
 }
 

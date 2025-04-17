@@ -11,7 +11,6 @@ from .views import (
     UserProfileView,
     PasswordResetRequestView,
     PasswordResetConfirmView,
-    EmailSenderView,
     user_profile
 )
 
@@ -32,7 +31,4 @@ urlpatterns = [
     # Password reset endpoints
     path('api/password/reset/', PasswordResetRequestView.as_view(), name='password-reset'),
     path('api/password/reset/confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
-
-    # Form Data sent to Email and Google Sheets
-    path('api/send_contact_email/', EmailSenderView.as_view(), name='send_contact_email'),
 ]

@@ -57,9 +57,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     }
     // Desktop will use the regular web URL via the href
   };
-
   const { t } = useTranslation();
-
   return (
     <div className={`whatsapp-container ${className || ''}`}>
       <a 

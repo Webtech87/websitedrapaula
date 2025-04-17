@@ -1,5 +1,5 @@
 const config = {
-    backendUrl: 'https://websitedrapaula-v2.onrender.com', // Ensure this matches the Django server address and port
+    backendUrl: 'http://127.0.0.1:8000', // Ensure this matches the Django server address and port
 };
 
 export default config;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../../styles/pages/aboutDetail.css';
 import aboutImage from "../../assets/about/Design sem nome 1.png";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const AboutDetail = () => {
   // Scroll to top on page load
@@ -10,8 +10,7 @@ const AboutDetail = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const {t} = useTranslation();
-
+    const { t, i18n } = useTranslation();
   return (
     <div className="about-detail">
       <div className="container">
@@ -67,7 +66,7 @@ const AboutDetail = () => {
               <p>{t("bio_p6")}</p>
 
               <p>{t("bio_p7")}</p>
-              
+
               <h2 className="about-subheading">{t("book_author")}</h2>
               <ul className="about-list">
                 <li>Serrano, P.; De Luque, C. (2015). A Criança e a Motricidade Fina. Lisboa, Portugal: Papa-Letras. (Também editado pela editora Narcea em Castelhano)</li>
@@ -76,7 +75,7 @@ const AboutDetail = () => {
                 <li>Serrano, P. (2024). Brincar e Integração Sensorial nos Primeiros Anos de Vida. Lisboa, Portugal: Papa-Letras.</li>
               </ul>
 
-              <h2 className="about-subheading">{t("author_coauthor")}</h2>
+              <h2 className="about-subheading">{t("practice_learn")}:</h2>
               <ul className="about-list">
                 <li>Serrano, P.; Carmo, A. L. (2020). "A Influência da Integração Sensorial na autorregulação do bebé". In Uma Viagem à primeira Infância – um dia para recordar, editado por Universidade do Algarve editora, 31-39. Faro, Portugal: Universidade do Algarve editora.</li>
                 <li>Serrano, P. (2021). "Brincar, desenvolvimento, saúde e bem-estar na primeira infância". In Tratado da Brinquedoteca Hospitalar, humanização teoria e prática, 148-163. Rio de Janeiro, Brasil: Wak Editora.</li>

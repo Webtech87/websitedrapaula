@@ -3,7 +3,6 @@ import { Instagram, Facebook, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../../styles/pages/footer.css";
 import { useTranslation } from "react-i18next";
-import logo from "../../assets/logo.svg"
 
 const Footer = () => {
 
@@ -14,7 +13,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Left - Logo & Social Icons */}
         <div className="footer-logo-section">
-          <img src={logo} alt="Logo Paula Serrano" className="footer-logo" />
+          <img src="src/assets/logo.svg" alt="Logo Paula Serrano" className="footer-logo" />
           <div className="social-icons">
             <a 
               href="https://www.instagram.com/paulamserrano/" 

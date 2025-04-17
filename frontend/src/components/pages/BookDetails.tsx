@@ -5,24 +5,7 @@ import '../../styles/pages/bookDetails.css';
 import { Star, ChevronLeft, ShoppingCart, Heart, AlertCircle, BookOpen, Check, X, ExternalLink } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
-import { useTranslation, Trans } from 'react-i18next';
-
-import ptFlag from "../../assets/flag-pt.png"
-import brFlag from "../../assets/flag-br.png"
-
-//Stripe import
-import { loadStripe } from "@stripe/stripe-js";
- 
-// Get the publishable key from Vite env variables
-const stripePublicKey = import.meta.env.VITE_STRIPE_LIVE_PUBLISHABLE_KEY;
-
-// Optional: check if key exists to avoid silent failure
-if (!stripePublicKey) {
-  throw new Error("Missing Stripe publishable key. Make sure VITE_STRIPE_LIVE_PUBLISHABLE_KEY is defined in your .env file.");
-}
-
-// Load Stripe with the publishable key
-export const stripePromise = loadStripe(stripePublicKey);
+import { useTranslation } from 'react-i18next';
 
 
 const BookDetails = () => {
@@ -42,18 +25,6 @@ const BookDetails = () => {
   const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
   
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const [loading, setLoading] = useState(false); //for Stripe
-
-  // ✅ Utility to store data with expiry
-  const setWithExpiry = (key: string, value: any, ttl: number) => {
-    const now = new Date();
-    const item = {
-      value,
-      expiry: now.getTime() + ttl,
-    };
-    localStorage.setItem(key, JSON.stringify(item));
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -117,7 +88,7 @@ const BookDetails = () => {
     }
   };
 
-  const handleBuyNow = async () => {
+  const handleBuyNow = () => {
     if (!user) {
       navigate('/login');
       displayToast('Por favor, faça login para finalizar a compra', 'info');
@@ -125,45 +96,13 @@ const BookDetails = () => {
     }
 
     if (book) {
-      setWithExpiry("lastCheckedProduct", {
-        bookId: id,
-        title: book?.title,
-        price: book?.price,
-      }, 300000); // ✅ 5 minutes = 300000 ms
-
-      console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
-
-
-      try {
-        const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ 
-            cartItems: [
-              {
-                bookId: id,
-                title: book.title,
-                price: book.price * 100,
-                //subscription: true, for Stripe
-              }
-            ]
-          }),
-        });
-  
-        const data = await response.json();
-  
-        if (data.checkout_url) {
-          window.location.href = data.checkout_url;  // ✅ Redirect to Stripe
-        } else {
-          console.error("Failed to create Checkout Session:", data);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-      }
+      // Use the updated addToCart with itemType parameter
+      addToCart(book, 'book');
+      setIsAddedToCart(true);
+      displayToast('Redirecionando para o checkout...', 'info');
+      setTimeout(() => {
+        navigate('/checkout');
+      }, 1000);
     }
   };
 
@@ -374,7 +313,7 @@ const BookDetails = () => {
                   onClick={handleBuyNow}
                   disabled={book.availability === 'out-of-stock'}
                 >
-                  <span><img src={ptFlag} alt="pt" width="20" /></span>
+                  <span>🇵🇹</span>
                   <span>{t("buy_button")}</span>
                 </button>
                 <button
@@ -382,17 +321,12 @@ const BookDetails = () => {
                   onClick={handleExternalPurchase}
                   aria-label="Comprar na Zamboni Books"
                 >
-                  <span><img src={brFlag} alt="br" width="20" /></span>
+                  <span>🇧🇷</span>
                   <span>{t("zomboni")}</span>
                 </button>
               </div>
               <p className="exclusive-sale-message">
-                <Trans
-                  i18nKey="book_botton_atention"
-                  components={{
-                    ptFlag: <img src={ptFlag} alt="Portugal flag" width="20" style={{ display: "inline", verticalAlign: "middle" }} />,
-                  }}
-                />
+                {t("book_botton_atention")}
               </p>
             </div>
           </div>

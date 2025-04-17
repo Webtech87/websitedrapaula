@@ -37,7 +37,7 @@ const NossosValores = () => {
     }, []);
 
     const handleNavigateToMentorias = () => {
-        navigate('/#mentorias'); // Corrected to match your route configuration
+        navigate('/mentorias'); // Corrected to match your route configuration
     };
     const {t} = useTranslation();
     return (
