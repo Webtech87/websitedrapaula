@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/pages/register.css";
 import { countries } from "../../data/countries";
@@ -465,9 +465,9 @@ const Register = () => {
             />
             <label htmlFor="acceptTerms">
               {t("account.signup.accept_terms_cond")}{" "}
-              <a href="/terms" target="_blank" rel="noopener noreferrer">{t("terms.title")}</a>{" "}
-              e{" "}
-              <a href="/privacy" target="_blank" rel="noopener noreferrer">{t("privacity.title")}</a>
+              <Link to="/termos-condicoes">{t("terms.title")}</Link>{" "}
+              {t("and")}{" "}
+              <Link to="/politica">{t("privacity.title")}</Link>{" "}
             </label>
             {errors.acceptTerms && <span className="error">{errors.acceptTerms}</span>}
           </div>
