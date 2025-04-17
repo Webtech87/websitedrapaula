@@ -430,7 +430,7 @@ const Register = () => {
               minLength={8}
               autoComplete="new-password"
               className={errors.password ? "error-input" : ""}
-              placeholder="Sua senha deve ter no mínimo 8 caracteres."
+              placeholder={t("form_placeholder.pass_roles")}
             />
             {renderPasswordStrength()}
             {errors.password && <span className="error">{errors.password}</span>}
@@ -447,7 +447,7 @@ const Register = () => {
               required
               autoComplete="new-password"
               className={errors.confirmPassword ? "error-input" : ""}
-              placeholder="Confirme sua senha"
+              placeholder={t("form_placeholder.pass_conf")}
             />
             {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
           </div>
