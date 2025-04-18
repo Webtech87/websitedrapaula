@@ -977,7 +977,8 @@
   "contact_us_form_messag": "Message",
   "contact_us_form_messag_placeholder": "Write your detailed message here...",
   "contact_us_form_button": "Send Message",
-  "sended": "Sended...",
+  "sending": "Sending...",
+  "sent": "Sent Message",
   "contact_us_success": "Thank you! We will get back to you shortly.",
   "schedule": "Schedule",
   "mon-fri": "Monday - Friday",
@@ -1475,6 +1476,11 @@
   "form_placeholder": {
     "pass_roles": "Your password must be at least 8 characters long.",
     "pass_conf": "Confirm your password"
-  }
+  },
+  "reset_pass_p": "Enter your email and we will send you a link to reset your password.",
+  "insert_email": "Enter your email",
+  "back_login": "Back to login",
+  "reset_pass_success": "If the email is registered, a password reset link will be sent to you.",
+  "reset_pass_error": "An error occurred while processing your request. Please try again later."
 }
 

@@ -146,7 +146,7 @@ const Login = () => {
                     </div>
 
                     <div className="forgot-password">
-                        <a href="/forgot-password">{t("account.login.reset_password")}</a>
+                        <a href="/recuperar-senha">{t("account.login.reset_password")}</a>
                     </div>
 
                     <button 

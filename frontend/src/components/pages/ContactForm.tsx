@@ -190,7 +190,7 @@ const ContactForm = () => {
               type="submit" 
               disabled={isSubmitting || submitted}
             >
-              {isSubmitting ? t("sended") : submitted ? 'Mensagem Enviada!' : t("contact_us_form_button")}
+              {isSubmitting ? t("sending") : submitted ? t("sent") : t("contact_us_form_button")}
             </button>
           </form>
         </div>

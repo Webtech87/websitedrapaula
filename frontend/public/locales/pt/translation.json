@@ -977,7 +977,8 @@
   "contact_us_form_messag": "Mensagem",
   "contact_us_form_messag_placeholder": "Escreva a sua mensagem detalhada aqui...",
   "contact_us_form_button": "Enviar mensagem",
-  "sended": "Enviado...",
+  "sending": "A enviar...",
+  "sent": "Mensagem Enviada",
   "contact_us_success": "Obrigado! Entraremos em contacto em breve.",
   "schedule": "Horário",
   "mon-fri": "Segunda - Sexta",
@@ -1477,7 +1478,12 @@
   "form_placeholder": {
     "pass_roles": "Sua senha deve ter no mínimo 8 caracteres.",
     "pass_conf": "Confirme sua senha"
-  }
+  },
+  "reset_pass_p": "Digite o seu email e enviaremos um link para redefinir a sua palavra-passe.",
+  "insert_email": "Insira o seu email",
+  "back_login": "Voltar ao login",
+  "reset_pass_success": "Se este email estiver registado, um link para redefinir a palavra-passe será enviado.",
+  "reset_pass_error": "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente mais tarde."
 }
 
 

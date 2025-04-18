@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import config from "@/config";
 import "../../styles/pages/recuperar-senha.css";
+import { useTranslation } from 'react-i18next';
 
 const RecuperarSenha = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
@@ -24,7 +26,7 @@ const RecuperarSenha = () => {
       
       // Even if the email doesn't exist, we should show the same message for security reasons
       setMessage({
-        text: "Se este email estiver registado, um link para redefinir a senha será enviado.",
+        text: t("reset_pass_success"),
         type: "success"
       });
       setEmail("");
@@ -32,7 +34,7 @@ const RecuperarSenha = () => {
     } catch (error) {
       console.error("Password reset request error:", error);
       setMessage({
-        text: "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente mais tarde.",
+        text: t("reset_pass_error"),
         type: "error"
       });
     } finally {
@@ -45,8 +47,8 @@ const RecuperarSenha = () => {
       <div className="recovery-container">
         <div className="recovery-card">
           <div className="recovery-header">
-            <h2>Recuperar Palavra-Passe</h2>
-            <p>Digite seu email e enviaremos um link para redefinir sua senha.</p>
+            <h2>{t("account.login.reset_password")}</h2>
+            <p>{t("reset_pass_p")}</p>
           </div>
 
           {message.text && (
@@ -62,7 +64,7 @@ const RecuperarSenha = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Insira o seu email"
+                placeholder={t("insert_email")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -76,13 +78,13 @@ const RecuperarSenha = () => {
               className={`recovery-button ${isSubmitting ? 'submitting' : ''}`}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Enviando...' : 'Recuperar Palavra-Passe'}
+              {isSubmitting ? t("sending") : t("account.login.reset_password")}
             </button>
           </form>
 
           <div className="recovery-footer">
             <Link to="/login" className="back-link">
-              <span className="back-arrow">←</span> Voltar ao login
+              <span className="back-arrow">←</span> {t("back_login")}
             </Link>
           </div>
         </div>
