@@ -1481,6 +1481,12 @@
   "insert_email": "Enter your email",
   "back_login": "Back to login",
   "reset_pass_success": "If the email is registered, a password reset link will be sent to you.",
-  "reset_pass_error": "An error occurred while processing your request. Please try again later."
+  "reset_pass_error": "An error occurred while processing your request. Please try again later.",
+  "add_course_cart": "Course added to cart!",
+  "add_course_wishlist": "Course added to wishlist!",
+  "remove_course_wishlist": "Course removed from wishlist!",
+  "add_book_cart": "Book added to cart!",
+  "add_book_wishlist": "Book added to wishlist!",
+  "remove_book_wishlist": "Book removed from wishlist!"
 }
 

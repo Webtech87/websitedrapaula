@@ -1483,7 +1483,13 @@
   "insert_email": "Insira o seu email",
   "back_login": "Voltar ao login",
   "reset_pass_success": "Se este email estiver registado, um link para redefinir a palavra-passe será enviado.",
-  "reset_pass_error": "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente mais tarde."
+  "reset_pass_error": "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente mais tarde.",
+  "add_course_cart": "Curso adicionado ao carrinho!",
+  "add_course_wishlist": "Curso adicionado aos favoritos!",
+  "remove_course_wishlist": "Curso removido dos favoritos!",
+  "add_book_cart": "Livro adicionado ao carrinho!",
+  "add_book_wishlist": "Livro adicionado aos favoritos!",
+  "remove_book_wishlist": "Livro removido dos favoritos!"
 }
 
 

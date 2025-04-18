@@ -73,10 +73,10 @@ const Books = ({ id }: { id: string }) => {
     // Add or remove the book from the wishlist and show toast notification
     if (isInWishlist(bookId, 'book')) {
       removeFromWishlist(bookId, 'book');
-      showToast("Livro removido dos favoritos", "success");
+      showToast(t("remove_book_wishlist"), "success");
     } else {
       addToWishlist(bookId, 'book');
-      showToast("Livro adicionado aos favoritos", "success");
+      showToast(t("add_book_wishlist"), "success");
     }
   };
 

@@ -82,10 +82,10 @@ const CourseDetails = () => {
     // Use the wishlist context to add/remove the course with 'course' type
     if (courseInWishlist) {
       removeFromWishlist(Number(id), 'course');
-      showToast("Curso removido dos favoritos", "success");
+      showToast(t("remove_course_wishlist"), "success");
     } else {
       addToWishlist(Number(id), 'course');
-      showToast("Curso adicionado aos favoritos", "success");
+      showToast(t("add_course_wishlist"));
     }
   };
 
@@ -114,7 +114,7 @@ const CourseDetails = () => {
     if (course) {
       addToCart(course, 'course');
       // Show toast notification instead of alert
-      showToast("Curso adicionado ao carrinho!", "success");
+      showToast(t("add_course_cart"), "success");
     }
   };
 

@@ -92,19 +92,19 @@ const Wishlist = () => {
     // Function to add a book to cart
     const addBookToCart = (book: Book): void => {
         addToCart(book, 'book');
-        displayToast("Livro adicionado ao carrinho!", "success");
+        displayToast(t("add_book_cart"), "success");
     };
 
     // Function to add a course to cart
     const addCourseToCart = (course: Course): void => {
         addToCart(course, 'course');
-        displayToast("Curso adicionado ao carrinho!", "success");
+        displayToast(t("add_course_cart"), "success");
     };
 
     // Function to handle item removal with toast notification
     const handleRemoveItem = (id: number, type: 'book' | 'course'): void => {
         removeFromWishlist(id, type);
-        displayToast(`${type === 'book' ? 'Livro' : 'Curso'} removido da lista de desejos`, "info");
+        displayToast(`${type === 'book' ? t("remove_book_wishlist") : t("remove_course_wishlist")}`, "info");
     };
 
     return (

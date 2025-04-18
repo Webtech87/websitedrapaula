@@ -92,11 +92,11 @@ const BookDetails = () => {
       if (isWishlisted) {
         // Explicitly specify the type as 'book'
         removeFromWishlist(book.id, 'book');
-        displayToast('Removido da lista de desejos!', 'success');
+        displayToast(t("remove_book_wishlist"), 'success');
       } else {
         // Explicitly specify the type as 'book'
         addToWishlist(book.id, 'book');
-        displayToast('Adicionado à lista de desejos!', 'success');
+        displayToast(t("add_book_wishlist"), 'success');
       }
       setIsWishlisted(!isWishlisted);
     }
@@ -113,7 +113,7 @@ const BookDetails = () => {
       // Use the updated addToCart with itemType parameter
       addToCart(book, 'book');
       setIsAddedToCart(true);
-      displayToast('Livro adicionado ao carrinho com sucesso!', 'success');
+      displayToast(t("add_book_cart"), 'success');
     }
   };
 
