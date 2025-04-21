@@ -373,7 +373,7 @@ const Navigation = () => {
                       }}
                     >
                       <UserCircle size={18} />
-                      Perfil
+                      {t("profile")}
                     </button>
                     <button
                       className="user-dropdown-button"
