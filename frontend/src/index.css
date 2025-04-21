@@ -4,5 +4,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    scroll-padding-top: 80px; /* Adjust to match your navbar height */
   }
   

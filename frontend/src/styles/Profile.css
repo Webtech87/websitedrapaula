@@ -150,7 +150,7 @@
   padding: 3rem;
   background: rgba(229, 62, 62, 0.05);
   border-radius: var(--radius-md);
-  margin: 3rem auto;
+  margin: 7rem auto;
   max-width: 600px;
   box-shadow: var(--shadow-sm);
   border: 1px solid rgba(229, 62, 62, 0.2);
@@ -165,7 +165,7 @@
 .retry-button {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
-  background: #e53e3e;
+  background: #e53e3e !important;
   color: white;
   border: none;
   border-radius: 8px;
@@ -176,7 +176,7 @@
 }
 
 .retry-button:hover {
-  background: #c53030;
+  background: #c53030 !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(229, 62, 62, 0.25);
 }
