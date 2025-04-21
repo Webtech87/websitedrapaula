@@ -1525,6 +1525,10 @@
   "whatsapp_default_msg": "Hello, I would like more information...",
   "connecting": "Connecting...",
   "welcome": "Welcome",
-  "profile": "Profile"
+  "profile": "Profile",
+  "load_profile": "Loading your profile...",
+  "load_profile_fail": "Profile Loading Failed",
+  "age": "Age",
+  "country": "Country"
 }
 

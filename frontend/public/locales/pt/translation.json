@@ -1527,7 +1527,11 @@
   "whatsapp_default_msg": "Olá, gostaria de mais informações...",
   "connecting": "A conectar...",
   "welcome": "Bem-vindo(a)",
-  "profile": "Perfil"
+  "profile": "Perfil",
+  "load_profile": "A carregar o seu perfil...",
+  "load_profile_fail": "Erro ao carregar perfil",
+  "age": "Idade",
+  "country": "País"
 }
 
 

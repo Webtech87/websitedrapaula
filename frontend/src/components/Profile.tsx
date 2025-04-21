@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { format, differenceInYears } from "date-fns";
 import "../styles/Profile.css";
+import { useTranslation } from 'react-i18next';
 
 interface ProfileData {
   full_name: string;
@@ -16,6 +17,7 @@ interface ProfileData {
 }
 
 const Profile = () => {
+  const { t } = useTranslation();
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -101,7 +103,7 @@ const Profile = () => {
     return (
       <div className="loading">
         <div className="spinner"></div>
-        <p>Loading your profile...</p>
+        <p>{t("load_profile")}</p>
       </div>
     );
   }
@@ -109,10 +111,10 @@ const Profile = () => {
   if (error || !profileData) {
     return (
       <div className="error-message">
-        <h3>Profile Loading Failed</h3>
+        <h3>{t("load_profile_fail")}</h3>
         <p>{error || "Unknown error occurred"}</p>
         <button className="retry-button" onClick={fetchProfile}>
-          Try Again
+          {t("try_again_btn")}
         </button>
       </div>
     );
@@ -121,34 +123,34 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <h1 className="profile-title">Perfil</h1>
+        <h1 className="profile-title">{t("profile")}</h1>
       </div>
       <div className="profile-grid">
         <div className="profile-item">
-          <span className="profile-label">Nome</span>
+          <span className="profile-label">{t("name")}</span>
           <div className="profile-value">{profileData.full_name || "N/A"}</div>
         </div>
         
         {profileData.age !== undefined && (
           <div className="profile-item">
-            <span className="profile-label">Idade</span>
+            <span className="profile-label">{t("age")}</span>
             <div className="profile-value">{profileData.age}</div>
           </div>
         )}
         
         <div className="profile-item">
-          <span className="profile-label">Genero</span>
+          <span className="profile-label">{t("account.signup.gender")}</span>
           <div className="profile-value">{profileData.gender || "N/A"}</div>
         </div>
         
         <div className="profile-item">
-          <span className="profile-label">Telefone</span>
+          <span className="profile-label">{t("account.signup.phone")}</span>
           <div className="profile-value">{profileData.phone || "N/A"}</div>
         </div>
         
         {(profileData.birth_date || profileData.birthday) && (
           <div className="profile-item">
-            <span className="profile-label">Data de Nascimento</span>
+            <span className="profile-label">{t("account.signup.bd")}</span>
             <div className="profile-value">
               {format(
                 new Date(profileData.birth_date || profileData.birthday!), 
@@ -159,7 +161,7 @@ const Profile = () => {
         )}
         
         <div className="profile-item">
-          <span className="profile-label">País</span>
+          <span className="profile-label">{t("country")}</span>
           <div className="profile-value">{profileData.country || "N/A"}</div>
         </div>
         
