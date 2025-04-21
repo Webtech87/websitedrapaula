@@ -10,10 +10,14 @@ interface WhatsAppButtonProps {
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ 
   phoneNumber = "351964309035", // Default Portugal number
-  message = "Olá, gostaria de mais informações", // Default Portuguese message
+  message, // Default Portuguese message
   className
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useTranslation();
+
+  // Fallback to default message from translations if none is provided
+  const finalMessage = t("whatsapp_default_msg");
   
   // Format phone number to international standard without spaces or special chars
   const formatPhoneNumber = (num: string) => {
@@ -38,7 +42,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   };
 
   const formattedNumber = formatPhoneNumber(phoneNumber);
-  const encodedMessage = encodeURIComponent(message);
+  const encodedMessage = encodeURIComponent(finalMessage);
   
   // Create both web and direct app URLs
   const webUrl = `https://wa.me/${formattedNumber}?text=${encodedMessage}`;
@@ -57,8 +61,6 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     }
     // Desktop will use the regular web URL via the href
   };
-
-  const { t } = useTranslation();
 
   return (
     <div className={`whatsapp-container ${className || ''}`}>

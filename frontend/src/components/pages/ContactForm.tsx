@@ -140,7 +140,7 @@ const ContactForm = () => {
                 id="email"
                 type="email"
                 name="email"
-                placeholder="exemplo@email.com"
+                placeholder={t("email_placeholder")}
                 value={formData.email}
                 onChange={handleChange}
                 required

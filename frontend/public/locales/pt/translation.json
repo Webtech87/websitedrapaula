@@ -1394,7 +1394,7 @@
     }
   },
   "terms": {
-    "title": "Política de Privacidade e Condições",
+    "title": "Termos e Condições",
     "company_name": "Paula Serrano Educação",
     "updated": "Última atualização: ",
     "pointes": {
@@ -1448,7 +1448,7 @@
       "go": "Outro",
       "g_anonimus": "Prefiro não dizer",
       "bd": "Data de Nascimento",
-      "pc": "Confirmar Password*",
+      "pc": "Confirmar Palavra-Passe*",
       "accept_terms_cond": "Eu aceito os ",
       "is_member": "Já possui uma conta?"
     }
@@ -1476,8 +1476,8 @@
   "zomboni": "Comprar na Zamboni",
   "book_botton_atention": "⚠\uFE0F Atenção: Este produto tem venda exclusiva para Portugal <ptFlag/>. Envios apenas para território português.",
   "form_placeholder": {
-    "pass_roles": "Sua senha deve ter no mínimo 8 caracteres.",
-    "pass_conf": "Confirme sua senha"
+    "pass_roles": "A sua palavra-passe deve ter no mínimo 8 caracteres.",
+    "pass_conf": "Confirme a sua palavra-passe"
   },
   "reset_pass_p": "Digite o seu email e enviaremos um link para redefinir a sua palavra-passe.",
   "insert_email": "Insira o seu email",
@@ -1489,7 +1489,44 @@
   "remove_course_wishlist": "Curso removido dos favoritos!",
   "add_book_cart": "Livro adicionado ao carrinho!",
   "add_book_wishlist": "Livro adicionado aos favoritos!",
-  "remove_book_wishlist": "Livro removido dos favoritos!"
+  "remove_book_wishlist": "Livro removido dos favoritos!",
+  "payment_success.title": "Pagamento Bem-sucedido",
+  "payment_confirm_p": "Obrigado pela sua compra. A sua transação foi concluída com sucesso.",
+  "order_details_h2": "Detalhes do Pedido",
+  "order_number_sp": "Número do Pedido:",
+  "date_sp": "Data:",
+  "payment_method_sp" : "Método de Pagamento: ",
+  "credit_card_sp" : "Cartão de Crédito",
+  "next_steps_h2" : "Próximos Passos",
+  "confirmation_email_li": "Um e-mail de confirmação foi enviado para o seu endereço de e-mail registrado.",
+  "contact_support_team_li": "Para quaisquer dúvidas, entre em contacto com nossa equipa de suporte.",
+  "keep_shopping_btn": "Continue Comprando",
+  "payment_cancelled.title": "Pagamento Cancelado",
+  "cancelled_message_p": "O seu processo de pagamento foi cancelado. Nenhuma cobrança foi feita em sua conta.",
+  "what_happened_h2": "O que aconteceu?",
+  "payment_reasons_p": "O seu pagamento não foi concluído por um dos seguintes motivos:",
+  "cancelled_manually_li": "O processo de pagamento foi cancelado manualmente",
+  "issue_payment_method_li": "Houve um problema com o método de pagamento",
+  "connection_time_li": "A conexão expirou durante o pagamento",
+  "declined_by_bank_li": "O pagamento foi recusado pelo seu banco",
+  "help_us_improve_h2": "Ajude-nos a melhorar",
+  "why_cancelled_p": "Por favor, nos informe por que você cancelou o seu pagamento:",
+  "select_reason_opt": "Selecione um motivo",
+  "changed_mind_opt": "Mudei de ideia",
+  "issues_payment_opt": "Tive problemas com o método de pagamento",
+  "price_high_opt": "Preço muito alto",
+  "security_concerns_opt": "Preocupações com segurança",
+  "other_reason_opt": "Outro motivo",
+  "need_help_h3": "Precisa de ajuda?",
+  "our_support_team_p": "A nossa equipa de suporte está disponível para ajudá-lo com qualquer problema que você possa ter encontrado.",
+  "contact_support_a": "Contactar Suporte",
+  "try_again_btn": "Tentar Novamente",
+  "alert_session_expired": "A sua sessão expirou. Por favor, inicie o processo de compra novamente.",
+  "email_placeholder": "exemplo@dominio.com",
+  "password": "Palavra-Passe",
+  "whatsapp_default_msg": "Olá, gostaria de mais informações...",
+  "connecting": "A conectar...",
+  "welcome": "Bem-vindo(a)"
 }
 
 

@@ -108,7 +108,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="email@exemplo.com"
+                    placeholder={t("email_placeholder")}
                   />
                 </div>
 

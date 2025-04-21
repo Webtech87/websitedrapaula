@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { AlertTriangle, CreditCard, HelpCircle } from 'lucide-react';
 import '../styles/stripeCancel.css';
+import { useTranslation } from 'react-i18next';
 
 const getWithExpiry = (key: string) => {
   const itemStr = localStorage.getItem(key);
@@ -38,7 +39,7 @@ const PaymentCancelled: React.FC = () => {
 
     if (!cart && !product) {
       // Show alert when both cart and product are expired or unavailable
-      alert('Sua sessão expirou. Por favor, inicie o processo de compra novamente.');
+      alert(t("alert_session_expired"));
     }
 
     // Optional: Schedule cleanup anyway after 2 minutes
@@ -113,6 +114,10 @@ const PaymentCancelled: React.FC = () => {
     console.log('Motivo do cancelamento:', event.target.value);
   };
 
+
+  const {t} = useTranslation();
+
+
   return (
     <div className="cancelled-container">
       <div className="cancelled-card">
@@ -120,36 +125,36 @@ const PaymentCancelled: React.FC = () => {
           <AlertTriangle size={50} />
         </div>
         
-        <h1 className="cancelled-title">Pagamento Cancelado</h1>
+        <h1 className="cancelled-title">{t("payment_cancelled.title")}</h1>
         <p className="cancelled-message">
-          Seu processo de pagamento foi cancelado. Nenhuma cobrança foi feita em sua conta.
+          {t("cancelled_message_p")}
         </p>
         
         <div className="cancelled-info">
-          <h2>O que aconteceu?</h2>
-          <p>Seu pagamento não foi concluído por um dos seguintes motivos:</p>
+          <h2>{t("what_happened_h2")}</h2>
+          <p>{t("payment_reasons_p")}</p>
           <ul className="reasons-list">
-            <li>O processo de pagamento foi cancelado manualmente</li>
-            <li>Houve um problema com o método de pagamento</li>
-            <li>A conexão expirou durante o pagamento</li>
-            <li>O pagamento foi recusado pelo seu banco</li>
+            <li>{t("cancelled_manually_li")}</li>
+            <li>{t("issue_payment_method_li")}</li>
+            <li>{t("connection_time_li")}</li>
+            <li>{t("declined_by_bank_li")}</li>
           </ul>
         </div>
         
         <div className="feedback-section">
-          <h2>Ajude-nos a melhorar</h2>
-          <p>Por favor, nos informe por que você cancelou seu pagamento:</p>
+          <h2>{t("help_us_improve_h2")}</h2>
+          <p>{t("why_cancelled_p")}</p>
           <select 
             className="feedback-select" 
             onChange={handleReasonSelection}
             defaultValue=""
           >
-            <option value="" disabled>Selecione um motivo</option>
-            <option value="changed-mind">Mudei de ideia</option>
-            <option value="payment-issue">Tive problemas com o método de pagamento</option>
-            <option value="too-expensive">Preço muito alto</option>
-            <option value="security">Preocupações com segurança</option>
-            <option value="other">Outro motivo</option>
+            <option value="" disabled>{t("select_reason_opt")}</option>
+            <option value="changed-mind">{t("changed_mind_opt")}</option>
+            <option value="payment-issue">{t("issues_payment_opt")}</option>
+            <option value="too-expensive">{t("price_high_opt")}</option>
+            <option value="security">{t("security_concerns_opt")}</option>
+            <option value="other">{t("other_reason_opt")}</option>
           </select>
         </div>
         
@@ -157,9 +162,9 @@ const PaymentCancelled: React.FC = () => {
           <div className="assistance-card">
             <HelpCircle size={24} />
             <div>
-              <h3>Precisa de ajuda?</h3>
-              <p>Nossa equipe de suporte está disponível para ajudá-lo com qualquer problema que você possa ter encontrado.</p>
-              <a href="#" className="contact-link">Contactar Suporte</a>
+              <h3>{t("need_help_h3")}</h3>
+              <p>{t("our_support_team_p")}</p>
+              <a href="#" className="contact-link">{t("contact_support_a")}</a>
             </div>
           </div>
         </div>
@@ -167,7 +172,7 @@ const PaymentCancelled: React.FC = () => {
         <div className="cancelled-actions">
           <button className="retry-button" onClick={handleRetryCheckout}>
             <CreditCard size={18} />
-            Tentar Novamente
+            {t("try_again_btn")}
           </button>
         </div>
       </div>

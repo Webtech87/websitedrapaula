@@ -90,13 +90,13 @@ const Login = () => {
                         disabled={isLoading}
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{t("password")}</label>
                     <div className="password-container">
                         <input
                             type={passwordVisible ? 'text' : 'password'}
                             id="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder={t("password")}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -153,7 +153,7 @@ const Login = () => {
                         type="submit" 
                         disabled={isLoading}
                     >
-                        {isLoading ? 'Conectando...' : 'Fazer login'}
+                        {isLoading ? t("connecting") : t("login")}
                     </button>
                 </form>
                 <p>

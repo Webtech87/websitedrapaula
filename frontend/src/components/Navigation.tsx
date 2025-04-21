@@ -357,7 +357,7 @@ const Navigation = () => {
               />
               {isLoggedIn && (
                 <div className="hover-message">
-                  {tokenExpired ? "Your login has expired" : `Bem vindo(a) ${userName}`}
+                  {tokenExpired ? "Your login has expired" : `${t("welcome")}, ${userName}`}
                 </div>
               )}
               <div className="user-dropdown-menu">

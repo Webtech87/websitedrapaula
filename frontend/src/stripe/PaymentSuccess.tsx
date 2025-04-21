@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, CreditCard, ShoppingBag } from 'lucide-react';
 import '../styles/stripeSuccess.css';
+import {useTranslation} from "react-i18next";
 
 const PaymentSuccess: React.FC = () => {
   useEffect(() => {
@@ -20,6 +21,8 @@ const PaymentSuccess: React.FC = () => {
     console.log('Payment success page viewed');
   }, []);
 
+  const {t} = useTranslation();
+
   return (
     <div className="success-container">
       <div className="confetti-container">
@@ -36,43 +39,39 @@ const PaymentSuccess: React.FC = () => {
           <Check size={50} />
         </div>
         
-        <h1 className="success-title">Pagamento Bem-sucedido!</h1>
-        <p className="success-message">
-          Obrigado pela sua compra. Sua transação foi concluída com sucesso.
+        <h1 className="success-title">{t("payment_success.title")}</h1>
+        <p className="success-message">{t("payment_confirm_p")}
         </p>
         
         <div className="order-details">
-          <h2>Detalhes do Pedido</h2>
+          <h2>{t("order_details_h2")}</h2>
           <div className="detail-row">
-            <span>Número do Pedido:</span>
+            <span>{t("order_number_sp")}</span>
             <span>#{Math.floor(100000 + Math.random() * 900000)}</span>
           </div>
           <div className="detail-row">
-            <span>Data:</span>
+            <span>{t("date_sp")}</span>
             <span>{new Date().toLocaleDateString('pt-BR')}</span>
           </div>
           <div className="detail-row">
-            <span>Método de Pagamento:</span>
-            <span>Cartão de Crédito <CreditCard size={16} /></span>
+            <span>{t("payment_method_sp")}</span>
+            <span>{t("credit_card_sp")} <CreditCard size={16} /></span>
           </div>
         </div>
         
         <div className="next-steps">
-          <h2>Próximos Passos</h2>
+          <h2>{t("next_steps_h2")}</h2>
           <ul className="steps-list">
-            <li>Um e-mail de confirmação foi enviado para o seu endereço de e-mail registrado.</li>
-            <li>Para quaisquer dúvidas, entre em contacto com nossa equipa de suporte.</li>
+            <li>{t("confirmation_email_li")}</li>
+            <li>{t("contact_support_team_li")}</li>
           </ul>
         </div>
         
         <div className="success-actions">
           <Link to="/" className="home-button">
             <ShoppingBag size={18} />
-            Continuar Comprando
+            {t("keep_shopping_btn")}
           </Link>
-          <button className="download-button">
-            Baixar Recibo
-          </button>
         </div>
       </div>
     </div>

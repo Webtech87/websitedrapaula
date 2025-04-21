@@ -413,13 +413,13 @@ const Register = () => {
               required
               autoComplete="email"
               className={errors.email ? "error-input" : ""}
-              placeholder="example@domain.com"
+              placeholder={t("email_placeholder")}
             />
             {errors.email && <span className="error">{errors.email}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password*</label>
+            <label htmlFor="password">{t("password")}*</label>
             <input
               type="password"
               id="password"
