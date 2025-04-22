@@ -4,6 +4,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    scroll-padding-top: 80px; /* Adjust to match your navbar height */
   }
-  
+
+html {
+  scroll-padding-top: 80px; /* Adjust to match your navbar height */
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+}  

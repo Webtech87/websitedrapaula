@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../styles/pages/about.css";
 import aboutImage from "../../assets/about/Design sem nome 1.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 // Add interface for props
@@ -11,6 +11,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ id }) => {
   const [showFullText, setShowFullText] = useState(false);
+  const navigate = useNavigate();
 
   const toggleText = () => {
     setShowFullText(!showFullText);
@@ -52,11 +53,11 @@ const About: React.FC<AboutProps> = ({ id }) => {
             {showFullText ? t("less_read") : t("more_read")}
           </button>
 
-          <Link to="/about-detail">
-            <button className="about-button" aria-label="Saiba mais sobre Dra. Paula Serrano">
-              {t("come_meeting")} 
-            </button>
-          </Link>
+        
+          <button className="about-button" onClick={() => navigate("/about-detail")} aria-label="Saiba mais sobre Dra. Paula Serrano">
+            {t("come_meeting")} 
+          </button>
+        
         </div>
       </div>
     </section>

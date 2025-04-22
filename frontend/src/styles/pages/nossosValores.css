@@ -286,6 +286,7 @@
     .nossos-valores-hero {
       height: 40vh;
       min-height: 300px;
+      margin-bottom: 80px;
     }
     
     .nossos-valores-heading {
@@ -306,6 +307,10 @@
     
     .valores-grid {
       grid-template-columns: 1fr;
+    }
+
+    .nossos-valores-container {
+      gap: 2rem; /* Adds spacing between child divs */
     }
 
     

@@ -523,6 +523,9 @@ body {
 }
 
 @media (max-width: 576px) {
+  .books {
+    padding-bottom: 5rem;
+  }
   .books-container {
     grid-template-columns: 1fr;
     max-width: 260px;
