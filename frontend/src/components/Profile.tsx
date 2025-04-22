@@ -17,7 +17,7 @@ interface ProfileData {
 }
 
 const Profile = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -152,10 +152,11 @@ const Profile = () => {
           <div className="profile-item">
             <span className="profile-label">{t("account.signup.bd")}</span>
             <div className="profile-value">
-              {format(
-                new Date(profileData.birth_date || profileData.birthday!), 
-                "MMMM d, yyyy"
-              )}
+              {new Date(profileData.birth_date || profileData.birthday).toLocaleDateString(i18n.language, {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              })}
             </div>
           </div>
         )}

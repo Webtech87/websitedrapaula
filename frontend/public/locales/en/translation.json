@@ -1529,6 +1529,17 @@
   "load_profile": "Loading your profile...",
   "load_profile_fail": "Profile Loading Failed",
   "age": "Age",
-  "country": "Country"
+  "country": "Country",
+  "very_weak": "Very Weak",
+  "weak": "Weak",
+  "moderate": "Moderate",
+  "strong": "Strong",
+  "very_strong": "Very Strong",
+  "excellent": "Excellent",
+  "characters": "8+ characters",
+  "capital": "Capital letter",
+  "lowercase": "Lowercase letter",
+  "number": "Number",
+  "special_char": "Special character"
 }
 

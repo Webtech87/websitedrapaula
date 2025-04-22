@@ -12,7 +12,7 @@
   "contact": "Contacto",
   "login": "Iniciar sessão",
   "registration": "Criar uma conta",
-  "logout": "Abandonar a sessão",
+  "logout": "Terminar sessão",
   "come_meeting": "Conheça a Paula",
   "banner_title_h1": "Intervenção terapêutica na prática",
   "banner_title_p": "Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.",
@@ -1531,7 +1531,18 @@
   "load_profile": "A carregar o seu perfil...",
   "load_profile_fail": "Erro ao carregar perfil",
   "age": "Idade",
-  "country": "País"
+  "country": "País",
+  "very_weak": "Muito Fraco",
+  "weak": "Fraco",
+  "moderate": "Moderado",
+  "strong": "Forte",
+  "very_strong": "Muito Forte",
+  "excellent": "Excelente",
+  "characters": "8+ caracteres",
+  "capital": "Letra maiúscula",
+  "lowercase": "Letra minúscula",
+  "number": "Número",
+  "special_char": "Caractere especial"
 }
 
 

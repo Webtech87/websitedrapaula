@@ -516,7 +516,7 @@ const Navigation = () => {
                 }}
               >
                 <UserCircle size={18} />
-                Perfil
+                {t("profile")}
               </button>
               <button
                 className="mobile-menu-button"

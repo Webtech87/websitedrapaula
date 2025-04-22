@@ -259,20 +259,20 @@ const Register = () => {
     ];
 
     const strengthText = [
-      "Muito Fraco",
-      "Fraco",
-      "Moderado",
-      "Forte",
-      "Muito Forte",
-      "Excelente"
+      t("very_weak"),
+      t("weak"),
+      t("moderate"),
+      t("strong"),
+      t("very_strong"),
+      t("excellent")
     ][passwordStrength];
 
     const requirements = [
-      { met: formData.password.length >= 8, text: "8+ caracteres" },
-      { met: /[A-Z]/.test(formData.password), text: "Letra maiúscula" },
-      { met: /[a-z]/.test(formData.password), text: "letra minúscula" },
-      { met: /[0-9]/.test(formData.password), text: "Numero" },
-      { met: /[^A-Za-z0-9]/.test(formData.password), text: "Especial caracteres" }
+      { met: formData.password.length >= 8, text: t("characters") },
+      { met: /[A-Z]/.test(formData.password), text: t("capital") },
+      { met: /[a-z]/.test(formData.password), text: t("lowercase") },
+      { met: /[0-9]/.test(formData.password), text: t("number") },
+      { met: /[^A-Za-z0-9]/.test(formData.password), text: t("special_char") }
     ];
 
     return (
