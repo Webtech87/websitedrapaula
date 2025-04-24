@@ -31,6 +31,7 @@ stripe.api_key = os.getenv('YOUR_TEST_OR_LIVE_STRIPE_KEY')
 ### Creating a Checkout Session and Stripe Webhook
 Still in `views.py` create a function which will hold the **Checkout Session**  
 As we are working with the possibility of the user buying **a single product** or **multiple products** through a cart, we have to retrieve all the data from the frontend and store them on a **list** (even if there is only one item in this list)
+Also, in a website which allows a user to choose their language (in this case, Portuguese (pt) or English (en)), we will add the chosen language to the **session_data**. This way, the Checkout Session will be displayed in the language chosen by the user.
 ```
 @csrf_exempt
 def payment_test(request):
@@ -39,6 +40,7 @@ def payment_test(request):
         try:
             data = json.loads(request.body)
             cart_items = data.get("cartItems", [])  # expecting a list of items
+            language = data.get("language", "auto") # retrive language chosen by user || use "auto" in case Stripe does not recognize the chosen language, it will fall on the default language set up in the user's browser
 
             success_url = "https://your-frontend-url-or-custom-domain/payment-success"
             cancel_url = "https://your-frontend-url-or-custom-domain/payment-cancelled"
@@ -73,6 +75,7 @@ def payment_test(request):
                 },
                 'success_url': success_url,
                 'cancel_url': cancel_url,
+                'locale': language, # add language to the session
             }
 
             session = stripe.checkout.Session.create(**session_data)
@@ -256,6 +259,8 @@ export const books: Book[] = [
 Then, in the page you want to call **Stripe's Checkout Session** (for example BookDetails.tsx or Cart.tsx), add the following   
 For a **single product** (BookDetails.tsx)
 ```
+import { useTranslation } from "react-i18next"; // need to install i18n module to use this
+
 import { loadStripe } from "@stripe/stripe-js";
  
 const stripePublicKey = import.meta.env.VITE_STRIPE_LIVE_OR_TEST_PUBLISHABLE_KEY;
@@ -269,6 +274,7 @@ export const stripePromise = loadStripe(stripePublicKey);
 
 
 const BookDetails = () => {
+  const { i18n } = useTranslation(); // used to retrieve language chosen by user
   const { id } = useParams<{ id: string }>();
   const book = id ? books.find((book: Book) => book.id === Number(id)) : undefined;
 
@@ -276,6 +282,9 @@ const BookDetails = () => {
 
   const handleBuyNow = async () => {  
     if (book) {
+
+      const currentLanguage = i18n.language;
+
       try {
         const response = await fetch("https://your-backend-url/payment/", {
           method: "POST",
@@ -289,7 +298,8 @@ const BookDetails = () => {
                 title: book.title,
                 price: book.price * 100, //Stripe requires price in cents
               }
-            ]
+            ],
+            language: currentLanguage, // add language inside the json data which will be retrieved by the backend
           }),
         });
   
@@ -340,6 +350,9 @@ const handleCheckout = async () => {
         }
     });
     
+    // IMPORTANT: This assumes you have imported `useTranslation` from react-i18next and you have `const { i18n } = useTranslation();` somewhere above
+    const currentLanguage = i18n.language;
+
     try {
         const response = await fetch("https://your-backend-url/payment/", {
         method: "POST",
@@ -348,6 +361,7 @@ const handleCheckout = async () => {
         },
         body: JSON.stringify({ 
             cartItems: flattenedCart,
+            language: currentLanguage, // send language to the backend
         }),
         });
     
