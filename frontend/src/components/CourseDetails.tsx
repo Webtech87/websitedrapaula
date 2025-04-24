@@ -24,7 +24,7 @@ if (!stripePublicKey) {
 export const stripePromise = loadStripe(stripePublicKey);
 
 const CourseDetails = () => {
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string | undefined }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -128,6 +128,8 @@ const CourseDetails = () => {
       }, 300000); // ✅ 5 minutes = 300000 ms
 
       console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
+
+      const currentLanguage = i18n.language;
       
       // Send request to backend to create a Checkout Session
       const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
@@ -143,7 +145,8 @@ const CourseDetails = () => {
               price: course.price * 100,
               //subscription: true, for Stripe
             }
-          ]
+          ],
+          language: currentLanguage,
          }), // Send course ID
       });
 

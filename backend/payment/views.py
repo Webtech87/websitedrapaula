@@ -60,6 +60,7 @@ def payment_test(request):
         try:
             data = json.loads(request.body)
             cart_items = data.get("cartItems", [])  # expecting a list of items
+            language = data.get("language", "auto")
 
             success_url = "https://paulaserranoeducacao.pt/payment-success"
             cancel_url = "https://paulaserranoeducacao.pt/payment-cancelled"
@@ -94,6 +95,7 @@ def payment_test(request):
                 },
                 'success_url': success_url,
                 'cancel_url': cancel_url,
+                'locale': language,
             }
 
             session = stripe.checkout.Session.create(**session_data)

@@ -26,6 +26,7 @@ export const stripePromise = loadStripe(stripePublicKey);
 
 
 const BookDetails = () => {
+  const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -133,6 +134,7 @@ const BookDetails = () => {
 
       console.log("Saved product to localStorage:", JSON.parse(localStorage.getItem("lastCheckedProduct") || 'null'));
 
+      const currentLanguage = i18n.language;
 
       try {
         const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
@@ -148,7 +150,8 @@ const BookDetails = () => {
                 price: book.price * 100,
                 //subscription: true, for Stripe
               }
-            ]
+            ],
+            language: currentLanguage,
           }),
         });
   
@@ -211,7 +214,7 @@ const BookDetails = () => {
   };
 
   const availability = getAvailabilityInfo(book.availability);
-  const { t } = useTranslation();
+  
   return (
     <div className="book-details-container">
       {/* Toast Notification */}

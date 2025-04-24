@@ -30,7 +30,7 @@ const setWithExpiry = (key: string, value: any, ttl: number) => {
 };
 
 const Cart = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -139,6 +139,8 @@ const Cart = () => {
 
         console.log("🧾 Saved Cart:", flattenedCart);
       
+        const currentLanguage = i18n.language;
+
         try {
           const response = await fetch("https://websitedrapaula-v2.onrender.com/payment/", {
             method: "POST",
@@ -147,7 +149,8 @@ const Cart = () => {
             },
             body: JSON.stringify({ 
               cartItems: flattenedCart,
-            }),
+              language: currentLanguage,
+            }),            
           });
       
           const data = await response.json();
