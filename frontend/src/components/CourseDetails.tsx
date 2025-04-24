@@ -552,7 +552,7 @@ const CourseDetails = () => {
         <div className="purchase-section">
           <div className="purchase-card">
             <div className="price-wishlist-container">
-            <div className="price">
+            <div className={`price ${Number(id) === 5 ? 'no-euro' : ''}`}>
                  {Number(id) === 5 
                    ? t("full_program") 
                    : course.price}

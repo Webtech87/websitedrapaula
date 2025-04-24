@@ -336,6 +336,10 @@ body {
   margin-right: 5px;
 }
 
+.purchase-card .price.no-euro::after {
+  content: '';
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
