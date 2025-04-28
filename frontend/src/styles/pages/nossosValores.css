@@ -303,6 +303,18 @@
     
     .nossos-valores-card {
       padding: 2rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .card-icon {
+      margin: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .nossos-valores-subheading::after{
+      content: none;
     }
     
     .valores-grid {
