@@ -125,62 +125,62 @@ const Register = () => {
 
     // Basic validations
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("account.signup.email_required");
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = t("account.signup.email_format");
     }
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full name is required";
+      newErrors.fullName = t("account.signup.full_name_required");
     } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName = "Full name must be at least 2 characters";
+      newErrors.fullName = t("account.signup.full_name_2char");
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
+      newErrors.phone = t("account.signup.phone_required");
     } else if (!/^\+?[0-9\s\-]+$/.test(formData.phone)) {
-      newErrors.phone = "Invalid phone number format";
+      newErrors.phone = t("account.signup.phone_format");
     } else if (formData.phone.replace(/\D/g, '').length < 8) {
-      newErrors.phone = "Phone number is too short";
+      newErrors.phone = t("account.signup.phone_length");
     }
 
     if (!formData.country) {
-      newErrors.country = "Country is required";
+      newErrors.country = t("account.signup.country_required");
     }
 
     // Enhanced password validation
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t("account.signup.password_required");
     } else {
       if (formData.password.length < 8) {
-        newErrors.password = "Password must be at least 8 characters";
+        newErrors.password = t("account.signup.password_8char");
       } else if (!/[A-Z]/.test(formData.password)) {
-        newErrors.password = "Include at least one uppercase letter";
+        newErrors.password = t("account.signup.password_upper");
       } else if (!/[a-z]/.test(formData.password)) {
-        newErrors.password = "Include at least one lowercase letter";
+        newErrors.password = t("account.signup.password_lower");
       } else if (!/[0-9]/.test(formData.password)) {
-        newErrors.password = "Include at least one number";
+        newErrors.password = t("account.signup.password_number");
       } else if (!/[^A-Za-z0-9]/.test(formData.password)) {
-        newErrors.password = "Include at least one special character";
+        newErrors.password = t("account.signup.password_special");
       } else {
         // Only check breach if password meets other requirements
         setIsCheckingBreach(true);
         const isBreached = await checkPasswordBreach(formData.password);
         setIsCheckingBreach(false);
         if (isBreached) {
-          newErrors.password = "This password has appeared in data breaches. Please choose a different one.";
+          newErrors.password = t("account.signup.password_breach");
         }
       }
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Please confirm your password";
+      newErrors.confirmPassword = t("account.signup.pc_please");
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords don't match";
+      newErrors.confirmPassword = t("account.signup.pc_dont_match");
     }
 
     if (!formData.acceptTerms) {
-      newErrors.acceptTerms = "You must accept the terms";
+      newErrors.acceptTerms = t("account.signup.must_accept_terms");
     }
 
     setErrors(newErrors);
