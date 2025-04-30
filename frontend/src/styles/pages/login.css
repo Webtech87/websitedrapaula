@@ -144,6 +144,26 @@
     transition: background 0.3s ease;
 }
 
+.field-error {
+    color: #e53e3e;
+    font-size: 13px;
+    margin-top: 8px;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    animation: errorShake 0.3s ease-in-out;
+}
+
+.error-input {
+    border-color: #e53e3e !important; /* Red border for input fields with errors */
+    background-color: rgba(254, 226, 226, 0.1); /* Very subtle red background */
+}
+
+.error-input:focus {
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.15); /* Subtle red glow on focus */
+}
+
 .auth-container button:hover {
     background: #1d4ed8;
 }

@@ -33,7 +33,7 @@ const ImersaoDetails = () => {
 
     // Gallery images
     const galleryImages = [
-        "/galleryPse/img7.jpeg",
+        "/galleryPse/miudos3.jpeg",
         "/galleryPse/img2.jpeg",
         "/galleryPse/img3.jpeg",
         "/galleryPse/img4.jpeg",
@@ -70,7 +70,7 @@ const ImersaoDetails = () => {
             <section
                 className="imersao-hero"
                 style={{
-                    backgroundImage: "url('/galleryPse/img7.jpeg')",
+                    backgroundImage: "url('/galleryPse/miudos3.jpeg')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}
@@ -334,7 +334,7 @@ const ImersaoDetails = () => {
                         {/* Replace this div with an actual image */}
                         <div className="next-steps-image">
                             <img
-                                src="/galleryPse/img1.jpeg"  // Update this path to your actual image
+                                src="/galleryPse/miudos1.jpeg"  // Update this path to your actual image
                                 alt="Próximos passos da imersão"
                                 className="next-steps-visual"
                             />

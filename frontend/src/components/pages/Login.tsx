@@ -10,17 +10,39 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
+    const validateForm = (): boolean => {
+        const newErrors: { email?: string; password?: string } = {};
+
+        if (!email.trim()) {
+            newErrors.email = t("account.signup.email_required");
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            newErrors.email = t("account.signup.email_format");
+        }
+
+        if (!password.trim()) {
+            newErrors.password = t("account.signup.password_required");
+        } else if (password.length < 8) {
+            newErrors.password = t("account.signup.password_8char");
+        }
+
+        setFormErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        if (!validateForm()) return;
+
         setIsLoading(true);
-        setError('');
+        setFormErrors({});
 
         try {
             const response = await fetch(`${config.backendUrl}/api/auth/token/`, {
@@ -57,9 +79,7 @@ const Login = () => {
         } catch (err) {
             console.error('Login error:', err);
             if (err instanceof Error) {
-                setError(err.message);
-            } else {
-                setError('An error occurred during login');
+                setFormErrors({ email: err.message });
             }
         } finally {
             setIsLoading(false);
@@ -72,78 +92,82 @@ const Login = () => {
                 <img src="/path-to-your-background-image.jpg" alt="Background" />
             </div>
             <div className="auth-container">
-                {error && (
-                    <div className="error-message">
-                        {error}
-                    </div>
-                )}
+                
                 <form onSubmit={handleLogin}>
                     <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={isLoading}
-                    />
+                    <div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled={isLoading}
+                            className={formErrors.email ? "error-input" : ""}
+                        />
+                        {formErrors.email && <span className="field-error">{formErrors.email}</span>}
+                    </div>
+                    
 
                     <label htmlFor="password">{t("password")}</label>
-                    <div className="password-container">
-                        <input
-                            type={passwordVisible ? 'text' : 'password'}
-                            id="password"
-                            name="password"
-                            placeholder={t("password")}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            disabled={isLoading}
-                        />
-                        <button
-                            type="button"
-                            className="toggle-password"
-                            onClick={togglePasswordVisibility}
-                            disabled={isLoading}
-                        >
-                            {passwordVisible ? (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                    />
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M2.25 12c1.5-4.5 6-7.5 9.75-7.5s8.25 3 9.75 7.5c-1.5 4.5-6 7.5-9.75 7.5S3.75 16.5 2.25 12z"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M3.98 8.223a10.477 10.477 0 00-.73 1.277C2.25 12 6 15 12 15c1.5 0 2.91-.3 4.17-.84m3.65-2.16c.3-.45.56-.93.79-1.44M9.75 9.75a3.75 3.75 0 015.25 5.25M3 3l18 18"
-                                    />
-                                </svg>
-                            )}
-                        </button>
+                    <div>
+                        <div className="password-container">
+                            <input
+                                type={passwordVisible ? 'text' : 'password'}
+                                id="password"
+                                name="password"
+                                placeholder={t("password")}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={isLoading}
+                                className={formErrors.password ? "error-input" : ""}
+                            />                        
+                            <button
+                                type="button"
+                                className="toggle-password"
+                                onClick={togglePasswordVisibility}
+                                disabled={isLoading}
+                            >
+                                {passwordVisible ? (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                        />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M2.25 12c1.5-4.5 6-7.5 9.75-7.5s8.25 3 9.75 7.5c-1.5 4.5-6 7.5-9.75 7.5S3.75 16.5 2.25 12z"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M3.98 8.223a10.477 10.477 0 00-.73 1.277C2.25 12 6 15 12 15c1.5 0 2.91-.3 4.17-.84m3.65-2.16c.3-.45.56-.93.79-1.44M9.75 9.75a3.75 3.75 0 015.25 5.25M3 3l18 18"
+                                        />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
+                        {formErrors.password && <span className="field-error">{formErrors.password}</span>}
                     </div>
+                    
 
                     <div className="forgot-password">
                         <a href="/recuperar-senha">{t("account.login.reset_password")}</a>
