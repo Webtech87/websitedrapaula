@@ -72,7 +72,7 @@ const Contact = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="contact-page">
+    <div id="contact" className="contact-page">
       <div className="contact-container">
         <h1 className="contact-header">{t("contact")}</h1>
         
@@ -157,20 +157,20 @@ const Contact = () => {
           <div className="footer-section">
             <h3>{t("cust_area")}</h3>
             <ul>
-              <li><a href="/account">{t("ac_o1")}</a></li>
-              <li><a href="/orders">{t("ac_o2")}</a></li>
-              <li><a href="/deliveries">{t("ac_o3")}</a></li>
-              <li><a href="/faq">{t("ac_o4")}</a></li>
+              <li><a href="/profile">{t("ac_o1")}</a></li>
+              <li><a href="/cart">{t("ac_o2")}</a></li>
+              <li><a href="/contact#contact">{t("ac_o3")}</a></li>
+              <li><a href="/mentorship-details#faq">{t("ac_o4")}</a></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h3>{t("info")}</h3>
             <ul>
-              <li><a href="/privacy">{t("info_o1")}</a></li>
-              <li><a href="/cookies">{t("info_o2")}</a></li>
-              <li><a href="/terms">{t("info_o3")}</a></li>
-              <li><a href="/complaints">{t("info_o4")}</a></li>
+              <li><a href="/politica">{t("info_o1")}</a></li>
+              <li><a href="/politica-cookies">{t("info_o2")}</a></li>
+              <li><a href="/termos-condicoes">{t("info_o3")}</a></li>
+              <li><a href="https://www.livroreclamacoes.pt/Inicio/">{t("info_o4")}</a></li>
             </ul>
           </div>
         </div>
