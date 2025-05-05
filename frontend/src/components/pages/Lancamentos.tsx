@@ -4,21 +4,12 @@ import "../../styles/pages/carousel.css";
 import {useTranslation} from "react-i18next";
 
 // Import all images
-import modulo1 from "../../assets/galleryPse/img6.jpeg";
 import modulo2 from "../../assets/courses/curso4.jpg";
 import modulo3 from "../../assets/courses/curso2.jpg";
 import modulo4 from "../../assets/courses/curso3.jpg";
 import modulo5 from "../../assets/courses/curso1.jpg";
-import modulo6 from "../../assets/galleryPse/img2.jpeg";
 import modulo7 from "../../assets/courses/curso5.jpg";
 import modulo8 from "../../assets/courses/curso3.jpg";
-import img1 from "../../assets/galleryPse/img1.jpeg";
-import img2 from "../../assets/galleryPse/img2.jpeg";
-import img3 from "../../assets/galleryPse/img3.jpeg";
-import img4 from "../../assets/galleryPse/img4.jpeg";
-import img5 from "../../assets/galleryPse/img5.jpeg";
-import img6 from "../../assets/galleryPse/img6.jpeg";
-import img7 from "../../assets/galleryPse/img7.jpeg";
 import img8 from "../../assets/galleryPse/img8.jpg";
 import img9 from "../../assets/galleryPse/img9.jpg";
 import img10 from "../../assets/galleryPse/img10.jpg";
@@ -65,31 +56,22 @@ const Lancamentos = () => {
         // Images
         {type: 'image', src: modulo3, title: t("galery_img.img1")},
         {type: 'image', src: modulo2, title: t("galery_img.img2")},
-        {type: 'image', src: modulo1, title: t("galery_img.img3")},
         {type: 'image', src: modulo4, title: t("galery_img.img4")},
         {type: 'image', src: modulo5, title: t("galery_img.img5")},
-        {type: 'image', src: modulo6, title: t("galery_img.img6")},
         {type: 'image', src: modulo7, title: t("galery_img.img7")},
         {type: 'image', src: modulo8, title: t("galery_img.img8")},
-        {type: 'image', src: img1, title: t("galery_img.img9")},
-        {type: 'image', src: img2, title: t("galery_img.img10")},
-        {type: 'image', src: img3, title: t("galery_img.img11")},
-        {type: 'image', src: img4, title: t("galery_img.img12")},
-        {type: 'image', src: img5, title: t("galery_img.img13")},
-        {type: 'image', src: img6, title: t("galery_img.img14")},
-        {type: 'image', src: img7, title: t("galery_img.img15")},
         {type: 'image', src: img8, title: t("galery_img.img16")},
         {type: 'image', src: img9, title: t("galery_img.img17")},
         {type: 'image', src: img10, title: t("galery_img.img18")},
 
         // Videos
-        {type: 'video', src: vid3, title: t("galery_img.img19"), thumbnail: img1},
-        {type: 'video', src: vid5, title: t("galery_img.img20"), thumbnail: img2},
-        {type: 'video', src: vid6, title: t("galery_img.img21"), thumbnail: img3},
-        {type: 'video', src: vid7, title: t("galery_img.img22"), thumbnail: img4},
-        {type: 'video', src: vid8, title: t("galery_img.img23"), thumbnail: img5},
-        {type: 'video', src: vid12, title: t("galery_img.img24"), thumbnail: img6},
-        {type: 'video', src: vid4, title: t("galery_img.img25"), thumbnail: img7},
+        {type: 'video', src: vid3, title: t("galery_img.img19"), thumbnail: modulo2},
+        {type: 'video', src: vid5, title: t("galery_img.img20"), thumbnail: modulo3},
+        {type: 'video', src: vid6, title: t("galery_img.img21"), thumbnail: modulo4},
+        {type: 'video', src: vid7, title: t("galery_img.img22"), thumbnail: modulo5},
+        {type: 'video', src: vid8, title: t("galery_img.img23"), thumbnail: modulo7},
+        {type: 'video', src: vid12, title: t("galery_img.img24"), thumbnail: img8},
+        {type: 'video', src: vid4, title: t("galery_img.img25"), thumbnail: modulo8},
     ];
     const maxIndex = Math.max(0, mediaItems.length - visibleSlides);
 
