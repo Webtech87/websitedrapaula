@@ -29,19 +29,19 @@
   position: relative;
 }
 
-.about-text {
+.about-text-main {
   overflow: hidden;
   transition: max-height 0.5s ease;
   text-align: justify;
 }
 
-.about-text.collapsed {
+.about-text-main.collapsed {
   max-height: 400px;
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
-.about-text.expanded {
+.about-text-main.expanded {
   max-height: 800px;
 }
 

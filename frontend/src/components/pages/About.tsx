@@ -36,7 +36,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
 
         {/* Left Side: Remaining Text Content */}
         <div className="about-content">
-          <div className={`about-text ${showFullText ? "expanded" : "collapsed"}`}>
+          <div className={`about-text-main ${showFullText ? "expanded" : "collapsed"}`}>
             <p>
               {t("about_p1")}
             </p>
