@@ -55,7 +55,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
 
         
           <button className="about-button" onClick={() => navigate("/about-detail")} aria-label="Saiba mais sobre Dra. Paula Serrano">
-            {t("come_meeting")} 
+            {t("bio")} 
           </button>
         
         </div>

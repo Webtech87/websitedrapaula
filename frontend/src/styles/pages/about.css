@@ -32,6 +32,7 @@
 .about-text {
   overflow: hidden;
   transition: max-height 0.5s ease;
+  text-align: justify;
 }
 
 .about-text.collapsed {
