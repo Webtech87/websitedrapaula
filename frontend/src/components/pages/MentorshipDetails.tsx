@@ -56,7 +56,6 @@ const MentorshipDetails = () => {
     return (
         <div className="mentorship-details">
             <div className="mentorship-details-header">
-                <span className="mentorship-details-tag">{t("mentorship_program")}</span>
                 <h1 className="mentorship-details-title">{t("mentorship_program_h1")}</h1>
                 <p className="mentorship-details-subtitle">
                     {t("mentorship_program_h1_p")}

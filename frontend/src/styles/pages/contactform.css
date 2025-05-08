@@ -327,7 +327,7 @@ button.submit-button:disabled {
   }
 
   .cf-contact-text p {
-    text-align: center;
+    text-align: justify;
     font-size: 1rem;
     margin-bottom: 18px;
   }
