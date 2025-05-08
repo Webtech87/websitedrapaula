@@ -53,25 +53,25 @@ const Lancamentos = () => {
     const visibleSlides = isMobile ? 1 : 3;
 
     const mediaItems: MediaItem[] = [
-        // Images
-        {type: 'image', src: modulo3, title: t("galery_img.img1")},
-        {type: 'image', src: modulo2, title: t("galery_img.img2")},
-        {type: 'image', src: modulo4, title: t("galery_img.img4")},
-        {type: 'image', src: modulo5, title: t("galery_img.img5")},
-        {type: 'image', src: modulo7, title: t("galery_img.img7")},
-        {type: 'image', src: modulo8, title: t("galery_img.img8")},
-        {type: 'image', src: img8, title: t("galery_img.img16")},
-        {type: 'image', src: img9, title: t("galery_img.img17")},
-        {type: 'image', src: img10, title: t("galery_img.img18")},
-
         // Videos
-        {type: 'video', src: vid3, title: t("galery_img.img19"), thumbnail: modulo2},
-        {type: 'video', src: vid5, title: t("galery_img.img20"), thumbnail: modulo3},
-        {type: 'video', src: vid6, title: t("galery_img.img21"), thumbnail: modulo4},
-        {type: 'video', src: vid7, title: t("galery_img.img22"), thumbnail: modulo5},
-        {type: 'video', src: vid8, title: t("galery_img.img23"), thumbnail: modulo7},
-        {type: 'video', src: vid12, title: t("galery_img.img24"), thumbnail: img8},
-        {type: 'video', src: vid4, title: t("galery_img.img25"), thumbnail: modulo8},
+        {type: 'video', src: vid4, title: '', thumbnail: img9},
+        {type: 'video', src: vid3, title: '', thumbnail: modulo2},
+        {type: 'video', src: vid5, title: '', thumbnail: modulo3},
+        {type: 'video', src: vid6, title: '', thumbnail: modulo4},
+        {type: 'video', src: vid7, title: '', thumbnail: modulo5},
+        {type: 'video', src: vid8, title: '', thumbnail: modulo7},
+        {type: 'video', src: vid12, title: '', thumbnail: img8},
+
+        // Images
+        {type: 'image', src: modulo3, title: ''},
+        {type: 'image', src: modulo2, title: ''},
+        {type: 'image', src: modulo4, title: ''},
+        {type: 'image', src: modulo5, title: ''},
+        {type: 'image', src: modulo7, title: ''},
+        {type: 'image', src: modulo8, title: ''},
+        {type: 'image', src: img8, title: ''},
+        {type: 'image', src: img9, title: ''},
+        {type: 'image', src: img10, title: ''},
     ];
     const maxIndex = Math.max(0, mediaItems.length - visibleSlides);
 
