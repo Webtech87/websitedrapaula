@@ -55,22 +55,15 @@ const Lancamentos = () => {
     const mediaItems: MediaItem[] = [
         // Videos
         {type: 'video', src: vid4, title: '', thumbnail: img9},
-        {type: 'video', src: vid3, title: '', thumbnail: modulo2},
         {type: 'video', src: vid5, title: '', thumbnail: modulo3},
-        {type: 'video', src: vid6, title: '', thumbnail: modulo4},
+        {type: 'video', src: vid3, title: '', thumbnail: modulo2},
         {type: 'video', src: vid7, title: '', thumbnail: modulo5},
         {type: 'video', src: vid8, title: '', thumbnail: modulo7},
         {type: 'video', src: vid12, title: '', thumbnail: img8},
+        {type: 'video', src: vid6, title: '', thumbnail: modulo4},
 
         // Images
-        {type: 'image', src: modulo3, title: ''},
-        {type: 'image', src: modulo2, title: ''},
-        {type: 'image', src: modulo4, title: ''},
-        {type: 'image', src: modulo5, title: ''},
-        {type: 'image', src: modulo7, title: ''},
         {type: 'image', src: modulo8, title: ''},
-        {type: 'image', src: img8, title: ''},
-        {type: 'image', src: img9, title: ''},
         {type: 'image', src: img10, title: ''},
     ];
     const maxIndex = Math.max(0, mediaItems.length - visibleSlides);

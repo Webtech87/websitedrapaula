@@ -11,6 +11,7 @@
   position: relative;
   transition: background-image 1s ease-in-out; /* Smooth image transition */
   font-family: 'Roboto', sans-serif; /* Professional typography */
+  margin: 60px 0px;
 }
 
 /* Darker overlay for better text contrast */
