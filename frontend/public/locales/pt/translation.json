@@ -415,7 +415,10 @@
       ],
       "dimensions": "172 x 245 x 7 mm",
       "weight": "320g",
-      "availability": "in-stock",
+      "availability": {
+        "title": "Disponibilidade",
+        "res": "Em Stock"
+      },
       "stock": 45,
       "recommendedAge": "Educadores e pais de crianças de 2-7 anos",
       "relatedBooks": [

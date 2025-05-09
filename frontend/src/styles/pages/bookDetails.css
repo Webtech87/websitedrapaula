@@ -455,6 +455,7 @@
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.625;
+  text-align: justify;
 }
 
 .book-details-meta {
