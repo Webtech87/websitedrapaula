@@ -60,8 +60,8 @@ const Courses = ({ id }: { id: string }) => {
                       src={course.image}
                       alt={course.title}
                       className={`course-image ${
-                        loadedImages.includes(course.id) ? "loaded" : ""
-                      }`}
+                        course.id === 5 ? "course-image5" : ""
+                      } ${loadedImages.includes(course.id) ? "loaded" : ""}`}
                       onLoad={() => handleImageLoad(course.id)}
                       onError={(e) => (e.currentTarget.style.display = "none")}
                     />
