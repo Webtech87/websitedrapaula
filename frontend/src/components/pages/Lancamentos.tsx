@@ -345,9 +345,6 @@ const Lancamentos = () => {
                                                 </>
                                             )}
                                         </div>
-                                        <div className="carousel-content">
-                                            <h3 className="carousel-slide-title">{item.title}</h3>
-                                        </div>
                                     </div>
                                 </div>
                             ))}
