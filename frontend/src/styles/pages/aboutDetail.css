@@ -177,6 +177,7 @@
   color: #4a5568;
   line-height: 1.8;
   font-size: 1.05rem;
+  text-align: justify;
 }
 
 .about-text p {
@@ -254,6 +255,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.about-footer a {
+  text-decoration: none;
+  color: #718096;
+}
+
+.about-footer a:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 640px) {

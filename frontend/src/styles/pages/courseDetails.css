@@ -139,6 +139,7 @@ body {
 
 .description-structure {
   white-space: normal;
+  text-align: justify;
 }
 
 .description-subtitle {

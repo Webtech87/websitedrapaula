@@ -36,15 +36,14 @@ const NossosValores = () => {
         };
     }, []);
 
-    const handleNavigateToMentorias = () => {
-        navigate('/#mentorias'); // Corrected to match your route configuration
+    const handleNavigateToCursos = () => {
+        navigate('/#cursos'); // Corrected to match your route configuration
     };
     const {t} = useTranslation();
     return (
         <div className="nossos-valores-wrapper">
             <div className="nossos-valores-hero">
                 <div className="nossos-valores-hero-content">
-                    <span className="nossos-valores-tag">{t("home_filosofia")}</span>
                     <h1 className="nossos-valores-heading">{t("home_val")}</h1>
                     <p className="nossos-valores-subtitle">
                         {t("home_val_p")}
@@ -119,7 +118,7 @@ const NossosValores = () => {
                     <div className="nossos-valores-cta">
                         <button
                             className="cta-button"
-                            onClick={handleNavigateToMentorias}
+                            onClick={handleNavigateToCursos}
                         >
                             {t("more_info")}
                         </button>

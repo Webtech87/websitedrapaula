@@ -13,8 +13,8 @@
   "login": "Iniciar sessão",
   "registration": "Criar uma conta",
   "logout": "Terminar sessão",
-  "come_meeting": "Conheça a Paula",
-  "banner_title_h1": "Intervenção terapêutica na prática",
+  "come_meeting": "Conheça a",
+  "banner_title_h1": "Formação terapêutica na prática",
   "banner_title_p": "Formações e recursos para terapeutas, educadores e pais que querem fazer a diferença.",
   "more_info": "Saber mais",
   "more_read": "Ler mais",
@@ -415,7 +415,10 @@
       ],
       "dimensions": "172 x 245 x 7 mm",
       "weight": "320g",
-      "availability": "in-stock",
+      "availability": {
+        "title": "Disponibilidade",
+        "res": "Em Stock"
+      },
       "stock": 45,
       "recommendedAge": "Educadores e pais de crianças de 2-7 anos",
       "relatedBooks": [
@@ -996,12 +999,12 @@
   "info_o3": "Termos e condições",
   "info_o4": "Livro de Reclamações",
   "footer_bottom": " Paula Serrano Educação, Lda. Todos os direitos reservados.",
-  "home_filosofia": "Nossa Filosofia",
-  "home_val": "Nosso Valores",
-  "home_val_p": "Princípios fundamentais que guiam cada decisão e iniciativa",
+  "home_filosofia": "A Nossa Filosofia",
+  "home_val": "Os Nossos Valores",
+  "home_val_p": "Os princípios fundamentais que guiam cada decisão e iniciativa",
   "mission": "Missão",
   "mission_p1": "Valorizamos a partilha de conhecimento como uma ferramenta poderosa para ampliar horizontes e trazer mais qualidade de vida às famílias. Acreditamos que, ao disseminar saberes, podemos criar um impacto positivo que vai muito além do indivíduo, alcançando comunidades inteiras.",
-  "mission_p2": "Buscamos criar um ambiente onde cada criança possa florescer em seu próprio ritmo, respeitando sua individualidade e apoiando seu desenvolvimento integral. A nossa abordagem reconhece que cada jornada de crescimento é única.",
+  "mission_p2": "Buscamos criar um ambiente onde cada criança possa florescer em seu próprio ritmo, respeitando a sua individualidade e apoiando o seu desenvolvimento integral. A nossa abordagem reconhece que cada jornada de crescimento é única.",
   "bases": "Princípios Fundamentais",
   "basses": {
     "1": {
@@ -1029,7 +1032,7 @@
       "text": "Reconhecemos e valorizamos a diversidade de experiências e perspectivas em nossa comunidade."
     }
   },
-  "commitments": "Nosso Compromisso",
+  "commitments": "Compromisso",
   "commitments_p1": "Por meio de cursos, mentorias e materiais didácticos, o nosso objetivo é capacitar profissionais nas suas práticas diárias. Oferecemos ferramentas para que eles apoiem crianças e famílias na sua jornada de crescimento e desenvolvimento. Assim, buscamos contribuir para que cada ser humano alcance o seu máximo potencial, respeitando a sua singularidade e promovendo uma sociedade mais inclusiva e fortalecida.",
   "commitments_p2": "Estamos comprometidos em criar recursos acessíveis e programas que inspirem educadores e famílias a trabalharem juntos pelo bem-estar das crianças. Acreditamos que através desta colaboração podemos construir as bases para um futuro onde todas as crianças tenham a oportunidade de prosperar.",
   "mentorship_program": "Programa de Mentoria",

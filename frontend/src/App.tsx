@@ -62,10 +62,10 @@ function Home() {
     <>
       <Banner />
       <Courses id="cursos" />
+      <Imersoes id="imersoes" />
       <Mentorship id="mentorias" />
       <Books id="livros" />
       <About id="about" />
-      <Imersoes id="imersoes" />
       <Lancamentos />
       <Testemunhos />
       <ContactForm />

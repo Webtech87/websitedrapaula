@@ -86,8 +86,8 @@ const AboutDetail = () => {
               </ul>
 
               <div className="about-footer">
-                <p>Ciência ID F418-5444-6081</p>
-                <p>ORCID iD 0000-0002-9674-9256</p>
+                <a href="https://www.cienciavitae.pt/portal/en/F418-5444-6081">Ciência ID F418-5444-6081</a>
+                <a href="https://orcid.org/0000-0002-9674-9256">ORCID iD 0000-0002-9674-9256</a>
               </div>
             </div>
           </div>
