@@ -134,17 +134,6 @@ const Contact = () => {
           {/* Contact Information Section */}
           <div className="contact-info">
             <div className="info-section">
-              <h2>{t("schedule")}</h2>
-              <p>{t("mon-fri")}: 9:00 - 18:00</p>
-            </div>
-
-            <div className="info-section">
-              <h2>{t("phone")}</h2>
-              <p className="phone-number">(+351) 964 309 035</p>
-              <p className="phone-note">{t("phone_info")}</p>
-            </div>
-
-            <div className="info-section">
               <h2>Email</h2>
               <p>paulaserranoeducacao@gmail.com</p>
               

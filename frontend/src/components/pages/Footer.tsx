@@ -52,24 +52,7 @@ const Footer = () => {
             <h3 className="footer-heading" style={{ textTransform: "uppercase" }}>{t("contact")}</h3>
             <div className="footer-content">
               <p className="footer-text">
-                <span className="footer-label">{t("schedule")}:</span> {t("mon-fri")} <br />9:00 - 18:00
-              </p>
-              <p className="footer-text">
-                <span className="footer-label">{t("phone")}:</span>
-                <a href="tel:+351964309035" className="footer-link">(+351) 964309035</a>
-                <br />
-                <span className="small-text">{t("phone_info")}</span>
-              </p>
-              <p className="footer-text">
-                <span className="footer-label">{t("adress")}:</span>
-                <a 
-                  href="https://www.google.com/maps/search/?api=1&query=Praceta+Agostinho+Ferreira+Chaves,+n:+5,+quinto+esquerdo+-+8005-328,+Faro" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="footer-link"
-                >
-                  Praceta Agostinho Ferreira Chaves, n: 5, quinto esquerdo<br /> - 8005-328, Faro
-                </a>
+                <span className="footer-label">Email:</span> <br />paulaserranoeducacao@gmail.com
               </p>
             </div>
           </div>
