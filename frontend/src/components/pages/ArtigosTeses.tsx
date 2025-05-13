@@ -237,7 +237,7 @@ const ArtigosTeses = () => {
         try {
             // 1. Construct the correct file path
             const baseUrl = window.location.origin; // Gets current domain (http://localhost:3000)
-            const filePath = `${baseUrl}/pdfs/${article.file}`;
+            const filePath = `${baseUrl}${article.file}`;
 
             // 2. Fetch the file
             const response = await fetch(filePath);
