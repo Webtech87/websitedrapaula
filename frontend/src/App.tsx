@@ -33,7 +33,6 @@ import AboutDetail from "./components/pages/AboutDetail";
 import ImersaoDetails from "./components/pages/ImersaoDetails"; 
 import LancamentoDetail from './components/pages/LancamentoDetail';
 import ScrollToTop from './components/ScrollToTop';
-import WhatsAppButton from './components/WhatsAppButton';
 import Politica from "./components/Politica";
 import PoliticaCookies from "./components/PoliticaCookies";
 import TermosCondicoes from "./components/TermosCondicoes";
@@ -173,11 +172,6 @@ function App() {
               }
             />
           </Routes>
-
-          <WhatsAppButton 
-            phoneNumber="351964309035"
-            message="Olá, eu gostaria de saber mais informações..."
-          />
         </Router>
       </CartProvider>
     </WishlistProvider>
