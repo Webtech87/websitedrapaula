@@ -830,7 +830,6 @@
   .carousel-slide-title {
     font-size: 0.9rem;
     font-weight: 600;
-    -webkit-line-clamp: 1; /* Show only one line on mobile */
   }
   
   /* Simplified controls for mobile */

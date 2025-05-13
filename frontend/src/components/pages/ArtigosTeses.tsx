@@ -100,6 +100,106 @@ const sampleArticles: Article[] = [
         description: "O sono e os problemas de sono têm vindo a merecer atenção na área da Terapia Ocupacional...",
         file: "/pdfs/problemas-de-sono-e-processamento-sensorial.pdf", // Corrected file path
     },
+    {
+        id: 9,
+        title: "Análise comparativa do \"Evaluation on Ayres Sensory Integration\" versus \"Sensory Integration and Praxis Test\"",
+        author: "Helena Reis, Elsa Almeida, Patrícia Marcelino",
+        type: "artigo",
+        date_month: "april", // Use key from translation.json for optimized translation
+        date_year:"2015",
+        description: "Dr. Ayres desenvolveu um método válido e confiável de avaliar as funções de integração sensorial...",
+        file: "/pdfs/analise-comparativa-do-evaluation-on-ayres.pdf", // Corrected file path
+    },
+    {
+        id: 10,
+        title: "As novas medidas de suporte à aprendizagem e à inclusão: a perceção de terapeutas ocupacionais integrados em Centros de Recursos para a Inclusão (CRI)",
+        author: "Helena Reis, Claida Ferreira, Cristiana Neto, Inês Pereira, Margarida Rosado",
+        type: "artigo",
+        date_month: "december", // Use key from translation.json for optimized translation
+        date_year:"2020",
+        description: "Com a recente implementação do Decreto-Lei nº 54/2018 sobre educação inclusiva, não existem...",
+        file: "/pdfs/as-novas-medidas-de-suporte.pdf", // Corrected file path
+    },
+    {
+        id: 11,
+        title: "Características e Especificidades da Comunicação Social na Perturbação do Espectro do Autismo",
+        author: "Helena Reis, Ana Pereira, Leandro Almeida",
+        type: "artigo",
+        date_month: "july", // Use key from translation.json for optimized translation
+        date_year:"2016",
+        description: "Este artigo descreve e problematiza as características da Comunicação Social na Perturbação do Espetro do Autismo (PEA)...",
+        file: "/pdfs/caracteristicas-e-especificidades-da-comunicacao.pdf", // Corrected file path
+    },
+    {
+        id: 12,
+        title: "Competências de escrita manual e processamento sensorial em crianças dos 6 aos 7 anos e 11 meses",
+        author: "Ana Oliveira, Helena Reis, Cláudia Silva",
+        type: "artigo",
+        date_month: "december", // Use key from translation.json for optimized translation
+        date_year:"2024",
+        description: "Neste estudo, investigou-se a relação entre o processamento sensorial e as competências de escrita manual em crianças de 6 a 7 anos e 11 meses...",
+        file: "/pdfs/competencias-de-escrita-manual.pdf", // Corrected file path
+    },
+    {
+        id: 13,
+        title: "Construção e Validação de um Instrumento de Avaliação do Perfil Desenvolvimental de Crianças Com Perturbação do Espectro do Autismo",
+        author: "Helena Reis, Ana Pereira, Leandro Almeida",
+        type: "artigo",
+        date_month: "april", // Use key from translation.json for optimized translation
+        date_year:"2013",
+        description: "Nos últimos anos a investigação tem dado particular relevância às alterações do Processamento Sensorial nas crianças com perturbações do espectro do autismo (PEA)...",
+        file: "/pdfs/construcao-e-validacao-de-um-instrumento.pdf", // Corrected file path
+    },
+    {
+        id: 14,
+        title: "Da avaliação à intervenção na perturbação do espetro do autismo",
+        author: "Helena Reis, Ana Pereira, Leandro Almeida",
+        type: "artigo",
+        date_month: "may", // Use key from translation.json for optimized translation
+        date_year:"2016",
+        description: "A avaliação das perturbações caracterizadas por padrões de comportamento e de desenvolvimento atípicos...",
+        file: "/pdfs/da-avaliacao-a-intervencao.pdf", // Corrected file path
+    },
+    {
+        id: 15,
+        title: "Perfil de Envolvimento e Perceção dos Irmãos de Crianças com Necessidades Especiais",
+        author: "Helena Reis, Alexandra mendes, Joana Jorge, Mariana Canais, Tatiana Brás",
+        type: "artigo",
+        date_month: "november", // Use key from translation.json for optimized translation
+        date_year:"2019",
+        description: "A família é entendida como um sistema de relações dinâmicas, cujo funcionamento altera em decorrência de qualquer mudança...",
+        file: "/pdfs/perfil-de-envolvimento-e-percecao.pdf", // Corrected file path
+    },
+    {
+        id: 16,
+        title: "Processamento Sensorial na Rotina de uma Criança: Estudo Exploratório",
+        author: "Helena Reis, Alexandra Mendes, Joana Jorge, Mariana Canais, Tatiana Brás",
+        type: "artigo",
+        date_month: "november", // Use key from translation.json for optimized translation
+        date_year:"2019",
+        description: "A participação de uma criança nas atividades de vida diária revela a forma como a criança processa...",
+        file: "/pdfs/processamento-sensorial-na-rotina.pdf", // Corrected file path
+    },
+    {
+        id: 17,
+        title: "Processamento Sensorial: Nova Dimensão na Avaliação das Crianças com Transtorno do Espectro Autista",
+        author: "Elizabete Silva, Ana Pereira, Helena Reis",
+        type: "artigo",
+        date_month: "january", // Use key from translation.json for optimized translation
+        date_year:"2016",
+        description: "O Transtorno do Espectro do Autismo (TEA) é hoje considerado como uma desordem complexa do comportamento que se caracteriza...",
+        file: "/pdfs/processamento-sensorial-nova-dimensao.pdf", // Corrected file path
+    },
+    {
+        id: 18,
+        title: "Versão Portuguesa da Medida do Processamento Sensorial Pré-Escola: Análise da Consistência Interna e Homogeneidade dos Itens do Formulário Escola",
+        author: "Helena Reis, Maria Neves, Maria Dixe",
+        type: "artigo",
+        date_month: "october", // Use key from translation.json for optimized translation
+        date_year:"2020",
+        description: "Nos últimos anos, tem havido na literatura uma larga estimativa de prevalência de desordens...",
+        file: "/pdfs/versao-portuguesa-da-medida-do-processamento.pdf", // Corrected file path
+    }
 ];
 
 const ArtigosTeses = () => {
