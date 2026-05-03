@@ -1,39 +1,57 @@
-import { useState, useEffect, useRef } from "react";
-import { Menu, X, Heart, ShoppingBag, User, ChevronDown, LogIn, UserPlus, UserCircle, LogOut } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import {
+  Menu, X, Heart, ShoppingBag, User,
+  ChevronDown, LogIn, UserPlus, UserCircle, LogOut,
+} from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import logo from "../assets/20.png";
 import "../styles/navigation.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import ptFlag from "../assets/flag-pt.png";
+import gbFlag from "../assets/flag-gb.png";
 
-import ptFlag from "../assets/flag-pt.png"
-import gbFlag from "../assets/flag-gb.png"
+/* ─── Types ─────────────────────────────────────── */
+interface NavItem {
+  label: string;
+  href: string;
+  subItems?: { label: string; href: string }[];
+}
 
+/* ─── Helpers ───────────────────────────────────── */
+const isTokenExpired = (token: string | null): boolean => {
+  if (!token) return true;
+  try {
+    const decoded: any = jwtDecode(token);
+    return decoded.exp < Date.now() / 1000;
+  } catch {
+    return true;
+  }
+};
+
+/* ─── Component ─────────────────────────────────── */
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdowns, setActiveDropdowns] = useState({
-    navDropdown: null as string | null,
-    userDropdown: false,
-  });
-  const { t, i18n } = useTranslation();
+  const [openNavDropdown, setOpenNavDropdown] = useState<string | null>(null);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
-  const [tokenExpired, setTokenExpired] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0); // Added scroll position state
+
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const userDropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuInnerRef = useRef<HTMLDivElement>(null);
+  const userDropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const navigationLinks = [
+  /* ── Navigation links ── */
+  const navigationLinks: NavItem[] = [
     { label: t("home"), href: "/nossos-valores" },
-    {
-      label: t("meating_ps"),
-      href: "#about",
-    },
+    { label: t("meating_ps"), href: "#about" },
     {
       label: t("tranings"),
       href: "#",
@@ -43,7 +61,6 @@ const Navigation = () => {
         { label: t("tranings_Immersions"), href: "#imersoes" },
       ],
     },
-
     {
       label: t("resources"),
       href: "#",
@@ -55,131 +72,121 @@ const Navigation = () => {
     { label: t("contact"), href: "/contact" },
   ];
 
-  // Function to check if the token is expired
-  const isTokenExpired = (token: string | null) => {
-    if (!token) return true;
-    try {
-      const decoded: any = jwtDecode(token);
-      const currentTime = Date.now() / 1000; // Convert to seconds
-      return decoded.exp < currentTime;
-    } catch (error) {
-      console.error("Error decoding token:", error);
-      return true; // Treat as expired if decoding fails
-    }
-  };
+  /* ── Scroll detection ── */
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  // Check login status and fetch user profile
+  /* ── Auth check ── */
   useEffect(() => {
     const token = localStorage.getItem("access");
     if (token && !isTokenExpired(token)) {
       setIsLoggedIn(true);
-      setTokenExpired(false);
-
-      const fetchUserProfile = async () => {
-        try {
-          const token = localStorage.getItem("access");
-          const response = await axios.get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
-          // Updated response structure check
-          if (response.data?.success && response.data?.user?.full_name) {
-            setUserName(response.data.user.full_name);
-          } else {
-            console.warn("Unexpected profile data structure:", response.data);
-            // Handle case where structure is unexpected but request succeeded
-            if (response.data?.full_name) {
-              // Fallback to direct full_name access (backward compatibility)
-              setUserName(response.data.full_name);
-            }
-          }
-        } catch (error) {
-          console.error("Error fetching user profile:", error);
-
-          if (axios.isAxiosError(error)) {
-            if (error.response?.status === 401) {
-              handleLogout();
-            } else if (error.response?.status === 404) {
-              console.error("Profile endpoint not found - check backend URL");
-            }
-          }
-        }
-      };
-
-      fetchUserProfile();
+      axios
+        .get("https://websitedrapaula-v2.onrender.com/api/users/profile/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          const name =
+            res.data?.user?.full_name ?? res.data?.full_name ?? "";
+          setUserName(name);
+        })
+        .catch((err) => {
+          if (axios.isAxiosError(err) && err.response?.status === 401)
+            handleLogout();
+        });
     } else {
       setIsLoggedIn(false);
       setUserName("");
-      setTokenExpired(true);
     }
-  }, [location]);
+  }, [location.pathname]);
 
-  const toggleDropdown = (label: string) => {
-    setActiveDropdowns((prev) => ({
-      ...prev,
-      navDropdown: prev.navDropdown === label ? null : label,
-    }));
+  /* ── Close-outside handler ── */
+  useEffect(() => {
+    const onMouseDown = (e: MouseEvent) => {
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(e.target as Node)
+      )
+        setUserDropdownOpen(false);
+
+      const clickedAny = Object.values(dropdownRefs.current).some(
+        (ref) => ref?.contains(e.target as Node)
+      );
+      if (!clickedAny) setOpenNavDropdown(null);
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenNavDropdown(null);
+        setUserDropdownOpen(false);
+        closeMobileMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [isMenuOpen]);
+
+  /* ── Resize handler ── */
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) closeMobileMenu();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [isMenuOpen]);
+
+  /* ── Helpers ── */
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const toggleUserDropdown = () => {
-    setActiveDropdowns((prev) => ({
-      ...prev,
-      userDropdown: !prev.userDropdown,
-    }));
+  const closeMobileMenu = useCallback(() => {
+    const el = mobileMenuRef.current;
+    if (!el || !isMenuOpen) return;
+    el.classList.remove("open");
+    setTimeout(() => setIsMenuOpen(false), 380);
+  }, [isMenuOpen]);
+
+  const openMobileMenu = () => {
+    setIsMenuOpen(true);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        mobileMenuRef.current?.classList.add("open");
+      });
+    });
   };
 
-  const handleWishlistClick = () => {
-    navigate("/wishlist");
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.warn(`Section with id "${sectionId}" not found.`);
-      scrollToTop(); // Fallback to top if the section is not found
-    }
-  };
-
-  const closeMobileMenu = () => {
-    if (isMenuOpen && mobileMenuRef.current) {
-      mobileMenuRef.current.classList.remove('open');
-      setTimeout(() => {
-        setIsMenuOpen(false);
-      }, 500); // Match transition time
-    }
-  };
+  const toggleMobileMenu = () =>
+    isMenuOpen ? closeMobileMenu() : openMobileMenu();
 
   const handleLinkClick = (href: string) => {
-    // First close the mobile menu
     closeMobileMenu();
+    setOpenNavDropdown(null);
+    setUserDropdownOpen(false);
 
-    // Reset all dropdowns
-    setActiveDropdowns({ navDropdown: null, userDropdown: false });
-
-    // Handle navigation with a slight delay to allow animation to start
     setTimeout(() => {
       if (href.startsWith("#")) {
-        const sectionId = href.substring(1);
-
+        const id = href.slice(1);
         if (location.pathname === "/") {
-          // If already on the home page, scroll to the section
-          scrollToSection(sectionId);
+          scrollToSection(id);
         } else {
-          // If on another page, navigate to the home page with the hash in the URL
-          navigate(`/#${sectionId}`);
+          navigate(`/#${id}`);
         }
       } else {
-        // For non-hash links, just navigate normally
         navigate(href);
-        scrollToTop();  //Scroll to the top
+        scrollToTop();
       }
-    }, 10); // Small delay to ensure the closing animation starts
+    }, 10);
   };
 
   const handleLogout = () => {
@@ -187,143 +194,70 @@ const Navigation = () => {
     localStorage.removeItem("refresh");
     setIsLoggedIn(false);
     setUserName("");
-    setTokenExpired(true);
-    setActiveDropdowns({ navDropdown: null, userDropdown: false });
+    setOpenNavDropdown(null);
+    setUserDropdownOpen(false);
     closeMobileMenu();
     navigate("/login");
     scrollToTop();
   };
 
-  const toggleMobileMenu = () => {
-    const mobileMenu = mobileMenuRef.current;
-    if (mobileMenu) {
-      if (!isMenuOpen) {
-        setIsMenuOpen(true);
-        setTimeout(() => {
-          mobileMenu.classList.add('open');
-        }, 10);
-      } else {
-        mobileMenu.classList.remove('open');
-        setTimeout(() => {
-          setIsMenuOpen(false);
-        }, 500); // Match transition time
-      }
-    }
-  };
-
-  //Listen to scroll event
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  //This useEffect takes care of closing mobile menu on certain situations
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
-        setActiveDropdowns(prev => ({ ...prev, userDropdown: false }));
-      }
-      let clickedOutsideAllDropdowns = true;
-      Object.entries(dropdownRefs.current).forEach(([label, ref]) => {
-        if (ref && ref.contains(event.target as Node)) {
-          clickedOutsideAllDropdowns = false;
-        }
-      });
-      if (clickedOutsideAllDropdowns) {
-        setActiveDropdowns(prev => ({ ...prev, navDropdown: null }));
-      }
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setActiveDropdowns({ navDropdown: null, userDropdown: false });
-        closeMobileMenu();
-      }
-    };
-
-    const handleRouteChange = () => {
-      closeMobileMenu();
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("popstate", handleRouteChange);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("popstate", handleRouteChange);
-    };
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
-        closeMobileMenu();
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isMenuOpen]);
-
-  // Calculate background color opacity based on scroll position
-  const navbarOpacity = Math.min(1, scrollPosition / 200); // Adjust the divisor to control the sensitivity
+  /* ─── Render ─────────────────────────────────── */
   return (
-    <nav className="navbar" style={{ backgroundColor: `rgba(255, 255, 255, ${0.95 - navbarOpacity * 0.3})` }}>
+    <nav className={`navbar${isScrolled ? " scrolled" : ""}`}>
       <div className="navbar-container">
+        {/* ── Main row ── */}
         <div className="navbar-main">
+
+          {/* Logo */}
           <div className="navbar-logo">
             <a
               href="/"
               onClick={(e) => {
                 e.preventDefault();
                 closeMobileMenu();
-                window.location.href = "/";
                 scrollToTop();
+                navigate("/");
               }}
             >
               <img src={logo} alt="Logo" className="logo-img" />
             </a>
           </div>
 
-          <div className="navbar-links desktop">
+          {/* Desktop links */}
+          <nav className="navbar-links desktop" aria-label="Main navigation">
             {navigationLinks.map((link) => (
               <div
                 key={link.label}
-                className={`dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
-                ref={(el) => {
-                  dropdownRefs.current[link.label] = el;
-                }}
+                className={`dropdown-container${openNavDropdown === link.label ? " active" : ""}`}
+                ref={(el) => { dropdownRefs.current[link.label] = el; }}
               >
                 {link.subItems ? (
                   <>
                     <button
-                      onClick={() => toggleDropdown(link.label)}
                       className="dropdown-trigger"
-                      aria-expanded={activeDropdowns.navDropdown === link.label}
+                      onClick={() =>
+                        setOpenNavDropdown(
+                          openNavDropdown === link.label ? null : link.label
+                        )
+                      }
+                      aria-expanded={openNavDropdown === link.label}
                       aria-haspopup="true"
                     >
                       {link.label}
-                      <ChevronDown className="dropdown-icon" />
+                      <ChevronDown className="dropdown-icon" aria-hidden="true" />
                     </button>
-                    <div className="dropdown-menu">
-                      {link.subItems.map((subItem) => (
+                    <div className="dropdown-menu" role="menu">
+                      {link.subItems.map((sub) => (
                         <a
-                          key={subItem.label}
-                          href={subItem.href}
+                          key={sub.label}
+                          href={sub.href}
+                          role="menuitem"
                           onClick={(e) => {
                             e.preventDefault();
-                            handleLinkClick(subItem.href);
+                            handleLinkClick(sub.href);
                           }}
                         >
-                          {subItem.label}
+                          {sub.label}
                         </a>
                       ))}
                     </div>
@@ -341,45 +275,80 @@ const Navigation = () => {
                 )}
               </div>
             ))}
-          </div>
+          </nav>
 
+          {/* Right icons */}
           <div className="navbar-icons">
+
+            {/* Language selector */}
+            <div className="language-selector desktop" role="group" aria-label="Language">
+              {i18n.languages.map((lang) => (
+                <button
+                  key={lang}
+                  className={i18n.language === lang ? "active" : ""}
+                  onClick={() => i18n.changeLanguage(lang)}
+                  aria-pressed={i18n.language === lang}
+                >
+                  <span className="lang-button-content">
+                    {lang.toUpperCase()}
+                    <img
+                      src={lang === "pt" ? ptFlag : gbFlag}
+                      alt={lang}
+                      width="18"
+                      height="13"
+                    />
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* User */}
             <div
-              className={`user-icon-wrapper ${activeDropdowns.userDropdown ? 'active' : ''}`}
+              className={`user-icon-wrapper${userDropdownOpen ? " active" : ""}`}
               ref={userDropdownRef}
             >
-              <User
-                className="icon"
-                color={isLoggedIn && !tokenExpired ? "green" : "black"}
-                onClick={toggleUserDropdown}
-                aria-expanded={activeDropdowns.userDropdown}
+              <button
+                className="icon-btn"
+                onClick={() => setUserDropdownOpen((v) => !v)}
+                aria-expanded={userDropdownOpen}
                 aria-haspopup="true"
-              />
-              {isLoggedIn && (
-                <div className="hover-message">
-                  {tokenExpired ? "Your login has expired" : `${t("welcome")}, ${userName}`}
+                aria-label="Account"
+              >
+                <User
+                  className="icon"
+                  aria-hidden="true"
+                  color={isLoggedIn ? "#16a34a" : "currentColor"}
+                />
+              </button>
+
+              {isLoggedIn && userName && (
+                <div className="hover-message" aria-hidden="true">
+                  {t("welcome")}, {userName}
                 </div>
               )}
-              <div className="user-dropdown-menu">
+
+              <div className="user-dropdown-menu" role="menu">
                 {isLoggedIn ? (
                   <>
                     <button
                       className="user-dropdown-button"
+                      role="menuitem"
                       onClick={() => {
-                        closeMobileMenu();
+                        setUserDropdownOpen(false);
                         navigate("/profile");
-                        toggleUserDropdown();
                         scrollToTop();
                       }}
                     >
-                      <UserCircle size={18} />
+                      <UserCircle size={16} aria-hidden="true" />
                       {t("profile")}
                     </button>
+                    <div className="user-dropdown-divider" />
                     <button
-                      className="user-dropdown-button"
+                      className="user-dropdown-button danger"
+                      role="menuitem"
                       onClick={handleLogout}
                     >
-                      <LogOut size={18} />
+                      <LogOut size={16} aria-hidden="true" />
                       {t("logout")}
                     </button>
                   </>
@@ -387,185 +356,182 @@ const Navigation = () => {
                   <>
                     <button
                       className="user-dropdown-button"
+                      role="menuitem"
                       onClick={() => {
-                        closeMobileMenu();
+                        setUserDropdownOpen(false);
                         navigate("/login");
-                        toggleUserDropdown();
                         scrollToTop();
                       }}
                     >
-                      <LogIn size={18} />
+                      <LogIn size={16} aria-hidden="true" />
                       {t("login")}
                     </button>
                     <button
                       className="user-dropdown-button"
+                      role="menuitem"
                       onClick={() => {
-                        closeMobileMenu();
+                        setUserDropdownOpen(false);
                         navigate("/register");
-                        toggleUserDropdown();
                         scrollToTop();
                       }}
                     >
-                      <UserPlus size={18} />
+                      <UserPlus size={16} aria-hidden="true" />
                       {t("registration")}
                     </button>
                   </>
                 )}
               </div>
             </div>
-            <Heart
-              className="icon"
-              onClick={() => {
-                closeMobileMenu();
-                handleWishlistClick();
-                scrollToTop();
-              }}
-              aria-label="Wishlist"
-            />
-            <ShoppingBag
-              className="icon"
-              onClick={() => {
-                closeMobileMenu();
-                navigate("/cart");
-                scrollToTop();
-              }}
-              aria-label="Shopping Cart"
-            />
 
-            <div className="language-selector desktop">
-              {i18n.languages.map((lang) => (
-                <button
-                  key={lang}
-                  className={i18n.language === lang ? "active" : ""}
-                  onClick={() => i18n.changeLanguage(lang as "PT" | "EN")}
-                  aria-pressed={i18n.language === lang}
-                >
-                  <span className="lang-button-content">
-                    {lang} <img src={lang === "pt" ? ptFlag : gbFlag} alt={lang} width="20" />
-                  </span>
-                </button>
-              ))}
-            </div>
+            {/* Wishlist */}
             <button
-              onClick={toggleMobileMenu}
+              className="icon-btn"
+              onClick={() => { closeMobileMenu(); navigate("/wishlist"); scrollToTop(); }}
+              aria-label="Wishlist"
+            >
+              <Heart className="icon" aria-hidden="true" />
+            </button>
+
+            {/* Cart */}
+            <button
+              className="icon-btn"
+              onClick={() => { closeMobileMenu(); navigate("/cart"); scrollToTop(); }}
+              aria-label="Shopping Cart"
+            >
+              <ShoppingBag className="icon" aria-hidden="true" />
+            </button>
+
+            {/* Hamburger */}
+            <button
               className="mobile-menu-button"
+              onClick={toggleMobileMenu}
               aria-expanded={isMenuOpen}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X /> : <Menu />}
+              {isMenuOpen
+                ? <X size={22} aria-hidden="true" />
+                : <Menu size={22} aria-hidden="true" />
+              }
             </button>
           </div>
         </div>
 
+        {/* ── Mobile menu ── */}
         <div
-          className={`mobile-menu ${isMenuOpen ? '' : ''}`}
+          className="mobile-menu"
           ref={mobileMenuRef}
+          aria-hidden={!isMenuOpen}
         >
-          {navigationLinks.map((link) => (
-            <div
-              key={link.label}
-              className={`mobile-dropdown-container ${activeDropdowns.navDropdown === link.label ? 'active' : ''}`}
-            >
-              {link.subItems ? (
-                <>
-                  <button
-                    onClick={() => toggleDropdown(link.label)}
-                    className="mobile-dropdown-trigger"
-                    aria-expanded={activeDropdowns.navDropdown === link.label}
+          <div className="mobile-menu-inner" ref={mobileMenuInnerRef}>
+
+            {/* Nav items */}
+            {navigationLinks.map((link) => (
+              <div
+                key={link.label}
+                className={`mobile-dropdown-container${openNavDropdown === link.label ? " active" : ""}`}
+              >
+                {link.subItems ? (
+                  <>
+                    <button
+                      className="mobile-dropdown-trigger"
+                      onClick={() =>
+                        setOpenNavDropdown(
+                          openNavDropdown === link.label ? null : link.label
+                        )
+                      }
+                      aria-expanded={openNavDropdown === link.label}
+                    >
+                      {link.label}
+                      <ChevronDown className="dropdown-icon" aria-hidden="true" />
+                    </button>
+                    <div className="mobile-dropdown-menu">
+                      {link.subItems.map((sub) => (
+                        <a
+                          key={sub.label}
+                          href={sub.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleLinkClick(sub.href);
+                          }}
+                        >
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
                   >
                     {link.label}
-                    <ChevronDown className="dropdown-icon" />
-                  </button>
-                  <div className="mobile-dropdown-menu">
-                    {link.subItems.map((subItem) => (
-                      <a
-                        key={subItem.label}
-                        href={subItem.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleLinkClick(subItem.href);
-                        }}
-                      >
-                        {subItem.label}
-                      </a>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                >
-                  {link.label}
-                </a>
-              )}
-            </div>
-          ))}
-
-          {isLoggedIn ? (
-            <>
-              <button
-                className="mobile-menu-button"
-                onClick={() => {
-                  closeMobileMenu();
-                  navigate("/profile");
-                  scrollToTop();
-                }}
-              >
-                <UserCircle size={18} />
-                {t("profile")}
-              </button>
-              <button
-                className="mobile-menu-button"
-                onClick={handleLogout}
-              >
-                <LogOut size={18} />
-                {t("logout")}
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                className="mobile-menu-button"
-                onClick={() => {
-                  closeMobileMenu();
-                  navigate("/login");
-                  scrollToTop();
-                }}
-              >
-                <LogIn size={18} />
-                {t("login")}
-              </button>
-              <button
-                className="mobile-menu-button"
-                onClick={() => {
-                  closeMobileMenu();
-                  navigate("/register");
-                  scrollToTop();
-                }}
-              >
-                <UserPlus size={18} />
-                {t("registration")}
-              </button>
-            </>
-          )}
-
-          <div className="mobile-language-selector">
-            {i18n.languages.map((lang) => (
-              <button
-                key={lang}
-                className={i18n.language === lang ? "active" : ""}
-                onClick={() => {
-                  closeMobileMenu();
-                  i18n.changeLanguage(lang);
-                }}
-              >
-                {lang} {lang === "pt" ? "🇵🇹" : "🇬🇧"}
-              </button>
+                  </a>
+                )}
+              </div>
             ))}
+
+            <div className="mobile-divider" />
+
+            {/* Auth buttons */}
+            {isLoggedIn ? (
+              <>
+                <button
+                  className="mobile-action-button ghost"
+                  onClick={() => { closeMobileMenu(); navigate("/profile"); scrollToTop(); }}
+                >
+                  <UserCircle size={18} aria-hidden="true" />
+                  {t("profile")}
+                </button>
+                <button
+                  className="mobile-action-button danger"
+                  onClick={handleLogout}
+                >
+                  <LogOut size={18} aria-hidden="true" />
+                  {t("logout")}
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="mobile-action-button primary"
+                  onClick={() => { closeMobileMenu(); navigate("/login"); scrollToTop(); }}
+                >
+                  <LogIn size={18} aria-hidden="true" />
+                  {t("login")}
+                </button>
+                <button
+                  className="mobile-action-button ghost"
+                  onClick={() => { closeMobileMenu(); navigate("/register"); scrollToTop(); }}
+                >
+                  <UserPlus size={18} aria-hidden="true" />
+                  {t("registration")}
+                </button>
+              </>
+            )}
+
+            <div className="mobile-divider" />
+
+            {/* Language */}
+            <div
+              className="mobile-language-selector"
+              role="group"
+              aria-label="Language"
+            >
+              {i18n.languages.map((lang) => (
+                <button
+                  key={lang}
+                  className={i18n.language === lang ? "active" : ""}
+                  onClick={() => { i18n.changeLanguage(lang); }}
+                  aria-pressed={i18n.language === lang}
+                >
+                  {lang === "pt" ? "🇵🇹" : "🇬🇧"} {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
