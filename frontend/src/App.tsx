@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext"; // Import CartProvider
 import Navigation from "./components/Navigation";
@@ -22,7 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./components/Profile";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import "./styles/global.css";
-import CookieConsent from "react-cookie-consent";
+
 import NossosValores from "./components/pages/NossosValores";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -33,6 +33,7 @@ import AboutDetail from "./components/pages/AboutDetail";
 import ImersaoDetails from "./components/pages/ImersaoDetails"; 
 import LancamentoDetail from './components/pages/LancamentoDetail';
 import ScrollToTop from './components/ScrollToTop';
+import CookieBanner from './components/CookieBanner';
 import Politica from "./components/Politica";
 import PoliticaCookies from "./components/PoliticaCookies";
 import TermosCondicoes from "./components/TermosCondicoes";
@@ -80,49 +81,7 @@ function App() {
         <Router>
           <ScrollToTop />
           <Navigation />
-          <CookieConsent
-            location="bottom"
-            buttonText="Aceitar"
-            declineButtonText="Recusar"
-            cookieName="myCookieConsent"
-            style={{
-              background: "#ffffff",
-              color: "#333",
-              padding: "10px 20px",
-              boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
-              borderRadius: "5px",
-              fontSize: "14px",
-              fontFamily: "Arial, sans-serif",
-            }}
-            buttonStyle={{
-              background: "#4CAF50",
-              color: "#fff",
-              padding: "8px 16px",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-            declineButtonStyle={{
-              background: "#f44336",
-              color: "#fff",
-              padding: "8px 16px",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-            expires={150}
-            enableDeclineButton
-            onDecline={() => {
-              console.log("User declined cookies");
-            }}
-            overlay
-            overlayStyle={{
-              background: "rgba(0,0,0,0.5)",
-            }}
-          >
-            Este site utiliza cookies para melhorar a sua experiência. Ao continuar, você concorda com o uso de cookies.{" "}
-            <Link to="/privacy" style={{ color: "#007bff", textDecoration: "underline" }}>
-              Saiba mais
-            </Link>
-          </CookieConsent>
+          <CookieBanner />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
