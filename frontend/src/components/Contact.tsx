@@ -159,7 +159,15 @@ const Contact = () => {
               <li><a href="/politica">{t("info_o1")}</a></li>
               <li><a href="/politica-cookies">{t("info_o2")}</a></li>
               <li><a href="/termos-condicoes">{t("info_o3")}</a></li>
-              <li><a href="https://www.livroreclamacoes.pt/Inicio/">{t("info_o4")}</a></li>
+              <li>
+  <a 
+    href="https://www.livroreclamacoes.pt/Inicio/" 
+    target="_blank" 
+    rel="noopener noreferrer"
+  >
+    {t("info_o4")}
+  </a>
+</li>
             </ul>
           </div>
         </div>
